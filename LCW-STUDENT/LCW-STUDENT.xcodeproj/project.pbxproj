@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C027CD71BA1C24800E4F372 /* CouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CD61BA1C24800E4F372 /* CouponController.m */; };
 		5C0CF9CE1BA085A600A45C38 /* HFStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF9CD1BA085A600A45C38 /* HFStretchableTableHeaderView.m */; };
 		5C0CF9D21BA08A3800A45C38 /* CoachController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF9D11BA08A3800A45C38 /* CoachController.m */; };
 		5C0CF9D61BA08F2E00A45C38 /* CoachCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF9D51BA08F2E00A45C38 /* CoachCell.m */; };
@@ -79,6 +80,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C027CD51BA1C24800E4F372 /* CouponController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponController.h; sourceTree = "<group>"; };
+		5C027CD61BA1C24800E4F372 /* CouponController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponController.m; sourceTree = "<group>"; };
 		5C0CF9CC1BA085A600A45C38 /* HFStretchableTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFStretchableTableHeaderView.h; sourceTree = "<group>"; };
 		5C0CF9CD1BA085A600A45C38 /* HFStretchableTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFStretchableTableHeaderView.m; sourceTree = "<group>"; };
 		5C0CF9D01BA08A3800A45C38 /* CoachController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachController.h; sourceTree = "<group>"; };
@@ -225,6 +228,66 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C027CD41BA1C20900E4F372 /* coupon */ = {
+			isa = PBXGroup;
+			children = (
+				5C027CD51BA1C24800E4F372 /* CouponController.h */,
+				5C027CD61BA1C24800E4F372 /* CouponController.m */,
+			);
+			name = coupon;
+			sourceTree = "<group>";
+		};
+		5C027CD81BA1CD6F00E4F372 /* orderCar */ = {
+			isa = PBXGroup;
+			children = (
+				5C027CDC1BA1CEB800E4F372 /* carOrder */,
+			);
+			name = orderCar;
+			sourceTree = "<group>";
+		};
+		5C027CD91BA1CD8A00E4F372 /* carSchool */ = {
+			isa = PBXGroup;
+			children = (
+				5C7FA59E1B9DD3E200616F01 /* filter */,
+				5CA041791B91C95C00EEB4BC /* shop */,
+				5C7FA5A51B9DDF0200616F01 /* school */,
+				5C027CD41BA1C20900E4F372 /* coupon */,
+				5C0CF9CF1BA0871E00A45C38 /* coach */,
+			);
+			name = carSchool;
+			sourceTree = "<group>";
+		};
+		5C027CDA1BA1CE3A00E4F372 /* orderTest */ = {
+			isa = PBXGroup;
+			children = (
+				5C027CDD1BA1CEC500E4F372 /* testOrder */,
+			);
+			name = orderTest;
+			sourceTree = "<group>";
+		};
+		5C027CDB1BA1CE5F00E4F372 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				5CA0417D1B91C9BB00EEB4BC /* ShopCell.h */,
+				5CA0417E1B91C9BB00EEB4BC /* ShopCell.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		5C027CDC1BA1CEB800E4F372 /* carOrder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = carOrder;
+			sourceTree = "<group>";
+		};
+		5C027CDD1BA1CEC500E4F372 /* testOrder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = testOrder;
+			sourceTree = "<group>";
+		};
 		5C0CF9CB1BA085A600A45C38 /* HF */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,10 +470,9 @@
 				5CA041781B91C95600EEB4BC /* model */,
 				5CA041771B91C93A00EEB4BC /* home */,
 				5CE59D321B9C86790097AA63 /* address */,
-				5C7FA59E1B9DD3E200616F01 /* filter */,
-				5CA041791B91C95C00EEB4BC /* shop */,
-				5C7FA5A51B9DDF0200616F01 /* school */,
-				5C0CF9CF1BA0871E00A45C38 /* coach */,
+				5C027CD91BA1CD8A00E4F372 /* carSchool */,
+				5C027CD81BA1CD6F00E4F372 /* orderCar */,
+				5C027CDA1BA1CE3A00E4F372 /* orderTest */,
 			);
 			name = Home;
 			path = "LCW-STUDENT/Home";
@@ -599,8 +661,7 @@
 		5CA041791B91C95C00EEB4BC /* shop */ = {
 			isa = PBXGroup;
 			children = (
-				5CA0417D1B91C9BB00EEB4BC /* ShopCell.h */,
-				5CA0417E1B91C9BB00EEB4BC /* ShopCell.m */,
+				5C027CDB1BA1CE5F00E4F372 /* views */,
 				5CA040ED1B91C5C200EEB4BC /* ShopController.h */,
 				5CA040EE1B91C5C200EEB4BC /* ShopController.m */,
 			);
@@ -817,6 +878,7 @@
 				5CA0413E1B91C5C200EEB4BC /* BaseViewController.m in Sources */,
 				5CA041471B91C5C200EEB4BC /* HomeController.m in Sources */,
 				5C7FA5AB1B9DE65E00616F01 /* SchoolInfoView.m in Sources */,
+				5C027CD71BA1C24800E4F372 /* CouponController.m in Sources */,
 				5CA0414E1B91C5C200EEB4BC /* UserInfo.m in Sources */,
 				5CA041501B91C5C200EEB4BC /* PersonalController.m in Sources */,
 				5CA0416D1B91C5C200EEB4BC /* WaitingView.m in Sources */,

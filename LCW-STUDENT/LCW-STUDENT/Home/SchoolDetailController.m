@@ -101,7 +101,7 @@
     if (_hasSignUp) {
         [self performSegueWithIdentifier:@"CoachFilter" sender:nil];
     } else {
-        
+        [self performSegueWithIdentifier:@"Coupon" sender:nil];
     }
 }
 
