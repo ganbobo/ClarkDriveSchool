@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5C027CD71BA1C24800E4F372 /* CouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CD61BA1C24800E4F372 /* CouponController.m */; };
+		5C027CE01BA1CF5100E4F372 /* CarOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CDF1BA1CF5100E4F372 /* CarOrderController.m */; };
+		5C027CE31BA1CF5C00E4F372 /* TestOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CE21BA1CF5C00E4F372 /* TestOrderController.m */; };
 		5C0CF9CE1BA085A600A45C38 /* HFStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF9CD1BA085A600A45C38 /* HFStretchableTableHeaderView.m */; };
 		5C0CF9D21BA08A3800A45C38 /* CoachController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF9D11BA08A3800A45C38 /* CoachController.m */; };
 		5C0CF9D61BA08F2E00A45C38 /* CoachCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF9D51BA08F2E00A45C38 /* CoachCell.m */; };
@@ -82,6 +84,10 @@
 /* Begin PBXFileReference section */
 		5C027CD51BA1C24800E4F372 /* CouponController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponController.h; sourceTree = "<group>"; };
 		5C027CD61BA1C24800E4F372 /* CouponController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponController.m; sourceTree = "<group>"; };
+		5C027CDE1BA1CF5100E4F372 /* CarOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarOrderController.h; sourceTree = "<group>"; };
+		5C027CDF1BA1CF5100E4F372 /* CarOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarOrderController.m; sourceTree = "<group>"; };
+		5C027CE11BA1CF5C00E4F372 /* TestOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestOrderController.h; sourceTree = "<group>"; };
+		5C027CE21BA1CF5C00E4F372 /* TestOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestOrderController.m; sourceTree = "<group>"; };
 		5C0CF9CC1BA085A600A45C38 /* HFStretchableTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFStretchableTableHeaderView.h; sourceTree = "<group>"; };
 		5C0CF9CD1BA085A600A45C38 /* HFStretchableTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFStretchableTableHeaderView.m; sourceTree = "<group>"; };
 		5C0CF9D01BA08A3800A45C38 /* CoachController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachController.h; sourceTree = "<group>"; };
@@ -277,6 +283,8 @@
 		5C027CDC1BA1CEB800E4F372 /* carOrder */ = {
 			isa = PBXGroup;
 			children = (
+				5C027CDE1BA1CF5100E4F372 /* CarOrderController.h */,
+				5C027CDF1BA1CF5100E4F372 /* CarOrderController.m */,
 			);
 			name = carOrder;
 			sourceTree = "<group>";
@@ -284,8 +292,23 @@
 		5C027CDD1BA1CEC500E4F372 /* testOrder */ = {
 			isa = PBXGroup;
 			children = (
+				5C027CE11BA1CF5C00E4F372 /* TestOrderController.h */,
+				5C027CE21BA1CF5C00E4F372 /* TestOrderController.m */,
 			);
 			name = testOrder;
+			sourceTree = "<group>";
+		};
+		5C027CE41BA1D00900E4F372 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				5CA040E31B91C5C200EEB4BC /* ADScrollView.h */,
+				5CA040E41B91C5C200EEB4BC /* ADScrollView.m */,
+				5CA040EB1B91C5C200EEB4BC /* PageControl.h */,
+				5CA040EC1B91C5C200EEB4BC /* PageControl.m */,
+				5CA040E71B91C5C200EEB4BC /* AdsView.h */,
+				5CA040E81B91C5C200EEB4BC /* AdsView.m */,
+			);
+			name = views;
 			sourceTree = "<group>";
 		};
 		5C0CF9CB1BA085A600A45C38 /* HF */ = {
@@ -637,12 +660,7 @@
 		5CA041771B91C93A00EEB4BC /* home */ = {
 			isa = PBXGroup;
 			children = (
-				5CA040E31B91C5C200EEB4BC /* ADScrollView.h */,
-				5CA040E41B91C5C200EEB4BC /* ADScrollView.m */,
-				5CA040EB1B91C5C200EEB4BC /* PageControl.h */,
-				5CA040EC1B91C5C200EEB4BC /* PageControl.m */,
-				5CA040E71B91C5C200EEB4BC /* AdsView.h */,
-				5CA040E81B91C5C200EEB4BC /* AdsView.m */,
+				5C027CE41BA1D00900E4F372 /* views */,
 				5CA040E91B91C5C200EEB4BC /* HomeController.h */,
 				5CA040EA1B91C5C200EEB4BC /* HomeController.m */,
 			);
@@ -842,8 +860,10 @@
 				5CA041431B91C5C200EEB4BC /* CourseController.m in Sources */,
 				5CA0416A1B91C5C200EEB4BC /* STDbHandle.m in Sources */,
 				5C7FA5A11B9DD3F100616F01 /* FilterController.m in Sources */,
+				5C027CE01BA1CF5100E4F372 /* CarOrderController.m in Sources */,
 				5CA0415B1B91C5C200EEB4BC /* JSONKit.m in Sources */,
 				5CA041591B91C5C200EEB4BC /* CNotificationManager.m in Sources */,
+				5C027CE31BA1CF5C00E4F372 /* TestOrderController.m in Sources */,
 				5CA0415A1B91C5C200EEB4BC /* CommonUtils.m in Sources */,
 				5CA0414B1B91C5C200EEB4BC /* MMMaterialDesignSpinner.m in Sources */,
 				5C0FB5E01B94A643009EE519 /* RegisterController.m in Sources */,

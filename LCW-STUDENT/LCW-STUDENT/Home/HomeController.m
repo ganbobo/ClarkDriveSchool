@@ -109,13 +109,15 @@
 
 // 约车
 - (IBAction)clickAppointCar:(id)sender {
-    if (checkUserLogin(self)) {
-        
-    }
+//    if (checkUserLogin(self)) {
+//        
+//    }
+    [self performSegueWithIdentifier:@"CarOrder" sender:sender];
 }
 
 // 约考
 - (IBAction)clickAppointPaper:(id)sender {
+    [self performSegueWithIdentifier:@"TestOrder" sender:sender];
 }
 
 // 购车，驾校

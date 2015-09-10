@@ -197,8 +197,8 @@
                         <outlet property="_footerView" destination="c2J-9w-w5W" id="VVm-ZF-Suz"/>
                         <outlet property="_tableView" destination="R9u-0R-ZhC" id="z46-VY-j60"/>
                         <segue destination="Gv9-aO-Mtf" kind="show" identifier="Filter" id="gkR-TM-Fz7"/>
-                        <segue destination="rcp-Oo-llT" kind="push" id="9xc-OW-vIK"/>
-                        <segue destination="Nxc-Jw-Kju" kind="push" id="rq7-YE-cXU"/>
+                        <segue destination="rcp-Oo-llT" kind="show" identifier="TestOrder" id="9xc-OW-vIK"/>
+                        <segue destination="Nxc-Jw-Kju" kind="show" identifier="CarOrder" id="rq7-YE-cXU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gBH-p3-rkA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -271,7 +271,7 @@
         <!--一键约车-->
         <scene sceneID="0sv-Kr-4tk">
             <objects>
-                <viewController id="Nxc-Jw-Kju" sceneMemberID="viewController">
+                <viewController id="Nxc-Jw-Kju" customClass="CarOrderController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DWA-70-nTk"/>
                         <viewControllerLayoutGuide type="bottom" id="rAC-kr-XlV"/>
@@ -285,12 +285,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ipn-Nf-Utp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1369" y="-316"/>
+            <point key="canvasLocation" x="1332" y="-313"/>
         </scene>
         <!--预约考试-->
         <scene sceneID="E4n-9L-bL9">
             <objects>
-                <viewController id="rcp-Oo-llT" sceneMemberID="viewController">
+                <viewController id="rcp-Oo-llT" customClass="TestOrderController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dJ0-lL-kCQ"/>
                         <viewControllerLayoutGuide type="bottom" id="k8g-ex-9cw"/>
@@ -304,7 +304,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vKA-pw-lXR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1369" y="427"/>
+            <point key="canvasLocation" x="1332" y="427"/>
         </scene>
         <!--Shop-->
         <scene sceneID="YUO-NP-sEa">
