@@ -10,6 +10,7 @@
 		5C027CD71BA1C24800E4F372 /* CouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CD61BA1C24800E4F372 /* CouponController.m */; };
 		5C027CE01BA1CF5100E4F372 /* CarOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CDF1BA1CF5100E4F372 /* CarOrderController.m */; };
 		5C027CE31BA1CF5C00E4F372 /* TestOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CE21BA1CF5C00E4F372 /* TestOrderController.m */; };
+		5C027CE81BA1E6DE00E4F372 /* CarOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CE71BA1E6DE00E4F372 /* CarOrderCell.m */; };
 		5C0CF9CE1BA085A600A45C38 /* HFStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF9CD1BA085A600A45C38 /* HFStretchableTableHeaderView.m */; };
 		5C0CF9D21BA08A3800A45C38 /* CoachController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF9D11BA08A3800A45C38 /* CoachController.m */; };
 		5C0CF9D61BA08F2E00A45C38 /* CoachCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF9D51BA08F2E00A45C38 /* CoachCell.m */; };
@@ -88,6 +89,8 @@
 		5C027CDF1BA1CF5100E4F372 /* CarOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarOrderController.m; sourceTree = "<group>"; };
 		5C027CE11BA1CF5C00E4F372 /* TestOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestOrderController.h; sourceTree = "<group>"; };
 		5C027CE21BA1CF5C00E4F372 /* TestOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestOrderController.m; sourceTree = "<group>"; };
+		5C027CE61BA1E6DE00E4F372 /* CarOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarOrderCell.h; sourceTree = "<group>"; };
+		5C027CE71BA1E6DE00E4F372 /* CarOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarOrderCell.m; sourceTree = "<group>"; };
 		5C0CF9CC1BA085A600A45C38 /* HFStretchableTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HFStretchableTableHeaderView.h; sourceTree = "<group>"; };
 		5C0CF9CD1BA085A600A45C38 /* HFStretchableTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HFStretchableTableHeaderView.m; sourceTree = "<group>"; };
 		5C0CF9D01BA08A3800A45C38 /* CoachController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachController.h; sourceTree = "<group>"; };
@@ -283,6 +286,7 @@
 		5C027CDC1BA1CEB800E4F372 /* carOrder */ = {
 			isa = PBXGroup;
 			children = (
+				5C027CE51BA1E6C400E4F372 /* views */,
 				5C027CDE1BA1CF5100E4F372 /* CarOrderController.h */,
 				5C027CDF1BA1CF5100E4F372 /* CarOrderController.m */,
 			);
@@ -307,6 +311,15 @@
 				5CA040EC1B91C5C200EEB4BC /* PageControl.m */,
 				5CA040E71B91C5C200EEB4BC /* AdsView.h */,
 				5CA040E81B91C5C200EEB4BC /* AdsView.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		5C027CE51BA1E6C400E4F372 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				5C027CE61BA1E6DE00E4F372 /* CarOrderCell.h */,
+				5C027CE71BA1E6DE00E4F372 /* CarOrderCell.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -903,6 +916,7 @@
 				5CA041501B91C5C200EEB4BC /* PersonalController.m in Sources */,
 				5CA0416D1B91C5C200EEB4BC /* WaitingView.m in Sources */,
 				5CA0413C1B91C5C200EEB4BC /* AppDelegate.m in Sources */,
+				5C027CE81BA1E6DE00E4F372 /* CarOrderCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

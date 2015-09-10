@@ -12,6 +12,7 @@
 
 @interface ShopCell () {
     
+    @private
     __weak IBOutlet UIImageView *_imgView;
     __weak IBOutlet UILabel *_lblName;
     __weak IBOutlet UILabel *_lblPrice;

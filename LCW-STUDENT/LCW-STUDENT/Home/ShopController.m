@@ -15,6 +15,7 @@
 #define kMapTag   100002
 
 @interface ShopController ()<UITableViewDataSource, UITableViewDelegate> {
+    @private
     UIView *_titleView;
     __weak IBOutlet UITableView *_tableView;
 }
@@ -101,6 +102,8 @@
 - (void)clickSearch {
     
 }
+
+#pragma - mark UITableViewDataSource, UITableViewDelegate 代理
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 20;
