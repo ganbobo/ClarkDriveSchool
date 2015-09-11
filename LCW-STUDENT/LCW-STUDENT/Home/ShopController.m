@@ -11,13 +11,18 @@
 #import "ShopCell.h"
 #import "SchoolDetailController.h"
 
+#import "MXPullDownMenu.h"
+
 #define kListTag  100001
 #define kMapTag   100002
 
-@interface ShopController ()<UITableViewDataSource, UITableViewDelegate> {
+@interface ShopController ()<UITableViewDataSource, UITableViewDelegate, MXPullDownMenuDelegate> {
     @private
     UIView *_titleView;
     __weak IBOutlet UITableView *_tableView;
+    
+    NSArray *_dataMenu;
+    MXPullDownMenu *_pullDownMenu;
 }
 
 @end
@@ -37,6 +42,7 @@
 - (void)loadView {
     [super loadView];
     [self loadNav];
+    [self loadPullDownMenuView];
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
@@ -74,6 +80,17 @@
     [_titleView addSubview:btnMap];
     
     [self clickSwich:btnList];
+}
+
+- (void)loadPullDownMenuView {
+    _dataMenu = @[ @[ @"广德", @"泾县", @"宣州区"], @[@"综合排序", @"由近到远"], @[@"价格", @"由低到高", @"由高到低"], @[@"评分", @"由低到高", @"由高到低"]];
+    
+    
+    _pullDownMenu = [[MXPullDownMenu alloc] initWithArray:_dataMenu selectedColor:[UIColor colorWithRed:0.180 green:0.635 blue:0.353 alpha:1.000]];
+    _pullDownMenu.delegate = self;
+    _pullDownMenu.frame = CGRectMake(0, 64, ScreenWidth, 45);
+    [_pullDownMenu setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:_pullDownMenu];
 }
 
 #pragma - mark 导航按钮点击
@@ -128,6 +145,12 @@
         SchoolDetailController *controller = [segue destinationViewController];
         controller.hasSignUp = _hasSignUp;
     }
+}
+
+#pragma mark - MXPullDownMenuDelegate
+
+- (void)PullDownMenu:(MXPullDownMenu *)pullDownMenu didSelectRowAtColumn:(NSInteger)column row:(NSInteger)row {
+    NSLog(@"%ld -- %ld", column, row);
 }
 
 @end

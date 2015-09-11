@@ -9,12 +9,16 @@
 #import "CoachController.h"
 
 #import "CoachCell.h"
+#import "MXPullDownMenu.h"
 
-@interface CoachController ()<UITableViewDataSource, UITableViewDelegate> {
+@interface CoachController ()<UITableViewDataSource, UITableViewDelegate, MXPullDownMenuDelegate> {
     
+    @private
     __weak IBOutlet UITableView *_tableView;
-    
     UITextField *_searchField;
+    
+    NSArray *_dataMenu;
+    MXPullDownMenu *_pullDownMenu;
 }
 
 @end
@@ -34,6 +38,7 @@
 - (void)loadView {
     [super loadView];
     [self loadNav];
+    [self loadPullDownMenuView];
 }
 
 #pragma - mark 加载界面
@@ -56,6 +61,17 @@
     [searchView addSubview:_searchField];
 }
 
+- (void)loadPullDownMenuView {
+    _dataMenu = @[ @[ @"广德", @"泾县", @"宣州区"], @[@"综合排序", @"由近到远"], @[@"价格", @"由低到高", @"由高到低"], @[@"筛选", @"全部", @"男教练", @"女教练", @"剩余名额教练"]];
+    
+    
+    _pullDownMenu = [[MXPullDownMenu alloc] initWithArray:_dataMenu selectedColor:[UIColor colorWithRed:0.180 green:0.635 blue:0.353 alpha:1.000]];
+    _pullDownMenu.delegate = self;
+    _pullDownMenu.frame = CGRectMake(0, 64, ScreenWidth, 45);
+    [_pullDownMenu setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:_pullDownMenu];
+}
+
 #pragma - mark UITableViewDataSource, UITableViewDelegate 代理
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -75,6 +91,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - MXPullDownMenuDelegate
+
+- (void)PullDownMenu:(MXPullDownMenu *)pullDownMenu didSelectRowAtColumn:(NSInteger)column row:(NSInteger)row {
+    NSLog(@"%ld -- %ld", column, row);
 }
 
 @end
