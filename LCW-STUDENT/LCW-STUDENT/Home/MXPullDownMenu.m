@@ -78,7 +78,7 @@
             
             if (i != _numOfMenu - 1) {
                 CGPoint separatorPosition = CGPointMake((i + 1) * separatorLineInterval, self.frame.size.height / 2);
-                CAShapeLayer *separator = [self creatSeparatorLineWithColor:[UIColor colorWithWhite:0.800 alpha:1.000] andPosition:separatorPosition];
+                CAShapeLayer *separator = [self creatSeparatorLineWithColor:[UIColor colorWithWhite:0.800 alpha:1.000]  andPosition:separatorPosition];
                 [self.layer addSublayer:separator];
             }
             

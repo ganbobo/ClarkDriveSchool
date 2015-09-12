@@ -35,11 +35,36 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="gQg-Nn-8Bf">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="QH5-Rx-1U0">
-                                    <rect key="frame" x="0.0" y="64" width="600" height="125"/>
+                                    <rect key="frame" x="0.0" y="64" width="600" height="144.5"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detail_image.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="n5r-cG-DRd">
+                                            <rect key="frame" x="260" y="22" width="80" height="80.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="80" id="7gr-ZG-mKk"/>
+                                                <constraint firstAttribute="width" constant="80" id="DMR-Ut-Ngh"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="St.Pons.Mr.G" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AKI-3W-5Jb">
+                                            <rect key="frame" x="10" y="112.5" width="580" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="SBn-zn-eMC"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" red="0.14117647058823529" green="0.65490196078431373" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="AKI-3W-5Jb" firstAttribute="top" secondItem="n5r-cG-DRd" secondAttribute="bottom" constant="10" id="41M-Uh-Eh5"/>
+                                        <constraint firstAttribute="trailing" secondItem="AKI-3W-5Jb" secondAttribute="trailing" constant="10" id="VA8-LG-cpX"/>
+                                        <constraint firstAttribute="centerY" secondItem="n5r-cG-DRd" secondAttribute="centerY" constant="10" id="fdh-HP-KQt"/>
+                                        <constraint firstAttribute="centerX" secondItem="n5r-cG-DRd" secondAttribute="centerX" id="ghO-6F-wdI"/>
+                                        <constraint firstItem="AKI-3W-5Jb" firstAttribute="leading" secondItem="QH5-Rx-1U0" secondAttribute="leading" constant="10" id="xQ2-wJ-wqC"/>
+                                    </constraints>
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="PersonalCell" id="660-mf-bh0">
@@ -66,6 +91,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Personal" id="Jdd-Hh-FNO"/>
                     <connections>
+                        <outlet property="_avatarImage" destination="n5r-cG-DRd" id="IUb-jz-r8V"/>
+                        <outlet property="_headerView" destination="QH5-Rx-1U0" id="po1-dv-q02"/>
+                        <outlet property="_lblNickName" destination="AKI-3W-5Jb" id="TLq-vz-Oz2"/>
                         <outlet property="_tableView" destination="gQg-Nn-8Bf" id="dRC-QU-DYv"/>
                     </connections>
                 </viewController>
@@ -74,4 +102,7 @@
             <point key="canvasLocation" x="546" y="427"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="detail_image.jpg" width="1002" height="330"/>
+    </resources>
 </document>
