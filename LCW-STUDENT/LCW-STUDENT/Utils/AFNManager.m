@@ -12,6 +12,8 @@
 
 @implementation AFNManager
 
+SYNTHESIZE_SINGLETON_FOR_CLASS(AFNManager);
+
 - (instancetype)init
 {
     self = [super init];
@@ -21,9 +23,13 @@
     return self;
 }
 
+/**
+ *  获取AFNManager对象
+ *
+ *  @return 返回一个AFNManager对象
+ */
 + (AFNManager *)manager {
-    AFNManager *manager = [[AFNManager alloc] init];
-    return manager;
+    return [AFNManager sharedAFNManager];
 }
 
 /**

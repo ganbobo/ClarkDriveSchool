@@ -40,5 +40,6 @@
 #import "EnumType.h"
 #import "CommonUtils.h"
 #import "UserInfo.h"
+#import "MJExtension.h"
 
 #endif

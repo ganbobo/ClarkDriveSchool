@@ -67,14 +67,14 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.row == 1) {
-        if (_delegate && [_delegate respondsToSelector:@selector(didSelectCoach)]) {
-            [_delegate didSelectCoach];
+        if (_delegate && [_delegate respondsToSelector:@selector(didSelectComment)]) {
+            [_delegate didSelectComment];
         }
     }
     
     if (indexPath.row == 2) {
-        if (_delegate && [_delegate respondsToSelector:@selector(didSelectCoach)]) {
-            [_delegate didSelectCoach];
+        if (_delegate && [_delegate respondsToSelector:@selector(didShowMapLocation)]) {
+            [_delegate didShowMapLocation];
         }
     }
 }

@@ -14,9 +14,11 @@
 		5C0CF9CE1BA085A600A45C38 /* HFStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF9CD1BA085A600A45C38 /* HFStretchableTableHeaderView.m */; };
 		5C0CF9D21BA08A3800A45C38 /* CoachController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF9D11BA08A3800A45C38 /* CoachController.m */; };
 		5C0CF9D61BA08F2E00A45C38 /* CoachCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF9D51BA08F2E00A45C38 /* CoachCell.m */; };
+		5C0E47DD1BA6577100A6FB4C /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0E47DC1BA6577100A6FB4C /* UserManager.m */; };
 		5C0FB5E01B94A643009EE519 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0FB5DF1B94A643009EE519 /* RegisterController.m */; };
 		5C0FB5E31B94A64F009EE519 /* ForgetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0FB5E21B94A64F009EE519 /* ForgetPwdController.m */; };
 		5C4FA50E1B98B6AB00E18801 /* personal.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C4FA50D1B98B6AB00E18801 /* personal.xcassets */; };
+		5C6BEFA51BA3C3FB0076E616 /* HomeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6BEFA41BA3C3FB0076E616 /* HomeManager.m */; };
 		5C6CFD3E1B8E032700A76E56 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C6CFD3D1B8E032700A76E56 /* libsqlite3.dylib */; };
 		5C7FA5A11B9DD3F100616F01 /* FilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7FA5A01B9DD3F100616F01 /* FilterController.m */; };
 		5C7FA5A41B9DDEFA00616F01 /* SchoolDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7FA5A31B9DDEFA00616F01 /* SchoolDetailController.m */; };
@@ -77,6 +79,8 @@
 		5CA041751B91C74B00EEB4BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CA041721B91C74B00EEB4BC /* Main.storyboard */; };
 		5CA0417F1B91C9BB00EEB4BC /* ShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA0417E1B91C9BB00EEB4BC /* ShopCell.m */; };
 		5CD070801B99B141004953D9 /* FeedBackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD0707F1B99B141004953D9 /* FeedBackController.m */; };
+		5CDA13141BA85C38008C4218 /* CommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA13131BA85C38008C4218 /* CommentController.m */; };
+		5CDA131B1BA85C7D008C4218 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA131A1BA85C7D008C4218 /* CommentCell.m */; };
 		5CE59D311B9C86260097AA63 /* Address.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CE59D301B9C86260097AA63 /* Address.storyboard */; };
 		5CE59D351B9C868A0097AA63 /* AddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE59D341B9C868A0097AA63 /* AddressController.m */; };
 		5CF606131BA2D7D10042804E /* MXPullDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF606121BA2D7D10042804E /* MXPullDownMenu.m */; };
@@ -98,11 +102,15 @@
 		5C0CF9D11BA08A3800A45C38 /* CoachController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachController.m; sourceTree = "<group>"; };
 		5C0CF9D41BA08F2E00A45C38 /* CoachCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachCell.h; sourceTree = "<group>"; };
 		5C0CF9D51BA08F2E00A45C38 /* CoachCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachCell.m; sourceTree = "<group>"; };
+		5C0E47DB1BA6577100A6FB4C /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		5C0E47DC1BA6577100A6FB4C /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		5C0FB5DE1B94A643009EE519 /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterController.h; sourceTree = "<group>"; };
 		5C0FB5DF1B94A643009EE519 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterController.m; sourceTree = "<group>"; };
 		5C0FB5E11B94A64F009EE519 /* ForgetPwdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdController.h; sourceTree = "<group>"; };
 		5C0FB5E21B94A64F009EE519 /* ForgetPwdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdController.m; sourceTree = "<group>"; };
 		5C4FA50D1B98B6AB00E18801 /* personal.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = personal.xcassets; sourceTree = "<group>"; };
+		5C6BEFA31BA3C3FB0076E616 /* HomeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeManager.h; sourceTree = "<group>"; };
+		5C6BEFA41BA3C3FB0076E616 /* HomeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeManager.m; sourceTree = "<group>"; };
 		5C6CFCA81B8DEFFE00A76E56 /* LCW-STUDENT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LCW-STUDENT.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C6CFD3D1B8E032700A76E56 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		5C7FA59F1B9DD3F100616F01 /* FilterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterController.h; sourceTree = "<group>"; };
@@ -217,6 +225,10 @@
 		5CA0417E1B91C9BB00EEB4BC /* ShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopCell.m; sourceTree = "<group>"; };
 		5CD0707E1B99B141004953D9 /* FeedBackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackController.h; sourceTree = "<group>"; };
 		5CD0707F1B99B141004953D9 /* FeedBackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackController.m; sourceTree = "<group>"; };
+		5CDA13121BA85C38008C4218 /* CommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentController.h; sourceTree = "<group>"; };
+		5CDA13131BA85C38008C4218 /* CommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentController.m; sourceTree = "<group>"; };
+		5CDA13191BA85C7D008C4218 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		5CDA131A1BA85C7D008C4218 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		5CE59D301B9C86260097AA63 /* Address.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Address.storyboard; sourceTree = "<group>"; };
 		5CE59D331B9C868A0097AA63 /* AddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressController.h; sourceTree = "<group>"; };
 		5CE59D341B9C868A0097AA63 /* AddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressController.m; sourceTree = "<group>"; };
@@ -264,6 +276,7 @@
 				5C7FA59E1B9DD3E200616F01 /* filter */,
 				5CA041791B91C95C00EEB4BC /* shop */,
 				5C7FA5A51B9DDF0200616F01 /* school */,
+				5CDA13111BA85C13008C4218 /* schoolComment */,
 				5C027CD41BA1C20900E4F372 /* coupon */,
 				5C0CF9CF1BA0871E00A45C38 /* coach */,
 			);
@@ -356,6 +369,15 @@
 			name = views;
 			sourceTree = "<group>";
 		};
+		5C0E47DA1BA6575F00A6FB4C /* manager */ = {
+			isa = PBXGroup;
+			children = (
+				5C0E47DB1BA6577100A6FB4C /* UserManager.h */,
+				5C0E47DC1BA6577100A6FB4C /* UserManager.m */,
+			);
+			name = manager;
+			sourceTree = "<group>";
+		};
 		5C0FB5DA1B94A60B009EE519 /* forgetPwd */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +412,15 @@
 				5CA040F91B91C5C200EEB4BC /* UserInfo.m */,
 			);
 			name = model;
+			sourceTree = "<group>";
+		};
+		5C6BEFA21BA3C3E10076E616 /* manager */ = {
+			isa = PBXGroup;
+			children = (
+				5C6BEFA31BA3C3FB0076E616 /* HomeManager.h */,
+				5C6BEFA41BA3C3FB0076E616 /* HomeManager.m */,
+			);
+			name = manager;
 			sourceTree = "<group>";
 		};
 		5C6CFC9F1B8DEFFE00A76E56 = {
@@ -507,6 +538,7 @@
 		5CA040E21B91C5C200EEB4BC /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				5C6BEFA21BA3C3E10076E616 /* manager */,
 				5CA041781B91C95600EEB4BC /* model */,
 				5CA041771B91C93A00EEB4BC /* home */,
 				5CE59D321B9C86790097AA63 /* address */,
@@ -541,6 +573,7 @@
 		5CA040F51B91C5C200EEB4BC /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				5C0E47DA1BA6575F00A6FB4C /* manager */,
 				5C0FB5DD1B94A62F009EE519 /* model */,
 				5C0FB5DC1B94A625009EE519 /* login */,
 				5C0FB5DB1B94A61E009EE519 /* register */,
@@ -721,6 +754,25 @@
 			name = feedback;
 			sourceTree = "<group>";
 		};
+		5CDA13111BA85C13008C4218 /* schoolComment */ = {
+			isa = PBXGroup;
+			children = (
+				5CDA13151BA85C5A008C4218 /* views */,
+				5CDA13121BA85C38008C4218 /* CommentController.h */,
+				5CDA13131BA85C38008C4218 /* CommentController.m */,
+			);
+			name = schoolComment;
+			sourceTree = "<group>";
+		};
+		5CDA13151BA85C5A008C4218 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				5CDA13191BA85C7D008C4218 /* CommentCell.h */,
+				5CDA131A1BA85C7D008C4218 /* CommentCell.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
 		5CE59D321B9C86790097AA63 /* address */ = {
 			isa = PBXGroup;
 			children = (
@@ -890,11 +942,13 @@
 				5CA0415B1B91C5C200EEB4BC /* JSONKit.m in Sources */,
 				5CA041591B91C5C200EEB4BC /* CNotificationManager.m in Sources */,
 				5C027CE31BA1CF5C00E4F372 /* TestOrderController.m in Sources */,
+				5CDA131B1BA85C7D008C4218 /* CommentCell.m in Sources */,
 				5CA0415A1B91C5C200EEB4BC /* CommonUtils.m in Sources */,
 				5CA0414B1B91C5C200EEB4BC /* MMMaterialDesignSpinner.m in Sources */,
 				5C0FB5E01B94A643009EE519 /* RegisterController.m in Sources */,
 				5CA041651B91C5C200EEB4BC /* NSObject+MJKeyValue.m in Sources */,
 				5CA0414F1B91C5C200EEB4BC /* main.m in Sources */,
+				5C0E47DD1BA6577100A6FB4C /* UserManager.m in Sources */,
 				5C0CF9D61BA08F2E00A45C38 /* CoachCell.m in Sources */,
 				5CA041611B91C5C200EEB4BC /* MJMethod.m in Sources */,
 				5CA0416B1B91C5C200EEB4BC /* STDbObject.m in Sources */,
@@ -903,6 +957,7 @@
 				5CA041631B91C5C200EEB4BC /* MJTypeEncoding.m in Sources */,
 				5CA041641B91C5C200EEB4BC /* NSObject+MJCoding.m in Sources */,
 				5CA0415F1B91C5C200EEB4BC /* MJIvar.m in Sources */,
+				5CDA13141BA85C38008C4218 /* CommentController.m in Sources */,
 				5CA041491B91C5C200EEB4BC /* ShopController.m in Sources */,
 				5CE59D351B9C868A0097AA63 /* AddressController.m in Sources */,
 				5CA0417F1B91C9BB00EEB4BC /* ShopCell.m in Sources */,
@@ -910,6 +965,7 @@
 				5C0FB5E31B94A64F009EE519 /* ForgetPwdController.m in Sources */,
 				5CA0415C1B91C5C200EEB4BC /* MJArgument.m in Sources */,
 				5C7FA5AE1B9DE84600616F01 /* SchoolInfoCell.m in Sources */,
+				5C6BEFA51BA3C3FB0076E616 /* HomeManager.m in Sources */,
 				5CA0414D1B91C5C200EEB4BC /* LoginController.m in Sources */,
 				5CA041581B91C5C200EEB4BC /* AFNManager.m in Sources */,
 				5CA0415D1B91C5C200EEB4BC /* MJConst.m in Sources */,

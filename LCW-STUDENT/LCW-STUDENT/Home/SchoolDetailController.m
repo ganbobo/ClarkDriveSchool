@@ -11,6 +11,8 @@
 #import "SchoolInfoView.h"
 #import "HFStretchableTableHeaderView.h"
 
+#import "CommentController.h"
+
 @interface SchoolDetailController ()<UITableViewDataSource, UITableViewDelegate, SchoolInfoViewDelegate> {
     NSMutableArray *_dataSource;
     __weak IBOutlet UITableView *_tableView;
@@ -103,6 +105,15 @@
     } else {
         [self performSegueWithIdentifier:@"Coupon" sender:nil];
     }
+}
+
+- (void)didSelectComment {
+    CommentController *controller = [[UIStoryboard storyboardWithName:@"Home" bundle:nil] instantiateViewControllerWithIdentifier:@"CommentController"];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)didShowMapLocation {
+    
 }
 
 @end

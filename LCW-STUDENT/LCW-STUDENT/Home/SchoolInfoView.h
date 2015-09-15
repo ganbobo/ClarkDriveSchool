@@ -11,6 +11,8 @@
 @protocol SchoolInfoViewDelegate <NSObject>
 
 - (void)didSelectCoach;
+- (void)didSelectComment;
+- (void)didShowMapLocation;
 
 @end
 

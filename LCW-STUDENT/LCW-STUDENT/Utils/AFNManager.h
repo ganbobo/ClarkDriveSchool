@@ -16,6 +16,8 @@
 
 @interface AFNManager : NSObject
 
+DECLARE_SINGLETON_FOR_CLASS(AFNManager);
+
 // IP地址设置
 @property(nonatomic, retain)NSString *baseServerIP;
 
