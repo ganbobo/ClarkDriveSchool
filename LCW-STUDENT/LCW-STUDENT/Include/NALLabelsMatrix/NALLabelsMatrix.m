@@ -51,8 +51,8 @@
         
         UILabel* col1 = [[UILabel alloc] init];
         [col1.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
-        [col1.layer setBorderWidth:1.0];
-        col1.font = [UIFont fontWithName:@"Helvetica" size:14.0];
+        [col1.layer setBorderWidth:0.5];
+        col1.font = [UIFont fontWithName:@"Helvetica" size:13.5];
         col1.textColor = textColor;
         col1.frame = rect;
         
@@ -66,11 +66,11 @@
         
         
         //SPECIAL TREATMENT FOR THE FIRST ROW
-        if(self->numRows == 0){
+//        if(self->numRows == 0){
             style.alignment = NSTextAlignmentCenter;
             //			col1.backgroundColor = [UIColor colorWithWhite:0.961 alpha:1.000];
             col1.backgroundColor = [UIColor clearColor];
-        }
+//        }
         
         
         NSAttributedString *attrText = [[NSAttributedString alloc] initWithString:[record objectAtIndex:i] attributes:@{ NSParagraphStyleAttributeName : style}];
@@ -96,6 +96,7 @@
         
         //USED FOR SETTING THE NEXT COLUMN X POSITION
         dx += colWidth;
+        dx += 1.5;
     }
     
     

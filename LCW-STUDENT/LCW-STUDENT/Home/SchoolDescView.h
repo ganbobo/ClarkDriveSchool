@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+#define kTEXT_COLOR_KEY @"textColor"
+#define kTEXT_ARRAY_KEY @"textArray"
+
 @interface SchoolDescView : UIView
 
 /**

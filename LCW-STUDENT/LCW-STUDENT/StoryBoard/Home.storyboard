@@ -1050,25 +1050,25 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" red="0.90588235294117647" green="0.90980392156862744" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="O92-iA-Y2e">
-                                    <rect key="frame" x="0.0" y="64" width="600" height="151"/>
+                                    <rect key="frame" x="0.0" y="64" width="600" height="161"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detail_image.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="GsX-8X-YuF">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="151"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="161"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons_bgcover" translatesAutoresizingMaskIntoConstraints="NO" id="OK4-gO-u0A">
-                                            <rect key="frame" x="0.0" y="116" width="600" height="35"/>
+                                            <rect key="frame" x="0.0" y="126" width="600" height="35"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="UWD-S1-pb9"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="星科驾校" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzl-WW-GAb">
-                                            <rect key="frame" x="5" y="116" width="590" height="35"/>
+                                            <rect key="frame" x="5" y="126" width="590" height="35"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="vYa-RQ-6df"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <color key="textColor" red="1" green="0.26666666666666666" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>

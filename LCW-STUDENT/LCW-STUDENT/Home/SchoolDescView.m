@@ -34,16 +34,26 @@
     if (self = [super initWithFrame:CGRectMake(0, originalY, width, 20)]) {
         self.backgroundColor = [UIColor whiteColor];
         
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 30)];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 35)];
         view.backgroundColor = RGBA(0xee, 0xee, 0xee, 0);
         [self addSubview:view];
         
-        _lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, view.width - 10, 30)];
+        _lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, view.width - 10, 35)];
         _lblTitle.backgroundColor = [UIColor clearColor];
-        _lblTitle.font = [UIFont boldSystemFontOfSize:15];
-        [self addSubview:view];
+        _lblTitle.font = [UIFont systemFontOfSize:15];
+        [view addSubview:_lblTitle];
         
-        _matrix = [[NALLabelsMatrix alloc] initWithFrame:CGRectMake(5, 30, self.width - 10, 20)];
+        [self addSubview:view];
+        NSArray *columnWitdh = @[];
+        if (columns == 4) {
+            columnWitdh = @[@(self.width / 4.0 + 1), @(self.width / 4.0 + 1), @(self.width / 4.0 + 1), @(self.width / 4.0 + 1)];
+        }
+        
+        if (columns == 2) {
+            columnWitdh = @[@(self.width / 4.0), @(self.width * 3 / 4.0 + 2)];
+        }
+        
+        _matrix = [[NALLabelsMatrix alloc] initWithFrame:CGRectMake(0, 35, self.width, 20) andColumnsWidths:columnWitdh];
         [self addSubview:_matrix];
     }
     
@@ -58,11 +68,13 @@
 - (void)setDataSource:(NSArray *)array title:(NSString *)title {
     _lblTitle.text = title;
     [_matrix removeRecords];
-    for (NSArray *arr in array) {
-        [_matrix addRecord:arr];
+    for (NSDictionary *dic in array) {
+        UIColor *color = dic[kTEXT_COLOR_KEY];
+        NSArray *arrayContent = dic[kTEXT_ARRAY_KEY];
+        [_matrix addRecord:arrayContent withTextColor:color];
     }
     
-    [self setHeight:30 + _matrix.height];
+    [self setHeight:35 + _matrix.height];
 }
 
 @end
