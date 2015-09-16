@@ -84,6 +84,8 @@
 		5CE59D311B9C86260097AA63 /* Address.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CE59D301B9C86260097AA63 /* Address.storyboard */; };
 		5CE59D351B9C868A0097AA63 /* AddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE59D341B9C868A0097AA63 /* AddressController.m */; };
 		5CF606131BA2D7D10042804E /* MXPullDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF606121BA2D7D10042804E /* MXPullDownMenu.m */; };
+		5CFD94651BA8FB3F002B41EA /* NALLabelsMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFD94641BA8FB3F002B41EA /* NALLabelsMatrix.m */; };
+		5CFD94681BA8FC09002B41EA /* SchoolDescView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CFD94671BA8FC09002B41EA /* SchoolDescView.m */; };
 		96026448BA55720DF71FB0FD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD64CE4BC48D9EF81AA6791F /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -234,6 +236,10 @@
 		5CE59D341B9C868A0097AA63 /* AddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressController.m; sourceTree = "<group>"; };
 		5CF606111BA2D7D10042804E /* MXPullDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MXPullDownMenu.h; sourceTree = "<group>"; };
 		5CF606121BA2D7D10042804E /* MXPullDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MXPullDownMenu.m; sourceTree = "<group>"; };
+		5CFD94631BA8FB3F002B41EA /* NALLabelsMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NALLabelsMatrix.h; sourceTree = "<group>"; };
+		5CFD94641BA8FB3F002B41EA /* NALLabelsMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NALLabelsMatrix.m; sourceTree = "<group>"; };
+		5CFD94661BA8FC09002B41EA /* SchoolDescView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolDescView.h; sourceTree = "<group>"; };
+		5CFD94671BA8FC09002B41EA /* SchoolDescView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolDescView.m; sourceTree = "<group>"; };
 		819D5CF42C52460AAE8AA57E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		CD64CE4BC48D9EF81AA6791F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E093BCC3486837ED2736E62D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -496,6 +502,8 @@
 				5C7FA5AD1B9DE84600616F01 /* SchoolInfoCell.m */,
 				5C7FA5A91B9DE65E00616F01 /* SchoolInfoView.h */,
 				5C7FA5AA1B9DE65E00616F01 /* SchoolInfoView.m */,
+				5CFD94661BA8FC09002B41EA /* SchoolDescView.h */,
+				5CFD94671BA8FC09002B41EA /* SchoolDescView.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -553,6 +561,7 @@
 		5CA040F01B91C5C200EEB4BC /* Include */ = {
 			isa = PBXGroup;
 			children = (
+				5CFD94621BA8FB3F002B41EA /* NALLabelsMatrix */,
 				5C0CF9CB1BA085A600A45C38 /* HF */,
 				5C7FA5AF1B9DEBAA00616F01 /* RTLabel */,
 				5CA040F11B91C5C200EEB4BC /* MMMaterialDesignSpinner */,
@@ -791,6 +800,15 @@
 			name = pullDownMenu;
 			sourceTree = "<group>";
 		};
+		5CFD94621BA8FB3F002B41EA /* NALLabelsMatrix */ = {
+			isa = PBXGroup;
+			children = (
+				5CFD94631BA8FB3F002B41EA /* NALLabelsMatrix.h */,
+				5CFD94641BA8FB3F002B41EA /* NALLabelsMatrix.m */,
+			);
+			path = NALLabelsMatrix;
+			sourceTree = "<group>";
+		};
 		B5B15B8363CFA74FA740BFC6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -970,7 +988,9 @@
 				5CA041581B91C5C200EEB4BC /* AFNManager.m in Sources */,
 				5CA0415D1B91C5C200EEB4BC /* MJConst.m in Sources */,
 				5C7FA5B21B9DEBAA00616F01 /* RTLabel.m in Sources */,
+				5CFD94681BA8FC09002B41EA /* SchoolDescView.m in Sources */,
 				5CD070801B99B141004953D9 /* FeedBackController.m in Sources */,
+				5CFD94651BA8FB3F002B41EA /* NALLabelsMatrix.m in Sources */,
 				5CA0415E1B91C5C200EEB4BC /* MJFoundation.m in Sources */,
 				5CA0413D1B91C5C200EEB4BC /* BaseNavController.m in Sources */,
 				5CA041481B91C5C200EEB4BC /* PageControl.m in Sources */,
