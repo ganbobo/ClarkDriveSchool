@@ -15,6 +15,6 @@
 
 - (id)initWithFrame:(CGRect)frame andColumnsWidths:(NSArray*)columns;
 - (void)addRecord:(NSArray*)record;
-
+- (void)addRecord: (NSArray*)record withTextColor:(UIColor *)textColor;
 - (void)removeRecords;
 @end
