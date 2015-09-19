@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    OrderStateNormal = 1,  // 可选
+    OrderStateSelect = 2,   // 选择
+    OrderStateOrder = 3, // 预约
+    OrderStateFull = 4 // 已满
+} OrderState;
+
 #define kCarOrderCellHeight  65
 
 @interface CarOrderCell : UITableViewCell

@@ -7,8 +7,9 @@
 //
 
 #import "TestOrderController.h"
+#import "TestOrderCell.h"
 
-@interface TestOrderController ()
+@interface TestOrderController ()<UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -33,6 +34,27 @@
 
 - (void)loadNav {
     [PMCommon setNavigationTitle:self withTitle:@"预约考试"];
+}
+
+#pragma - mark UITableViewDataSource, UITableViewDelegate 代理
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 44;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    TestOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TestOrderCell" forIndexPath:indexPath];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

@@ -51,7 +51,7 @@
 - (void)loadNav {
     [PMCommon setNavigationBarRightButton:self withBtnNormalImg:[UIImage imageNamed:@"nav_search"] withAction:@selector(clickSearch)];
     
-    _titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 180, 30)];
+    _titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 30)];
     _titleView.backgroundColor = [UIColor whiteColor];
     _titleView.layer.borderColor = [UIColor colorWithRed:0.145 green:0.655 blue:0.341 alpha:1.000].CGColor;
     _titleView.layer.borderWidth = 1.5;
