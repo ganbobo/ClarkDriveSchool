@@ -36,7 +36,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="130" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3B0-SE-XKR">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="130" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="3B0-SE-XKR">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -44,7 +44,7 @@
                                         <rect key="frame" x="0.0" y="86" width="600" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ck0-PM-jKi" id="a7G-hs-jkJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="129.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_common" translatesAutoresizingMaskIntoConstraints="NO" id="1ua-kE-EOG">
@@ -111,12 +111,20 @@
                                                     <rect key="frame" x="5" y="65" width="590" height="62.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6zV-Je-U8f">
+                                                    <rect key="frame" x="5" y="129" width="590" height="1"/>
+                                                    <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="adg-Hn-mua"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="uSQ-Cn-bfw" firstAttribute="leading" secondItem="a7G-hs-jkJ" secondAttribute="leading" constant="5" id="1nt-rF-D5m"/>
                                                 <constraint firstItem="SgP-f7-ObD" firstAttribute="top" secondItem="AEM-Ii-Wk7" secondAttribute="bottom" constant="3" id="3fd-0Q-T4B"/>
                                                 <constraint firstItem="SiA-Jk-ze0" firstAttribute="top" secondItem="a7G-hs-jkJ" secondAttribute="top" constant="42" id="5Sc-2O-TQs"/>
                                                 <constraint firstAttribute="trailing" secondItem="SiA-Jk-ze0" secondAttribute="trailing" constant="5" id="7B6-Mb-1zC"/>
+                                                <constraint firstAttribute="bottom" secondItem="6zV-Je-U8f" secondAttribute="bottom" id="A6M-Iq-iDW"/>
                                                 <constraint firstItem="P1F-iO-uqT" firstAttribute="top" secondItem="AEM-Ii-Wk7" secondAttribute="bottom" constant="3" id="C6c-6K-snf"/>
                                                 <constraint firstItem="1ua-kE-EOG" firstAttribute="top" secondItem="a7G-hs-jkJ" secondAttribute="top" constant="5" id="E3J-cs-mga"/>
                                                 <constraint firstItem="3Ut-xD-QcN" firstAttribute="leading" secondItem="Z8l-GB-piT" secondAttribute="trailing" id="GrD-iS-n4r"/>
@@ -127,6 +135,8 @@
                                                 <constraint firstItem="SgP-f7-ObD" firstAttribute="leading" secondItem="a7G-hs-jkJ" secondAttribute="leading" constant="5" id="QcP-1D-fyf"/>
                                                 <constraint firstItem="uSQ-Cn-bfw" firstAttribute="top" secondItem="SiA-Jk-ze0" secondAttribute="bottom" constant="2" id="SSB-gp-VAd"/>
                                                 <constraint firstItem="P1F-iO-uqT" firstAttribute="leading" secondItem="3Ut-xD-QcN" secondAttribute="trailing" id="UAQ-gK-MJf"/>
+                                                <constraint firstAttribute="trailing" secondItem="6zV-Je-U8f" secondAttribute="trailing" constant="5" id="ZjU-ug-PRq"/>
+                                                <constraint firstItem="6zV-Je-U8f" firstAttribute="leading" secondItem="a7G-hs-jkJ" secondAttribute="leading" constant="5" id="cbk-5y-sKs"/>
                                                 <constraint firstItem="AEM-Ii-Wk7" firstAttribute="leading" secondItem="1ua-kE-EOG" secondAttribute="trailing" constant="5" id="dOR-Mk-HMh"/>
                                                 <constraint firstItem="TfY-du-6e9" firstAttribute="leading" secondItem="SgP-f7-ObD" secondAttribute="trailing" id="fhk-EC-hrp"/>
                                                 <constraint firstItem="Z8l-GB-piT" firstAttribute="top" secondItem="1ua-kE-EOG" secondAttribute="bottom" constant="3" id="nWY-85-wEs"/>

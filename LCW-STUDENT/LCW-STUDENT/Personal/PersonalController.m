@@ -146,7 +146,9 @@
             case 0:
                 [self performSegueWithIdentifier:@"MyCoupon" sender:indexPath];
                 break;
-                
+            case 1:
+                [self performSegueWithIdentifier:@"MyComment" sender:indexPath];
+                break;
             default:
                 break;
         }

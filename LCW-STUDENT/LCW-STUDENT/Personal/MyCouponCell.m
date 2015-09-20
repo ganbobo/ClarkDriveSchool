@@ -25,7 +25,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    _lblPrice.text = @"<font color='#f76502' size=20>1000</font><font color='#f76502' size=13>元</font>";
+    _lblPrice.text = @"<font face='HelveticaNeue-CondensedBold' color='#f76502' size=20>1000</font><font color='#f76502' size=13>元</font>";
     _lblPrice.textAlignment = RTTextAlignmentCenter;
 }
 

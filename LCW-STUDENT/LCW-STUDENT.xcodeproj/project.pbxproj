@@ -22,6 +22,8 @@
 		5C523EBB1BAE8C5000BEE143 /* SyncProcessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EBA1BAE8C5000BEE143 /* SyncProcessCell.m */; settings = {ASSET_TAGS = (); }; };
 		5C523EC01BAE9BD100BEE143 /* MyCouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EBF1BAE9BD100BEE143 /* MyCouponController.m */; settings = {ASSET_TAGS = (); }; };
 		5C523EC41BAE9CC300BEE143 /* MyCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EC31BAE9CC300BEE143 /* MyCouponCell.m */; settings = {ASSET_TAGS = (); }; };
+		5C523EC91BAEA2DC00BEE143 /* MyCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EC81BAEA2DC00BEE143 /* MyCommentController.m */; settings = {ASSET_TAGS = (); }; };
+		5C523ECC1BAEA2EF00BEE143 /* MyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523ECB1BAEA2EF00BEE143 /* MyCommentCell.m */; settings = {ASSET_TAGS = (); }; };
 		5C6BEFA51BA3C3FB0076E616 /* HomeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6BEFA41BA3C3FB0076E616 /* HomeManager.m */; };
 		5C6CFD3E1B8E032700A76E56 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C6CFD3D1B8E032700A76E56 /* libsqlite3.dylib */; };
 		5C6E9F831BAD344C003A2425 /* TestOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E9F821BAD344C003A2425 /* TestOrderCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -125,6 +127,10 @@
 		5C523EBF1BAE9BD100BEE143 /* MyCouponController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCouponController.m; sourceTree = "<group>"; };
 		5C523EC21BAE9CC300BEE143 /* MyCouponCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCouponCell.h; sourceTree = "<group>"; };
 		5C523EC31BAE9CC300BEE143 /* MyCouponCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCouponCell.m; sourceTree = "<group>"; };
+		5C523EC71BAEA2DC00BEE143 /* MyCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCommentController.h; sourceTree = "<group>"; };
+		5C523EC81BAEA2DC00BEE143 /* MyCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCommentController.m; sourceTree = "<group>"; };
+		5C523ECA1BAEA2EF00BEE143 /* MyCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCommentCell.h; sourceTree = "<group>"; };
+		5C523ECB1BAEA2EF00BEE143 /* MyCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCommentCell.m; sourceTree = "<group>"; };
 		5C6BEFA31BA3C3FB0076E616 /* HomeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeManager.h; sourceTree = "<group>"; };
 		5C6BEFA41BA3C3FB0076E616 /* HomeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeManager.m; sourceTree = "<group>"; };
 		5C6CFCA81B8DEFFE00A76E56 /* LCW-STUDENT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LCW-STUDENT.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -479,6 +485,25 @@
 			name = views;
 			sourceTree = "<group>";
 		};
+		5C523EC51BAEA2BB00BEE143 /* myComment */ = {
+			isa = PBXGroup;
+			children = (
+				5C523EC61BAEA2C700BEE143 /* views */,
+				5C523EC71BAEA2DC00BEE143 /* MyCommentController.h */,
+				5C523EC81BAEA2DC00BEE143 /* MyCommentController.m */,
+			);
+			name = myComment;
+			sourceTree = "<group>";
+		};
+		5C523EC61BAEA2C700BEE143 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				5C523ECA1BAEA2EF00BEE143 /* MyCommentCell.h */,
+				5C523ECB1BAEA2EF00BEE143 /* MyCommentCell.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
 		5C6BEFA21BA3C3E10076E616 /* manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -663,6 +688,7 @@
 		5CA040FB1B91C5C200EEB4BC /* Personal */ = {
 			isa = PBXGroup;
 			children = (
+				5C523EC51BAEA2BB00BEE143 /* myComment */,
 				5C523EBD1BAE9B9500BEE143 /* myCoupon */,
 				5C523EB51BAE8AB200BEE143 /* syncProgress */,
 				5CD0707C1B99B11F004953D9 /* personal */,
@@ -1070,6 +1096,7 @@
 				5CA0413D1B91C5C200EEB4BC /* BaseNavController.m in Sources */,
 				5CA041481B91C5C200EEB4BC /* PageControl.m in Sources */,
 				5CA041681B91C5C200EEB4BC /* PMCommon.m in Sources */,
+				5C523EC91BAEA2DC00BEE143 /* MyCommentController.m in Sources */,
 				5CA041441B91C5C200EEB4BC /* ADScrollView.m in Sources */,
 				5C523EBB1BAE8C5000BEE143 /* SyncProcessCell.m in Sources */,
 				5C989F771BA1B28900207310 /* CoachFilterController.m in Sources */,
@@ -1079,6 +1106,7 @@
 				5C027CD71BA1C24800E4F372 /* CouponController.m in Sources */,
 				5CA0414E1B91C5C200EEB4BC /* UserInfo.m in Sources */,
 				5CA041501B91C5C200EEB4BC /* PersonalController.m in Sources */,
+				5C523ECC1BAEA2EF00BEE143 /* MyCommentCell.m in Sources */,
 				5CA0416D1B91C5C200EEB4BC /* WaitingView.m in Sources */,
 				5CA0413C1B91C5C200EEB4BC /* AppDelegate.m in Sources */,
 				5C027CE81BA1E6DE00E4F372 /* CarOrderCell.m in Sources */,
