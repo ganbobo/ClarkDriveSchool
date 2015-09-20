@@ -44,7 +44,7 @@
 
 - (void)loadView {
     [super loadView];
-    _dataSource = @[@[@"同步进度", @"我的消息", @"我的驾校", @"我的教练"], @[@"我的订单", @"我的评价"]];
+    _dataSource = @[@[@"同步进度", @"我的消息", @"我的驾校", @"我的教练"], @[@"我的优惠券", @"我的评价"]];
     [self loadNav];
     [self loadHeaderView];
 }
@@ -130,6 +130,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case 0:
+                [self performSegueWithIdentifier:@"SyncProgress" sender:indexPath];
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+    if (indexPath.section == 1) {
+        switch (indexPath.row) {
+            case 0:
+                [self performSegueWithIdentifier:@"MyCoupon" sender:indexPath];
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
 }
 
 #pragma - mark 点击头像及昵称触发方法

@@ -18,6 +18,10 @@
 		5C0FB5E01B94A643009EE519 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0FB5DF1B94A643009EE519 /* RegisterController.m */; };
 		5C0FB5E31B94A64F009EE519 /* ForgetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0FB5E21B94A64F009EE519 /* ForgetPwdController.m */; };
 		5C4FA50E1B98B6AB00E18801 /* personal.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C4FA50D1B98B6AB00E18801 /* personal.xcassets */; };
+		5C523EB81BAE8ACA00BEE143 /* SyncProgressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EB71BAE8ACA00BEE143 /* SyncProgressController.m */; settings = {ASSET_TAGS = (); }; };
+		5C523EBB1BAE8C5000BEE143 /* SyncProcessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EBA1BAE8C5000BEE143 /* SyncProcessCell.m */; settings = {ASSET_TAGS = (); }; };
+		5C523EC01BAE9BD100BEE143 /* MyCouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EBF1BAE9BD100BEE143 /* MyCouponController.m */; settings = {ASSET_TAGS = (); }; };
+		5C523EC41BAE9CC300BEE143 /* MyCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EC31BAE9CC300BEE143 /* MyCouponCell.m */; settings = {ASSET_TAGS = (); }; };
 		5C6BEFA51BA3C3FB0076E616 /* HomeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6BEFA41BA3C3FB0076E616 /* HomeManager.m */; };
 		5C6CFD3E1B8E032700A76E56 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C6CFD3D1B8E032700A76E56 /* libsqlite3.dylib */; };
 		5C6E9F831BAD344C003A2425 /* TestOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E9F821BAD344C003A2425 /* TestOrderCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -113,6 +117,14 @@
 		5C0FB5E11B94A64F009EE519 /* ForgetPwdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdController.h; sourceTree = "<group>"; };
 		5C0FB5E21B94A64F009EE519 /* ForgetPwdController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdController.m; sourceTree = "<group>"; };
 		5C4FA50D1B98B6AB00E18801 /* personal.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = personal.xcassets; sourceTree = "<group>"; };
+		5C523EB61BAE8ACA00BEE143 /* SyncProgressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncProgressController.h; sourceTree = "<group>"; };
+		5C523EB71BAE8ACA00BEE143 /* SyncProgressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncProgressController.m; sourceTree = "<group>"; };
+		5C523EB91BAE8C5000BEE143 /* SyncProcessCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncProcessCell.h; sourceTree = "<group>"; };
+		5C523EBA1BAE8C5000BEE143 /* SyncProcessCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncProcessCell.m; sourceTree = "<group>"; };
+		5C523EBE1BAE9BD100BEE143 /* MyCouponController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCouponController.h; sourceTree = "<group>"; };
+		5C523EBF1BAE9BD100BEE143 /* MyCouponController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCouponController.m; sourceTree = "<group>"; };
+		5C523EC21BAE9CC300BEE143 /* MyCouponCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCouponCell.h; sourceTree = "<group>"; };
+		5C523EC31BAE9CC300BEE143 /* MyCouponCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCouponCell.m; sourceTree = "<group>"; };
 		5C6BEFA31BA3C3FB0076E616 /* HomeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeManager.h; sourceTree = "<group>"; };
 		5C6BEFA41BA3C3FB0076E616 /* HomeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeManager.m; sourceTree = "<group>"; };
 		5C6CFCA81B8DEFFE00A76E56 /* LCW-STUDENT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LCW-STUDENT.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -429,6 +441,44 @@
 			name = model;
 			sourceTree = "<group>";
 		};
+		5C523EB51BAE8AB200BEE143 /* syncProgress */ = {
+			isa = PBXGroup;
+			children = (
+				5C523EBC1BAE8C5300BEE143 /* views */,
+				5C523EB61BAE8ACA00BEE143 /* SyncProgressController.h */,
+				5C523EB71BAE8ACA00BEE143 /* SyncProgressController.m */,
+			);
+			name = syncProgress;
+			sourceTree = "<group>";
+		};
+		5C523EBC1BAE8C5300BEE143 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				5C523EB91BAE8C5000BEE143 /* SyncProcessCell.h */,
+				5C523EBA1BAE8C5000BEE143 /* SyncProcessCell.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
+		5C523EBD1BAE9B9500BEE143 /* myCoupon */ = {
+			isa = PBXGroup;
+			children = (
+				5C523EC11BAE9CB000BEE143 /* views */,
+				5C523EBE1BAE9BD100BEE143 /* MyCouponController.h */,
+				5C523EBF1BAE9BD100BEE143 /* MyCouponController.m */,
+			);
+			name = myCoupon;
+			sourceTree = "<group>";
+		};
+		5C523EC11BAE9CB000BEE143 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				5C523EC21BAE9CC300BEE143 /* MyCouponCell.h */,
+				5C523EC31BAE9CC300BEE143 /* MyCouponCell.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
 		5C6BEFA21BA3C3E10076E616 /* manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,6 +663,8 @@
 		5CA040FB1B91C5C200EEB4BC /* Personal */ = {
 			isa = PBXGroup;
 			children = (
+				5C523EBD1BAE9B9500BEE143 /* myCoupon */,
+				5C523EB51BAE8AB200BEE143 /* syncProgress */,
 				5CD0707C1B99B11F004953D9 /* personal */,
 				5CD0707D1B99B126004953D9 /* feedback */,
 			);
@@ -972,6 +1024,7 @@
 				5CA041621B91C5C200EEB4BC /* MJType.m in Sources */,
 				5CA041421B91C5C200EEB4BC /* CourseCell.m in Sources */,
 				5CA041431B91C5C200EEB4BC /* CourseController.m in Sources */,
+				5C523EC01BAE9BD100BEE143 /* MyCouponController.m in Sources */,
 				5CA0416A1B91C5C200EEB4BC /* STDbHandle.m in Sources */,
 				5C7FA5A11B9DD3F100616F01 /* FilterController.m in Sources */,
 				5C027CE01BA1CF5100E4F372 /* CarOrderController.m in Sources */,
@@ -979,6 +1032,7 @@
 				5CA041591B91C5C200EEB4BC /* CNotificationManager.m in Sources */,
 				5C027CE31BA1CF5C00E4F372 /* TestOrderController.m in Sources */,
 				5CDA131B1BA85C7D008C4218 /* CommentCell.m in Sources */,
+				5C523EB81BAE8ACA00BEE143 /* SyncProgressController.m in Sources */,
 				5CA0415A1B91C5C200EEB4BC /* CommonUtils.m in Sources */,
 				5C6E9F831BAD344C003A2425 /* TestOrderCell.m in Sources */,
 				5CA0414B1B91C5C200EEB4BC /* MMMaterialDesignSpinner.m in Sources */,
@@ -1006,6 +1060,7 @@
 				5C6BEFA51BA3C3FB0076E616 /* HomeManager.m in Sources */,
 				5CA0414D1B91C5C200EEB4BC /* LoginController.m in Sources */,
 				5CA041581B91C5C200EEB4BC /* AFNManager.m in Sources */,
+				5C523EC41BAE9CC300BEE143 /* MyCouponCell.m in Sources */,
 				5CA0415D1B91C5C200EEB4BC /* MJConst.m in Sources */,
 				5C7FA5B21B9DEBAA00616F01 /* RTLabel.m in Sources */,
 				5CFD94681BA8FC09002B41EA /* SchoolDescView.m in Sources */,
@@ -1016,6 +1071,7 @@
 				5CA041481B91C5C200EEB4BC /* PageControl.m in Sources */,
 				5CA041681B91C5C200EEB4BC /* PMCommon.m in Sources */,
 				5CA041441B91C5C200EEB4BC /* ADScrollView.m in Sources */,
+				5C523EBB1BAE8C5000BEE143 /* SyncProcessCell.m in Sources */,
 				5C989F771BA1B28900207310 /* CoachFilterController.m in Sources */,
 				5CA0413E1B91C5C200EEB4BC /* BaseViewController.m in Sources */,
 				5CA041471B91C5C200EEB4BC /* HomeController.m in Sources */,
