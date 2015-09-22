@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B08E6261BB1A2F800DAF2E9 /* JsonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B08E6251BB1A2F800DAF2E9 /* JsonUtils.m */; settings = {ASSET_TAGS = (); }; };
 		5C027CD71BA1C24800E4F372 /* CouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CD61BA1C24800E4F372 /* CouponController.m */; };
 		5C027CE01BA1CF5100E4F372 /* CarOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CDF1BA1CF5100E4F372 /* CarOrderController.m */; };
 		5C027CE31BA1CF5C00E4F372 /* TestOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CE21BA1CF5C00E4F372 /* TestOrderController.m */; };
@@ -63,7 +64,6 @@
 		5CA041581B91C5C200EEB4BC /* AFNManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA0410B1B91C5C200EEB4BC /* AFNManager.m */; };
 		5CA041591B91C5C200EEB4BC /* CNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA0410D1B91C5C200EEB4BC /* CNotificationManager.m */; };
 		5CA0415A1B91C5C200EEB4BC /* CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA0410F1B91C5C200EEB4BC /* CommonUtils.m */; };
-		5CA0415B1B91C5C200EEB4BC /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA041121B91C5C200EEB4BC /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		5CA0415C1B91C5C200EEB4BC /* MJArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA041151B91C5C200EEB4BC /* MJArgument.m */; };
 		5CA0415D1B91C5C200EEB4BC /* MJConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA041171B91C5C200EEB4BC /* MJConst.m */; };
 		5CA0415E1B91C5C200EEB4BC /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA0411A1B91C5C200EEB4BC /* MJFoundation.m */; };
@@ -98,6 +98,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B08E6241BB1A2F800DAF2E9 /* JsonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonUtils.h; sourceTree = "<group>"; };
+		4B08E6251BB1A2F800DAF2E9 /* JsonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonUtils.m; sourceTree = "<group>"; };
 		5C027CD51BA1C24800E4F372 /* CouponController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponController.h; sourceTree = "<group>"; };
 		5C027CD61BA1C24800E4F372 /* CouponController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponController.m; sourceTree = "<group>"; };
 		5C027CDE1BA1CF5100E4F372 /* CarOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarOrderController.h; sourceTree = "<group>"; };
@@ -202,8 +204,6 @@
 		5CA0410D1B91C5C200EEB4BC /* CNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNotificationManager.m; sourceTree = "<group>"; };
 		5CA0410E1B91C5C200EEB4BC /* CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonUtils.h; sourceTree = "<group>"; };
 		5CA0410F1B91C5C200EEB4BC /* CommonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonUtils.m; sourceTree = "<group>"; };
-		5CA041111B91C5C200EEB4BC /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		5CA041121B91C5C200EEB4BC /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		5CA041141B91C5C200EEB4BC /* MJArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJArgument.h; sourceTree = "<group>"; };
 		5CA041151B91C5C200EEB4BC /* MJArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJArgument.m; sourceTree = "<group>"; };
 		5CA041161B91C5C200EEB4BC /* MJConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJConst.h; sourceTree = "<group>"; };
@@ -282,6 +282,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4B08E6231BB1A2DD00DAF2E9 /* JsonUtils */ = {
+			isa = PBXGroup;
+			children = (
+				4B08E6241BB1A2F800DAF2E9 /* JsonUtils.h */,
+				4B08E6251BB1A2F800DAF2E9 /* JsonUtils.m */,
+			);
+			path = JsonUtils;
+			sourceTree = "<group>";
+		};
 		5C027CD41BA1C20900E4F372 /* coupon */ = {
 			isa = PBXGroup;
 			children = (
@@ -726,13 +735,13 @@
 		5CA041091B91C5C200EEB4BC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4B08E6231BB1A2DD00DAF2E9 /* JsonUtils */,
 				5CA0410A1B91C5C200EEB4BC /* AFNManager.h */,
 				5CA0410B1B91C5C200EEB4BC /* AFNManager.m */,
 				5CA0410C1B91C5C200EEB4BC /* CNotificationManager.h */,
 				5CA0410D1B91C5C200EEB4BC /* CNotificationManager.m */,
 				5CA0410E1B91C5C200EEB4BC /* CommonUtils.h */,
 				5CA0410F1B91C5C200EEB4BC /* CommonUtils.m */,
-				5CA041101B91C5C200EEB4BC /* JSONKit */,
 				5CA041131B91C5C200EEB4BC /* MJExtension */,
 				5CA0412B1B91C5C200EEB4BC /* NSString+MD5.h */,
 				5CA0412C1B91C5C200EEB4BC /* NSString+MD5.m */,
@@ -747,15 +756,6 @@
 			name = Utils;
 			path = "LCW-STUDENT/Utils";
 			sourceTree = SOURCE_ROOT;
-		};
-		5CA041101B91C5C200EEB4BC /* JSONKit */ = {
-			isa = PBXGroup;
-			children = (
-				5CA041111B91C5C200EEB4BC /* JSONKit.h */,
-				5CA041121B91C5C200EEB4BC /* JSONKit.m */,
-			);
-			path = JSONKit;
-			sourceTree = "<group>";
 		};
 		5CA041131B91C5C200EEB4BC /* MJExtension */ = {
 			isa = PBXGroup;
@@ -1054,7 +1054,6 @@
 				5CA0416A1B91C5C200EEB4BC /* STDbHandle.m in Sources */,
 				5C7FA5A11B9DD3F100616F01 /* FilterController.m in Sources */,
 				5C027CE01BA1CF5100E4F372 /* CarOrderController.m in Sources */,
-				5CA0415B1B91C5C200EEB4BC /* JSONKit.m in Sources */,
 				5CA041591B91C5C200EEB4BC /* CNotificationManager.m in Sources */,
 				5C027CE31BA1CF5C00E4F372 /* TestOrderController.m in Sources */,
 				5CDA131B1BA85C7D008C4218 /* CommentCell.m in Sources */,
@@ -1073,6 +1072,7 @@
 				5CA041671B91C5C200EEB4BC /* NSString+MD5.m in Sources */,
 				5CAB907C1BAD63D400D82F15 /* CarOrderBtn.m in Sources */,
 				5CA041631B91C5C200EEB4BC /* MJTypeEncoding.m in Sources */,
+				4B08E6261BB1A2F800DAF2E9 /* JsonUtils.m in Sources */,
 				5CA041641B91C5C200EEB4BC /* NSObject+MJCoding.m in Sources */,
 				5CA0415F1B91C5C200EEB4BC /* MJIvar.m in Sources */,
 				5CDA13141BA85C38008C4218 /* CommentController.m in Sources */,
