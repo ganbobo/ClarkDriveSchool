@@ -34,7 +34,7 @@
     _lblContent.font = [UIFont systemFontOfSize:14];
     _lblContent.textColor = [UIColor colorWithWhite:0.721 alpha:1.000];
     
-    [_headImage setImageWithURL:getImageUrl(@"http://img12.360buyimg.com/n7/jfs/t1789/136/862828904/173824/2dcf5883/55dc53a0Nd70a9509.jpg")];
+    [_headImage setImageWithURL:getImageUrl(@"http://imgsrc.baidu.com/forum/w%3D580%3B/sign=82037f8cd1ca7bcb7d7bc7278e326a63/b17eca8065380cd7612ee4a2a744ad3459828149.jpg")];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
