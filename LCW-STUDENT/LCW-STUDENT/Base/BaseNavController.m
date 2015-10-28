@@ -22,11 +22,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.navigationBar setBackgroundImage:[self createImageWithColor:RGBA(0x5C, 0x5C, 0x5C, 1)] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationBar setShadowImage:[self createImageWithColor:RGBA(0x5C, 0x5C, 0x5C, 1)]];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(UIImage *) createImageWithColor: (UIColor *) color
+{
+    CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return theImage;
 }
 
 #pragma - mark override

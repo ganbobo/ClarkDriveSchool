@@ -12,6 +12,7 @@
 #import "SchoolDetailController.h"
 
 #import "MXPullDownMenu.h"
+#import "ShopViewModel.h"
 
 #define kListTag  100001
 #define kMapTag   100002
@@ -23,6 +24,9 @@
     
     NSArray *_dataMenu;
     MXPullDownMenu *_pullDownMenu;
+    
+    // 数据管理
+    ShopViewModel *_shopViewModel;
 }
 
 @end
@@ -32,6 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self getDataFromServer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,6 +46,7 @@
 
 - (void)loadView {
     [super loadView];
+    _shopViewModel = [[ShopViewModel alloc] init];
     [self loadNav];
     [self loadPullDownMenuView];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -123,12 +129,13 @@
 #pragma - mark UITableViewDataSource, UITableViewDelegate 代理
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return _shopViewModel.dataSource.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ShopCell *cell
     = [tableView dequeueReusableCellWithIdentifier:@"ShopCell" forIndexPath:indexPath];
+    [cell refreshCellWithInfo:_shopViewModel.dataSource[indexPath.row]];
     return cell;
 }
 
@@ -151,6 +158,16 @@
 
 - (void)PullDownMenu:(MXPullDownMenu *)pullDownMenu didSelectRowAtColumn:(NSInteger)column row:(NSInteger)row {
     NSLog(@"%ld -- %ld", column, row);
+}
+
+#pragma - mark 获取数据
+
+- (void)getDataFromServer {
+    [_shopViewModel getShopListFromServer:@"123" controller:self callBack:^(BOOL success) {
+        if (success) {
+            [_tableView reloadData];
+        }
+    }];
 }
 
 @end

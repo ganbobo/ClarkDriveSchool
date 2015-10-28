@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ShopInfo.h"
+
 @interface ShopCell : UITableViewCell
+
+- (void)refreshCellWithInfo:(ShopInfo *)shopInfo;
 
 @end

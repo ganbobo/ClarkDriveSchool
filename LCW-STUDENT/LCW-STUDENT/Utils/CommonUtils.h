@@ -27,7 +27,7 @@ NSURL* getImageUrl(NSString* imgPath);
  *
  *  @return responseCode
  */
-NSInteger getResponseCodeFromDic(NSDictionary *dic);
+NSString* getResponseCodeFromDic(NSDictionary *dic);
 
 /**
  *  呼叫客服

@@ -117,7 +117,8 @@
 
 // 约考
 - (IBAction)clickAppointPaper:(id)sender {
-    [self performSegueWithIdentifier:@"TestOrder" sender:sender];
+    [self showMiddleToastWithContent:@"该功能暂未开放，敬请期待"];
+//    [self performSegueWithIdentifier:@"TestOrder" sender:sender];
 }
 
 // 购车，驾校

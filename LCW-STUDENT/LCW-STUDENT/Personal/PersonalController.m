@@ -44,7 +44,7 @@
 
 - (void)loadView {
     [super loadView];
-    _dataSource = @[@[@"同步进度", @"我的消息", @"我的驾校", @"我的教练"], @[@"我的优惠券", @"我的评价"]];
+    _dataSource = @[@[@"我的消息", @"我的驾校", @"我的教练"], @[@"我的优惠券", @"我的评价"]];
     [self loadNav];
     [self loadHeaderView];
 }
@@ -82,10 +82,12 @@
 
 - (void)refreshHeaderViewWithUser {
     if (hasUser()) {
-//        UserInfo *user = getUser();
+        UserInfo *user = getUser();
         _avatarImage.image = [UIImage imageNamed:@"detail_image.jpg"];
+        _lblNickName.text = user.cn_name;
     } else {
         _avatarImage.image = nil;
+        _lblNickName.text = @"未登录";
     }
 }
 
@@ -133,7 +135,7 @@
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:
-                [self performSegueWithIdentifier:@"SyncProgress" sender:indexPath];
+//                [self performSegueWithIdentifier:@"SyncProgress" sender:indexPath];
                 break;
                 
             default:

@@ -30,8 +30,6 @@
     [_imgView setImageWithURL:getImageUrl(@"http://img11.360buyimg.com/da/jfs/t1828/282/1045058672/182151/a4bc083a/55e005fbNb4e59acd.jpg")];
     
     [_btnTip setBackgroundImage:nil forState:UIControlStateNormal];
-    _btnTip.layer.borderColor = RGBA(0xfb, 0x4b, 0x00, 1).CGColor;
-    _btnTip.layer.borderWidth = 0.5;
     _btnTip.userInteractionEnabled = NO;
 }
 
@@ -39,6 +37,10 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)refreshCellWithInfo:(ShopInfo *)shopInfo {
+    _lblName.text = shopInfo.driving_name;
 }
 
 @end

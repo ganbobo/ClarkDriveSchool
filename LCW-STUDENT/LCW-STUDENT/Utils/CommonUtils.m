@@ -8,7 +8,7 @@
 
 #import "CommonUtils.h"
 
-#define RESULT   @"code"
+#define RESULT   @"flag"
 
 /**
  *  获取图片地址
@@ -31,10 +31,10 @@ NSURL* getImageUrl(NSString* imgPath) {
  *
  *  @return responseCode
  */
-NSInteger getResponseCodeFromDic(NSDictionary *dic) {
-    NSInteger code = -1;
+NSString* getResponseCodeFromDic(NSDictionary *dic) {
+    NSString *code = @"false";
     if (dic[RESULT] && ![dic[RESULT] isKindOfClass:[NSNull class]]) {
-        code = [dic[RESULT] integerValue];
+        code = dic[RESULT];
     }
     
     return code;

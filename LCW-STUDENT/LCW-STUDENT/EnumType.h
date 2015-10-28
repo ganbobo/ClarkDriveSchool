@@ -24,10 +24,8 @@ typedef enum {
     ErrorCodeNetWork = -1009, // 与互联网断开连接
 } ErrorCode;
 
-typedef enum {
-    ResponseCodeSuccess = 0,   // 请求成功
-    ResponseCodeFailed = -1   // 请求失败
-} ResponseCode;
+#define ResponseCodeSuccess  @"true"   // 请求成功
+#define ResponseCodeFailed   @"false"   // 请求失败
 
 typedef enum {
     MessageSuccess = 0,  // 成功

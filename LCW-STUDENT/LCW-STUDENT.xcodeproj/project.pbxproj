@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B08E6261BB1A2F800DAF2E9 /* JsonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B08E6251BB1A2F800DAF2E9 /* JsonUtils.m */; settings = {ASSET_TAGS = (); }; };
+		4B08E6261BB1A2F800DAF2E9 /* JsonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B08E6251BB1A2F800DAF2E9 /* JsonUtils.m */; };
+		4B9D9F201BDE590800907937 /* LoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D9F1F1BDE590800907937 /* LoginViewModel.m */; };
+		4B9D9F241BDE5B8700907937 /* iToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D9F231BDE5B8700907937 /* iToast.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4B9D9F271BDE5C8600907937 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B9D9F291BDE5C8600907937 /* Localizable.strings */; };
+		4B9D9F2C1BDE5EA100907937 /* RegisterViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D9F2B1BDE5EA100907937 /* RegisterViewModel.m */; };
+		4B9D9F341BDE71AE00907937 /* ShopViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D9F331BDE71AE00907937 /* ShopViewModel.m */; };
+		4B9D9F381BDE74E100907937 /* ShopInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D9F371BDE74E100907937 /* ShopInfo.m */; };
 		5C027CD71BA1C24800E4F372 /* CouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CD61BA1C24800E4F372 /* CouponController.m */; };
 		5C027CE01BA1CF5100E4F372 /* CarOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CDF1BA1CF5100E4F372 /* CarOrderController.m */; };
 		5C027CE31BA1CF5C00E4F372 /* TestOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CE21BA1CF5C00E4F372 /* TestOrderController.m */; };
@@ -15,19 +21,18 @@
 		5C0CF9CE1BA085A600A45C38 /* HFStretchableTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF9CD1BA085A600A45C38 /* HFStretchableTableHeaderView.m */; };
 		5C0CF9D21BA08A3800A45C38 /* CoachController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF9D11BA08A3800A45C38 /* CoachController.m */; };
 		5C0CF9D61BA08F2E00A45C38 /* CoachCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF9D51BA08F2E00A45C38 /* CoachCell.m */; };
-		5C0E47DD1BA6577100A6FB4C /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0E47DC1BA6577100A6FB4C /* UserManager.m */; };
 		5C0FB5E01B94A643009EE519 /* RegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0FB5DF1B94A643009EE519 /* RegisterController.m */; };
 		5C0FB5E31B94A64F009EE519 /* ForgetPwdController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0FB5E21B94A64F009EE519 /* ForgetPwdController.m */; };
 		5C4FA50E1B98B6AB00E18801 /* personal.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C4FA50D1B98B6AB00E18801 /* personal.xcassets */; };
-		5C523EB81BAE8ACA00BEE143 /* SyncProgressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EB71BAE8ACA00BEE143 /* SyncProgressController.m */; settings = {ASSET_TAGS = (); }; };
-		5C523EBB1BAE8C5000BEE143 /* SyncProcessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EBA1BAE8C5000BEE143 /* SyncProcessCell.m */; settings = {ASSET_TAGS = (); }; };
-		5C523EC01BAE9BD100BEE143 /* MyCouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EBF1BAE9BD100BEE143 /* MyCouponController.m */; settings = {ASSET_TAGS = (); }; };
-		5C523EC41BAE9CC300BEE143 /* MyCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EC31BAE9CC300BEE143 /* MyCouponCell.m */; settings = {ASSET_TAGS = (); }; };
-		5C523EC91BAEA2DC00BEE143 /* MyCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EC81BAEA2DC00BEE143 /* MyCommentController.m */; settings = {ASSET_TAGS = (); }; };
-		5C523ECC1BAEA2EF00BEE143 /* MyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523ECB1BAEA2EF00BEE143 /* MyCommentCell.m */; settings = {ASSET_TAGS = (); }; };
+		5C523EB81BAE8ACA00BEE143 /* SyncProgressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EB71BAE8ACA00BEE143 /* SyncProgressController.m */; };
+		5C523EBB1BAE8C5000BEE143 /* SyncProcessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EBA1BAE8C5000BEE143 /* SyncProcessCell.m */; };
+		5C523EC01BAE9BD100BEE143 /* MyCouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EBF1BAE9BD100BEE143 /* MyCouponController.m */; };
+		5C523EC41BAE9CC300BEE143 /* MyCouponCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EC31BAE9CC300BEE143 /* MyCouponCell.m */; };
+		5C523EC91BAEA2DC00BEE143 /* MyCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523EC81BAEA2DC00BEE143 /* MyCommentController.m */; };
+		5C523ECC1BAEA2EF00BEE143 /* MyCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C523ECB1BAEA2EF00BEE143 /* MyCommentCell.m */; };
 		5C6BEFA51BA3C3FB0076E616 /* HomeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6BEFA41BA3C3FB0076E616 /* HomeManager.m */; };
 		5C6CFD3E1B8E032700A76E56 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C6CFD3D1B8E032700A76E56 /* libsqlite3.dylib */; };
-		5C6E9F831BAD344C003A2425 /* TestOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E9F821BAD344C003A2425 /* TestOrderCell.m */; settings = {ASSET_TAGS = (); }; };
+		5C6E9F831BAD344C003A2425 /* TestOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C6E9F821BAD344C003A2425 /* TestOrderCell.m */; };
 		5C7FA5A11B9DD3F100616F01 /* FilterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7FA5A01B9DD3F100616F01 /* FilterController.m */; };
 		5C7FA5A41B9DDEFA00616F01 /* SchoolDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C7FA5A31B9DDEFA00616F01 /* SchoolDetailController.m */; };
 		5C7FA5A71B9DE20E00616F01 /* detail_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C7FA5A61B9DE20E00616F01 /* detail_image.jpg */; };
@@ -85,7 +90,7 @@
 		5CA041741B91C74B00EEB4BC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CA041701B91C74B00EEB4BC /* LaunchScreen.xib */; };
 		5CA041751B91C74B00EEB4BC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CA041721B91C74B00EEB4BC /* Main.storyboard */; };
 		5CA0417F1B91C9BB00EEB4BC /* ShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CA0417E1B91C9BB00EEB4BC /* ShopCell.m */; };
-		5CAB907C1BAD63D400D82F15 /* CarOrderBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB907B1BAD63D400D82F15 /* CarOrderBtn.m */; settings = {ASSET_TAGS = (); }; };
+		5CAB907C1BAD63D400D82F15 /* CarOrderBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CAB907B1BAD63D400D82F15 /* CarOrderBtn.m */; };
 		5CD070801B99B141004953D9 /* FeedBackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD0707F1B99B141004953D9 /* FeedBackController.m */; };
 		5CDA13141BA85C38008C4218 /* CommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA13131BA85C38008C4218 /* CommentController.m */; };
 		5CDA131B1BA85C7D008C4218 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CDA131A1BA85C7D008C4218 /* CommentCell.m */; };
@@ -100,6 +105,17 @@
 /* Begin PBXFileReference section */
 		4B08E6241BB1A2F800DAF2E9 /* JsonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonUtils.h; sourceTree = "<group>"; };
 		4B08E6251BB1A2F800DAF2E9 /* JsonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonUtils.m; sourceTree = "<group>"; };
+		4B9D9F1E1BDE590800907937 /* LoginViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewModel.h; sourceTree = "<group>"; };
+		4B9D9F1F1BDE590800907937 /* LoginViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewModel.m; sourceTree = "<group>"; };
+		4B9D9F221BDE5B8700907937 /* iToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iToast.h; sourceTree = "<group>"; };
+		4B9D9F231BDE5B8700907937 /* iToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iToast.m; sourceTree = "<group>"; };
+		4B9D9F281BDE5C8600907937 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4B9D9F2A1BDE5EA100907937 /* RegisterViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewModel.h; sourceTree = "<group>"; };
+		4B9D9F2B1BDE5EA100907937 /* RegisterViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewModel.m; sourceTree = "<group>"; };
+		4B9D9F321BDE71AE00907937 /* ShopViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopViewModel.h; sourceTree = "<group>"; };
+		4B9D9F331BDE71AE00907937 /* ShopViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopViewModel.m; sourceTree = "<group>"; };
+		4B9D9F361BDE74E100907937 /* ShopInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopInfo.h; sourceTree = "<group>"; };
+		4B9D9F371BDE74E100907937 /* ShopInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopInfo.m; sourceTree = "<group>"; };
 		5C027CD51BA1C24800E4F372 /* CouponController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponController.h; sourceTree = "<group>"; };
 		5C027CD61BA1C24800E4F372 /* CouponController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponController.m; sourceTree = "<group>"; };
 		5C027CDE1BA1CF5100E4F372 /* CarOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarOrderController.h; sourceTree = "<group>"; };
@@ -114,8 +130,6 @@
 		5C0CF9D11BA08A3800A45C38 /* CoachController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachController.m; sourceTree = "<group>"; };
 		5C0CF9D41BA08F2E00A45C38 /* CoachCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachCell.h; sourceTree = "<group>"; };
 		5C0CF9D51BA08F2E00A45C38 /* CoachCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachCell.m; sourceTree = "<group>"; };
-		5C0E47DB1BA6577100A6FB4C /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
-		5C0E47DC1BA6577100A6FB4C /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		5C0FB5DE1B94A643009EE519 /* RegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterController.h; sourceTree = "<group>"; };
 		5C0FB5DF1B94A643009EE519 /* RegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterController.m; sourceTree = "<group>"; };
 		5C0FB5E11B94A64F009EE519 /* ForgetPwdController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdController.h; sourceTree = "<group>"; };
@@ -291,6 +305,33 @@
 			path = JsonUtils;
 			sourceTree = "<group>";
 		};
+		4B9D9F211BDE5B8700907937 /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				4B9D9F221BDE5B8700907937 /* iToast.h */,
+				4B9D9F231BDE5B8700907937 /* iToast.m */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
+		4B9D9F311BDE719900907937 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4B9D9F321BDE71AE00907937 /* ShopViewModel.h */,
+				4B9D9F331BDE71AE00907937 /* ShopViewModel.m */,
+			);
+			name = viewModel;
+			sourceTree = "<group>";
+		};
+		4B9D9F351BDE74CF00907937 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4B9D9F361BDE74E100907937 /* ShopInfo.h */,
+				4B9D9F371BDE74E100907937 /* ShopInfo.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
 		5C027CD41BA1C20900E4F372 /* coupon */ = {
 			isa = PBXGroup;
 			children = (
@@ -414,8 +455,10 @@
 		5C0E47DA1BA6575F00A6FB4C /* manager */ = {
 			isa = PBXGroup;
 			children = (
-				5C0E47DB1BA6577100A6FB4C /* UserManager.h */,
-				5C0E47DC1BA6577100A6FB4C /* UserManager.m */,
+				4B9D9F1E1BDE590800907937 /* LoginViewModel.h */,
+				4B9D9F1F1BDE590800907937 /* LoginViewModel.m */,
+				4B9D9F2A1BDE5EA100907937 /* RegisterViewModel.h */,
+				4B9D9F2B1BDE5EA100907937 /* RegisterViewModel.m */,
 			);
 			name = manager;
 			sourceTree = "<group>";
@@ -735,6 +778,7 @@
 		5CA041091B91C5C200EEB4BC /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				4B9D9F211BDE5B8700907937 /* Toast */,
 				4B08E6231BB1A2DD00DAF2E9 /* JsonUtils */,
 				5CA0410A1B91C5C200EEB4BC /* AFNManager.h */,
 				5CA0410B1B91C5C200EEB4BC /* AFNManager.m */,
@@ -808,6 +852,7 @@
 				5CA040F41B91C5C200EEB4BC /* Info.plist */,
 				5CA040FA1B91C5C200EEB4BC /* main.m */,
 				5CA040FE1B91C5C200EEB4BC /* Prefix.pch */,
+				4B9D9F291BDE5C8600907937 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -834,6 +879,8 @@
 		5CA041791B91C95C00EEB4BC /* shop */ = {
 			isa = PBXGroup;
 			children = (
+				4B9D9F351BDE74CF00907937 /* model */,
+				4B9D9F311BDE719900907937 /* viewModel */,
 				5C027CDB1BA1CE5F00E4F372 /* views */,
 				5CA040ED1B91C5C200EEB4BC /* ShopController.h */,
 				5CA040EE1B91C5C200EEB4BC /* ShopController.m */,
@@ -992,6 +1039,7 @@
 				5CA041531B91C5C200EEB4BC /* login.xcassets in Resources */,
 				5CE59D311B9C86260097AA63 /* Address.storyboard in Resources */,
 				5CA041521B91C5C200EEB4BC /* home.xcassets in Resources */,
+				4B9D9F271BDE5C8600907937 /* Localizable.strings in Resources */,
 				5CA041561B91C5C200EEB4BC /* Login.storyboard in Resources */,
 				5C4FA50E1B98B6AB00E18801 /* personal.xcassets in Resources */,
 				5CA041741B91C74B00EEB4BC /* LaunchScreen.xib in Resources */,
@@ -1054,6 +1102,7 @@
 				5CA0416A1B91C5C200EEB4BC /* STDbHandle.m in Sources */,
 				5C7FA5A11B9DD3F100616F01 /* FilterController.m in Sources */,
 				5C027CE01BA1CF5100E4F372 /* CarOrderController.m in Sources */,
+				4B9D9F2C1BDE5EA100907937 /* RegisterViewModel.m in Sources */,
 				5CA041591B91C5C200EEB4BC /* CNotificationManager.m in Sources */,
 				5C027CE31BA1CF5C00E4F372 /* TestOrderController.m in Sources */,
 				5CDA131B1BA85C7D008C4218 /* CommentCell.m in Sources */,
@@ -1064,7 +1113,6 @@
 				5C0FB5E01B94A643009EE519 /* RegisterController.m in Sources */,
 				5CA041651B91C5C200EEB4BC /* NSObject+MJKeyValue.m in Sources */,
 				5CA0414F1B91C5C200EEB4BC /* main.m in Sources */,
-				5C0E47DD1BA6577100A6FB4C /* UserManager.m in Sources */,
 				5C0CF9D61BA08F2E00A45C38 /* CoachCell.m in Sources */,
 				5CA041611B91C5C200EEB4BC /* MJMethod.m in Sources */,
 				5CA0416B1B91C5C200EEB4BC /* STDbObject.m in Sources */,
@@ -1072,12 +1120,15 @@
 				5CA041671B91C5C200EEB4BC /* NSString+MD5.m in Sources */,
 				5CAB907C1BAD63D400D82F15 /* CarOrderBtn.m in Sources */,
 				5CA041631B91C5C200EEB4BC /* MJTypeEncoding.m in Sources */,
+				4B9D9F341BDE71AE00907937 /* ShopViewModel.m in Sources */,
 				4B08E6261BB1A2F800DAF2E9 /* JsonUtils.m in Sources */,
 				5CA041641B91C5C200EEB4BC /* NSObject+MJCoding.m in Sources */,
 				5CA0415F1B91C5C200EEB4BC /* MJIvar.m in Sources */,
 				5CDA13141BA85C38008C4218 /* CommentController.m in Sources */,
 				5CA041491B91C5C200EEB4BC /* ShopController.m in Sources */,
+				4B9D9F381BDE74E100907937 /* ShopInfo.m in Sources */,
 				5CE59D351B9C868A0097AA63 /* AddressController.m in Sources */,
+				4B9D9F241BDE5B8700907937 /* iToast.m in Sources */,
 				5CA0417F1B91C9BB00EEB4BC /* ShopCell.m in Sources */,
 				5CA041691B91C5C200EEB4BC /* STDb.m in Sources */,
 				5C0FB5E31B94A64F009EE519 /* ForgetPwdController.m in Sources */,
@@ -1102,6 +1153,7 @@
 				5C989F771BA1B28900207310 /* CoachFilterController.m in Sources */,
 				5CA0413E1B91C5C200EEB4BC /* BaseViewController.m in Sources */,
 				5CA041471B91C5C200EEB4BC /* HomeController.m in Sources */,
+				4B9D9F201BDE590800907937 /* LoginViewModel.m in Sources */,
 				5C7FA5AB1B9DE65E00616F01 /* SchoolInfoView.m in Sources */,
 				5C027CD71BA1C24800E4F372 /* CouponController.m in Sources */,
 				5CA0414E1B91C5C200EEB4BC /* UserInfo.m in Sources */,
@@ -1117,6 +1169,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		4B9D9F291BDE5C8600907937 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4B9D9F281BDE5C8600907937 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = SOURCE_ROOT;
+		};
 		5CA041701B91C74B00EEB4BC /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

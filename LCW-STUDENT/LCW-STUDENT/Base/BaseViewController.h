@@ -20,4 +20,7 @@
 - (void)hiddenWaitView;
 - (void)hiddenWaitViewWithTip:(NSString *)tip type:(MessageType)type;
 
+//在屏幕中间显示
+- (void)showMiddleToastWithContent:(NSString*)content;
+
 @end

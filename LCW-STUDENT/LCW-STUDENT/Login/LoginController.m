@@ -8,7 +8,16 @@
 
 #import "LoginController.h"
 
-@interface LoginController ()
+#import "LoginViewModel.h"
+
+@interface LoginController () {
+    
+    __weak IBOutlet UITextField *_txtUsername;
+    __weak IBOutlet UITextField *_txtPassword;
+    
+    // 数据
+    LoginViewModel *_loginViewModel;
+}
 
 @end
 
@@ -27,7 +36,7 @@
 
 - (void)loadView {
     [super loadView];
-    
+    _loginViewModel = [[LoginViewModel alloc] init];
 }
 
 #pragma - mark 加载界面
@@ -39,6 +48,21 @@
 
 - (void)clickCancel {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)clickLogin:(id)sender {
+    [self.view endEditing:YES];
+    if ([_loginViewModel checkInput:_txtUsername.text password:_txtPassword.text controller:self]) {
+        [_loginViewModel loginToServerController:self username:_txtUsername.text pwd:_txtPassword.text callBack:^(BOOL success) {
+            if (success) {
+                [self clickCancel];
+            }
+        }];
+    }
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event  {
+    [self.view endEditing:YES];
 }
 
 @end

@@ -8,7 +8,19 @@
 
 #import "RegisterController.h"
 
-@interface RegisterController ()
+#import "RegisterViewModel.h"
+
+@interface RegisterController () {
+    
+    __weak IBOutlet UITextField *_txtUsername;
+    __weak IBOutlet UITextField *_txtPassword;
+    __weak IBOutlet UITextField *_txtCheckCode;
+    __weak IBOutlet UIButton *_btnGetCode;
+    __weak IBOutlet UIButton *_btnLogin;
+    
+    // 数据管理
+    RegisterViewModel *_registerViewModel;
+}
 
 @end
 
@@ -26,6 +38,7 @@
 
 - (void)loadView {
     [super loadView];
+    _registerViewModel = [[RegisterViewModel alloc] init];
     [self loadNav];
 }
 
@@ -38,4 +51,18 @@
 - (IBAction)clickGoLogin:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (IBAction)clickGetCode:(id)sender {
+    NSString *username = _txtUsername.text;
+    [_registerViewModel getCheckCodeFromSeverController:self username:username callBack:^(BOOL success) {
+        if (success) {
+            [_registerViewModel countTime:_btnGetCode totalTime:60];
+        }
+    }];
+}
+
+- (IBAction)clickRegister:(id)sender {
+    
+}
+
 @end

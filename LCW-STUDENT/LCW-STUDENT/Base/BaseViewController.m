@@ -10,6 +10,7 @@
 
 #import "CNotificationManager.h"
 #import "WaitingView.h"
+#import "iToast.h"
 
 #define DEF_SCREEN_MASK_VIEW_TAG    100111
 
@@ -109,6 +110,13 @@
     if (screenView) {
         [screenView hiddenWaitingViewWithTips:tip messageType:type];
     }
+}
+
+//在屏幕中间显示
+- (void)showMiddleToastWithContent:(NSString*)content {
+    iToast* phoneInfo = [iToast makeText:content];
+    [phoneInfo setGravity:iToastGravityCenter];
+    [phoneInfo show];
 }
 
 @end

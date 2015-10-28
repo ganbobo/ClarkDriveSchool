@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  LCW-STUDENT
+
+  Created by Clark.Gan on 15/10/26.
+  Copyright © 2015年 Clark. All rights reserved.
+*/
+
+
+// 网络错误
+"SeverErrorTip" = "服务器忙,请稍后重试";
+"SeverNetErrorTip" = "网络好像出了问题,请检查网络连接";
+"SeverCannotConnectNetTip" = "未能连接到服务器，请稍后重试";
+"SeverTimeoutTip" = "连接超时,请稍后重试";
