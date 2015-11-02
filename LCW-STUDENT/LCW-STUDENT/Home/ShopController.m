@@ -150,7 +150,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"SchoolDetail"]) {
         SchoolDetailController *controller = [segue destinationViewController];
-        controller.hasSignUp = _hasSignUp;
+        NSIndexPath *indexPath = (NSIndexPath *)sender;
+        
+        ShopInfo *info = _shopViewModel.dataSource[indexPath.row];
+        controller.shopInfo = info;
     }
 }
 

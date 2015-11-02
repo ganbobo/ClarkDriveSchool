@@ -82,7 +82,7 @@
     _lblCommentScore.text = @"5.0";
     [_commentView addSubview:_lblCommentScore];
     
-    _lblCommentNum = [[RTLabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_lblCommentScore.frame), (_commentView.height - 16) / 2.0, ScreenWidth - CGRectGetMaxX(_lblCommentScore.frame) - 30, 16)];
+    _lblCommentNum = [[RTLabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_lblCommentScore.frame), (_commentView.height - 20) / 2.0, ScreenWidth - CGRectGetMaxX(_lblCommentScore.frame) - 30, 20)];
     _lblCommentNum.backgroundColor = [UIColor clearColor];
     _lblCommentNum.textColor = RGBA(0x69, 0x69, 0x69, 1);
     _lblCommentNum.font = [UIFont systemFontOfSize:14];
@@ -108,7 +108,16 @@
     [self.contentView addSubview:_btnAddress];
 }
 
-- (void)refreshCellWithIndex:(NSInteger)index withSignUp:(BOOL)signUp {
+- (void)refreshCellWithIndex:(NSInteger)index
+                  withSignUp:(BOOL)signUp
+                 drivingInfo:(DrivingInfo *)drivingInfo {
+    
+    [_btnAddress setTitle:drivingInfo.drivingAddr forState:UIControlStateNormal];
+    _lblCommentScore.text = [NSString stringWithFormat:@"%@", drivingInfo.scole];
+    NSInteger score = drivingInfo.scole.integerValue;
+    [self setStarView:score];
+    _lblCommentNum.text = [NSString stringWithFormat:@"<font color='#FF440F' size=14>%ld</font>人评论", drivingInfo.drivingCommNum];
+    
     if (signUp) {
         [_btnSelectCoach setTitle:@"下一步，选教练" forState:UIControlStateNormal];
     } else {
@@ -139,6 +148,17 @@
     }
 }
 
+- (void)setStarView:(NSInteger)score {
+    for (NSInteger i = 0; i < 5; i ++) {
+        UIImageView *imgView = (UIImageView *)[_commentView viewWithTag:kStartBeginTag + i];
+        if (i + 1 <= score) {
+            imgView.image = [UIImage imageNamed:@"shop_five_corner"];
+        } else {
+            imgView.image = [UIImage imageNamed:@"shop_five_corner_normal"];
+        }
+        
+    }
+}
 
 // 按钮点击方法
 - (void)clickSelectCoach {

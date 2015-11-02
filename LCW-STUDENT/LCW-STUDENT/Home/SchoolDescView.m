@@ -49,6 +49,10 @@
             columnWitdh = @[@(self.width / 4.0 + 1), @(self.width / 4.0 + 1), @(self.width / 4.0 + 1), @(self.width / 4.0 + 1)];
         }
         
+        if (columns == 5) {
+            columnWitdh = @[@(self.width / 5.0 + 1), @(self.width / 5.0 + 1), @(self.width / 5.0 + 1), @(self.width / 5.0 + 1), @(self.width / 5.0 + 1)];
+        }
+        
         if (columns == 2) {
             columnWitdh = @[@(self.width / 4.0), @(self.width * 3 / 4.0 + 2)];
         }

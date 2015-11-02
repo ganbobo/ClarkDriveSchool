@@ -19,6 +19,8 @@
 
 @implementation AddressViewModel
 
+SYNTHESIZE_SINGLETON_FOR_CLASS(AddressViewModel);
+
 - (instancetype)init
 {
     self = [super init];

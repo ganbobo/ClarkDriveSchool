@@ -55,7 +55,7 @@
 - (void)loadView {
     [super loadView];
     _filterData = [[NSMutableArray alloc] init];;
-    _addressViewModel = [[AddressViewModel alloc] init];
+    _addressViewModel = [AddressViewModel sharedAddressViewModel];
     [self loadNav];
     
     [self getAddressList];

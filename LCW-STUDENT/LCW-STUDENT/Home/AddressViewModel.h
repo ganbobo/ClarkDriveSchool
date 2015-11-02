@@ -12,6 +12,8 @@
 
 @interface AddressViewModel : NSObject
 
+DECLARE_SINGLETON_FOR_CLASS(AddressViewModel);
+
 @property(nonatomic, retain)NSMutableDictionary *addressDic;
 
 @property(nonatomic, retain)NSMutableArray *wordSortArray;

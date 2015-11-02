@@ -8,8 +8,12 @@
 
 #import "BaseViewController.h"
 
+#import "ShopInfo.h"
+
 @interface SchoolDetailController : BaseViewController
 
 @property(nonatomic, assign)BOOL hasSignUp;// 是否报名
+
+@property(nonatomic, retain)ShopInfo *shopInfo;
 
 @end

@@ -13,6 +13,7 @@
 #import "AdsInfo.h"
 
 #import "FeedBackController.h"
+#import "LocationManager.h"
 
 #define kHeaderViewHeight        (165.0 / 320 * ScreenWidth)
 #define kFooterViewHeight        ((568 - 160 - 64 - 49.0) / 320 * ScreenWidth)
@@ -30,7 +31,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // 开启定位
+    [self startLocation];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -174,6 +176,13 @@
 #pragma - mark AdsViewDelegate 代理
 
 - (void)didSelectAdsInfo:(AdsInfo *)adsInfo {
+    
+}
+
+#pragma - mark 开始定位
+
+- (void)startLocation {
+    [[LocationManager sharedLocationManager] startLocation];
     
 }
 

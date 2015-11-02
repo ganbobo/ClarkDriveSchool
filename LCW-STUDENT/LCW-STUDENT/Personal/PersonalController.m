@@ -137,7 +137,12 @@
             case 0:
 //                [self performSegueWithIdentifier:@"SyncProgress" sender:indexPath];
                 break;
-                
+            case 1:
+                [self performSegueWithIdentifier:@"MySchool" sender:indexPath];
+                break;
+            case 2:
+                [self performSegueWithIdentifier:@"MyCoach" sender:indexPath];
+                break;
             default:
                 break;
         }
@@ -155,7 +160,6 @@
                 break;
         }
     }
-    
 }
 
 #pragma - mark 点击头像及昵称触发方法

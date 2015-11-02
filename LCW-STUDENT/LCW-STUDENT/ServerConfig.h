@@ -39,7 +39,13 @@
 #define ADS_LIST_SERVER             @"/advertimage/getAdvertImagelist" // 广告接口地址
 #define ADDRESS_LIST_SERVER         @"/driving/area/getAreas" // 城市列表
 #define GET_SCHOOL_LIST_SERVER      @"/driving/driving/getDrivings" // 驾校列表
+#define GET_SCHOOL_LIST_CITY_SERVER @"/driving/driving/queryCityToDrivings" // 根据城市获取驾校列表
+#define GET_SCHOOL_DETAIL_SERVER    @"/driving/driving/getDrivingDetail" // 获取驾校详情
 #define FEED_BACK_SERVER            @"/driving/area/toMessage" // 意见反馈
+
+// 我的
+#define MY_SCHOOL_SERVER            @"/driving/mydriving/getMyDriving" // 我的驾校
+#define MY_COACH_SERVER             @"/driving/trainer/myTrainer" // 我的教练
 
 // JSON公用字段
 

@@ -124,7 +124,7 @@
             if ([responseCode isEqualToString:ResponseCodeSuccess]) {
                 [controller hiddenWaitViewWithTip:@"注册成功" type:MessageSuccess];
                 // 存储用户
-                UserInfo *user = [UserInfo objectWithKeyValues:response[@"data"][@"user"]];
+                UserInfo *user = [UserInfo objectWithKeyValues:response[@"data"]];
                 // 存入用户
                 setUser(user);
                 callBack(YES);

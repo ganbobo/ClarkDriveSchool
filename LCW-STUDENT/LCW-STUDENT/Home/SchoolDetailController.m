@@ -14,10 +14,13 @@
 #import "CommentController.h"
 #import "SchoolDescView.h"
 
+#import "SchoolViewModel.h"
+
 @interface SchoolDetailController ()<UITableViewDataSource, UITableViewDelegate, SchoolInfoViewDelegate> {
     NSMutableArray *_dataSource;
     __weak IBOutlet UITableView *_tableView;
     
+    __weak IBOutlet UILabel *_lblName;
     __weak IBOutlet UIView *_headerView;
     HFStretchableTableHeaderView *_stretchView;
     // 介绍
@@ -30,6 +33,9 @@
     SchoolDescView *_timeView;
     // 学成流程
     SchoolDescView *_studyProcessView;
+    
+    // 数据
+    SchoolViewModel *_schoolViewModel;
 }
 
 @end
@@ -39,7 +45,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self loadData];
+    [self getSchoolInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,89 +56,91 @@
 - (void)loadView {
     [super loadView];
     _dataSource = [[NSMutableArray alloc] init];
+    _schoolViewModel = [[SchoolViewModel alloc] init];
     [self loadNav];
     [self loadStretchView];
 }
 
 #pragma - mark 加载数据
 
-- (void)loadData {
+- (void)loadData:(SchoolDetailInfo *)detailInfo {
     _infoView = [[SchoolInfoView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 20)];
     _infoView.delegate = self;
-    [_infoView setDataSource:_hasSignUp];
+    [_infoView setDataSource:_hasSignUp drivingInfo:detailInfo.driving];
     [_dataSource addObject:_infoView];
+    _lblName.text = detailInfo.driving.drivingName;
     
-    _studentPrivilegeView = [[SchoolDescView alloc] initWithWidth:ScreenWidth originalY:0 columns:2];
-    [_studentPrivilegeView setDataSource:@[@{
-                                               kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
-                                               kTEXT_ARRAY_KEY:@[@"打赏教练", @"购买成功，自动获取教练奖金权限，学员根据教练教学优劣，决定教练奖金"]
-                                           
-                                           },
-                                           @{
-                                               kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
-                                               kTEXT_ARRAY_KEY:@[@"网上约车", @"练车时间，听您的，零碎时间，轻松拿照"]
-                                               
-                                               }
-                                           ] title:@"零从学员特权"];
-    [_dataSource addObject:_studentPrivilegeView];
+    if (detailInfo.privilegeList.count > 0) {
+        _studentPrivilegeView = [[SchoolDescView alloc] initWithWidth:ScreenWidth originalY:0 columns:2];
+        NSMutableArray *list = [NSMutableArray array];
+        for (PrivilegeInfo *info in detailInfo.privilegeList) {
+            [list addObject:@{
+                             kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
+                             kTEXT_ARRAY_KEY:@[info.privilege_name, info.privilege_text]
+                             
+                             }];
+        }
+        
+        [_studentPrivilegeView setDataSource:list title:@"零从学员特权"];
+        [_dataSource addObject:_studentPrivilegeView];
+    }
     
-    _costView = [[SchoolDescView alloc] initWithWidth:ScreenWidth originalY:0 columns:4];
-    [_costView setDataSource:@[@{
-                                               kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
-                                               kTEXT_ARRAY_KEY:@[@"总费用", @"考试费", @"培训费", @"其他"]
-                                               },
-                                           @{
-                                               kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
-                                               kTEXT_ARRAY_KEY:@[@"2980元", @"560元", @"2320元", @"100元照片，书本，保险，体检"]
-                                               }
-                                           ] title:@"费用说明"];
-    [_dataSource addObject:_costView];
     
-    _timeView = [[SchoolDescView alloc] initWithWidth:ScreenWidth originalY:0 columns:4];
-    [_timeView setDataSource:@[@{
-                                   kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
-                                   kTEXT_ARRAY_KEY:@[@"科目一", @"科目二", @"科目三", @"科目四"]
-                                   },
-                               @{
-                                   kTEXT_COLOR_KEY:[UIColor orangeColor],
-                                   kTEXT_ARRAY_KEY:@[@"10-30天", @"练车8-15次", @"练车5-10次", @"2-15天"]
-                                   }
-                               ] title:@"时间分配"];
-    [_dataSource addObject:_timeView];
+    if (detailInfo.price.count > 0) {
+        _costView = [[SchoolDescView alloc] initWithWidth:ScreenWidth originalY:0 columns:5];
+        
+        NSMutableArray *list = [NSMutableArray array];
+        [list addObject:@{
+                         kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
+                         kTEXT_ARRAY_KEY:@[@"类型", @"总费用", @"考试费", @"培训费", @"其他"]
+                         }];
+        for (PriceInfo *info in detailInfo.price) {
+            [list addObject:@{
+                              kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
+                              kTEXT_ARRAY_KEY:@[info.class_type, [NSString stringWithFormat:@"%ld", info.price], [NSString stringWithFormat:@"%ld", info.examination_fee], [NSString stringWithFormat:@"%ld", info.training_fee], [NSString stringWithFormat:@"%ld(%@)", info.other_fee, info.text]]
+                              }];
+        }
+        [_costView setDataSource:list title:@"费用说明"];
+        
+        [_dataSource addObject:_costView];
+
+    }
     
-    _studyProcessView = [[SchoolDescView alloc] initWithWidth:ScreenWidth originalY:0 columns:2];
-    [_studyProcessView setDataSource:@[@{
-                                               kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
-                                               kTEXT_ARRAY_KEY:@[@"报名", @"凭码消费→体检→照相→领书→报名完成"]
-                                               
-                                               },
-                                           @{
-                                               kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
-                                               kTEXT_ARRAY_KEY:@[@"模拟考", @"理论学习→在驾校模拟考→连续3次92分以上→模拟考通过"]
-                                               
-                                               },
-                                           @{
-                                               kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
-                                               kTEXT_ARRAY_KEY:@[@"科目一", @"模拟考通过，即可零从网预约科一考试，24小时内通知预约结果；"]
-                                               
-                                               },
-                                           @{
-                                               kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
-                                               kTEXT_ARRAY_KEY:@[@"科目二", @"科二理论学时、模拟学时、实操学时各自挂满，可零从网预约科二考试，24小时内通知预约结果；"]
-                                               
-                                               },
-                                           @{
-                                               kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
-                                               kTEXT_ARRAY_KEY:@[@"科目三", @"科三理论学时、模拟学时、实操学时各自挂满，可零从网预约科三考试，24小时内通知预约结果；"]
-                                               
-                                               },
-                                           @{
-                                               kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
-                                               kTEXT_ARRAY_KEY:@[@"科目四", @"科目三通过后，即可零从网预约科四考试，24小时通知预约结果；"]
-                                               
-                                               }
-                                           ] title:@"学成流程"];
-    [_dataSource addObject:_studyProcessView];
+    if (detailInfo.csList.count > 0) {
+        _timeView = [[SchoolDescView alloc] initWithWidth:ScreenWidth originalY:0 columns:detailInfo.csList.count];
+        NSMutableArray *listTitle = [NSMutableArray array];
+        NSMutableArray *listContent = [NSMutableArray array];
+        for (TimeInfo *info in detailInfo.csList) {
+            [listTitle addObject:info.subject_name];
+            [listContent addObject:info.subject_message];
+        }
+        [_timeView setDataSource:@[@{
+                                       kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
+                                       kTEXT_ARRAY_KEY:listTitle
+                                       },
+                                   @{
+                                       kTEXT_COLOR_KEY:[UIColor orangeColor],
+                                       kTEXT_ARRAY_KEY:listContent
+                                       }
+                                   ] title:@"时间分配"];
+        [_dataSource addObject:_timeView];
+
+    }
+    
+    if (detailInfo.pList.count > 0) {
+        _studyProcessView = [[SchoolDescView alloc] initWithWidth:ScreenWidth originalY:0 columns:2];
+        
+        NSMutableArray *list = [NSMutableArray array];
+        for (StudyProcessInfo *info in detailInfo.pList) {
+            [list addObject:@{
+                              kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
+                              kTEXT_ARRAY_KEY:@[info.process_name, info.process_message]
+                              
+                              }];
+        }
+        [_studyProcessView setDataSource:list title:@"学车流程"];
+        [_dataSource addObject:_studyProcessView];
+    }
     
     [_tableView reloadData];
 }
@@ -195,6 +203,27 @@
 
 - (void)didShowMapLocation {
     
+}
+
+#pragma - mark 获取数据
+
+- (void)getSchoolInfo {
+    __weak typeof(self) safeSelf = self;
+    [self showLoading:^{
+        [safeSelf getSchoolInfo];
+    }];
+    
+    [self getSchoolInfoFromServer];
+}
+
+- (void)getSchoolInfoFromServer {
+    
+    __weak typeof(self) safeSelf = self;
+    [_schoolViewModel getSchoolDetailFromSever:self driveId:_shopInfo.id callBack:^(BOOL success) {
+        if (success) {
+            [safeSelf loadData:_schoolViewModel.schoolDetailInfo];
+        }
+    }];
 }
 
 @end

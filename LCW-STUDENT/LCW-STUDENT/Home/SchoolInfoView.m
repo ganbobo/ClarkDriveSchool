@@ -14,6 +14,8 @@
     UITableView *_tableView;
     
     BOOL _hasSignUp;
+    
+    DrivingInfo *_drivingInfo;
 }
 
 @end
@@ -58,7 +60,7 @@
         cell.delegate = self;
     }
     
-    [cell refreshCellWithIndex:indexPath.row withSignUp:_hasSignUp];
+    [cell refreshCellWithIndex:indexPath.row withSignUp:_hasSignUp drivingInfo:_drivingInfo];
     
     return cell;
 }
@@ -79,7 +81,8 @@
     }
 }
 
-- (void)setDataSource:(BOOL)hasSignUp {
+- (void)setDataSource:(BOOL)hasSignUp drivingInfo:(DrivingInfo *)drivingInfo {
+    _drivingInfo = drivingInfo;
     _hasSignUp = hasSignUp;
     [_tableView reloadData];
     [_tableView setHeight:_tableView.contentSize.height];

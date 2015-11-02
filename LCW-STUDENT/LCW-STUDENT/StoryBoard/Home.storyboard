@@ -1457,6 +1457,7 @@
                     <navigationItem key="navigationItem" title="驾校详情" id="eFe-Y4-wB6"/>
                     <connections>
                         <outlet property="_headerView" destination="O92-iA-Y2e" id="vHf-UX-G6w"/>
+                        <outlet property="_lblName" destination="kzl-WW-GAb" id="mDc-W6-Ufk"/>
                         <outlet property="_tableView" destination="orp-66-eLH" id="5LW-Yn-JuT"/>
                         <segue destination="dQF-ju-Iwi" kind="show" identifier="CoachFilter" id="6tF-qJ-fEx"/>
                         <segue destination="oJM-sH-Gow" kind="show" identifier="Coupon" id="DGJ-hW-30F"/>
@@ -1744,6 +1745,6 @@
         <image name="icons_bgcover" width="216" height="35"/>
         <image name="order_car_select" width="15" height="15"/>
         <image name="shop_btn_border" width="20" height="20"/>
-        <image name="shop_five_corner" width="10" height="10"/>
+        <image name="shop_five_corner" width="10" height="9"/>
     </resources>
 </document>

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "SchoolDetailInfo.h"
+
 @protocol SchoolInfoViewDelegate <NSObject>
 
 - (void)didSelectCoach;
@@ -20,6 +22,6 @@
 
 @property(nonatomic, assign)id<SchoolInfoViewDelegate> delegate;
 
-- (void)setDataSource:(BOOL)hasSignUp;
+- (void)setDataSource:(BOOL)hasSignUp drivingInfo:(DrivingInfo *)drivingInfo;
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SchoolDetailInfo.h"
 
 @protocol SchoolInfoCellDelegate <NSObject>
 
@@ -19,6 +19,8 @@
 
 @property(nonatomic, assign)id<SchoolInfoCellDelegate> delegate;
 
-- (void)refreshCellWithIndex:(NSInteger)index withSignUp:(BOOL)signUp;
+- (void)refreshCellWithIndex:(NSInteger)index
+                  withSignUp:(BOOL)signUp
+                 drivingInfo:(DrivingInfo *)drivingInfo;
 
 @end
