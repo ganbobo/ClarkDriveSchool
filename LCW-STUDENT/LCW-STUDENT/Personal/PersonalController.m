@@ -44,7 +44,7 @@
 
 - (void)loadView {
     [super loadView];
-    _dataSource = @[@[@"我的消息", @"我的驾校", @"我的教练"], @[@"我的优惠券", @"我的评价"]];
+    _dataSource = @[@[@"我的消息", @"我的驾校", @"我的教练"], @[@"我的优惠券"]];
     [self loadNav];
     [self loadHeaderView];
 }

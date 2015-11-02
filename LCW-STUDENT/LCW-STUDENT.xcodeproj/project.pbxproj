@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		4B08E6261BB1A2F800DAF2E9 /* JsonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B08E6251BB1A2F800DAF2E9 /* JsonUtils.m */; };
+		4B1CF4981BE5CDF9001B1188 /* AddressViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1CF4971BE5CDF9001B1188 /* AddressViewModel.m */; };
+		4B1CF49C1BE5CED9001B1188 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1CF49B1BE5CED9001B1188 /* AddressModel.m */; };
+		4B1CF4A01BE62793001B1188 /* FeedBackViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1CF49F1BE62793001B1188 /* FeedBackViewModel.m */; };
+		4B1F24DE1BE0A6AE004D1ED7 /* GFPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F24DD1BE0A6AE004D1ED7 /* GFPlaceholderView.m */; };
+		4B99F2F61BE105820094326A /* CarOrderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B99F2F51BE105820094326A /* CarOrderViewModel.m */; };
+		4B99F2FA1BE10AB90094326A /* SubjectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B99F2F91BE10AB90094326A /* SubjectInfo.m */; };
 		4B9D9F201BDE590800907937 /* LoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D9F1F1BDE590800907937 /* LoginViewModel.m */; };
 		4B9D9F241BDE5B8700907937 /* iToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D9F231BDE5B8700907937 /* iToast.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		4B9D9F271BDE5C8600907937 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4B9D9F291BDE5C8600907937 /* Localizable.strings */; };
@@ -105,6 +111,18 @@
 /* Begin PBXFileReference section */
 		4B08E6241BB1A2F800DAF2E9 /* JsonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonUtils.h; sourceTree = "<group>"; };
 		4B08E6251BB1A2F800DAF2E9 /* JsonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonUtils.m; sourceTree = "<group>"; };
+		4B1CF4961BE5CDF9001B1188 /* AddressViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewModel.h; sourceTree = "<group>"; };
+		4B1CF4971BE5CDF9001B1188 /* AddressViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressViewModel.m; sourceTree = "<group>"; };
+		4B1CF49A1BE5CED9001B1188 /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
+		4B1CF49B1BE5CED9001B1188 /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
+		4B1CF49E1BE62793001B1188 /* FeedBackViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewModel.h; sourceTree = "<group>"; };
+		4B1CF49F1BE62793001B1188 /* FeedBackViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewModel.m; sourceTree = "<group>"; };
+		4B1F24DC1BE0A6AE004D1ED7 /* GFPlaceholderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFPlaceholderView.h; sourceTree = "<group>"; };
+		4B1F24DD1BE0A6AE004D1ED7 /* GFPlaceholderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFPlaceholderView.m; sourceTree = "<group>"; };
+		4B99F2F41BE105820094326A /* CarOrderViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarOrderViewModel.h; sourceTree = "<group>"; };
+		4B99F2F51BE105820094326A /* CarOrderViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarOrderViewModel.m; sourceTree = "<group>"; };
+		4B99F2F81BE10AB90094326A /* SubjectInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectInfo.h; sourceTree = "<group>"; };
+		4B99F2F91BE10AB90094326A /* SubjectInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectInfo.m; sourceTree = "<group>"; };
 		4B9D9F1E1BDE590800907937 /* LoginViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewModel.h; sourceTree = "<group>"; };
 		4B9D9F1F1BDE590800907937 /* LoginViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewModel.m; sourceTree = "<group>"; };
 		4B9D9F221BDE5B8700907937 /* iToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iToast.h; sourceTree = "<group>"; };
@@ -305,6 +323,51 @@
 			path = JsonUtils;
 			sourceTree = "<group>";
 		};
+		4B1CF4951BE5CDE5001B1188 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4B1CF4961BE5CDF9001B1188 /* AddressViewModel.h */,
+				4B1CF4971BE5CDF9001B1188 /* AddressViewModel.m */,
+			);
+			name = viewModel;
+			sourceTree = "<group>";
+		};
+		4B1CF4991BE5CED0001B1188 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4B1CF49A1BE5CED9001B1188 /* AddressModel.h */,
+				4B1CF49B1BE5CED9001B1188 /* AddressModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		4B1CF49D1BE62776001B1188 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4B1CF49E1BE62793001B1188 /* FeedBackViewModel.h */,
+				4B1CF49F1BE62793001B1188 /* FeedBackViewModel.m */,
+			);
+			name = viewModel;
+			sourceTree = "<group>";
+		};
+		4B99F2F31BE105650094326A /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4B99F2F41BE105820094326A /* CarOrderViewModel.h */,
+				4B99F2F51BE105820094326A /* CarOrderViewModel.m */,
+			);
+			name = viewModel;
+			sourceTree = "<group>";
+		};
+		4B99F2F71BE10AAF0094326A /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4B99F2F81BE10AB90094326A /* SubjectInfo.h */,
+				4B99F2F91BE10AB90094326A /* SubjectInfo.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
 		4B9D9F211BDE5B8700907937 /* Toast */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +446,8 @@
 		5C027CDC1BA1CEB800E4F372 /* carOrder */ = {
 			isa = PBXGroup;
 			children = (
+				4B99F2F71BE10AAF0094326A /* model */,
+				4B99F2F31BE105650094326A /* viewModel */,
 				5C027CE51BA1E6C400E4F372 /* views */,
 				5C027CDE1BA1CF5100E4F372 /* CarOrderController.h */,
 				5C027CDF1BA1CF5100E4F372 /* CarOrderController.m */,
@@ -706,6 +771,8 @@
 		5CA040F01B91C5C200EEB4BC /* Include */ = {
 			isa = PBXGroup;
 			children = (
+				4B1F24DC1BE0A6AE004D1ED7 /* GFPlaceholderView.h */,
+				4B1F24DD1BE0A6AE004D1ED7 /* GFPlaceholderView.m */,
 				5CFD94621BA8FB3F002B41EA /* NALLabelsMatrix */,
 				5C0CF9CB1BA085A600A45C38 /* HF */,
 				5C7FA5AF1B9DEBAA00616F01 /* RTLabel */,
@@ -900,6 +967,7 @@
 		5CD0707D1B99B126004953D9 /* feedback */ = {
 			isa = PBXGroup;
 			children = (
+				4B1CF49D1BE62776001B1188 /* viewModel */,
 				5CD0707E1B99B141004953D9 /* FeedBackController.h */,
 				5CD0707F1B99B141004953D9 /* FeedBackController.m */,
 			);
@@ -928,6 +996,8 @@
 		5CE59D321B9C86790097AA63 /* address */ = {
 			isa = PBXGroup;
 			children = (
+				4B1CF4991BE5CED0001B1188 /* Model */,
+				4B1CF4951BE5CDE5001B1188 /* viewModel */,
 				5CE59D331B9C868A0097AA63 /* AddressController.h */,
 				5CE59D341B9C868A0097AA63 /* AddressController.m */,
 			);
@@ -1103,6 +1173,7 @@
 				5C7FA5A11B9DD3F100616F01 /* FilterController.m in Sources */,
 				5C027CE01BA1CF5100E4F372 /* CarOrderController.m in Sources */,
 				4B9D9F2C1BDE5EA100907937 /* RegisterViewModel.m in Sources */,
+				4B1CF49C1BE5CED9001B1188 /* AddressModel.m in Sources */,
 				5CA041591B91C5C200EEB4BC /* CNotificationManager.m in Sources */,
 				5C027CE31BA1CF5C00E4F372 /* TestOrderController.m in Sources */,
 				5CDA131B1BA85C7D008C4218 /* CommentCell.m in Sources */,
@@ -1134,15 +1205,19 @@
 				5C0FB5E31B94A64F009EE519 /* ForgetPwdController.m in Sources */,
 				5CA0415C1B91C5C200EEB4BC /* MJArgument.m in Sources */,
 				5C7FA5AE1B9DE84600616F01 /* SchoolInfoCell.m in Sources */,
+				4B1CF4981BE5CDF9001B1188 /* AddressViewModel.m in Sources */,
 				5C6BEFA51BA3C3FB0076E616 /* HomeManager.m in Sources */,
 				5CA0414D1B91C5C200EEB4BC /* LoginController.m in Sources */,
 				5CA041581B91C5C200EEB4BC /* AFNManager.m in Sources */,
 				5C523EC41BAE9CC300BEE143 /* MyCouponCell.m in Sources */,
+				4B1CF4A01BE62793001B1188 /* FeedBackViewModel.m in Sources */,
+				4B99F2FA1BE10AB90094326A /* SubjectInfo.m in Sources */,
 				5CA0415D1B91C5C200EEB4BC /* MJConst.m in Sources */,
 				5C7FA5B21B9DEBAA00616F01 /* RTLabel.m in Sources */,
 				5CFD94681BA8FC09002B41EA /* SchoolDescView.m in Sources */,
 				5CD070801B99B141004953D9 /* FeedBackController.m in Sources */,
 				5CFD94651BA8FB3F002B41EA /* NALLabelsMatrix.m in Sources */,
+				4B99F2F61BE105820094326A /* CarOrderViewModel.m in Sources */,
 				5CA0415E1B91C5C200EEB4BC /* MJFoundation.m in Sources */,
 				5CA0413D1B91C5C200EEB4BC /* BaseNavController.m in Sources */,
 				5CA041481B91C5C200EEB4BC /* PageControl.m in Sources */,
@@ -1153,6 +1228,7 @@
 				5C989F771BA1B28900207310 /* CoachFilterController.m in Sources */,
 				5CA0413E1B91C5C200EEB4BC /* BaseViewController.m in Sources */,
 				5CA041471B91C5C200EEB4BC /* HomeController.m in Sources */,
+				4B1F24DE1BE0A6AE004D1ED7 /* GFPlaceholderView.m in Sources */,
 				4B9D9F201BDE590800907937 /* LoginViewModel.m in Sources */,
 				5C7FA5AB1B9DE65E00616F01 /* SchoolInfoView.m in Sources */,
 				5C027CD71BA1C24800E4F372 /* CouponController.m in Sources */,

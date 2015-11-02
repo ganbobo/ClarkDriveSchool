@@ -163,6 +163,10 @@
 #pragma - mark 获取数据
 
 - (void)getDataFromServer {
+    __weak typeof(self) safeSelf = self;
+    [self showLoading:^{
+        [safeSelf getDataFromServer];
+    }];
     [_shopViewModel getShopListFromServer:@"123" controller:self callBack:^(BOOL success) {
         if (success) {
             [_tableView reloadData];

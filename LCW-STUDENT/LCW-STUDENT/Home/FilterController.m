@@ -43,12 +43,16 @@
 }
 
 - (void)loadBtns {
-    _btnSignUp.layer.cornerRadius = 3;
+    _btnSignUp.layer.cornerRadius = 2;
     _btnSignUp.layer.masksToBounds = YES;
+    _btnSignUp.layer.borderWidth = 0.5;
+    [_btnSignUp setTitleColor:[UIColor colorWithRed:0.200 green:0.635 blue:0.365 alpha:1.000] forState:UIControlStateNormal];
+    _btnSignUp.layer.borderColor =[UIColor colorWithRed:0.200 green:0.635 blue:0.365 alpha:1.000].CGColor;
     
-    _btnCoach.layer.cornerRadius = 3;
+    _btnCoach.layer.cornerRadius = 2;
     _btnCoach.layer.masksToBounds = YES;
-    _btnCoach.layer.borderWidth = 1;
+    _btnCoach.layer.borderWidth = 0.5;
+    [_btnCoach setTitleColor:[UIColor colorWithRed:0.200 green:0.635 blue:0.365 alpha:1.000] forState:UIControlStateNormal];
     _btnCoach.layer.borderColor =[UIColor colorWithRed:0.200 green:0.635 blue:0.365 alpha:1.000].CGColor;
 }
 

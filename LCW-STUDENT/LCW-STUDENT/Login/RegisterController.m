@@ -62,7 +62,15 @@
 }
 
 - (IBAction)clickRegister:(id)sender {
-    
+    __weak typeof(self) safeSelf = self;
+    // 验证验证码成功发起注册请求
+    if ([_registerViewModel validateCode:_txtCheckCode.text controller:self]) {
+        [_registerViewModel registerAccountController:self username:_txtUsername.text pwd:_txtPassword.text callBack:^(BOOL success) {
+            if (success) {
+                [safeSelf dismissViewControllerAnimated:YES completion:nil];
+            }
+        }];
+    }
 }
 
 @end

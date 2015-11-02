@@ -66,7 +66,7 @@
 - (void)loadNav {
     [PMCommon setNavigationBarRightButton:self withBtnNormalImg:[UIImage imageNamed:@"nav_phone"] withAction:@selector(clickPhone)];
     
-    UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nav_home_title"]];
+    UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"home_nav_title"]];
     self.navigationItem.titleView = titleView;
     
     // 左边按钮

@@ -23,4 +23,9 @@
 //在屏幕中间显示
 - (void)showMiddleToastWithContent:(NSString*)content;
 
+- (void)showLoading:(void(^)(void))tapReLoading;
+- (void)finishedLoding;
+- (void)finishedLodingWithTip:(NSString *)tip subTip:(NSString *)subTip;
+- (void)finishedLodingWithTip:(NSString *)tip;
+
 @end

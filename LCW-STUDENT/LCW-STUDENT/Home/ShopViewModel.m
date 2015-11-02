@@ -41,20 +41,32 @@
                           @"userId": userId,
                           };
 
+    
     [[AFNManager sharedAFNManager] getServer:GET_SCHOOL_LIST_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
-            [controller showMiddleToastWithContent:netErrorMessage];
+            if (_dataSource.count <= 0) {
+                [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
+            } else {
+                [controller finishedLoding];
+                [controller showMiddleToastWithContent:netErrorMessage];
+            }
             callBack(NO);
         } else {
             NSString *responseCode = getResponseCodeFromDic(response);
             if ([responseCode isEqualToString:ResponseCodeSuccess]) {
+                [controller finishedLoding];
                 NSArray *array = [ShopInfo objectArrayWithKeyValuesArray:response[@"data"][@"listDriving"]];
                 [_dataSource removeAllObjects];
                 [_dataSource addObjectsFromArray:array];
                 callBack(YES);
             } else {
                 NSString *message = response[RESPONSE_MESSAGE];
-                [controller showMiddleToastWithContent:message];
+                if (_dataSource.count <= 0) {
+                    [controller finishedLodingWithTip:message subTip:@"点击重新加载"];
+                } else {
+                    [controller finishedLoding];
+                    [controller showMiddleToastWithContent:message];
+                }
                 callBack(NO);
             }
         }

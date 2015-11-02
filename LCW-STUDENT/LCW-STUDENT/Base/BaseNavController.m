@@ -22,8 +22,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.navigationBar setTintColor:[UIColor whiteColor]];
-    [self.navigationBar setBackgroundImage:[self createImageWithColor:RGBA(0x5C, 0x5C, 0x5C, 1)] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationBar setShadowImage:[self createImageWithColor:RGBA(0x5C, 0x5C, 0x5C, 1)]];
+    [self.navigationBar setBackgroundImage:[self createImageWithColor:RGBA(0x40, 0x40, 0x40, 1)] forBarMetrics:UIBarMetricsDefault];
 }
 
 - (void)didReceiveMemoryWarning {

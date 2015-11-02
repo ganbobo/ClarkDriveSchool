@@ -9,6 +9,7 @@
 #import "CarOrderController.h"
 
 #import "CarOrderCell.h"
+#import "CarOrderViewModel.h"
 
 #define kBtnDayBaseTag 10000
 
@@ -25,6 +26,9 @@
     __weak IBOutlet UIButton *_btnDayFive;
     __weak IBOutlet UIButton *_btnDaySix;
     __weak IBOutlet UIButton *_btnDaySeven;
+    
+    // 数据
+    CarOrderViewModel *_carOrderViewModel;
 }
 
 @end
@@ -33,7 +37,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // 获取数据
+    [self getSubjectFromServer];
+    [self getTimeFromServer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,6 +49,7 @@
 
 - (void)loadView {
     [super loadView];
+    _carOrderViewModel = [[CarOrderViewModel alloc] init];
     [self loadNav];
     [self loadDayView];
 }
@@ -98,13 +105,6 @@
     _btnDayOne.titleLabel.numberOfLines = _btnDayTwo.titleLabel.numberOfLines = _btnDayThree.titleLabel.numberOfLines =
     _btnDayFour.titleLabel.numberOfLines = _btnDayFive.titleLabel.numberOfLines = _btnDaySix.titleLabel.numberOfLines =
     _btnDaySeven.titleLabel.numberOfLines = 0;
-//    _btnDayOne.tag = kBtnDayBaseTag + 0;
-//    _btnDayTwo.tag = kBtnDayBaseTag + 1;
-//    _btnDayThree.tag = kBtnDayBaseTag + 2;
-//    _btnDayFour.tag = kBtnDayBaseTag + 3;
-//    _btnDayFive.tag = kBtnDayBaseTag + 4;
-//    _btnDaySix.tag = kBtnDayBaseTag + 5;
-//    _btnDaySeven.tag = kBtnDayBaseTag + 6;
 }
 
 #pragma - mark 点击日期
@@ -123,6 +123,12 @@
     }
     
     btn.selected = YES;
+}
+
+- (IBAction)clickSelectCoach:(id)sender {
+    [_carOrderViewModel getCoachListFromServer:@"53c71c54c769cc2fc987595416f6d30c" controller:self callBack:^(BOOL success) {
+        
+    }];
 }
 
 #pragma - mark UITableViewDataSource, UITableViewDelegate 代理
@@ -145,6 +151,24 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma - mark 获取科目
+
+- (void)getSubjectFromServer {
+    __weak typeof(self) safeSelf = self;
+    [self showLoading:^{
+        [safeSelf getSubjectFromServer];
+    }];
+    [_carOrderViewModel getSubjectListFromServer:getUser().id controller:self callBack:^(BOOL success) {
+        
+    }];
+}
+
+- (void)getTimeFromServer {
+    [_carOrderViewModel getTimeListFromServerController:self callBack:^(BOOL success) {
+        
+    }];
 }
 
 @end

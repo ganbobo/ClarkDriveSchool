@@ -41,12 +41,16 @@
 }
 
 - (void)loadBtns {
-    _btnCourseTwo.layer.cornerRadius = 3;
+    _btnCourseTwo.layer.cornerRadius = 2;
     _btnCourseTwo.layer.masksToBounds = YES;
+    _btnCourseTwo.layer.borderWidth = 0.5;
+    [_btnCourseTwo setTitleColor:[UIColor colorWithRed:0.200 green:0.635 blue:0.365 alpha:1.000] forState:UIControlStateNormal];
+    _btnCourseTwo.layer.borderColor =[UIColor colorWithRed:0.200 green:0.635 blue:0.365 alpha:1.000].CGColor;
     
-    _btnCourseThree.layer.cornerRadius = 3;
+    _btnCourseThree.layer.cornerRadius = 2;
     _btnCourseThree.layer.masksToBounds = YES;
-    _btnCourseThree.layer.borderWidth = 1;
+    _btnCourseThree.layer.borderWidth = 0.5;
+    [_btnCourseThree setTitleColor:[UIColor colorWithRed:0.200 green:0.635 blue:0.365 alpha:1.000] forState:UIControlStateNormal];
     _btnCourseThree.layer.borderColor =[UIColor colorWithRed:0.200 green:0.635 blue:0.365 alpha:1.000].CGColor;
 }
 

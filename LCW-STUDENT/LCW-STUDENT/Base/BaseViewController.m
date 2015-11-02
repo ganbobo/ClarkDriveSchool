@@ -11,10 +11,13 @@
 #import "CNotificationManager.h"
 #import "WaitingView.h"
 #import "iToast.h"
+#import "GFPlaceholderView.h"
 
 #define DEF_SCREEN_MASK_VIEW_TAG    100111
 
-@interface BaseViewController ()
+@interface BaseViewController () {
+    GFPlaceholderView *_placeholderView;
+}
 
 @end
 
@@ -37,6 +40,11 @@
 
 - (void)loadView {
     [super loadView];
+    _placeholderView = [[GFPlaceholderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [_placeholderView showLoadingView];
+    [self.view addSubview:_placeholderView];
+    [_placeholderView hide];
+
     self.view.backgroundColor = RGBA(0xff, 0xff, 0xff, 1);
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
@@ -118,5 +126,25 @@
     [phoneInfo setGravity:iToastGravityCenter];
     [phoneInfo show];
 }
+
+#pragma - mark 显示加载和加载失败的视图
+
+- (void)showLoading:(void(^)(void))tapReLoading {
+    _placeholderView.tapBlock = tapReLoading;
+    [_placeholderView showLoadingView];
+}
+
+- (void)finishedLoding {
+    [_placeholderView hide];
+}
+
+- (void)finishedLodingWithTip:(NSString *)tip subTip:(NSString *)subTip {
+    [_placeholderView showViewWithTitle:tip andSubtitle:subTip];
+}
+
+- (void)finishedLodingWithTip:(NSString *)tip {
+    [_placeholderView showViewWithTitle:tip andSubtitle:@""];
+}
+
 
 @end

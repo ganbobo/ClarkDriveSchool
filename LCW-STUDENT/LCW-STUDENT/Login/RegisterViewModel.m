@@ -14,6 +14,7 @@
 
 @interface RegisterViewModel () {
     NSInteger _totalCountTime;
+    NSString *_valicode;
 }
 
 @end
@@ -30,7 +31,7 @@
  */
 - (void)getCheckCodeFromSeverController:(BaseViewController *)controller username:(NSString *)username callBack:(void (^)(BOOL hasGet))callBack {
     NSDictionary *dic = @{
-                          @"loginName": username
+                          @"mobile": username
                           };
     [[AFNManager sharedAFNManager] getServer:VERIFY_CODE_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
@@ -39,6 +40,7 @@
         } else {
             NSString* responseCode = getResponseCodeFromDic(response);
             if ([responseCode isEqualToString:ResponseCodeSuccess]) {
+                _valicode = [NSString stringWithFormat:@"%ld", [response[@"data"][@"identifyingCode"] longValue]];
                 callBack(YES);
             } else {
                 NSString *message = response[RESPONSE_MESSAGE];
@@ -91,6 +93,11 @@
         return NO;
     }
     
+    if (![code isEqualToString:_valicode]) {
+        [controller showMiddleToastWithContent:@"验证码不正确或者已失效"];
+        return NO;
+    }
+    
     return YES;
 }
 
@@ -107,7 +114,8 @@
                               pwd:(NSString *)pwd
                          callBack:(void (^)(BOOL success))callBack {
     [controller showWaitView:@"注册中"];
-    [[AFNManager sharedAFNManager] getServer:REGISTER_SERVER parameters:@{@"username": username, @"password": [pwd md5HexDigest], @"deviceId": getUUIDString()} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    NSDictionary *dic = @{@"mobile": username, @"passWord": pwd};
+    [[AFNManager sharedAFNManager] getServer:REGISTER_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
             callBack(NO);
