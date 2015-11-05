@@ -17,11 +17,19 @@
 /**
  *  获取驾校列表
  *
- *  @param userId     用户ID
+ *  @param cityId     城市ID
+ *  @param toDate     升序 asc 降序desc
+ *  @param startPrice 其实金额
+ *  @param endPrice   结束金额
  *  @param controller 控制器
  *  @param callBack   回调
  */
 
-- (void)getShopListFromServer:(NSString *)userId controller:(BaseViewController *)controller callBack:(void (^)(BOOL success))callBack;
+- (void)getShopListFromServer:(NSString *)cityId
+                         date:(NSString *)toDate
+                   startPrice:(CGFloat)startPrice
+                     endPrice:(CGFloat)endPrice
+                   controller:(BaseViewController *)controller
+                     callBack:(void (^)(BOOL success))callBack;
 
 @end

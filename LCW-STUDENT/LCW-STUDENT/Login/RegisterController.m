@@ -9,6 +9,7 @@
 #import "RegisterController.h"
 
 #import "RegisterViewModel.h"
+#import "LoginViewModel.h"
 
 @interface RegisterController () {
     
@@ -67,10 +68,19 @@
     if ([_registerViewModel validateCode:_txtCheckCode.text controller:self]) {
         [_registerViewModel registerAccountController:self username:_txtUsername.text pwd:_txtPassword.text callBack:^(BOOL success) {
             if (success) {
-                [safeSelf dismissViewControllerAnimated:YES completion:nil];
+                [safeSelf loginToSever:_txtUsername.text password:_txtPassword.text];
             }
         }];
     }
+}
+
+- (void)loginToSever:(NSString *)username password:(NSString *)password {
+    LoginViewModel *viewModel = [[LoginViewModel alloc] init];
+    [viewModel loginToServerController:self username:username pwd:password callBack:^(BOOL success) {
+        if (success) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }];
 }
 
 @end

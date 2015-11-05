@@ -31,15 +31,35 @@
 /**
  *  获取驾校列表
  *
- *  @param userId     用户ID
+ *  @param cityId     城市ID
+ *  @param toDate     升序 asc 降序desc
+ *  @param startPrice 其实金额
+ *  @param endPrice   结束金额
  *  @param controller 控制器
  *  @param callBack   回调
  */
 
-- (void)getShopListFromServer:(NSString *)userId controller:(BaseViewController *)controller callBack:(void (^)(BOOL success))callBack {
+- (void)getShopListFromServer:(NSString *)cityId
+                         date:(NSString *)toDate
+                   startPrice:(CGFloat)startPrice
+                     endPrice:(CGFloat)endPrice
+                   controller:(BaseViewController *)controller
+                     callBack:(void (^)(BOOL success))callBack {
     NSDictionary *dic = @{
-                          @"userId": userId,
+                          @"userId": (hasUser() ? getUser().id : @"123"),
+                          @"toDate": toDate,
+                          @"startPrice": @(startPrice),
+                          @"endPrice": @(endPrice),
+                          @"c_id": cityId
                           };
+    if (cityId.length <= 0) {
+        dic = @{
+              @"userId": (hasUser() ? getUser().id : @"123"),
+              @"toDate": toDate,
+              @"startPrice": @(startPrice),
+              @"endPrice": @(endPrice)
+              };
+    }
 
     
     [[AFNManager sharedAFNManager] getServer:GET_SCHOOL_LIST_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {

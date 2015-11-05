@@ -56,7 +56,7 @@
     return 15;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 125;
 }
 
@@ -66,6 +66,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MyCoachCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCoachCell" forIndexPath:indexPath];
+    
+    [cell refreshCellByInfo:_myCoachViewModel.coachList[indexPath.section]];
     
     return cell;
 }

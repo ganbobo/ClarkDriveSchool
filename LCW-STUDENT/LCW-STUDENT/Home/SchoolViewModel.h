@@ -27,4 +27,32 @@
                          driveId:(NSString *)driveId
                         callBack:(void(^)(BOOL success))callBack;
 
+/**
+ *  生成优惠券
+ *
+ *  @param controller 控制器
+ *  @param driveId    驾校ID
+ *  @param name       姓名
+ *  @param identifier 身份证号
+ *  @param callBack   回调
+ */
+- (void)getCouponFromSever:(BaseViewController *)controller
+                   driveId:(NSString *)driveId
+                      name:(NSString *)name
+                identifier:(NSString *)identifier
+                  callBack:(void(^)(BOOL success))callBack;
+
+/**
+ *  验证输入姓名和身份证号
+ *
+ *  @param name       姓名
+ *  @param identifier 身份证
+ *  @param controller 控制器
+ *
+ *  @return 是否通过验证
+ */
+- (BOOL)checkUserInput:(NSString *)name
+            identifier:(NSString *)identifier
+            controller:(BaseViewController *)controller;
+
 @end

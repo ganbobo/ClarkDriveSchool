@@ -10,8 +10,27 @@
 
 #import "MySchoolViewModel.h"
 
+@implementation ShowInfo
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _title = @"";
+        _subTitle = @"";
+    }
+    return self;
+}
+
+@end
+
 @interface MySchoolController ()<UITableViewDelegate, UITableViewDataSource> {
     MySchoolViewModel *_mySchoolViewModel;
+    
+    NSMutableArray *_dataSource;
+    
+    __weak IBOutlet UITableView *_tableView;
+    __weak IBOutlet UIButton *_btnComment;
 }
 
 @end
@@ -31,7 +50,10 @@
 - (void)loadView {
     [super loadView];
     _mySchoolViewModel = [[MySchoolViewModel alloc] init];
+    _dataSource = [[NSMutableArray alloc] init];
     [self loadNav];
+    _btnComment.layer.cornerRadius = 5;
+    _btnComment.layer.masksToBounds = YES;
 }
 
 - (void)loadNav {
@@ -41,7 +63,7 @@
 #pragma - mark UITableViewDataSource, UITableViewDelegate 代理
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return _dataSource.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -52,7 +74,7 @@
     return 15;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 44;
 }
 
@@ -62,8 +84,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MySchoolCell" forIndexPath:indexPath];
-    cell.textLabel.textColor = RGBA(0x32, 0x32, 0x32, 1);
-    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    
+    ShowInfo *info = _dataSource[indexPath.section];
+    cell.textLabel.text = info.title;
+    cell.detailTextLabel.text = info.subTitle;
     
     return cell;
 }
@@ -81,8 +105,28 @@
 
 - (void)getSchoolInfoFromServer {
     [_mySchoolViewModel getSchoolDetailFromSever:self callBack:^(BOOL success) {
-        
+        if (success) {
+            ShowInfo *infoOne = [[ShowInfo alloc] init];
+            infoOne.title = @"驾校";
+            infoOne.subTitle = _mySchoolViewModel.mySchoolInfo.drivingName;
+            [_dataSource addObject:infoOne];
+            
+            ShowInfo *infoTwo = [[ShowInfo alloc] init];
+            infoTwo.title = @"地址";
+            infoTwo.subTitle = _mySchoolViewModel.mySchoolInfo.drivingAddr;
+            [_dataSource addObject:infoTwo];
+            
+            ShowInfo *infoThree = [[ShowInfo alloc] init];
+            infoThree.title = @"电话";
+            infoThree.subTitle = _mySchoolViewModel.mySchoolInfo.tel;
+            [_dataSource addObject:infoThree];
+            
+            [_tableView reloadData];
+        }
     }];
+}
+
+- (IBAction)clickComment:(id)sender {
 }
 
 @end

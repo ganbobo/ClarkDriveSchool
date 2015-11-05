@@ -13,7 +13,7 @@
 #import "SubjectInfo.h"
 
 @interface CarOrderViewModel () {
-    NSMutableArray *_dataSource;
+    
 }
 
 @end

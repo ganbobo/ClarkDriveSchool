@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "CoachModel.h"
+
 #define kCoachCellHeight  90
 
 @interface CoachCell : UITableViewCell
+
+- (void)refreshCellByInfo:(CoachModel *)coachModel;
 
 @end

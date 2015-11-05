@@ -63,6 +63,9 @@
 }
 
 - (IBAction)clickCourch:(id)sender {
+    if (!checkUserLogin(self)) {
+        return;
+    }
     [self performSegueWithIdentifier:@"Shop" sender:[NSNumber numberWithBool:YES]];
 }
 

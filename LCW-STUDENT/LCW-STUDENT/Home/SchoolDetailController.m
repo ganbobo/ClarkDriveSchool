@@ -15,6 +15,8 @@
 #import "SchoolDescView.h"
 
 #import "SchoolViewModel.h"
+#import "BlindIDController.h"
+#import "CoachFilterController.h"
 
 @interface SchoolDetailController ()<UITableViewDataSource, UITableViewDelegate, SchoolInfoViewDelegate> {
     NSMutableArray *_dataSource;
@@ -31,8 +33,10 @@
     SchoolDescView *_costView;
     // 时间分配
     SchoolDescView *_timeView;
-    // 学成流程
+    // 学车流程
     SchoolDescView *_studyProcessView;
+    // 驾校班车
+    SchoolDescView *_schoolCarView;
     
     // 数据
     SchoolViewModel *_schoolViewModel;
@@ -142,6 +146,21 @@
         [_dataSource addObject:_studyProcessView];
     }
     
+    if (detailInfo.sList.count > 0) {
+        _schoolCarView = [[SchoolDescView alloc] initWithWidth:ScreenWidth originalY:0 columns:2];
+        NSMutableArray *list = [NSMutableArray array];
+        for (CarRecord *info in detailInfo.sList) {
+            [list addObject:@{
+                              kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
+                              kTEXT_ARRAY_KEY:@[[NSString stringWithFormat:@"%@", info.scheduled_name], [NSString stringWithFormat:@"%@", info.scheduled_text]]
+                              
+                              }];
+        }
+        
+        [_schoolCarView setDataSource:list title:@"驾校班车"];
+        [_dataSource addObject:_schoolCarView];
+    }
+    
     [_tableView reloadData];
 }
 
@@ -186,13 +205,41 @@
     return cell;
 }
 
+#pragma - mark 跳转
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"BlindID"]) {
+        NSString *drivingId = (NSString *)sender;
+        BlindIDController *controller = [segue destinationViewController];
+        controller.driveId = drivingId;
+    }
+    
+    if ([segue.identifier isEqualToString:@"CoachFilter"]) {
+        CoachFilterController *controller = [segue destinationViewController];
+        controller.drivingId = _shopInfo.id;
+    }
+}
+
 #pragma - mark SchoolInfoViewDelegate 代理
 
 - (void)didSelectCoach {
+    if (!checkUserLogin(self)) {
+        return;
+    }
     if (_hasSignUp) {
         [self performSegueWithIdentifier:@"CoachFilter" sender:nil];
     } else {
-        [self performSegueWithIdentifier:@"Coupon" sender:nil];
+        if ([getUser().identification isEqualToString:@"未填写"]) {
+            [self performSegueWithIdentifier:@"BlindID" sender:_shopInfo.id];
+        } else {
+            SchoolViewModel *viewModel = [[SchoolViewModel alloc] init];
+            __weak typeof(self) safeSelf = self;
+            [viewModel getCouponFromSever:self driveId:_shopInfo.id name:getUser().cn_name identifier:getUser().identification callBack:^(BOOL success) {
+                if (success) {
+                    [safeSelf performSegueWithIdentifier:@"Coupon" sender:_shopInfo.id];
+                }
+            }];
+        }
     }
 }
 

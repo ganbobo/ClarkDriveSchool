@@ -39,13 +39,19 @@
 #define ADS_LIST_SERVER             @"/advertimage/getAdvertImagelist" // 广告接口地址
 #define ADDRESS_LIST_SERVER         @"/driving/area/getAreas" // 城市列表
 #define GET_SCHOOL_LIST_SERVER      @"/driving/driving/getDrivings" // 驾校列表
+#define GET_COACH_LIST_SERVER       @"/driving/training/getTrainerBySubjects" // 教练
 #define GET_SCHOOL_LIST_CITY_SERVER @"/driving/driving/queryCityToDrivings" // 根据城市获取驾校列表
+#define GET_COACH_DETAIL_SERVER     @"/driving/trainer/getTrainerInfo" // 教练详情
+#define BLINE_COACH_SERVER          @"/driving/trainer/bindTrainer" // 绑定教练
 #define GET_SCHOOL_DETAIL_SERVER    @"/driving/driving/getDrivingDetail" // 获取驾校详情
+#define GET_COUPON_SERVER           @"/driving/coupon/toCouponUser" // 生成优惠券
 #define FEED_BACK_SERVER            @"/driving/area/toMessage" // 意见反馈
 
 // 我的
 #define MY_SCHOOL_SERVER            @"/driving/mydriving/getMyDriving" // 我的驾校
 #define MY_COACH_SERVER             @"/driving/trainer/myTrainer" // 我的教练
+#define BLIND_NAME_SERVER           @"/driving/user/updateCnName" // 绑定姓名
+#define BLIND_LICENSE_SERVER        @"/driving/user/updateIdentification" // 绑定身份证
 
 // JSON公用字段
 

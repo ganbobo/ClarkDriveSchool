@@ -8,10 +8,23 @@
 
 #import "BaseViewController.h"
 
+#import "SubjectInfo.h"
+
 /**
  *  选择教练
  */
 
+@interface CoachFilterInfo : NSObject
+
+@property(nonatomic, retain)NSString *desc;// 排序
+@property(nonatomic, retain)NSString *sex;
+@property(nonatomic, retain)NSString *type;
+
+@end
+
 @interface CoachController : BaseViewController
+
+@property(nonatomic, retain)NSString *drivingId;
+@property(nonatomic, retain)SubjectInfo *subjectInfo;
 
 @end

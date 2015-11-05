@@ -20,17 +20,19 @@
     __weak IBOutlet UILabel *_lblSaleCount;
     __weak IBOutlet UILabel *_lblDistance;
     __weak IBOutlet UIView *_commentView;// 评价视图
+    __weak IBOutlet UILabel *_lblScore;
 }
 @end
 
 @implementation ShopCell
 
 - (void)awakeFromNib {
-    // Initialization code
-    [_imgView setImageWithURL:getImageUrl(@"http://img11.360buyimg.com/da/jfs/t1828/282/1045058672/182151/a4bc083a/55e005fbNb4e59acd.jpg")];
     
     [_btnTip setBackgroundImage:nil forState:UIControlStateNormal];
     _btnTip.userInteractionEnabled = NO;
+    
+    _imgView.layer.borderColor = RGBA(0xee, 0xee, 0xee, 1).CGColor;
+    _imgView.layer.borderWidth = 0.5;
     
     UIView *line = [[UIView alloc] init];
     line.backgroundColor = [UIColor groupTableViewBackgroundColor];
@@ -38,6 +40,8 @@
     [self addSubview:line];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-0-[L]-0-|" options:0 metrics:nil views:@{@"L": line}]];
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[L(0.5)]-0-|" options:0 metrics:nil views:@{@"L": line}]];
+    
+    _lblDistance.hidden = _lblSaleCount.hidden = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -48,7 +52,24 @@
 
 - (void)refreshCellWithInfo:(ShopInfo *)shopInfo {
     _lblName.text = shopInfo.driving_name;
-    _lblPrice.text = [NSString stringWithFormat:@"%ld", (long)shopInfo.driving_price];
+    _lblPrice.text = [NSString stringWithFormat:@"￥%ld", (long)shopInfo.driving_price];
+    _lblScore.text = [NSString stringWithFormat:@"%@", shopInfo.scole];
+    NSInteger score = shopInfo.scole.integerValue;
+    [self setStarView:score];
+    
+    [_imgView setImageWithURL:getImageUrl(shopInfo.resource_url) placeholderImage:[UIImage imageNamed:@"downlaod_picture_fail"]];
+}
+
+- (void)setStarView:(NSInteger)score {
+    for (NSInteger i = 0; i < 5; i ++) {
+        UIImageView *imgView = (UIImageView *)[_commentView viewWithTag:10000 + i];
+        if (i + 1 <= score) {
+            imgView.image = [UIImage imageNamed:@"shop_five_corner"];
+        } else {
+            imgView.image = [UIImage imageNamed:@"shop_five_corner_normal"];
+        }
+        
+    }
 }
 
 @end

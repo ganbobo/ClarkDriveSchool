@@ -13,9 +13,17 @@
 
 #import "MXPullDownMenu.h"
 #import "ShopViewModel.h"
+#import "AddressViewModel.h"
+#import "AddressModel.h"
+#import "MySchoolViewModel.h"
+#import "MySchoolInfo.h"
 
 #define kListTag  100001
 #define kMapTag   100002
+
+@implementation FilterInfo
+
+@end
 
 @interface ShopController ()<UITableViewDataSource, UITableViewDelegate, MXPullDownMenuDelegate> {
     @private
@@ -25,8 +33,12 @@
     NSArray *_dataMenu;
     MXPullDownMenu *_pullDownMenu;
     
+    NSArray *_priceList;
+    
     // 数据管理
     ShopViewModel *_shopViewModel;
+    
+    FilterInfo *_filterInfo;
 }
 
 @end
@@ -35,8 +47,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [self getDataFromServer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -48,55 +58,66 @@
     [super loadView];
     _shopViewModel = [[ShopViewModel alloc] init];
     [self loadNav];
-    [self loadPullDownMenuView];
+    [self loadTableView];
+    if (!_hasSignUp) {
+        [self loadPullDownMenuView];
+    } else {
+        [self getMySchool];
+    }
+}
+
+- (void)loadTableView {
+    if (!_hasSignUp) {
+        UIEdgeInsets edge = _tableView.contentInset;
+        edge.top = 45;
+        _tableView.contentInset = edge;
+    }
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
 #pragma - mark 界面加载
 
 - (void)loadNav {
-    [PMCommon setNavigationBarRightButton:self withBtnNormalImg:[UIImage imageNamed:@"nav_search"] withAction:@selector(clickSearch)];
-    
-    _titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 30)];
-    _titleView.backgroundColor = [UIColor whiteColor];
-    _titleView.layer.borderColor = [UIColor colorWithRed:0.145 green:0.655 blue:0.341 alpha:1.000].CGColor;
-    _titleView.layer.borderWidth = 1.5;
-    self.navigationItem.titleView = _titleView;
-
-    UIButton *btnList = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, _titleView.width / 2.0, _titleView.height)];
-    [btnList setTitleColor:[UIColor colorWithRed:0.145 green:0.655 blue:0.341 alpha:1.000] forState:UIControlStateNormal];
-    [btnList setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [btnList setBackgroundImage:[UIImage imageNamed:@"btn_common_white"] forState:UIControlStateNormal];
-    [btnList setBackgroundImage:[UIImage imageNamed:@"btn_common"] forState:UIControlStateSelected];
-    [btnList setTitle:@"列表版" forState:UIControlStateNormal];
-    btnList.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-    btnList.tag = kListTag;
-    [btnList addTarget:self action:@selector(clickSwich:) forControlEvents:UIControlEventTouchUpInside];
-    [_titleView addSubview:btnList];
-    
-    UIButton *btnMap = [[UIButton alloc] initWithFrame:CGRectMake(_titleView.width / 2.0, 0, _titleView.width / 2.0, _titleView.height)];
-    [btnMap setTitleColor:[UIColor colorWithRed:0.145 green:0.655 blue:0.341 alpha:1.000] forState:UIControlStateNormal];
-    [btnMap setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-    [btnMap setBackgroundImage:[UIImage imageNamed:@"btn_common_white"] forState:UIControlStateNormal];
-    [btnMap setBackgroundImage:[UIImage imageNamed:@"btn_common"] forState:UIControlStateSelected];
-    [btnMap setTitle:@"地图版" forState:UIControlStateNormal];
-    btnMap.titleLabel.font = [UIFont boldSystemFontOfSize:17];
-    btnMap.tag = kMapTag;
-    [btnMap addTarget:self action:@selector(clickSwich:) forControlEvents:UIControlEventTouchUpInside];
-    [_titleView addSubview:btnMap];
-    
-    [self clickSwich:btnList];
+    if (!_hasSignUp) {
+        [PMCommon setNavigationBarRightButton:self withBtnNormalImg:[UIImage imageNamed:@"nav_search"] withAction:@selector(clickSearch)];
+        
+        _titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 30)];
+        _titleView.backgroundColor = [UIColor whiteColor];
+        _titleView.layer.borderColor = [UIColor colorWithRed:0.145 green:0.655 blue:0.341 alpha:1.000].CGColor;
+        _titleView.layer.borderWidth = 1.5;
+        self.navigationItem.titleView = _titleView;
+        
+        UIButton *btnList = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, _titleView.width / 2.0, _titleView.height)];
+        [btnList setTitleColor:[UIColor colorWithRed:0.145 green:0.655 blue:0.341 alpha:1.000] forState:UIControlStateNormal];
+        [btnList setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [btnList setBackgroundImage:[UIImage imageNamed:@"btn_common_white"] forState:UIControlStateNormal];
+        [btnList setBackgroundImage:[UIImage imageNamed:@"btn_common"] forState:UIControlStateSelected];
+        [btnList setTitle:@"列表版" forState:UIControlStateNormal];
+        btnList.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+        btnList.tag = kListTag;
+        [btnList addTarget:self action:@selector(clickSwich:) forControlEvents:UIControlEventTouchUpInside];
+        [_titleView addSubview:btnList];
+        
+        UIButton *btnMap = [[UIButton alloc] initWithFrame:CGRectMake(_titleView.width / 2.0, 0, _titleView.width / 2.0, _titleView.height)];
+        [btnMap setTitleColor:[UIColor colorWithRed:0.145 green:0.655 blue:0.341 alpha:1.000] forState:UIControlStateNormal];
+        [btnMap setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [btnMap setBackgroundImage:[UIImage imageNamed:@"btn_common_white"] forState:UIControlStateNormal];
+        [btnMap setBackgroundImage:[UIImage imageNamed:@"btn_common"] forState:UIControlStateSelected];
+        [btnMap setTitle:@"地图版" forState:UIControlStateNormal];
+        btnMap.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+        btnMap.tag = kMapTag;
+        [btnMap addTarget:self action:@selector(clickSwich:) forControlEvents:UIControlEventTouchUpInside];
+        [_titleView addSubview:btnMap];
+        
+        [self clickSwich:btnList];
+    } else {
+        [PMCommon setNavigationTitle:self withTitle:@"我的驾校"];
+    }
 }
 
 - (void)loadPullDownMenuView {
-    _dataMenu = @[ @[ @"广德", @"泾县", @"宣州区"], @[@"综合排序", @"由近到远"], @[@"价格", @"由低到高", @"由高到低"], @[@"评分", @"由低到高", @"由高到低"]];
-    
-    
-    _pullDownMenu = [[MXPullDownMenu alloc] initWithArray:_dataMenu selectedColor:[UIColor colorWithRed:0.180 green:0.635 blue:0.353 alpha:1.000]];
-    _pullDownMenu.delegate = self;
-    _pullDownMenu.frame = CGRectMake(0, 64, ScreenWidth, 45);
-    [_pullDownMenu setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.view addSubview:_pullDownMenu];
+    [self getAddress];
 }
 
 #pragma - mark 导航按钮点击
@@ -151,7 +172,7 @@
     if ([segue.identifier isEqualToString:@"SchoolDetail"]) {
         SchoolDetailController *controller = [segue destinationViewController];
         NSIndexPath *indexPath = (NSIndexPath *)sender;
-        
+        controller.hasSignUp = _hasSignUp;
         ShopInfo *info = _shopViewModel.dataSource[indexPath.row];
         controller.shopInfo = info;
     }
@@ -160,18 +181,145 @@
 #pragma mark - MXPullDownMenuDelegate
 
 - (void)PullDownMenu:(MXPullDownMenu *)pullDownMenu didSelectRowAtColumn:(NSInteger)column row:(NSInteger)row {
-    NSLog(@"%ld -- %ld", column, row);
+    switch (column) {
+        case 0: {
+            if (row == 0) {
+                _filterInfo.cityId = @"";
+            } else {
+                AddressModel *addressInfo = [AddressViewModel sharedAddressViewModel].arrayDataSource[row - 1];
+                _filterInfo.cityId = [NSString stringWithFormat:@"%ld", (long)addressInfo.c_id];
+            }
+        }
+            break;
+        case 1: {
+            
+        }
+            break;
+        case 2: {
+            NSString *string = _priceList[row];
+            if ([string rangeOfString:@"-"].location != NSNotFound) {
+                NSArray *array = [string componentsSeparatedByString:@"-"];
+                NSString *first = array.firstObject;
+                NSString *last = array.lastObject;
+                _filterInfo.startPrice = first.floatValue;
+                _filterInfo.endPrice = last.floatValue;
+            } else {
+                if ([string isEqualToString:@"价格"]) {
+                    _filterInfo.startPrice = 0;
+                    _filterInfo.endPrice = 100000;
+                } else {
+                    _filterInfo.startPrice = 8000;
+                    _filterInfo.endPrice = 100000;
+                }
+            }
+        }
+            break;
+        case 3: {
+            switch (row) {
+                case 0:
+                    _filterInfo.toDate = @"asc";
+                    break;
+                case 1:
+                    _filterInfo.toDate = @"asc";
+                    break;
+                case 2:
+                    _filterInfo.toDate = @"desc";
+                    break;
+                default:
+                    break;
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self getDataFromServer];
 }
 
 #pragma - mark 获取数据
 
-- (void)getDataFromServer {
+- (void)getAddress {
     __weak typeof(self) safeSelf = self;
     [self showLoading:^{
-        [safeSelf getDataFromServer];
+        [safeSelf getAddress];
     }];
-    [_shopViewModel getShopListFromServer:@"123" controller:self callBack:^(BOOL success) {
+    
+    [self getAddressFromServer];
+}
+
+- (void)getAddressFromServer {
+    [[AddressViewModel sharedAddressViewModel] getAddressDicFromServer:self callBack:^(BOOL success) {
         if (success) {
+            NSMutableArray *cityList = [[NSMutableArray alloc] init];
+            [cityList addObject:@"所有城市"];
+            for (AddressModel *tempInfo in [AddressViewModel sharedAddressViewModel].arrayDataSource) {
+                [cityList addObject:tempInfo.c_name];
+            }
+            
+            _priceList = @[@"价格", @"0-2000", @"2000-4000", @"4000-6000", @"6000-8000", @"8000以上"];
+            _dataMenu = @[cityList, @[@"综合排序", @"由近到远"], _priceList, @[@"评分", @"由低到高", @"由高到低"]];
+            
+            _pullDownMenu = [[MXPullDownMenu alloc] initWithArray:_dataMenu selectedColor:[UIColor colorWithRed:0.180 green:0.635 blue:0.353 alpha:1.000]];
+            _pullDownMenu.delegate = self;
+            _pullDownMenu.frame = CGRectMake(0, 64, ScreenWidth, 45);
+            [_pullDownMenu setTranslatesAutoresizingMaskIntoConstraints:NO];
+            [self.view addSubview:_pullDownMenu];
+            
+            _filterInfo = [[FilterInfo alloc] init];
+            _filterInfo.cityId = @"";
+            _filterInfo.toDate = @"asc";
+            _filterInfo.startPrice = 0;
+            _filterInfo.endPrice = 100000;
+            [self getData];
+        }
+    }];
+}
+
+- (void)getData {
+    __weak typeof(self) safeSelf = self;
+    [self showLoading:^{
+        [safeSelf getData];
+    }];
+    
+    [self getDataFromServer];
+}
+
+- (void)getDataFromServer {
+    [_shopViewModel getShopListFromServer:_filterInfo.cityId date:_filterInfo.toDate startPrice:_filterInfo.startPrice endPrice:_filterInfo.endPrice controller:self callBack:^(BOOL success) {
+        if (success) {
+            [_tableView reloadData];
+        }
+    }];
+}
+
+- (void)getMySchool {
+    __weak typeof(self) safeSelf = self;
+    [self showLoading:^{
+        [safeSelf getMySchoolFromServer];
+    }];
+    
+    [self getMySchoolFromServer];
+
+}
+
+- (void)getMySchoolFromServer {
+    MySchoolViewModel *viewModel = [[MySchoolViewModel alloc] init];
+    [viewModel getSchoolDetailFromSever:self callBack:^(BOOL success) {
+        if (success) {
+            ShopInfo *info = [[ShopInfo alloc] init];
+            MySchoolInfo *schoolInfo = viewModel.mySchoolInfo;
+            info.driving_name = schoolInfo.drivingName;
+            info.id = schoolInfo.drivingId;
+            info.driving_price = schoolInfo.drivingPrice;
+            info.level = schoolInfo.level;
+            info.driving_comm_num = schoolInfo.drivingCommNum;
+            info.resource_url = schoolInfo.resourseUrl;
+            info.scole = schoolInfo.scole;
+         
+            [_shopViewModel.dataSource removeAllObjects];
+            [_shopViewModel.dataSource addObject:info];
             [_tableView reloadData];
         }
     }];

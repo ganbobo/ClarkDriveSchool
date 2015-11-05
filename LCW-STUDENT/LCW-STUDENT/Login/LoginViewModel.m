@@ -67,6 +67,7 @@
                 // 存储用户
                 UserInfo *user = [UserInfo objectWithKeyValues:response[@"data"]];
                 // 存入用户
+                user.pass_word = pwd;
                 setUser(user);
                 callBack(YES);
             } else {

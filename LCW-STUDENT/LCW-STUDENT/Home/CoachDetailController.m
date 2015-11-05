@@ -1,18 +1,18 @@
 //
-//  PersonalController.m
-//  LCW
+//  CoachDetailController.m
+//  LCW-STUDENT
 //
-//  Created by St.Pons.Mr.G on 15/8/26.
-//  Copyright (c) 2015年 Clark. All rights reserved.
+//  Created by Clark.Gan on 15/11/5.
+//  Copyright © 2015年 Clark. All rights reserved.
 //
 
-#import "PersonalController.h"
+#import "CoachDetailController.h"
 
 #import "HFStretchableTableHeaderView.h"
+#import "CoachViewModel.h"
 
-@interface PersonalController ()<UITableViewDataSource, UITableViewDelegate> {
-    
-    @private
+@interface CoachDetailController ()<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
+@private
     __weak IBOutlet UITableView *_tableView;
     NSArray *_dataSource;
     __weak IBOutlet UIView *_headerView;
@@ -23,18 +23,11 @@
 
 @end
 
-@implementation PersonalController
+@implementation CoachDetailController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    // 刷新用户
-    [self refreshHeaderViewWithUser];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,7 +37,7 @@
 
 - (void)loadView {
     [super loadView];
-    _dataSource = @[@[@"我的消息", @"我的驾校", @"我的教练"], @[@"我的优惠券"]];
+    _dataSource = @[@[@"车牌", @"驾校", @"科目"], @[@"目前学员", @"累积学员"], @[@"学员评价"]];
     [self loadNav];
     [self loadHeaderView];
 }
@@ -52,7 +45,7 @@
 #pragma - mark 加载界面
 
 - (void)loadNav {
-    [PMCommon setNavigationTitle:self withTitle:@"我的驾考"];
+    [PMCommon setNavigationTitle:self withTitle:@"教练详情"];
 }
 
 - (void)loadHeaderView {
@@ -68,14 +61,6 @@
     
     _avatarImage.userInteractionEnabled = YES;
     _lblNickName.userInteractionEnabled = YES;
-    
-    
-    // 给头像和昵称添加点击手势
-    UITapGestureRecognizer *tapAvatar = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAvatarAndNickName)];
-    [_avatarImage addGestureRecognizer:tapAvatar];
-    
-    UITapGestureRecognizer *tapNickName = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAvatarAndNickName)];
-    [_lblNickName addGestureRecognizer:tapNickName];
 }
 
 #pragma - mark 刷新用户
@@ -121,55 +106,45 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PersonalCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CoachDetailCell" forIndexPath:indexPath];
     NSArray *list = _dataSource[indexPath.section];
     cell.textLabel.text = list[indexPath.row];
-    cell.detailTextLabel.text = @"";
+    
+    if (indexPath.section == 2) {
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section == 0) {
-        switch (indexPath.row) {
-            case 0:
-//                [self performSegueWithIdentifier:@"SyncProgress" sender:indexPath];
-                break;
-            case 1:
-                [self performSegueWithIdentifier:@"MySchool" sender:indexPath];
-                break;
-            case 2:
-                [self performSegueWithIdentifier:@"MyCoach" sender:indexPath];
-                break;
-            default:
-                break;
-        }
-    }
-    
-    if (indexPath.section == 1) {
-        switch (indexPath.row) {
-            case 0:
-                [self performSegueWithIdentifier:@"MyCoupon" sender:indexPath];
-                break;
-            case 1:
-                [self performSegueWithIdentifier:@"MyComment" sender:indexPath];
-                break;
-            default:
-                break;
-        }
-    }
 }
 
-#pragma - mark 点击头像及昵称触发方法
+#pragma - mark 刷新用户昵称
 
-- (void)tapAvatarAndNickName {
-    if (!checkUserLogin(self)) {
-        return;
-    }
+- (void)refreshUserInfo {
     
-    // 到个人资料
-    [self performSegueWithIdentifier:@"PersonalData" sender:nil];
+}
+
+#pragma - mark 按钮点击事件
+
+- (IBAction)clickBlindCoach:(id)sender {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否确定绑定该教练?" delegate:self cancelButtonTitle:@"否" otherButtonTitles:@"是", nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        CoachViewModel *viewModel = [[CoachViewModel alloc] init];
+        [viewModel blindCoachToServer:_coachInfo.trainerId subjectId:_subjectInfo.id controller:self callBack:^(BOOL success) {
+            
+        }];
+    }
 }
 
 @end

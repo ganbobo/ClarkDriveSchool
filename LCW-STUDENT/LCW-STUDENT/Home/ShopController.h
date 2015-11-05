@@ -8,6 +8,15 @@
 
 #import "BaseViewController.h"
 
+@interface FilterInfo : NSObject
+
+@property(nonatomic, assign)CGFloat startPrice;
+@property(nonatomic, assign)CGFloat endPrice;
+@property(nonatomic, retain)NSString *cityId;
+@property(nonatomic, retain)NSString *toDate;
+
+@end
+
 @interface ShopController : BaseViewController
 
 @property(nonatomic, assign)BOOL hasSignUp;// 是否报名

@@ -52,7 +52,7 @@
         UILabel* col1 = [[UILabel alloc] init];
         [col1.layer setBorderColor:[[UIColor colorWithWhite:0.821 alpha:1.000] CGColor]];
         [col1.layer setBorderWidth:0.5];
-        col1.font = [UIFont fontWithName:@"Helvetica" size:13.5];
+        col1.font = [UIFont fontWithName:@"Helvetica" size:14];
         col1.textColor = textColor;
         col1.frame = rect;
         

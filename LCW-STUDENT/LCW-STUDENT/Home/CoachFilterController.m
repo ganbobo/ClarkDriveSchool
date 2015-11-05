@@ -8,10 +8,13 @@
 
 #import "CoachFilterController.h"
 
-@interface CoachFilterController () {
-    
-    __weak IBOutlet UIButton *_btnCourseTwo;
-    __weak IBOutlet UIButton *_btnCourseThree;
+#import "CarOrderViewModel.h"
+#import "CoachFilterCell.h"
+#import "CoachController.h"
+
+@interface CoachFilterController ()<CoachFilterCellDelegate> {
+    CarOrderViewModel *_viewModel;
+    __weak IBOutlet UITableView *_tableView;
 }
 
 @end
@@ -20,7 +23,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self getSubject];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,8 +33,8 @@
 
 - (void)loadView {
     [super loadView];
+    _viewModel = [[CarOrderViewModel alloc] init];
     [self loadNav];
-    [self loadBtns];
 }
 
 #pragma - mark 加载界面
@@ -40,27 +43,62 @@
     [PMCommon setNavigationTitle:self withTitle:@"筛选"];
 }
 
-- (void)loadBtns {
-    _btnCourseTwo.layer.cornerRadius = 2;
-    _btnCourseTwo.layer.masksToBounds = YES;
-    _btnCourseTwo.layer.borderWidth = 0.5;
-    [_btnCourseTwo setTitleColor:[UIColor colorWithRed:0.200 green:0.635 blue:0.365 alpha:1.000] forState:UIControlStateNormal];
-    _btnCourseTwo.layer.borderColor =[UIColor colorWithRed:0.200 green:0.635 blue:0.365 alpha:1.000].CGColor;
-    
-    _btnCourseThree.layer.cornerRadius = 2;
-    _btnCourseThree.layer.masksToBounds = YES;
-    _btnCourseThree.layer.borderWidth = 0.5;
-    [_btnCourseThree setTitleColor:[UIColor colorWithRed:0.200 green:0.635 blue:0.365 alpha:1.000] forState:UIControlStateNormal];
-    _btnCourseThree.layer.borderColor =[UIColor colorWithRed:0.200 green:0.635 blue:0.365 alpha:1.000].CGColor;
-}
-
 #pragma - mark 点击事件
 
-- (IBAction)clickCourseTwo:(id)sender {
-    [self performSegueWithIdentifier:@"CoachSelect" sender:nil];
+#pragma - mark UITableViewDataSource, UITableViewDelegate 代理
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _viewModel.dataSource.count;
 }
-- (IBAction)clickCourseThree:(id)sender {
-    [self performSegueWithIdentifier:@"CoachSelect" sender:nil];
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CoachFilterCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CoachFilterCell" forIndexPath:indexPath];
+    if (!cell.delegate) {
+        cell.delegate = self;
+    }
+    
+    [cell refreshCellWithInfo:_viewModel.dataSource[indexPath.row]];
+    
+    return cell;
+}
+
+#pragma - mark CoachFilterCellDelegate
+
+- (void)didSelectSubject:(SubjectInfo *)subjectInfo {
+    [self performSegueWithIdentifier:@"CoachSelect" sender:subjectInfo];
+}
+
+#pragma - mark 界面跳转
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"CoachSelect"]) {
+        SubjectInfo *subjectInfo = (SubjectInfo *)sender;
+        CoachController *controller = [segue destinationViewController];
+        controller.drivingId = _drivingId;
+        controller.subjectInfo = subjectInfo;
+    }
+}
+#pragma - mark 数据
+
+- (void)getSubject {
+    __weak typeof(self) safeSelf = self;
+    [self showLoading:^{
+        [safeSelf getSubject];
+    }];
+    
+    [self getSubjectFromServer];
+}
+
+- (void)getSubjectFromServer {
+    [_viewModel getSubjectListFromServer:getUser().id controller:self callBack:^(BOOL success) {
+        if (success) {
+            [_tableView reloadData];
+        }
+    }];
 }
 
 @end

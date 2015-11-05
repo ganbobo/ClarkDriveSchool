@@ -46,15 +46,15 @@
         [self addSubview:view];
         NSArray *columnWitdh = @[];
         if (columns == 4) {
-            columnWitdh = @[@(self.width / 4.0 + 1), @(self.width / 4.0 + 1), @(self.width / 4.0 + 1), @(self.width / 4.0 + 1)];
+            columnWitdh = @[@(self.width / 4.0), @(self.width / 4.0), @(self.width / 4.0), @(self.width / 4.0)];
         }
         
         if (columns == 5) {
-            columnWitdh = @[@(self.width / 5.0 + 1), @(self.width / 5.0 + 1), @(self.width / 5.0 + 1), @(self.width / 5.0 + 1), @(self.width / 5.0 + 1)];
+            columnWitdh = @[@(self.width / 5.0), @(self.width / 5.0), @(self.width / 5.0), @(self.width / 5.0), @(self.width / 5.0)];
         }
         
         if (columns == 2) {
-            columnWitdh = @[@(self.width / 4.0), @(self.width * 3 / 4.0 + 2)];
+            columnWitdh = @[@(self.width / 4.0), @(self.width * 3 / 4.0)];
         }
         
         _matrix = [[NALLabelsMatrix alloc] initWithFrame:CGRectMake(0, 35, self.width, 20) andColumnsWidths:columnWitdh];

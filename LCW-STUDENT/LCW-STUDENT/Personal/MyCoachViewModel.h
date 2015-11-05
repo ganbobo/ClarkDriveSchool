@@ -23,5 +23,14 @@
 - (void)getMyCoachFromSever:(BaseViewController *)controller
                    callBack:(void(^)(BOOL success))callBack;
 
+/**
+ *  注销登录
+ *
+ *  @param controller 控制器
+ *  @param callBack   回调
+ */
+- (void)logoutToServer:(BaseViewController *)controller
+              callBack:(void(^)(BOOL success))callBack;
+
 
 @end

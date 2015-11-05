@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MyCoachInfo.h"
+
 @interface MyCoachCell : UITableViewCell
+
+- (void)refreshCellByInfo:(MyCoachInfo *)coachInfo;
 
 @end

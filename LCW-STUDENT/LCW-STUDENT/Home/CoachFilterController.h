@@ -10,4 +10,6 @@
 
 @interface CoachFilterController : BaseViewController
 
+@property(nonatomic, retain)NSString *drivingId;
+
 @end

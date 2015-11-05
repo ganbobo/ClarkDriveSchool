@@ -57,4 +57,37 @@
     }];
 }
 
+
+/**
+ *  注销登录
+ *
+ *  @param controller 控制器
+ *  @param callBack   回调
+ */
+- (void)logoutToServer:(BaseViewController *)controller
+              callBack:(void(^)(BOOL success))callBack {
+    NSDictionary *param = @{
+                            @"userId": getUser().id
+                            };
+    
+    [controller showWaitView:@"正在退出"];
+    [[AFNManager sharedAFNManager] getServer:MY_COACH_SERVER parameters:@{PARS_KEY : [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+        if (netErrorMessage) {
+            [controller hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
+            callBack(NO);
+        } else {
+            NSString *responseCode = getResponseCodeFromDic(response);
+            if ([responseCode isEqualToString:ResponseCodeSuccess]) {
+                [controller hiddenWaitViewWithTip:@"退出成功" type:MessageSuccess];
+                deleteUser();
+                callBack(YES);
+            } else {
+                NSString *message = response[RESPONSE_MESSAGE];
+                [controller hiddenWaitViewWithTip:message type:MessageFailed];
+                callBack(NO);
+            }
+        }
+    }];
+}
+
 @end

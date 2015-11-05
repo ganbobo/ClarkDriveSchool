@@ -41,7 +41,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AddressViewModel);
 - (void)getAddressDicFromServer:(BaseViewController *)controller
                        callBack:(void(^)(BOOL success))callBack {
     NSDictionary *param = @{
-                            @"userId": hasUser() ? getUser().id : @"",
+                            @"userId": (hasUser() ? getUser().id : @"123"),
                             @"queryCheck": @""
                             };
     [[AFNManager sharedAFNManager] getServer:ADDRESS_LIST_SERVER parameters:@{PARS_KEY: [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {

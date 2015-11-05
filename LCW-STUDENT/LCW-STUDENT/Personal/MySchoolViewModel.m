@@ -13,6 +13,7 @@
 
 @implementation MySchoolViewModel
 
+
 /**
  *  我的驾考
  *
@@ -33,7 +34,7 @@
             NSString *responseCode = getResponseCodeFromDic(response);
             if ([responseCode isEqualToString:ResponseCodeSuccess]) {
                 [controller finishedLoding];
-                
+                _mySchoolInfo = [MySchoolInfo objectWithKeyValues:response[@"data"]];
                 callBack(YES);
             } else {
                 NSString *message = response[RESPONSE_MESSAGE];

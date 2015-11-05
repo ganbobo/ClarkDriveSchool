@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "BaseViewController.h"
+#import "MySchoolInfo.h"
 
 @interface MySchoolViewModel : NSObject
+
+@property(nonatomic, retain)MySchoolInfo *mySchoolInfo;
 
 /**
  *  我的驾考

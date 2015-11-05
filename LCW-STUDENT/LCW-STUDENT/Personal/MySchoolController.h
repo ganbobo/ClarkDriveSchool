@@ -8,6 +8,13 @@
 
 #import "BaseViewController.h"
 
+@interface ShowInfo : NSObject
+
+@property(nonatomic, retain)NSString *title;
+@property(nonatomic, retain)NSString *subTitle;
+
+@end
+
 @interface MySchoolController : BaseViewController
 
 @end
