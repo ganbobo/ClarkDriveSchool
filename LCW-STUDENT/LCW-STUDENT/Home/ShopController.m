@@ -124,8 +124,14 @@
 - (void)loadMapView {
     _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight - NavBarHeight - StatusBarHeight)];
     [_mapView setMapType:BMKMapTypeStandard];
+    _mapView.showsUserLocation = YES;
+    _mapView.zoomEnabled= YES;
+    _mapView.scrollEnabled = YES;
+    _mapView.zoomLevel = 15;
     _mapView.hidden = YES;
     [self.view addSubview:_mapView];
+    
+    [self getLocation];
 }
 
 - (void)loadPullDownMenuView {
@@ -371,6 +377,25 @@
             [_tableView reloadData];
         }
     }];
+}
+
+- (void)getLocation {
+    if ([LocationManager sharedLocationManager].location) {
+        [_mapView updateLocationData:[LocationManager sharedLocationManager].location];
+        if (_mapView) {
+            [_mapView setCenterCoordinate:[LocationManager sharedLocationManager].location.location.coordinate animated:YES];
+        }
+    } else {
+        [[LocationManager sharedLocationManager] startLocation:^(NSString *city) {
+            if (city == nil) {
+                [self showMiddleToastWithContent:@"定位失败"];
+            } else {
+                [_mapView updateLocationData:[LocationManager sharedLocationManager].location];
+                if (_mapView) {
+                    [_mapView setCenterCoordinate:[LocationManager sharedLocationManager].location.location.coordinate animated:YES];
+                }            }
+        }];
+    }
 }
 
 @end

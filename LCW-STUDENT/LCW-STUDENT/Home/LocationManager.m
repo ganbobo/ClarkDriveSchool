@@ -8,7 +8,6 @@
 
 #import "LocationManager.h"
 
-#import <BaiduMapAPI_Location/BMKLocationService.h>
 #import <BaiduMapAPI_Search/BMKGeocodeSearchOption.h>
 #import <BaiduMapAPI_Search/BMKGeocodeSearch.h>
 
@@ -58,6 +57,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LocationManager);
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
     NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    _location = userLocation;
     [self stopLocation];
     
     //发起反向地理编码检索
