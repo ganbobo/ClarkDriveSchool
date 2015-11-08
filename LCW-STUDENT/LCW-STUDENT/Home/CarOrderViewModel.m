@@ -11,6 +11,7 @@
 #import "JsonUtils.h"
 #import "AFNManager.h"
 #import "SubjectInfo.h"
+#import "CarCoachInfo.h"
 
 @interface CarOrderViewModel () {
     
@@ -23,6 +24,8 @@
 - (instancetype)init {
     if (self = [super init]) {
         _dataSource = [[NSMutableArray alloc] init];
+        _coachList = [[NSMutableArray alloc] init];
+        _timeList = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -146,9 +149,13 @@
             NSString *responseCode = getResponseCodeFromDic(response);
             if ([responseCode isEqualToString:ResponseCodeSuccess]) {
                 [controller finishedLoding];
-//                NSArray *array = [SubjectInfo objectArrayWithKeyValuesArray:response[@"data"]];
-//                [_dataSource removeAllObjects];
-//                [_dataSource addObjectsFromArray:array];
+                NSArray *array = [CarCoachInfo objectArrayWithKeyValuesArray:response[@"data"][@"trainerLists"]];
+                [_coachList removeAllObjects];
+                [_coachList addObjectsFromArray:array];
+                
+                NSArray *timeArr = response[@"data"][@"numberDayLists"];
+                [_timeList removeAllObjects];
+                [_timeList addObjectsFromArray:timeArr];
                 callBack(YES);
             } else {
                 NSString *message = response[RESPONSE_MESSAGE];
@@ -173,17 +180,17 @@
  *  @param callBack    回调
  */
 - (void)getCourseListFromServer:(NSString *)trainerId
-                    publishTime:(NSString *)time
+                    publishTime:(long)time
                      controller:(BaseViewController *)controller
                        callBack:(void (^)(BOOL success))callBack {
     NSDictionary *dic = @{
                           @"userId": getUser().id,
                           @"trainerId": trainerId,
-                          @"publishTime": time
+                          @"publishTime": @(time)
                           };
     
     
-    [[AFNManager sharedAFNManager] getServer:GET_TIME_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:GET_COACH_COURSE_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             if (_dataSource.count <= 0) {
                 [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];

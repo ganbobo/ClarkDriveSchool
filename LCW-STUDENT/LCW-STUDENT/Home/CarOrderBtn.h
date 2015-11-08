@@ -2,16 +2,16 @@
 //  CarOrderBtn.h
 //  LCW-STUDENT
 //
-//  Created by St.Pons.Mr.G on 15/9/19.
+//  Created by Clark.Gan on 15/11/7.
 //  Copyright © 2015年 Clark. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-#import "CarOrderCell.h"
+#import "SubjectInfo.h"
 
 @interface CarOrderBtn : UIButton
 
-@property(nonatomic, assign)OrderState orderState;
+@property(nonatomic, retain)SubjectInfo *subjectInfo;
 
 @end

@@ -110,7 +110,10 @@
     return self;
 }
 
-
+- (void)setSelectRow:(NSInteger)row {
+    _currentSelectedMenudIndex = 0;
+    [self tableView:_tableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
+}
 
 #pragma mark - tapEvent
 

@@ -33,7 +33,8 @@
 // 约车
 #define GET_SUBJECT_SERVER          @"/driving/training/getSubject" // 获取所有科目
 #define GET_SUBJECT_COACH_SERVER    @"/driving/training/getTrainerBySubject" // 获取科目教练
-#define GET_TIME_SERVER             @"/driving/training/getNextWeekTime"
+#define GET_TIME_SERVER             @"/driving/training/getNextWeekTime" // 获取时间
+#define GET_COACH_COURSE_SERVER     @"/driving/training/getCurriculum" // 获取教练课程
 
 // 首页
 #define ADS_LIST_SERVER             @"/advertimage/getAdvertImagelist" // 广告接口地址

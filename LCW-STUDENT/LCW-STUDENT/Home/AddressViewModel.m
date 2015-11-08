@@ -47,10 +47,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AddressViewModel);
     [[AFNManager sharedAFNManager] getServer:ADDRESS_LIST_SERVER parameters:@{PARS_KEY: [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             if (_addressDic.count <= 0) {
-                [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
+                if (controller) {
+                    [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
+                }
+                
             } else {
-                [controller finishedLoding];
-                [controller showMiddleToastWithContent:netErrorMessage];
+                if (controller) {
+                    [controller finishedLoding];
+                    [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
+                }
+                
             }
             callBack(NO);
         } else {
@@ -65,10 +71,14 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AddressViewModel);
             } else {
                 NSString *message = response[RESPONSE_MESSAGE];
                 if (_addressDic.count <= 0) {
-                    [controller finishedLodingWithTip:message subTip:@"点击重新加载"];
+                    if (controller) {
+                        [controller finishedLodingWithTip:message subTip:@"点击重新加载"];
+                    }
                 } else {
-                    [controller finishedLoding];
-                    [controller showMiddleToastWithContent:message];
+                    if (controller) {
+                        [controller finishedLoding];
+                        [controller showMiddleToastWithContent:message];
+                    }
                 }
                 callBack(NO);
             }

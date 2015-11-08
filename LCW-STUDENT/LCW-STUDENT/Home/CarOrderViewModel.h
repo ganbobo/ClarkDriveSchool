@@ -13,6 +13,8 @@
 @interface CarOrderViewModel : NSObject
 
 @property(nonatomic, retain)NSMutableArray *dataSource;
+@property(nonatomic, retain)NSMutableArray *coachList;
+@property(nonatomic, retain)NSMutableArray *timeList;
 
 /**
  *  获取科目列表
@@ -47,7 +49,7 @@
                                callBack:(void (^)(BOOL success))callBack;
 
 /**
- *  获取简练当天发布课程
+ *  获取教练当天发布课程
  *
  *  @param trainerId   教练ID
  *  @param publishTime 发布时间
@@ -55,7 +57,7 @@
  *  @param callBack    回调
  */
 - (void)getCourseListFromServer:(NSString *)trainerId
-                    publishTime:(NSString *)time
+                    publishTime:(long)time
                      controller:(BaseViewController *)controller
                        callBack:(void (^)(BOOL success))callBack;
 

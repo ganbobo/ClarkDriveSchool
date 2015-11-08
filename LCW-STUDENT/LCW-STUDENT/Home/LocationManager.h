@@ -8,10 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AddressModel.h"
+#import "AddressViewModel.h"
+
 @interface LocationManager : NSObject
 
 DECLARE_SINGLETON_FOR_CLASS(LocationManager);
 
-- (void)startLocation;
+@property(nonatomic, retain)AddressModel *addressInfo;
+
+- (void)startLocation:(void(^)(NSString *city))city;
 
 @end

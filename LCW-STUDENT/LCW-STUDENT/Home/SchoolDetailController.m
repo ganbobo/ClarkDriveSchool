@@ -101,7 +101,7 @@
         for (PriceInfo *info in detailInfo.price) {
             [list addObject:@{
                               kTEXT_COLOR_KEY:RGBA(0x69, 0x69, 0x69, 1),
-                              kTEXT_ARRAY_KEY:@[info.class_type, [NSString stringWithFormat:@"%ld", info.price], [NSString stringWithFormat:@"%ld", info.examination_fee], [NSString stringWithFormat:@"%ld", info.training_fee], [NSString stringWithFormat:@"%ld(%@)", info.other_fee, info.text]]
+                              kTEXT_ARRAY_KEY:@[info.class_type, [NSString stringWithFormat:@"%ld", (long)info.price], [NSString stringWithFormat:@"%ld", (long)info.examination_fee], [NSString stringWithFormat:@"%ld", (long)info.training_fee], [NSString stringWithFormat:@"%ld(%@)", (long)info.other_fee, info.text]]
                               }];
         }
         [_costView setDataSource:list title:@"费用说明"];

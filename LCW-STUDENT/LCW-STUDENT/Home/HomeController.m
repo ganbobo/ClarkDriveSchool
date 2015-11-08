@@ -74,7 +74,7 @@
     // 左边按钮
     _btnLeftNav = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 70, 33)];
     [_btnLeftNav setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_btnLeftNav setTitle:@" 贵阳" forState:UIControlStateNormal];
+    [_btnLeftNav setTitle:@" 定位中" forState:UIControlStateNormal];
     [_btnLeftNav setImage:[UIImage imageNamed:@"home_location"] forState:UIControlStateNormal];
     _btnLeftNav.titleLabel.font = [UIFont systemFontOfSize:15];
     _btnLeftNav.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -182,7 +182,13 @@
 #pragma - mark 开始定位
 
 - (void)startLocation {
-    [[LocationManager sharedLocationManager] startLocation];
+    [[LocationManager sharedLocationManager] startLocation:^(NSString *city) {
+        if (city == nil) {
+            [_btnLeftNav setTitle:@" 定位失败" forState:UIControlStateNormal];
+        } else {
+            [_btnLeftNav setTitle:[NSString stringWithFormat:@" %@", city] forState:UIControlStateNormal];
+        }
+    }];
     
 }
 

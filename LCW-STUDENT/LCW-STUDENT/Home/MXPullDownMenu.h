@@ -40,6 +40,8 @@ BackGroundViewStatus;
 
 @property (nonatomic) id<MXPullDownMenuDelegate> delegate;
 
+- (void)setSelectRow:(NSInteger)row;
+
 @end
 
 

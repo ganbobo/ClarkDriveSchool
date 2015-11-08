@@ -15,6 +15,8 @@
 @interface LocationManager ()<BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate> {
     BMKLocationService *_locationService;
     BMKGeoCodeSearch *_searcher;
+    
+    void(^_callBack)(NSString *city);
 }
 
 @end
@@ -30,18 +32,26 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LocationManager);
         _locationService = [[BMKLocationService alloc] init];
         _locationService.delegate = self;
         
-//        _searcher =[[BMKGeoCodeSearch alloc]init];
-//        _searcher.delegate = self;
+        _searcher =[[BMKGeoCodeSearch alloc]init];
+        _searcher.delegate = self;
     }
     return self;
 }
 
-- (void)startLocation {
+- (void)startLocation:(void(^)(NSString *city))city {
+    _callBack = city;
     [_locationService startUserLocationService];
 }
 
 - (void)stopLocation {
     [_locationService stopUserLocationService];
+}
+
+- (void)didFailToLocateUserWithError:(NSError *)error {
+    if (_callBack) {
+        _callBack(nil);
+        _callBack = nil;
+    }
 }
 
 //处理位置坐标更新
@@ -63,6 +73,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LocationManager);
     }
     else
     {
+        if (_callBack) {
+            _callBack(nil);
+            _callBack = nil;
+        }
       NSLog(@"反geo检索发送失败");
     }
 }
@@ -74,11 +88,33 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LocationManager);
     _searcher.delegate = nil;
     _searcher = nil;
   if (error == BMK_SEARCH_NO_ERROR) {
-      
+      if (_callBack) {
+          NSString *city = result.addressDetail.city;
+          _callBack(city);
+          [self getCityInfoFromServer:city];
+          _callBack = nil;
+      }
   }
   else {
-      NSLog(@"抱歉，未找到结果");
+      if (_callBack) {
+          _callBack(nil);
+          _callBack = nil;
+      }
   }
+}
+
+- (void)getCityInfoFromServer:(NSString *)city {
+    AddressViewModel *viewModel = [[AddressViewModel alloc] init];
+    [viewModel getAddressDicFromServer:nil callBack:^(BOOL success) {
+        if (success) {
+            for (AddressModel *model in viewModel.arrayDataSource) {
+                if ([model.c_name rangeOfString:city].location != NSNotFound || [city rangeOfString:model.c_name].location != NSNotFound) {
+                    _addressInfo = model;
+                    break;
+                }
+            }
+        }
+    }];
 }
 
 @end

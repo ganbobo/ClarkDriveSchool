@@ -17,6 +17,8 @@
 #import "AddressModel.h"
 #import "MySchoolViewModel.h"
 #import "MySchoolInfo.h"
+#import <BaiduMapAPI_Map/BMKMapView.h>
+#import "LocationManager.h"
 
 #define kListTag  100001
 #define kMapTag   100002
@@ -34,6 +36,8 @@
     MXPullDownMenu *_pullDownMenu;
     
     NSArray *_priceList;
+    
+    BMKMapView *_mapView;
     
     // 数据管理
     ShopViewModel *_shopViewModel;
@@ -58,6 +62,7 @@
     [super loadView];
     _shopViewModel = [[ShopViewModel alloc] init];
     [self loadNav];
+    [self loadMapView];
     [self loadTableView];
     if (!_hasSignUp) {
         [self loadPullDownMenuView];
@@ -116,6 +121,13 @@
     }
 }
 
+- (void)loadMapView {
+    _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight - NavBarHeight - StatusBarHeight)];
+    [_mapView setMapType:BMKMapTypeStandard];
+    _mapView.hidden = YES;
+    [self.view addSubview:_mapView];
+}
+
 - (void)loadPullDownMenuView {
     [self getAddress];
 }
@@ -132,6 +144,9 @@
         btnList.userInteractionEnabled = NO;
         btnMap.selected = NO;
         btnMap.userInteractionEnabled = YES;
+        
+        _mapView.hidden = YES;
+        _pullDownMenu.hidden = NO;
     }
     
     // 点选地图
@@ -140,6 +155,8 @@
         btnList.userInteractionEnabled = YES;
         btnMap.selected = YES;
         btnMap.userInteractionEnabled = NO;
+        _mapView.hidden = NO;
+        _pullDownMenu.hidden = YES;
     }
 }
 
@@ -252,10 +269,28 @@
 - (void)getAddressFromServer {
     [[AddressViewModel sharedAddressViewModel] getAddressDicFromServer:self callBack:^(BOOL success) {
         if (success) {
+            // 初始化筛选条件
+            _filterInfo = [[FilterInfo alloc] init];
+            _filterInfo.cityId = @"";
+            _filterInfo.toDate = @"asc";
+            _filterInfo.startPrice = 0;
+            _filterInfo.endPrice = 100000;
+            
             NSMutableArray *cityList = [[NSMutableArray alloc] init];
             [cityList addObject:@"所有城市"];
-            for (AddressModel *tempInfo in [AddressViewModel sharedAddressViewModel].arrayDataSource) {
-                [cityList addObject:tempInfo.c_name];
+            
+            NSInteger citySelectRow = 0;// 默认0
+            
+            for (NSInteger i = 0; i < [AddressViewModel sharedAddressViewModel].arrayDataSource.count; i++) {
+                AddressModel *model = [AddressViewModel sharedAddressViewModel].arrayDataSource[i];
+                if ([LocationManager sharedLocationManager].addressInfo &&
+                    model.c_id == [LocationManager sharedLocationManager].addressInfo.c_id) {
+                    _filterInfo.cityId = [NSString stringWithFormat:@"%ld", (long)model.c_id];
+                    // 因为手动加入一个在最前面，所以需要+1
+                    citySelectRow = i + 1;
+                }
+                
+                [cityList addObject:model.c_name];
             }
             
             _priceList = @[@"价格", @"0-2000", @"2000-4000", @"4000-6000", @"6000-8000", @"8000以上"];
@@ -267,12 +302,25 @@
             [_pullDownMenu setTranslatesAutoresizingMaskIntoConstraints:NO];
             [self.view addSubview:_pullDownMenu];
             
-            _filterInfo = [[FilterInfo alloc] init];
-            _filterInfo.cityId = @"";
-            _filterInfo.toDate = @"asc";
-            _filterInfo.startPrice = 0;
-            _filterInfo.endPrice = 100000;
-            [self getData];
+           
+            
+           
+            
+            
+            [_pullDownMenu setSelectRow:citySelectRow];
+//            if ([LocationManager sharedLocationManager].addressInfo) {
+//                // 因为手动加入一个在最前面，所以从1开始遍历
+//                for (NSInteger i = 1; i <= [AddressViewModel sharedAddressViewModel].arrayDataSource.count; i++) {
+//                    AddressModel *model = [AddressViewModel sharedAddressViewModel].arrayDataSource[i];
+//                    if (model.c_id == [LocationManager sharedLocationManager].addressInfo.c_id) {
+//                        _filterInfo.cityId = [NSString stringWithFormat:@"%ld", (long)model.c_id];
+//                        [_pullDownMenu setSelectRow:i];
+//                        break;
+//                    }
+//                }
+//            } else {
+//                [self getData];
+//            }
         }
     }];
 }

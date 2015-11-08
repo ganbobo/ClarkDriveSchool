@@ -116,7 +116,7 @@
     _lblCommentScore.text = [NSString stringWithFormat:@"%@", drivingInfo.scole];
     NSInteger score = drivingInfo.scole.integerValue;
     [self setStarView:score];
-    _lblCommentNum.text = [NSString stringWithFormat:@"<font color='#FF440F' size=14>%ld</font>人评论", drivingInfo.drivingCommNum];
+    _lblCommentNum.text = [NSString stringWithFormat:@"<font color='#FF440F' size=14>%ld</font>人评论", (long)drivingInfo.drivingCommNum];
     
     if (signUp) {
         [_btnSelectCoach setTitle:@"下一步，选教练" forState:UIControlStateNormal];
