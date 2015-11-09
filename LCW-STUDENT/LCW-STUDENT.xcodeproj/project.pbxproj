@@ -26,6 +26,8 @@
 		4B6E73241BECE58A00836AE3 /* CHTCollectionViewWaterfallLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6E73231BECE58A00836AE3 /* CHTCollectionViewWaterfallLayout.m */; };
 		4B6E73271BECE71700836AE3 /* CarOrderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6E73261BECE71700836AE3 /* CarOrderCollectionViewCell.m */; };
 		4B6E732A1BECF04500836AE3 /* CarOrderFooterReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B6E73291BECF04500836AE3 /* CarOrderFooterReusableView.m */; };
+		4B71D6341BF0DB8C0033563E /* ShopAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B71D6331BF0DB8C0033563E /* ShopAnnotation.m */; };
+		4B71D6371BF0E1AF0033563E /* CoachDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B71D6361BF0E1AF0033563E /* CoachDetailModel.m */; };
 		4B799D4B1BEE3E1F00F123B5 /* CarOrderBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B799D4A1BEE3E1F00F123B5 /* CarOrderBtn.m */; };
 		4B799D4E1BEE3F2E00F123B5 /* CarOrderDayBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B799D4D1BEE3F2E00F123B5 /* CarOrderDayBtn.m */; };
 		4B7C132D1BEF875800468A76 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B7C132C1BEF875800468A76 /* mapapi.bundle */; };
@@ -182,6 +184,10 @@
 		4B6E73261BECE71700836AE3 /* CarOrderCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarOrderCollectionViewCell.m; sourceTree = "<group>"; };
 		4B6E73281BECF04500836AE3 /* CarOrderFooterReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarOrderFooterReusableView.h; sourceTree = "<group>"; };
 		4B6E73291BECF04500836AE3 /* CarOrderFooterReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarOrderFooterReusableView.m; sourceTree = "<group>"; };
+		4B71D6321BF0DB8C0033563E /* ShopAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopAnnotation.h; sourceTree = "<group>"; };
+		4B71D6331BF0DB8C0033563E /* ShopAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopAnnotation.m; sourceTree = "<group>"; };
+		4B71D6351BF0E1AF0033563E /* CoachDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachDetailModel.h; sourceTree = "<group>"; };
+		4B71D6361BF0E1AF0033563E /* CoachDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoachDetailModel.m; sourceTree = "<group>"; };
 		4B799D491BEE3E1F00F123B5 /* CarOrderBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarOrderBtn.h; sourceTree = "<group>"; };
 		4B799D4A1BEE3E1F00F123B5 /* CarOrderBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarOrderBtn.m; sourceTree = "<group>"; };
 		4B799D4C1BEE3F2E00F123B5 /* CarOrderDayBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarOrderDayBtn.h; sourceTree = "<group>"; };
@@ -509,6 +515,8 @@
 			children = (
 				4B6C19AD1BEB774E00E5CEE3 /* CoachModel.h */,
 				4B6C19AE1BEB774E00E5CEE3 /* CoachModel.m */,
+				4B71D6351BF0E1AF0033563E /* CoachDetailModel.h */,
+				4B71D6361BF0E1AF0033563E /* CoachDetailModel.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -723,6 +731,8 @@
 			children = (
 				5CA0417D1B91C9BB00EEB4BC /* ShopCell.h */,
 				5CA0417E1B91C9BB00EEB4BC /* ShopCell.m */,
+				4B71D6321BF0DB8C0033563E /* ShopAnnotation.h */,
+				4B71D6331BF0DB8C0033563E /* ShopAnnotation.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -1478,6 +1488,7 @@
 				5CA041461B91C5C200EEB4BC /* AdsView.m in Sources */,
 				4B6B037D1BE8D91E0080A10F /* BlindIDController.m in Sources */,
 				5CA041451B91C5C200EEB4BC /* AdsInfo.m in Sources */,
+				4B71D6371BF0E1AF0033563E /* CoachDetailModel.m in Sources */,
 				5CA0413F1B91C5C200EEB4BC /* TabViewController.m in Sources */,
 				5C0CF9CE1BA085A600A45C38 /* HFStretchableTableHeaderView.m in Sources */,
 				5CA041621B91C5C200EEB4BC /* MJType.m in Sources */,
@@ -1496,6 +1507,7 @@
 				4BA554EF1BEAF04F00107350 /* CoachViewModel.m in Sources */,
 				5CDA131B1BA85C7D008C4218 /* CommentCell.m in Sources */,
 				5C523EB81BAE8ACA00BEE143 /* SyncProgressController.m in Sources */,
+				4B71D6341BF0DB8C0033563E /* ShopAnnotation.m in Sources */,
 				4B6C19AF1BEB774E00E5CEE3 /* CoachModel.m in Sources */,
 				5CA0415A1B91C5C200EEB4BC /* CommonUtils.m in Sources */,
 				5C6E9F831BAD344C003A2425 /* TestOrderCell.m in Sources */,

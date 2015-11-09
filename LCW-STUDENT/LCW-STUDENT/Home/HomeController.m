@@ -40,6 +40,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    if ([LocationManager sharedLocationManager].addressInfo) {
+        [_btnLeftNav setTitle:[NSString stringWithFormat:@" %@", [LocationManager sharedLocationManager].addressInfo.c_name] forState:UIControlStateNormal];
+    }
+}
+
 - (void)loadView {
     [super loadView];
     [self loadNav];

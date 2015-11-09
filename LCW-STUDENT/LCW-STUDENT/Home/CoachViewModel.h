@@ -9,10 +9,12 @@
 #import <Foundation/Foundation.h>
 
 #import "BaseViewController.h"
+#import "CoachDetailModel.h"
 
 @interface CoachViewModel : NSObject
 
 @property(nonatomic, retain)NSMutableArray *coachList;
+@property(nonatomic, retain)CoachDetailModel *coachDetailModel;
 
 /**
  *  获取教练列表

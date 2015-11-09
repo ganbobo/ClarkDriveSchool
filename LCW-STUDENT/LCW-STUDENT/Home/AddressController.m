@@ -10,6 +10,7 @@
 
 #import "AddressViewModel.h"
 #import "AddressModel.h"
+#import "LocationManager.h"
 
 @interface AddressController ()<UITableViewDelegate, UITableViewDataSource, UISearchDisplayDelegate> {
     
@@ -165,6 +166,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     self.title = cell.textLabel.text;
+    NSString *key = _addressViewModel.wordSortArray[indexPath.section];
+    NSArray *list = _addressViewModel.addressDic[key];
+    AddressModel *model = list[indexPath.row];
+    [LocationManager sharedLocationManager].addressInfo = model;
+    
+    [self clickClose];
 }
 
 #pragma - mark 获取城市数据

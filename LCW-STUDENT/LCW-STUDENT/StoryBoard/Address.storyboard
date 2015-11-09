@@ -21,15 +21,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" text="" placeholder="城市/行政区/拼音" id="sRN-PZ-ht9">
-                                    <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <animations/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="tYM-K3-niq" id="mag-cF-tYG"/>
-                                    </connections>
-                                </searchBar>
                                 <connections>
                                     <outlet property="dataSource" destination="tYM-K3-niq" id="NkR-lp-STS"/>
                                     <outlet property="delegate" destination="tYM-K3-niq" id="PJg-27-J1W"/>
@@ -47,7 +38,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="当前位置" id="tY9-uS-LkA"/>
                     <connections>
-                        <outlet property="_searchBar" destination="sRN-PZ-ht9" id="q9J-Us-pZW"/>
                         <outlet property="_tableView" destination="iWs-fT-GQQ" id="kLR-vq-Baf"/>
                         <outlet property="searchDisplayController" destination="SE7-dI-NyH" id="vLW-Aq-wrK"/>
                     </connections>
@@ -64,7 +54,6 @@
                 <searchDisplayController id="SE7-dI-NyH">
                     <connections>
                         <outlet property="delegate" destination="tYM-K3-niq" id="auV-PU-Xfl"/>
-                        <outlet property="searchBar" destination="sRN-PZ-ht9" id="G7Z-gF-Chk"/>
                         <outlet property="searchContentsController" destination="tYM-K3-niq" id="SV8-L3-jzE"/>
                         <outlet property="searchResultsDataSource" destination="tYM-K3-niq" id="OKj-gi-seI"/>
                         <outlet property="searchResultsDelegate" destination="tYM-K3-niq" id="lSA-Mm-068"/>

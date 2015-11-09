@@ -19,6 +19,9 @@
 #import "MySchoolInfo.h"
 #import <BaiduMapAPI_Map/BMKMapView.h>
 #import "LocationManager.h"
+#import <BaiduMapAPI_Map/BMKPinAnnotationView.h>
+#import "ShopAnnotation.h"
+
 
 #define kListTag  100001
 #define kMapTag   100002
@@ -27,7 +30,7 @@
 
 @end
 
-@interface ShopController ()<UITableViewDataSource, UITableViewDelegate, MXPullDownMenuDelegate> {
+@interface ShopController ()<UITableViewDataSource, UITableViewDelegate, MXPullDownMenuDelegate, BMKMapViewDelegate> {
     @private
     UIView *_titleView;
     __weak IBOutlet UITableView *_tableView;
@@ -51,6 +54,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    _mapView.delegate = self;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    _mapView.delegate = nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -194,11 +207,47 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"SchoolDetail"]) {
         SchoolDetailController *controller = [segue destinationViewController];
-        NSIndexPath *indexPath = (NSIndexPath *)sender;
+        if ([sender isKindOfClass:[ShopInfo class]]) {
+            ShopInfo *info = (ShopInfo *)sender;
+            controller.shopInfo = info;
+        } else {
+            NSIndexPath *indexPath = (NSIndexPath *)sender;
+            ShopInfo *info = _shopViewModel.dataSource[indexPath.row];
+            controller.shopInfo = info;
+
+        }
+        
         controller.hasSignUp = _hasSignUp;
-        ShopInfo *info = _shopViewModel.dataSource[indexPath.row];
-        controller.shopInfo = info;
     }
+}
+
+#pragma - mark BMKMapViewDelegate 代理
+
+// 根据anntation生成对应的View
+- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
+{
+    //普通annotation
+    if ([annotation isKindOfClass:[ShopAnnotation class]]) {
+        NSString *AnnotationViewID = @"renameMark";
+        BMKPinAnnotationView *annotationView = (BMKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
+        if (annotationView == nil) {
+            annotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+            // 设置颜色
+            annotationView.pinColor = BMKPinAnnotationColorPurple;
+            // 从天上掉下效果
+            annotationView.animatesDrop = YES;
+            // 设置可拖拽
+            annotationView.draggable = YES;
+        }
+        return annotationView;
+    }
+    
+    return nil;
+}
+
+- (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view {
+    ShopAnnotation *annotatiion = (ShopAnnotation *)view.annotation;
+    [self performSegueWithIdentifier:@"SchoolDetail" sender:annotatiion.shopInfo];
 }
 
 #pragma mark - MXPullDownMenuDelegate
@@ -308,25 +357,7 @@
             [_pullDownMenu setTranslatesAutoresizingMaskIntoConstraints:NO];
             [self.view addSubview:_pullDownMenu];
             
-           
-            
-           
-            
-            
             [_pullDownMenu setSelectRow:citySelectRow];
-//            if ([LocationManager sharedLocationManager].addressInfo) {
-//                // 因为手动加入一个在最前面，所以从1开始遍历
-//                for (NSInteger i = 1; i <= [AddressViewModel sharedAddressViewModel].arrayDataSource.count; i++) {
-//                    AddressModel *model = [AddressViewModel sharedAddressViewModel].arrayDataSource[i];
-//                    if (model.c_id == [LocationManager sharedLocationManager].addressInfo.c_id) {
-//                        _filterInfo.cityId = [NSString stringWithFormat:@"%ld", (long)model.c_id];
-//                        [_pullDownMenu setSelectRow:i];
-//                        break;
-//                    }
-//                }
-//            } else {
-//                [self getData];
-//            }
         }
     }];
 }
@@ -344,6 +375,13 @@
     [_shopViewModel getShopListFromServer:_filterInfo.cityId date:_filterInfo.toDate startPrice:_filterInfo.startPrice endPrice:_filterInfo.endPrice controller:self callBack:^(BOOL success) {
         if (success) {
             [_tableView reloadData];
+            
+            [_mapView removeAnnotations:_mapView.annotations];
+            for (ShopInfo *info in _shopViewModel.dataSource) {
+                ShopAnnotation *annotation = [[ShopAnnotation alloc]init];
+                annotation.shopInfo = info;
+                [_mapView addAnnotation:annotation];
+            }
         }
     }];
 }

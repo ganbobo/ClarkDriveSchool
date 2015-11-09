@@ -102,29 +102,17 @@
                             };
     [[AFNManager sharedAFNManager] getServer:GET_COACH_DETAIL_SERVER parameters:@{PARS_KEY: [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
-            if (_coachList.count <= 0) {
-                [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
-            } else {
-                [controller finishedLoding];
-                [controller showMiddleToastWithContent:netErrorMessage];
-            }
+            [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
             callBack(NO);
         } else {
             NSString *responseCode = getResponseCodeFromDic(response);
             if ([responseCode isEqualToString:ResponseCodeSuccess]) {
                 [controller finishedLoding];
-                NSArray *array = [CoachModel objectArrayWithKeyValuesArray:response[@"data"]];
-                [_coachList removeAllObjects];
-                [_coachList addObjectsFromArray:array];
+                _coachDetailModel = [CoachDetailModel objectWithKeyValues:response[@"data"]];
                 callBack(YES);
             } else {
                 NSString *message = response[RESPONSE_MESSAGE];
-                if (_coachList.count <= 0) {
-                    [controller finishedLodingWithTip:message subTip:@"点击重新加载"];
-                } else {
-                    [controller finishedLoding];
-                    [controller showMiddleToastWithContent:message];
-                }
+                [controller finishedLodingWithTip:message subTip:@"点击重新加载"];
                 callBack(NO);
             }
         }

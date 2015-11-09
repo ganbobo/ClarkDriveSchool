@@ -10,6 +10,7 @@
 
 #import "HFStretchableTableHeaderView.h"
 #import "CoachViewModel.h"
+#import <UIImageView+AFNetworking.h>
 
 @interface CoachDetailController ()<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
 @private
@@ -19,6 +20,7 @@
     HFStretchableTableHeaderView *_stretchView;
     __weak IBOutlet UIImageView *_avatarImage;
     __weak IBOutlet UILabel *_lblNickName;
+    CoachViewModel *_viewModel;
 }
 
 @end
@@ -27,7 +29,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self refreshUser];
+    [self getCoachDetailFromServer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,9 +38,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)refreshUser {
+    if (_coachInfo) {
+        [_avatarImage setImageWithURL:getImageUrl(_coachInfo.resourceUrl) placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
+        _lblNickName.text = [NSString stringWithFormat:@"%@", _coachInfo.trainerName];
+    }
+    
+    if (_viewModel.coachDetailModel) {
+        _lblNickName.text = [NSString stringWithFormat:@"%@ %@ %ld岁", _coachInfo.trainerName, _viewModel.coachDetailModel.sex == 1? @"男": @"女", (long)_viewModel.coachDetailModel.driving_age];
+    }
+}
+
 - (void)loadView {
     [super loadView];
-    _dataSource = @[@[@"车牌", @"驾校", @"科目"], @[@"目前学员", @"累积学员"], @[@"学员评价"]];
+    _viewModel = [[CoachViewModel alloc] init];
+    _dataSource = @[@[@"驾校", @"科目"], @[@"目前学员", @"累积学员"], @[@"学员评价"]];
     [self loadNav];
     [self loadHeaderView];
 }
@@ -118,6 +133,38 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case 0:
+                cell.detailTextLabel.text = _coachInfo.drivingName;
+                break;
+            case 1:
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", _coachInfo.typeName, _subjectInfo.subject_name];
+                break;
+            default:
+                break;
+        }
+    } else if (indexPath.section == 1) {
+        switch (indexPath.row) {
+            case 0:
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld人", (long)_coachInfo.currentlyTrainee];
+                break;
+            case 1:
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld人", (long)_coachInfo.maxTrainee];
+                break;
+            default:
+                break;
+        }
+    } else {
+        switch (indexPath.row) {
+            case 0:
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"好评%.0f%@ %ld人评", _coachInfo.percentages, @"%", (long)_coachInfo.comm];
+                break;
+            default:
+                break;
+        }
+    }
+    
     return cell;
 }
 
@@ -140,11 +187,21 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
-        CoachViewModel *viewModel = [[CoachViewModel alloc] init];
-        [viewModel blindCoachToServer:_coachInfo.trainerId subjectId:_subjectInfo.id controller:self callBack:^(BOOL success) {
+        [_viewModel blindCoachToServer:_coachInfo.trainerId subjectId:_subjectInfo.id controller:self callBack:^(BOOL success) {
             
         }];
     }
+}
+
+#pragma - mark 获取教练详情
+
+- (void)getCoachDetailFromServer {
+    [_viewModel getCoachDetailInfoFromServer:_coachInfo.trainerId controller:self callBack:^(BOOL success) {
+        if (success) {
+            [self refreshUser];
+            [_tableView reloadData];
+        }
+    }];
 }
 
 @end
