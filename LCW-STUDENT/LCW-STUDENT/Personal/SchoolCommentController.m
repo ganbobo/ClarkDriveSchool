@@ -11,7 +11,7 @@
 #import <UIImageView+AFNetworking.h>
 #import "RatingBar.h"
 #import "MySchoolViewModel.h"
-@interface SchoolCommentController ()<UITextViewDelegate> {
+@interface SchoolCommentController ()<UITextViewDelegate, RatingBarDelegate> {
     UIImageView *_imgSchool;
     UILabel *_lblSchoolName;
     
@@ -105,7 +105,6 @@
     [_scrollView addSubview:lblTotal0];
     
     _starEnView = [[RatingBar alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lblTotal0.frame) + 10, lblTotal0.origin.y, 150, 30)];
-    _starEnView.starNumber = 5;
     [_scrollView addSubview:_starEnView];
 
     UILabel *lblTotal1 = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(lblTotal0.frame) + 10, 65, 30)];
@@ -167,6 +166,10 @@
     [_btnSubmit addTarget:self action:@selector(clickSubmit) forControlEvents:UIControlEventTouchUpInside];
     _btnSubmit.backgroundColor = [UIColor colorWithRed:0.165 green:0.690 blue:0.252 alpha:1.000];
     [_scrollView addSubview:_btnSubmit];
+    
+    _starCoachView.delegate = self;
+    _starEnView.delegate = self;
+    _starQiantaiView.delegate = self;
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
@@ -195,6 +198,13 @@
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];
+}
+
+#pragma - mark RatingBarDelegate 
+
+- (void)didChangeScole {
+    NSInteger scole = (_starEnView.starNumber + _starCoachView.starNumber + _starQiantaiView.starNumber) / 3;
+    _starTotalView.starNumber = scole;
 }
 
 @end

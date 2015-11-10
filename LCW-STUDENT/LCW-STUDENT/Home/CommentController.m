@@ -9,10 +9,12 @@
 #import "CommentController.h"
 
 #import "CommentCell.h"
+#import "SchoolCommentViewModel.h"
 
 @interface CommentController ()<UITableViewDataSource, UITabBarDelegate> {
     
     __weak IBOutlet UITableView *_tableView;
+    SchoolCommentViewModel *_viewModel;
 }
 
 @end
@@ -22,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self getData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,6 +34,7 @@
 
 - (void)loadView {
     [super loadView];
+    _viewModel = [[SchoolCommentViewModel alloc] init];
     [self loadNav];
 }
 
@@ -43,19 +47,40 @@
 #pragma - mark UITableViewDataSource, UITableViewDelegate 代理
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return _viewModel.commentList.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    return 180;
+    return [CommentCell getCellHeight:_viewModel.commentList[indexPath.row]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    [cell refreshCellByInfo:_viewModel.commentList[indexPath.row]];
+    
     return cell;
+}
+
+#pragma - mark 获取评价列表
+
+- (void)getData {
+    __weak typeof(self) safeSelf = self;
+    [self showLoading:^{
+        [safeSelf getData];
+    }];
+    
+    [self getDataFromServer];
+}
+
+- (void)getDataFromServer {
+    [_viewModel getCommentListFromServer:_shopInfo.id controller:self callBack:^(BOOL success) {
+        if (success) {
+            [_tableView reloadData];
+        }
+    }];
 }
 
 

@@ -245,6 +245,7 @@
 
 - (void)didSelectComment {
     CommentController *controller = [[UIStoryboard storyboardWithName:@"Home" bundle:nil] instantiateViewControllerWithIdentifier:@"CommentController"];
+    controller.shopInfo = _shopInfo;
     [self.navigationController pushViewController:controller animated:YES];
 }
 

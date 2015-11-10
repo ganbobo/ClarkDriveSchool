@@ -10,4 +10,16 @@
 
 @interface ShopCommentInfo : NSObject
 
+@property (nonatomic, assign) long createTime;
+
+@property (nonatomic, copy) NSString *cnName;
+
+@property (nonatomic, assign) NSInteger level;
+
+@property (nonatomic, assign) NSInteger isComm;
+
+@property (nonatomic, copy) NSString *comments;
+
+@property (nonatomic, copy) NSString *resourceUrl;
+
 @end

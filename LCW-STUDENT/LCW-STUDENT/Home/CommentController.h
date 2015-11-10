@@ -7,7 +7,9 @@
 //
 
 #import "BaseViewController.h"
-
+#import "ShopInfo.h"
 @interface CommentController : BaseViewController
+
+@property(nonatomic, retain)ShopInfo *shopInfo;
 
 @end

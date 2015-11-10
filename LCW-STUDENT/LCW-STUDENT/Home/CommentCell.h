@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ShopCommentInfo.h"
+
 @interface CommentCell : UITableViewCell
+
++ (CGFloat)getCellHeight:(ShopCommentInfo *)info;
+- (void)refreshCellByInfo:(ShopCommentInfo *)info;
 
 @end
