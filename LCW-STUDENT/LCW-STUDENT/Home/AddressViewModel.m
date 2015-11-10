@@ -63,7 +63,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AddressViewModel);
             NSString *responseCode = getResponseCodeFromDic(response);
             if ([responseCode isEqualToString:ResponseCodeSuccess]) {
                 [controller finishedLoding];
-                NSArray *array = [AddressModel objectArrayWithKeyValuesArray:response[@"data"]];
+                NSArray *array = [AddressModel objectArrayWithKeyValuesArray:response[@"data"][@"lists"]];
                 [_arrayDataSource removeAllObjects];
                 [_arrayDataSource addObjectsFromArray:array];
                 [self setDataSource:array];

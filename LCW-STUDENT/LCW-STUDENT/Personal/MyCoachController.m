@@ -10,8 +10,9 @@
 
 #import "MyCoachViewModel.h"
 #import "MyCoachCell.h"
+#import "CoachCommentController.h"
 
-@interface MyCoachController ()<UITableViewDataSource, UITableViewDelegate>{
+@interface MyCoachController ()<UITableViewDataSource, UITableViewDelegate, MyCoachCellDelegate>{
     MyCoachViewModel *_myCoachViewModel;
     __weak IBOutlet UITableView *_tableView;
 }
@@ -69,7 +70,19 @@
     
     [cell refreshCellByInfo:_myCoachViewModel.coachList[indexPath.section]];
     
+    if (!cell.delegate) {
+        cell.delegate = self;
+    }
+    
     return cell;
+}
+
+#pragma - mark MyCoachCellDelegate 
+
+- (void)didClickComment:(MyCoachInfo *)coachInfo {
+    CoachCommentController *controller = [[CoachCommentController alloc] init];
+    controller.coachInfo = coachInfo;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma - mark 获取数据

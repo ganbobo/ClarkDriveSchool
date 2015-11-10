@@ -22,7 +22,7 @@
 
 // 登录注册
 #define NEW_VERSION_SERVER          @"/version/checkVersion" // 版本检测
-#define LOGIN_SERVER                @"/driving/login/userLoginByPassWord" // 登录
+#define LOGIN_SERVER                @"/driving/login/userLoginByMobile" // 登录
 #define LOGOUT_SERVER               @"/memberinfo/loginOut" // 退出登录
 #define VERIFY_CODE_SERVER          @"/driving/register/identifyingCode" // 获取验证码
 #define VERIFY_VERIFY_CODE_SERVER   @"/driving/register/identifyingCode" // 验证验证码
@@ -40,6 +40,7 @@
 #define ADS_LIST_SERVER             @"/advertimage/getAdvertImagelist" // 广告接口地址
 #define ADDRESS_LIST_SERVER         @"/driving/area/getAreas" // 城市列表
 #define GET_SCHOOL_LIST_SERVER      @"/driving/driving/getDrivings" // 驾校列表
+#define GET_SCHOOL_COMMENT_LIST_SERVER  @"/driving/comments/getCommDriving" // 驾校评论列表
 #define GET_COACH_LIST_SERVER       @"/driving/training/getTrainerBySubjects" // 教练
 #define GET_SCHOOL_LIST_CITY_SERVER @"/driving/driving/queryCityToDrivings" // 根据城市获取驾校列表
 #define GET_COACH_DETAIL_SERVER     @"/driving/trainer/getTrainerInfo" // 教练详情
@@ -50,6 +51,7 @@
 
 // 我的
 #define MY_SCHOOL_SERVER            @"/driving/mydriving/getMyDriving" // 我的驾校
+#define COMMENT_SCHOOL_SERVER       @"/driving/mydriving/toMyDriving" // 评价驾校
 #define MY_COACH_SERVER             @"/driving/trainer/myTrainer" // 我的教练
 #define BLIND_NAME_SERVER           @"/driving/user/updateCnName" // 绑定姓名
 #define BLIND_LICENSE_SERVER        @"/driving/user/updateIdentification" // 绑定身份证

@@ -19,6 +19,8 @@
     __weak IBOutlet UILabel *_lblSchoolName;
     __weak IBOutlet UILabel *_lblPhone;
     __weak IBOutlet UIButton *_btnComment;
+    
+    MyCoachInfo *_coachInfo;
 }
 @end
 
@@ -36,9 +38,14 @@
     // Configure the view for the selected state
 }
 - (IBAction)clickComment:(id)sender {
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickComment:)]) {
+        [_delegate didClickComment:_coachInfo];
+    }
 }
 
 - (void)refreshCellByInfo:(MyCoachInfo *)coachInfo {
+    _coachInfo = coachInfo;
+    
     [_imgHead setImageWithURL:getImageUrl(@"") placeholderImage:[UIImage imageNamed:@"downlaod_picture_fail"]];
     
     _lblNameInfo.text = coachInfo.cnName;

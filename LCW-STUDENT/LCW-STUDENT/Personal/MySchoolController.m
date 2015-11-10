@@ -9,6 +9,7 @@
 #import "MySchoolController.h"
 
 #import "MySchoolViewModel.h"
+#import "SchoolCommentController.h"
 
 @implementation ShowInfo
 
@@ -127,6 +128,9 @@
 }
 
 - (IBAction)clickComment:(id)sender {
+    SchoolCommentController *controller = [[SchoolCommentController alloc] init];
+    controller.mySchoolInfo = _mySchoolViewModel.mySchoolInfo;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

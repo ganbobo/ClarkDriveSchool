@@ -19,8 +19,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self sendAutoLoginRequest];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,16 +57,6 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     return YES;
-}
-
-- (void)sendAutoLoginRequest {
-    if (hasUser()) {
-        LoginViewModel *loginViewModel = [[LoginViewModel alloc] init];
-        [loginViewModel loginToServerController:nil username:getUser().login_name pwd:getUser().pass_word callBack:^(BOOL success) {
-            
-        }];
-    }
-    
 }
 
 @end

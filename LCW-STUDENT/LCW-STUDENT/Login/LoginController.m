@@ -12,6 +12,7 @@
 
 @interface LoginController () {
     
+    __weak IBOutlet UIButton *_btnGetCode;
     __weak IBOutlet UITextField *_txtUsername;
     __weak IBOutlet UITextField *_txtPassword;
     
@@ -49,16 +50,29 @@
 - (void)clickCancel {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+- (IBAction)clickGetCode:(id)sender {
+    [self.view endEditing:YES];
+    NSString *username = _txtPassword.text;
+    [_loginViewModel getCheckCodeFromSeverController:self username:username callBack:^(BOOL success) {
+        if (success) {
+            [_loginViewModel countTime:_btnGetCode totalTime:60];
+        }
+    }];
+}
 
 - (IBAction)clickLogin:(id)sender {
     [self.view endEditing:YES];
+    
     if ([_loginViewModel checkInput:_txtUsername.text password:_txtPassword.text controller:self]) {
-        [_loginViewModel loginToServerController:self username:_txtUsername.text pwd:_txtPassword.text callBack:^(BOOL success) {
-            if (success) {
-                [self clickCancel];
-            }
-        }];
+        if ([_loginViewModel validateCode:_txtPassword.text controller:self]) {
+            [_loginViewModel loginToServerController:self username:_txtUsername.text pwd:_txtPassword.text callBack:^(BOOL success) {
+                if (success) {
+                    [self clickCancel];
+                }
+            }];
+        }
     }
+        
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event  {
