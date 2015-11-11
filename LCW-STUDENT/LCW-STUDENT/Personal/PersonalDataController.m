@@ -9,8 +9,11 @@
 #import "PersonalDataController.h"
 
 #import "EditDataController.h"
+#import "AFNManager.h"
+#import "ImageUtils.h"
+#import "JsonUtils.h"
 
-@interface PersonalDataController ()<UITableViewDataSource, UITableViewDelegate> {
+@interface PersonalDataController ()<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate> {
     NSArray *_dataSource;
     __weak IBOutlet UITableView *_tableView;
     
@@ -130,6 +133,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    if (indexPath.section == 0) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"头像上传" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照", @"从手机相册获取", nil];
+        [actionSheet showInView:self.view];
+    }
+    
     if (indexPath.section == 1) {
         switch (indexPath.row) {
             case 2:
@@ -165,5 +173,93 @@
     
     return tel;
 }
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex) {
+        case 0: {// 拍照
+            if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                [[[UIAlertView alloc] initWithTitle:@"提示" message:@"设备不支持摄像头功能" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil] show];
+                return;
+            }
+            UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+            UIImagePickerController *picker = [[UIImagePickerController alloc] init];//初始化
+            picker.delegate = self;
+            picker.allowsEditing = YES;//设置可编辑
+            picker.sourceType = sourceType;
+            [self presentViewController:picker animated:YES completion:nil];//进入照相界面
+        }
+            break;
+        case 1: {// 相册
+            UIImagePickerController *pickerImage = [[UIImagePickerController alloc] init];
+            if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+                pickerImage.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                //pickerImage.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+                pickerImage.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:pickerImage.sourceType];
+                
+            }
+            pickerImage.delegate = self;
+            pickerImage.allowsEditing = YES;
+            [self presentViewController:pickerImage animated:YES completion:^{
+                [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+            }];
+        }
+            break;
+        default:
+            break;
+    }
+
+}
+
+#pragma - mark UIImagePickerControllerDelegate 代理
+
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    if ([[info objectForKey:UIImagePickerControllerMediaType] isEqualToString:(NSString*)kUTTypeImage]) {
+        UIImage *lastImage = [ImageUtils imageCompressForSize:[info objectForKey:UIImagePickerControllerEditedImage] targetSize:CGSizeMake(320, 320)];
+        NSData *data = UIImageJPEGRepresentation(lastImage, 0.5);
+        // 上传图片
+        [self updateUserInfo:data];
+    }
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    }];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    }];
+}
+
+#pragma - mark 修改用户数据
+
+ - (void)updateUserInfo:(NSData *)aravatar {
+     NSDictionary *param = @{@"userId": hasUser()? getUser().id : @"123",
+                             @"isType": @"1"
+                             };
+     [self showWaitView:@"正在上传头像"];
+     [[AFNManager manager] postImageServer:UPDATE_USER_INFO_SERVER imageData:@[aravatar] parameters:@{PARS_KEY: [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+         
+         if (netErrorMessage) {
+             [self hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
+         } else {
+             NSString *responseCode = getResponseCodeFromDic(response);
+             if ([responseCode isEqualToString:ResponseCodeSuccess]) {
+                 NSString *url = response[@"data"][@"url"];
+                 
+                 UserInfo *info = getUser();
+                 info.resource_url = url;
+                 [info updatetoDb];
+                 [self hiddenWaitViewWithTip:@"上传成功" type:MessageSuccess];
+             } else {
+                 NSString *message = response[RESPONSE_MESSAGE];
+                 [self hiddenWaitViewWithTip:message type:MessageFailed];
+             }
+         }
+     }];
+
+ }
 
 @end

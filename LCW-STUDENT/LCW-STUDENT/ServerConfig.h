@@ -29,6 +29,7 @@
 #define REGISTER_SERVER             @"/driving/register/register" // 注册
 #define FORGET_PWD_SERVER           @"/memberinfo/updateMemberPwd" // 忘记密码修改密码
 #define MODIFY_PWD_SERVER           @"/memberinfo/updateMemberInfo" // 修改密码
+#define UPDATE_USER_INFO_SERVER     @"/driving/resource/uploadLogoImageFile"
 
 // 约车
 #define GET_SUBJECT_SERVER          @"/driving/training/getSubject" // 获取所有科目
@@ -53,6 +54,7 @@
 #define MY_SCHOOL_SERVER            @"/driving/mydriving/getMyDriving" // 我的驾校
 #define COMMENT_SCHOOL_SERVER       @"/driving/mydriving/toMyDriving" // 评价驾校
 #define MY_COACH_SERVER             @"/driving/trainer/myTrainer" // 我的教练
+#define MY_COUPON_LIST_SERVER       @"/driving/coupon/myCoupon" // 我的优惠券
 #define BLIND_NAME_SERVER           @"/driving/user/updateCnName" // 绑定姓名
 #define BLIND_LICENSE_SERVER        @"/driving/user/updateIdentification" // 绑定身份证
 

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MyCouponInfo.h"
+
 @interface MyCouponCell : UITableViewCell
+
+- (void)refreshCellByInfo:(MyCouponInfo *)info;
 
 @end

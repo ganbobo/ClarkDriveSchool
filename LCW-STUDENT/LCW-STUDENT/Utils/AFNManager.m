@@ -134,7 +134,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AFNManager);
     
     [manager POST:[self _getServerAddress:serverAddress] parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         for (NSData *data in imageDatas) {
-            [formData appendPartWithFileData:data name:@"img" fileName:[NSString stringWithFormat:@"%@.jpg", getUUIDString()] mimeType:@"image/jpg"];
+            [formData appendPartWithFileData:data name:@"picFile" fileName:[NSString stringWithFormat:@"%@.jpg", getUUIDString()] mimeType:@"image/jpg"];
         }
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
         CLog(@"request url is %@ \n params is %@ \n reponse is %@", serverAddress, params, [(NSDictionary *)responseObject JSONNSString]);

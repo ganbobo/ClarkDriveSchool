@@ -9,10 +9,13 @@
 #import "MyCouponController.h"
 
 #import "MyCouponCell.h"
+#import "MyCouponViewModel.h"
 
 @interface MyCouponController () <UITableViewDelegate, UITableViewDataSource> {
     
     __weak IBOutlet UITableView *_tableView;
+    
+    MyCouponViewModel *_viewModel;
 }
 
 @end
@@ -22,6 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self getData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,6 +35,7 @@
 
 - (void)loadView {
     [super loadView];
+    _viewModel = [[MyCouponViewModel alloc] init];
     [self loadNav];
 }
 
@@ -43,7 +48,7 @@
 #pragma - mark UITableViewDataSource, UITableViewDelegate 代理
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 12;
+    return _viewModel.dataSource.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -53,12 +58,32 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MyCouponCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyCouponCell" forIndexPath:indexPath];
-    
+    [cell refreshCellByInfo:_viewModel.dataSource[indexPath.row]];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma - mark 获取数据
+
+- (void)getData {
+    __weak typeof(self) safeSelf = self;
+    
+    [self showLoading:^{
+        [safeSelf getData];
+    }];
+    
+    [self getDataFromServer];
+}
+
+- (void)getDataFromServer {
+    [_viewModel getMyCouponListFromServer:self callback:^(BOOL success) {
+        if (success) {
+            [_tableView reloadData];
+        }
+    }];
 }
 
 @end

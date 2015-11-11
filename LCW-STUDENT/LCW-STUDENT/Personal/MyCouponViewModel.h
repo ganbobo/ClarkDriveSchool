@@ -8,6 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BaseViewController.h"
+
 @interface MyCouponViewModel : NSObject
+
+@property(nonatomic, retain)NSMutableArray *dataSource;
+
+/**
+ *  获取我的优惠券
+ *
+ *  @param controller 控制器
+ *  @param callback   回调
+ */
+- (void)getMyCouponListFromServer:(BaseViewController *)controller callback:(void(^)(BOOL success))callback;
 
 @end

@@ -15,6 +15,7 @@
 		4B1CF49C1BE5CED9001B1188 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1CF49B1BE5CED9001B1188 /* AddressModel.m */; };
 		4B1CF4A01BE62793001B1188 /* FeedBackViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1CF49F1BE62793001B1188 /* FeedBackViewModel.m */; };
 		4B1F24DE1BE0A6AE004D1ED7 /* GFPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F24DD1BE0A6AE004D1ED7 /* GFPlaceholderView.m */; };
+		4B26E3871BF314DB004859FF /* MyCouponInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B26E3861BF314DB004859FF /* MyCouponInfo.m */; };
 		4B66F81A1BF22853007E4806 /* SchoolCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B66F8191BF22853007E4806 /* SchoolCommentController.m */; };
 		4B66F8211BF234F7007E4806 /* bt_star_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B66F81B1BF234F7007E4806 /* bt_star_b.png */; };
 		4B66F8221BF234F7007E4806 /* bt_star_a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B66F81C1BF234F7007E4806 /* bt_star_a@2x.png */; };
@@ -75,6 +76,7 @@
 		4BD0C7B51BF1C39A00F7E969 /* bt_star_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BD0C7AF1BF1C39A00F7E969 /* bt_star_b.png */; };
 		4BD0C7B61BF1C39A00F7E969 /* bt_star_b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BD0C7B01BF1C39A00F7E969 /* bt_star_b@2x.png */; };
 		4BD0C7B71BF1C39A00F7E969 /* RatingBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BD0C7B21BF1C39A00F7E969 /* RatingBar.m */; };
+		4BE1C7E61BF2564D00FF2AEE /* ImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4BE1C7E51BF2564D00FF2AEE /* ImageUtils.m */; };
 		5C027CD71BA1C24800E4F372 /* CouponController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CD61BA1C24800E4F372 /* CouponController.m */; };
 		5C027CE01BA1CF5100E4F372 /* CarOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CDF1BA1CF5100E4F372 /* CarOrderController.m */; };
 		5C027CE31BA1CF5C00E4F372 /* TestOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C027CE21BA1CF5C00E4F372 /* TestOrderController.m */; };
@@ -177,6 +179,8 @@
 		4B1CF49F1BE62793001B1188 /* FeedBackViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewModel.m; sourceTree = "<group>"; };
 		4B1F24DC1BE0A6AE004D1ED7 /* GFPlaceholderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GFPlaceholderView.h; sourceTree = "<group>"; };
 		4B1F24DD1BE0A6AE004D1ED7 /* GFPlaceholderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GFPlaceholderView.m; sourceTree = "<group>"; };
+		4B26E3851BF314DB004859FF /* MyCouponInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCouponInfo.h; sourceTree = "<group>"; };
+		4B26E3861BF314DB004859FF /* MyCouponInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCouponInfo.m; sourceTree = "<group>"; };
 		4B66F8181BF22853007E4806 /* SchoolCommentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolCommentController.h; sourceTree = "<group>"; };
 		4B66F8191BF22853007E4806 /* SchoolCommentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolCommentController.m; sourceTree = "<group>"; };
 		4B66F81B1BF234F7007E4806 /* bt_star_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_star_b.png; sourceTree = "<group>"; };
@@ -276,6 +280,8 @@
 		4BD0C7B01BF1C39A00F7E969 /* bt_star_b@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bt_star_b@2x.png"; sourceTree = "<group>"; };
 		4BD0C7B11BF1C39A00F7E969 /* RatingBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingBar.h; sourceTree = "<group>"; };
 		4BD0C7B21BF1C39A00F7E969 /* RatingBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingBar.m; sourceTree = "<group>"; };
+		4BE1C7E41BF2564D00FF2AEE /* ImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtils.h; sourceTree = "<group>"; };
+		4BE1C7E51BF2564D00FF2AEE /* ImageUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtils.m; sourceTree = "<group>"; };
 		5C027CD51BA1C24800E4F372 /* CouponController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CouponController.h; sourceTree = "<group>"; };
 		5C027CD61BA1C24800E4F372 /* CouponController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CouponController.m; sourceTree = "<group>"; };
 		5C027CDE1BA1CF5100E4F372 /* CarOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarOrderController.h; sourceTree = "<group>"; };
@@ -496,6 +502,8 @@
 		4B08E6231BB1A2DD00DAF2E9 /* JsonUtils */ = {
 			isa = PBXGroup;
 			children = (
+				4BE1C7E41BF2564D00FF2AEE /* ImageUtils.h */,
+				4BE1C7E51BF2564D00FF2AEE /* ImageUtils.m */,
 				4B08E6241BB1A2F800DAF2E9 /* JsonUtils.h */,
 				4B08E6251BB1A2F800DAF2E9 /* JsonUtils.m */,
 			);
@@ -527,6 +535,15 @@
 				4B1CF49F1BE62793001B1188 /* FeedBackViewModel.m */,
 			);
 			name = viewModel;
+			sourceTree = "<group>";
+		};
+		4B26E3841BF314BD004859FF /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4B26E3851BF314DB004859FF /* MyCouponInfo.h */,
+				4B26E3861BF314DB004859FF /* MyCouponInfo.m */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 		4B66F82A1BF23FB4007E4806 /* viewModel */ = {
@@ -966,6 +983,7 @@
 		5C523EBD1BAE9B9500BEE143 /* myCoupon */ = {
 			isa = PBXGroup;
 			children = (
+				4B26E3841BF314BD004859FF /* model */,
 				4B6B037E1BE8E1A90080A10F /* viewModel */,
 				5C523EC11BAE9CB000BEE143 /* views */,
 				5C523EBE1BAE9BD100BEE143 /* MyCouponController.h */,
@@ -1621,6 +1639,7 @@
 				4B08E6261BB1A2F800DAF2E9 /* JsonUtils.m in Sources */,
 				5CA041641B91C5C200EEB4BC /* NSObject+MJCoding.m in Sources */,
 				4B6E732A1BECF04500836AE3 /* CarOrderFooterReusableView.m in Sources */,
+				4BE1C7E61BF2564D00FF2AEE /* ImageUtils.m in Sources */,
 				4B66F8291BF2373B007E4806 /* CoachCommentController.m in Sources */,
 				5CA0415F1B91C5C200EEB4BC /* MJIvar.m in Sources */,
 				4B6C19B71BEB8F1A00E5CEE3 /* EditDataController.m in Sources */,
@@ -1681,6 +1700,7 @@
 				5CA0416D1B91C5C200EEB4BC /* WaitingView.m in Sources */,
 				5CA0413C1B91C5C200EEB4BC /* AppDelegate.mm in Sources */,
 				4B6C19C51BEBA8B900E5CEE3 /* CoachDetailController.m in Sources */,
+				4B26E3871BF314DB004859FF /* MyCouponInfo.m in Sources */,
 				4BA42B391BE79BD200D6C5EC /* SchoolViewModel.m in Sources */,
 				5CF606131BA2D7D10042804E /* MXPullDownMenu.m in Sources */,
 			);
