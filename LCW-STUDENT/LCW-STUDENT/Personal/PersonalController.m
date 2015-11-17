@@ -9,6 +9,7 @@
 #import "PersonalController.h"
 
 #import "HFStretchableTableHeaderView.h"
+#import <UIImageView+AFNetworking.h>
 
 @interface PersonalController ()<UITableViewDataSource, UITableViewDelegate> {
     
@@ -72,10 +73,12 @@
     
     // 给头像和昵称添加点击手势
     UITapGestureRecognizer *tapAvatar = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAvatarAndNickName)];
-    [_avatarImage addGestureRecognizer:tapAvatar];
+//    [_avatarImage addGestureRecognizer:tapAvatar];
     
     UITapGestureRecognizer *tapNickName = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAvatarAndNickName)];
     [_lblNickName addGestureRecognizer:tapNickName];
+    
+    [_headerView addGestureRecognizer:tapAvatar];
 }
 
 #pragma - mark 刷新用户
@@ -83,7 +86,7 @@
 - (void)refreshHeaderViewWithUser {
     if (hasUser()) {
         UserInfo *user = getUser();
-        _avatarImage.image = [UIImage imageNamed:@"default_user_avatar"];
+        [_avatarImage setImageWithURL:getImageUrl(user.resource_url) placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
         _lblNickName.text = user.cn_name;
     } else {
         _avatarImage.image = [UIImage imageNamed:@"default_user_avatar"];
@@ -131,6 +134,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (!checkUserLogin(self)) {
+        return;
+    }
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:
@@ -162,6 +168,9 @@
 }
 
 #pragma - mark 点击头像及昵称触发方法
+- (IBAction)clickEdit:(id)sender {
+    [self tapAvatarAndNickName];
+}
 
 - (void)tapAvatarAndNickName {
     if (!checkUserLogin(self)) {

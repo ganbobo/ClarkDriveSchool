@@ -8,7 +8,9 @@
 
 #import "CoachCommentController.h"
 #import "RatingBar.h"
-@interface CoachCommentController ()<UITextViewDelegate> {
+#import "MyCoachViewModel.h"
+
+@interface CoachCommentController ()<UITextViewDelegate, RatingBarDelegate> {
     UIScrollView *_scrollView;
     
     RatingBar *_starTotalView;// 环境
@@ -76,7 +78,7 @@
     [_scrollView addSubview:lblTotal0];
     
     _starEnView = [[RatingBar alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lblTotal0.frame) + 10, lblTotal0.origin.y, 150, 30)];
-    _starEnView.starNumber = 5;
+    _starEnView.delegate = self;
     [_scrollView addSubview:_starEnView];
     
     UILabel *lblTotal1 = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(lblTotal0.frame) + 10, 65, 30)];
@@ -85,6 +87,7 @@
     lblTotal1.text = @"教学能力";
     [_scrollView addSubview:lblTotal1];
     _starQiantaiView = [[RatingBar alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lblTotal1.frame) + 10, lblTotal1.origin.y, 150, 30)];
+    _starQiantaiView.delegate = self;
     [_scrollView addSubview:_starQiantaiView];
     
     UILabel *lblTotal2 = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(lblTotal1.frame) + 10, 65, 30)];
@@ -94,6 +97,7 @@
     [_scrollView addSubview:lblTotal2];
     
     _starCoachView = [[RatingBar alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lblTotal2.frame) + 10, lblTotal2.origin.y, 150, 30)];
+    _starCoachView.delegate = self;
     [_scrollView addSubview:_starCoachView];
     
     UIView *lineMid2 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_starCoachView.frame) + 10, ScreenWidth, 0.5)];
@@ -145,6 +149,7 @@
 }
 
 - (void)clickHiddenName {
+    [self.view endEditing:YES];
     if (_btnHiddenName.selected) {
         _btnHiddenName.selected = NO;
     } else {
@@ -153,7 +158,21 @@
 }
 
 - (void)clickSubmit {
-    
+    [self.view endEditing:YES];
+
+    MyCoachViewModel *viewModel = [[MyCoachViewModel alloc] init];
+    [viewModel sendCoachCommentToServer:_coachInfo.id scole:_starCoachView.starNumber attitude:_starEnView.starNumber ablility:_starQiantaiView.starNumber environment:_starCoachView.starNumber comment:_textView.text isShowName:_btnHiddenName.selected controller:self callBack:^(BOOL success) {
+        if (success) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
+}
+
+#pragma - mark RatingBarDelegate
+
+- (void)didChangeScole {
+    NSInteger scole = (_starEnView.starNumber + _starCoachView.starNumber + _starQiantaiView.starNumber) / 3;
+    _starTotalView.starNumber = scole;
 }
 
 @end

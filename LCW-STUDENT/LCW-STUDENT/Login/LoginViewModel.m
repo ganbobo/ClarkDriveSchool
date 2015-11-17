@@ -14,11 +14,20 @@
 
 @interface LoginViewModel() {
     NSInteger _totalCountTime;
-    NSString *_valicode;
+    NSMutableDictionary *_dic;
 }
 @end
 
 @implementation LoginViewModel
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _dic = [[NSMutableDictionary alloc] init];
+    }
+    return self;
+}
 
 /**
 *  获取注册验证码
@@ -38,7 +47,9 @@
         } else {
             NSString* responseCode = getResponseCodeFromDic(response);
             if ([responseCode isEqualToString:ResponseCodeSuccess]) {
-                _valicode = [NSString stringWithFormat:@"%ld", [response[@"data"][@"identifyingCode"] longValue]];
+                NSString *code = [NSString stringWithFormat:@"%ld", [response[@"data"][@"identifyingCode"] longValue]];
+                [_dic removeAllObjects];
+                [_dic setValue:code forKey:username];
                 callBack(YES);
             } else {
                 NSString *message = response[RESPONSE_MESSAGE];
@@ -85,13 +96,14 @@
  *
  *  @return 返回是否验证通过
  */
-- (BOOL)validateCode:(NSString *)code controller:(BaseViewController *)controller {
+- (BOOL)validateCode:(NSString *)code username:(NSString *)username controller:(BaseViewController *)controller {
     if (code.length <= 0) {
         [controller showMiddleToastWithContent:@"请输入验证码"];
         return NO;
     }
     
-    if (![code isEqualToString:_valicode]) {
+    NSString *checkCode = _dic[username];
+    if (![code isEqualToString:checkCode]) {
         [controller showMiddleToastWithContent:@"验证码不正确或者已失效"];
         return NO;
     }
@@ -153,7 +165,7 @@
             if ([responseCode isEqualToString:ResponseCodeSuccess]) {
                 [controller hiddenWaitViewWithTip:@"登录成功" type:MessageSuccess];
                 // 存储用户
-                UserInfo *user = [UserInfo objectWithKeyValues:response[@"data"][@"obj"]];
+                UserInfo *user = [UserInfo objectWithKeyValues:response[@"data"]];
                 // 存入用户
                 setUser(user);
                 callBack(YES);

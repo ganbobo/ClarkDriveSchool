@@ -222,4 +222,41 @@
 
 }
 
+/**
+ *  约车
+ *
+ *  @param trainingId 时间段ID
+ *  @param controller 控制器
+ *  @param callBack   回调
+ */
+- (void)sendOrderCar:(NSString *)trainingId
+          timePeriod:(NSArray *)timePeriod
+       publishedTime:(NSString *)publishedTime
+          controller:(BaseViewController *)controller
+            callBack:(void (^)(BOOL success))callBack {
+    NSDictionary *dic = @{
+                          @"trainingId": trainingId,
+                          @"userId": hasUser() ? getUser().id : @"123",
+                          @"timePeriod": timePeriod,
+                          @"publishTime": publishedTime
+                          };
+    [controller showWaitView:@"正在发送约车信息"];
+    [[AFNManager sharedAFNManager] getServer:ORDER_CAR_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+        if (netErrorMessage) {
+            [controller hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
+            callBack(NO);
+        } else {
+            NSString *responseCode = getResponseCodeFromDic(response);
+            if ([responseCode isEqualToString:ResponseCodeSuccess]) {
+                [controller hiddenWaitViewWithTip:@"约车成功" type:MessageSuccess];
+                callBack(YES);
+            } else {
+                NSString *message = response[RESPONSE_MESSAGE];
+                [controller hiddenWaitViewWithTip:message type:MessageFailed];
+                callBack(NO);
+            }
+        }
+    }];
+}
+
 @end

@@ -24,5 +24,16 @@
                       controller:(BaseViewController *)controller
                         callBack:(void(^)(BOOL success))callBack;
 
+/**
+ *  获取教练评论列表
+ *
+ *  @param trainerId  教练ID
+ *  @param controller 控制器
+ *  @param callBack   回调
+ */
+- (void)getCoachCommentListFromServer:(NSString *)trainerId
+                           controller:(BaseViewController *)controller
+                             callBack:(void(^)(BOOL success))callBack;
+
 
 @end

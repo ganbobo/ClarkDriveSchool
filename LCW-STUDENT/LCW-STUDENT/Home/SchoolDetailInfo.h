@@ -24,15 +24,18 @@
 @property (nonatomic, strong) NSArray<PrivilegeInfo *> *privilegeList;
 
 @end
+
 @interface DrivingInfo : NSObject
 
 @property (nonatomic, assign) NSInteger drivingPrice;
 
 @property (nonatomic, copy) NSString *drivingAddr;
 
-@property (nonatomic, copy) NSString *drivingName;
+@property (nonatomic, assign) NSInteger couponPrice;
 
-@property (nonatomic, assign) CGFloat level;
+@property (nonatomic, assign) NSInteger drivingCommNum;
+
+@property (nonatomic, assign) NSInteger level;
 
 @property (nonatomic, copy) NSString *resourseUrl;
 
@@ -40,7 +43,7 @@
 
 @property (nonatomic, copy) NSString *scole;
 
-@property (nonatomic, assign) NSInteger drivingCommNum;
+@property (nonatomic, copy) NSString *drivingName;
 
 @property (nonatomic, copy) NSString *drivingId;
 

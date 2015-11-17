@@ -44,7 +44,7 @@ NSString* getResponseCodeFromDic(NSDictionary *dic) {
  *  呼叫客服
  */
 void callService() {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@",@"4001581500"]]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@",@"18119929669"]]];
 }
 
 /**

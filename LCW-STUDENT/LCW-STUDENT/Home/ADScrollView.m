@@ -9,7 +9,7 @@
 #import "ADScrollView.h"
 #import "PageControl.h"
 
-#define kDuration   3 // 定义多少秒跳一次
+#define kDuration   4 // 定义多少秒跳一次
 #define kNotiHeight 35
 
 @interface ADScrollView()<UIScrollViewDelegate> {
@@ -73,7 +73,7 @@
     }
     
     if ( !_pageControl) {
-        _pageControl = [[PageControl alloc]initWithFrame:CGRectMake(0, _noteView.height - 25, _noteView.width, 20)];
+        _pageControl = [[PageControl alloc]initWithFrame:CGRectMake(0, _noteView.height - 25, _noteView.width, 15)];
         _pageControl.userInteractionEnabled = NO;
         _pageControl.backgroundColor = RGBA(0x11, 0x11, 0x11, 0.2);
         _pageControl.layer.masksToBounds = YES;

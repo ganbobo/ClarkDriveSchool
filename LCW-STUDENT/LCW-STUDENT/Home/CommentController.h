@@ -8,8 +8,10 @@
 
 #import "BaseViewController.h"
 #import "ShopInfo.h"
+#import "CoachModel.h"
 @interface CommentController : BaseViewController
 
 @property(nonatomic, retain)ShopInfo *shopInfo;
+@property(nonatomic, retain)CoachModel *coachInfo;
 
 @end

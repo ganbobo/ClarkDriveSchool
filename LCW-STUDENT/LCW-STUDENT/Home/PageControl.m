@@ -8,8 +8,8 @@
 
 #import "PageControl.h"
 
-#define kPageControlWidth  8
-#define kPageControlHeight 8
+#define kPageControlWidth  5
+#define kPageControlHeight 5
 #define kPageSpace         5
 
 @implementation PageControl

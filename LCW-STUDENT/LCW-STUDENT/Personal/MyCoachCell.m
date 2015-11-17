@@ -30,6 +30,9 @@
     // Initialization code
     _imgHead.layer.borderColor = RGBA(0xee, 0xee, 0xee, 1).CGColor;
     _imgHead.layer.borderWidth = 0.5;
+    
+    _lblCarNo.text = @"";
+    _lblSchoolName.text = @"";
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -51,11 +54,33 @@
     _lblNameInfo.text = coachInfo.cnName;
     _lblPhone.text = [NSString stringWithFormat:@"手机：%@", coachInfo.tel];
     _lblCourse.text = coachInfo.subjectName;
+    _btnComment.enabled = YES;
     
-    if (coachInfo.cnName.length == 0 && coachInfo.tel.length == 0) {
-        [_btnComment setTitle:@"去绑定" forState:UIControlStateNormal];
-    } else {
-        [_btnComment setTitle:@"评价" forState:UIControlStateNormal];
+    switch (coachInfo.flag) {
+        case 0: {
+            [_btnComment setTitle:@"评价" forState:UIControlStateNormal];
+        }
+            
+            break;
+        case 1: {
+            [_btnComment setTitle:@"关闭" forState:UIControlStateNormal];
+            _btnComment.enabled = NO;
+        }
+            
+            break;
+        case 2: {
+            [_btnComment setTitle:@"完成" forState:UIControlStateNormal];
+            _btnComment.enabled = NO;
+        }
+            
+            break;
+        case 3: {
+            [_btnComment setTitle:@"去绑定" forState:UIControlStateNormal];
+        }
+            
+            break;
+        default:
+            break;
     }
 }
 

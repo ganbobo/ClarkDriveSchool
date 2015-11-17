@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol CarOrderFooterReusableViewDelegate <NSObject>
+
+- (void)didClickSubmit;
+
+@end
+
 @interface CarOrderFooterReusableView : UICollectionReusableView
+
+@property(nonatomic, assign)id<CarOrderFooterReusableViewDelegate> delegate;
 
 @end

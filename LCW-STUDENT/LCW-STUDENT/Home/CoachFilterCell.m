@@ -23,8 +23,8 @@
     _btnSelect.layer.cornerRadius = 2;
     _btnSelect.layer.masksToBounds = YES;
     _btnSelect.layer.borderWidth = 0.5;
-    [_btnSelect setTitleColor:[UIColor colorWithRed:0.200 green:0.635 blue:0.365 alpha:1.000] forState:UIControlStateNormal];
-    _btnSelect.layer.borderColor =[UIColor colorWithRed:0.200 green:0.635 blue:0.365 alpha:1.000].CGColor;
+    [_btnSelect setTitleColor:kGreenColor forState:UIControlStateNormal];
+    _btnSelect.layer.borderColor =kGreenColor.CGColor;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

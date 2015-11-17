@@ -20,7 +20,11 @@
 #define kBtnDayBaseTag 10000
 #define kSelectViewHeight  50
 
-@interface CarOrderController ()<UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout> {
+@implementation CarOrderInfo
+
+@end
+
+@interface CarOrderController ()<UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout, CarOrderFooterReusableViewDelegate> {
     
     @private
     __weak IBOutlet UICollectionView *_collectionView;
@@ -34,6 +38,12 @@
     CarCoachInfo *_coachInfo;
     // 数据
     CarOrderViewModel *_carOrderViewModel;
+    
+    NSMutableArray *_dataSource;
+    
+    // 时间
+    long _publishedTime;
+    SubjectInfo *_currentSubject;
 }
 
 @end
@@ -43,7 +53,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // 获取数据
-    [self getSubjectFromServer];
+    [self getTimeFromServer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,11 +63,89 @@
 
 - (void)loadView {
     [super loadView];
+    _dataSource = [[NSMutableArray alloc] init];
     _carOrderViewModel = [[CarOrderViewModel alloc] init];
+    [self loadData];
     [self loadNav];
     [self loadCollectionView];
     [self loadSwichView];
     [self loadDayView];
+}
+
+#pragma - mark 加载数据
+
+- (void)loadData {
+    CarOrderInfo *info0 = [[CarOrderInfo alloc] init];
+    info0.titleName = @"08:00-09:00";
+    info0.select = NO;
+    info0.type = 0;
+    [_dataSource addObject:info0];
+    
+    CarOrderInfo *info1 = [[CarOrderInfo alloc] init];
+    info1.titleName = @"09:00-10:00";
+    info1.select = NO;
+    info1.type = 0;
+    [_dataSource addObject:info1];
+    
+    CarOrderInfo *info2 = [[CarOrderInfo alloc] init];
+    info2.titleName = @"10:00-11:00";
+    info2.select = NO;
+    info2.type = 0;
+    [_dataSource addObject:info2];
+    
+    CarOrderInfo *info = [[CarOrderInfo alloc] init];
+    info.titleName = @"10:00-11:00";
+    info.select = NO;
+    info.type = 0;
+    [_dataSource addObject:info];
+    
+    CarOrderInfo *info3 = [[CarOrderInfo alloc] init];
+    info3.titleName = @"13:00-14:00";
+    info3.select = NO;
+    info3.type = 0;
+    [_dataSource addObject:info3];
+    
+    CarOrderInfo *info4 = [[CarOrderInfo alloc] init];
+    info4.titleName = @"14:00-15:00";
+    info4.select = NO;
+    info4.type = 0;
+    [_dataSource addObject:info4];
+    
+    CarOrderInfo *info5 = [[CarOrderInfo alloc] init];
+    info5.titleName = @"15:00-16:00";
+    info5.select = NO;
+    info5.type = 0;
+    [_dataSource addObject:info5];
+    
+    CarOrderInfo *info6 = [[CarOrderInfo alloc] init];
+    info6.titleName = @"16:00-17:00";
+    info6.select = NO;
+    info6.type = 0;
+    [_dataSource addObject:info6];
+    
+    CarOrderInfo *info7 = [[CarOrderInfo alloc] init];
+    info7.titleName = @"17:00-18:00";
+    info7.select = NO;
+    info7.type = 0;
+    [_dataSource addObject:info7];
+    
+    CarOrderInfo *info8 = [[CarOrderInfo alloc] init];
+    info8.titleName = @"18:00-19:00";
+    info8.select = NO;
+    info8.type = 0;
+    [_dataSource addObject:info8];
+    
+    CarOrderInfo *info9 = [[CarOrderInfo alloc] init];
+    info9.titleName = @"19:00-20:00";
+    info9.select = NO;
+    info9.type = 0;
+    [_dataSource addObject:info9];
+    
+    CarOrderInfo *info10 = [[CarOrderInfo alloc] init];
+    info10.titleName = @"20:00-21:00";
+    info10.select = NO;
+    info10.type = 0;
+    [_dataSource addObject:info9];
 }
 
 #pragma - mark 加载界面
@@ -105,6 +193,33 @@
     [_titleVIew addSubview:_dayView];
 }
 
+
+#pragma - mark CarOrderFooterReusableViewDelegate
+
+- (void)didClickSubmit {
+    if (_coachInfo) {
+        if (![_currentSubject.subject_name isEqualToString:_coachInfo.subjectName]) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请对当前科目教练进行评价，确保关闭当前科目后，在进行约车" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+            [alertView show];
+            return;
+        }
+    }
+    NSString *str = @"";
+    for (CarOrderInfo *info in _dataSource) {
+        if (info.select) {
+            if ([str isEqualToString:@""]) {
+                str = [NSString stringWithFormat:@"%@", info.titleName];
+            } else {
+                str = [NSString stringWithFormat:@"%@,%@", str,info.titleName];
+            }
+        }
+    }
+    
+//    [_carOrderViewModel sendOrderCar:str publishTime:_publishedTime controller:self callBack:^(BOOL success) {
+//        
+//    }];
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -112,17 +227,39 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 12;
+    return _dataSource.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CarOrderCollectionViewCell *cell =
     (CarOrderCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"CarOrderCollectionViewCell"
                                                                      forIndexPath:indexPath];
+    
+    [cell refreshCellByInfo:_dataSource[indexPath.row]];
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    CarOrderInfo *info = _dataSource[indexPath.row];
+    if (info.select) {
+        info.select = NO;
+    } else {
+        NSInteger i = 0;
+        
+        for (CarOrderInfo *info in _dataSource) {
+            if (info.select) {
+                i += 1;
+            }
+        }
+        
+        if (i >= 2) {
+            [self showMiddleToastWithContent:@"最多只能预约2s个小时的课程"];
+            return;
+        }
+        info.select = YES;
+    }
+    
+    [_collectionView reloadData];
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout heightForFooterInSection:(NSInteger)section {
@@ -130,12 +267,13 @@
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
-    UICollectionReusableView *reusableView = nil;
+    CarOrderFooterReusableView *reusableView = nil;
     if ([kind isEqualToString:CHTCollectionElementKindSectionFooter]) {
         reusableView = (CarOrderFooterReusableView*)[collectionView
                                                      dequeueReusableSupplementaryViewOfKind:kind
                                                      withReuseIdentifier:@"FooterView"
                                                      forIndexPath:indexPath];
+        reusableView.delegate = self;
     }
     
     return reusableView;
@@ -160,7 +298,7 @@
     }
     
     btn.selected = YES;
-    
+    _publishedTime = btn.time;
     [self getCourseFromServer:btn.time];
 }
 
@@ -177,9 +315,20 @@
         }
     }
     
+    
+    
     btn.selected = YES;
     
-    [self getTimeFromServer];
+    
+    _currentSubject = btn.subjectInfo;
+    
+    if (_coachInfo) {
+        if (![btn.subjectInfo.subject_name isEqualToString:_coachInfo.subjectName]) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请对当前科目教练进行评价，确保关闭当前科目后，在进行其他科目的约车" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+            [alertView show];
+            return;
+        }
+    }
 }
 
 #pragma - mark 获取科目
@@ -213,6 +362,8 @@
             
             // 先设置教练信息在获取课程
             [self loadDayView:_carOrderViewModel.timeList];
+            
+            [self getSubjectFromServer];
         }
     }];
 }
@@ -252,8 +403,7 @@
     for (UIView *view in _dayView.subviews) {
         [view removeFromSuperview];
     }
-//    [list removeLastObject];
-//    [list removeLastObject];
+    
     for (NSInteger i = 0; i < list.count; i ++) {
         CarOrderDayBtn *btn = [[CarOrderDayBtn alloc] initWithFrame:CGRectMake(i * (_dayView.width / list.count), 0, _dayView.width / list.count, _dayView.height + 3)];
         

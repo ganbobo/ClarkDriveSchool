@@ -18,7 +18,7 @@
 
 // 配置服务器地址
 #define SERVER_ADDRESS    @"http://121.199.70.25:8090"
-#define IMAGE_SERVER      @"http://121.199.70.25:8090"
+#define IMAGE_SERVER      @"http://121.199.70.25:8090/driving"
 
 // 登录注册
 #define NEW_VERSION_SERVER          @"/version/checkVersion" // 版本检测
@@ -36,6 +36,7 @@
 #define GET_SUBJECT_COACH_SERVER    @"/driving/training/getTrainerBySubject" // 获取科目教练
 #define GET_TIME_SERVER             @"/driving/training/getNextWeekTime" // 获取时间
 #define GET_COACH_COURSE_SERVER     @"/driving/training/getCurriculum" // 获取教练课程
+#define ORDER_CAR_SERVER            @"/driving/training/addTraining" // 约车
 
 // 首页
 #define ADS_LIST_SERVER             @"/advertimage/getAdvertImagelist" // 广告接口地址
@@ -43,6 +44,7 @@
 #define GET_SCHOOL_LIST_SERVER      @"/driving/driving/getDrivings" // 驾校列表
 #define GET_SCHOOL_COMMENT_LIST_SERVER  @"/driving/comments/getCommDriving" // 驾校评论列表
 #define GET_COACH_LIST_SERVER       @"/driving/training/getTrainerBySubjects" // 教练
+#define GET_COACH_COMMENT_LIST_SERVER  @"/driving/comments/getCommTrainer" // 教练评论列表
 #define GET_SCHOOL_LIST_CITY_SERVER @"/driving/driving/queryCityToDrivings" // 根据城市获取驾校列表
 #define GET_COACH_DETAIL_SERVER     @"/driving/trainer/getTrainerInfo" // 教练详情
 #define BLINE_COACH_SERVER          @"/driving/trainer/bindTrainer" // 绑定教练
@@ -50,10 +52,14 @@
 #define GET_COUPON_SERVER           @"/driving/coupon/toCouponUser" // 生成优惠券
 #define FEED_BACK_SERVER            @"/driving/area/toMessage" // 意见反馈
 
+// 个人课程
+#define GET_COURSE_LIST_SERVER      @"/driving/training/personalCurriculum" // 课程列表
+#define CANCEL_COURSE_SERVER        @"/driving/training/cancelTraining" // 取消约车
 // 我的
 #define MY_SCHOOL_SERVER            @"/driving/mydriving/getMyDriving" // 我的驾校
 #define COMMENT_SCHOOL_SERVER       @"/driving/mydriving/toMyDriving" // 评价驾校
 #define MY_COACH_SERVER             @"/driving/trainer/myTrainer" // 我的教练
+#define COMMENT_COACH_SERVER        @"/driving/trainer/toMyTrainer" // 评价教练
 #define MY_COUPON_LIST_SERVER       @"/driving/coupon/myCoupon" // 我的优惠券
 #define BLIND_NAME_SERVER           @"/driving/user/updateCnName" // 绑定姓名
 #define BLIND_LICENSE_SERVER        @"/driving/user/updateIdentification" // 绑定身份证

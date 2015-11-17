@@ -91,7 +91,7 @@
     [_scrollView addSubview:lblTotal];
     
     _starTotalView = [[RatingBar alloc] initWithFrame:CGRectMake(CGRectGetMaxX(lblTotal.frame) + 10, lblTotal.origin.y, 180, 30)];
-    _starTotalView.enable = NO;
+//    _starTotalView.enable = NO;
     [_scrollView addSubview:_starTotalView];
     
     UIView *lineMid1 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lblTotal.frame) + 10, ScreenWidth, 0.5)];
@@ -139,14 +139,17 @@
     _lblPlaceholder.font = [UIFont systemFontOfSize:14];
     _lblPlaceholder.numberOfLines = 0;
     _lblPlaceholder.textColor = RGBA(0x99, 0x99, 0x99, 1);
-    _lblPlaceholder.text = @"亲，学弟学妹们选择更好的驾校，请给出您的评价";
+    _lblPlaceholder.text = @"为提高服务质量，请您认真填写评价啊，谢谢！";
+    if (IPHONE6 || IPHONE6PLUS) {
+        _lblPlaceholder.height = 20;
+    }
     [_textView addSubview:_lblPlaceholder];
     
     UIView *lineMid3 = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_textView.frame) + 10, ScreenWidth, 0.5)];
     lineMid3.backgroundColor = RGBA(0xee, 0xee, 0xee, 1);
     [_scrollView addSubview:lineMid3];
     
-    _btnHiddenName = [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth - 100, CGRectGetMaxY(lineMid3.frame) + 5, 90, 25)];
+    _btnHiddenName = [[UIButton alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(lineMid3.frame) + 5, 90, 25)];
     [_btnHiddenName setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     [_btnHiddenName setTitleColor:RGBA(0x11, 0xcd, 0x6e, 1) forState:UIControlStateSelected];
     _btnHiddenName.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -177,6 +180,7 @@
 }
 
 - (void)clickHiddenName {
+    [self.view endEditing:YES];
     if (_btnHiddenName.selected) {
         _btnHiddenName.selected = NO;
     } else {
@@ -191,6 +195,7 @@
 }
 
 - (void)sendComment {
+    
     MySchoolViewModel *model = [[MySchoolViewModel alloc] init];
     
     [model sendCommentToServer:_mySchoolInfo.drivingId drivingScole:_starTotalView.starNumber enScole:_starEnView.starNumber prosceScole:_starQiantaiView.starNumber drivingTrainer:_starCoachView.starNumber driving_comment:_textView.text isShowName:_btnHiddenName.selected controller:self callBack:^(BOOL success) {
@@ -203,8 +208,8 @@
 #pragma - mark RatingBarDelegate 
 
 - (void)didChangeScole {
-    NSInteger scole = (_starEnView.starNumber + _starCoachView.starNumber + _starQiantaiView.starNumber) / 3;
-    _starTotalView.starNumber = scole;
+//    NSInteger scole = (_starEnView.starNumber + _starCoachView.starNumber + _starQiantaiView.starNumber) / 3;
+//    _starTotalView.starNumber = scole;
 }
 
 @end

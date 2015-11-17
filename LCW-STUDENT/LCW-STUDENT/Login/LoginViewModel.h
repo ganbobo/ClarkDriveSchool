@@ -37,7 +37,7 @@
  *
  *  @return 返回是否验证通过
  */
-- (BOOL)validateCode:(NSString *)code controller:(BaseViewController *)controller;
+- (BOOL)validateCode:(NSString *)code username:(NSString *)username controller:(BaseViewController *)controller;
 
 /**
  *  验证输入

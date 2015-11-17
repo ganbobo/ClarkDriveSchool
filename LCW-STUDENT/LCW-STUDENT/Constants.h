@@ -21,6 +21,10 @@
 #define CLog(format, ...)
 #endif
 
+//公有绿色
+
+#define kGreenColor RGBA(0x3a, 0xa7, 0x57, 1)
+
 //获取设备的物理高度
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 

@@ -10,6 +10,8 @@
 
 #import "BaseNavController.h"
 #import "LoginViewModel.h"
+#import "AFNManager.h"
+#import "JsonUtils.h"
 
 @interface TabViewController ()<UITabBarControllerDelegate>
 
@@ -19,6 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self sendAutoLoginRequest];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,7 +44,7 @@
     BaseNavController *courseNav = [UIStoryboard storyboardWithName:@"Course" bundle:nil].instantiateInitialViewController;
     BaseNavController *personalNav = [UIStoryboard storyboardWithName:@"Personal" bundle:nil].instantiateInitialViewController;
     
-    [self.tabBar setTintColor:RGBA(0x11, 0xcd, 0x6e, 1)];
+    [self.tabBar setTintColor:RGBA(0x3a, 0xa7, 0x57, 1)];
     [self.tabBar setBackgroundImage:[[UIImage imageNamed:@"comm_tabbar_background.jpg"] stretchableImageWithLeftCapWidth:6 / 2.0 topCapHeight:38 / 2.0]];
     // 添加底部切换
     UITabBarItem *homeItem = [[UITabBarItem alloc] initWithTitle:NSLocalizedStringEx(@"首页", nil) image:[[UIImage imageNamed:@"tab_home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] selectedImage:[[UIImage imageNamed:@"tab_home_select"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
@@ -57,6 +61,28 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
     return YES;
+}
+
+- (void)sendAutoLoginRequest {
+    if (hasUser()) {
+        NSDictionary *dic = @{
+                              @"loginName": getUser().login_name
+                              };
+        
+        [[AFNManager sharedAFNManager] getServer:LOGIN_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+            if (!netErrorMessage) {
+                NSString *responseCode = getResponseCodeFromDic(response);
+                if ([responseCode isEqualToString:ResponseCodeSuccess]) {
+
+                    // 存储用户
+                    UserInfo *user = [UserInfo objectWithKeyValues:response[@"data"]];
+                    // 存入用户
+                    setUser(user);
+
+                }
+            }
+        }];
+    }
 }
 
 @end

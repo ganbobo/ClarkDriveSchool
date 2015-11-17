@@ -13,6 +13,8 @@
 #import "ImageUtils.h"
 #import "JsonUtils.h"
 
+#import <UIImageView+AFNetworking.h>
+
 @interface PersonalDataController ()<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate> {
     NSArray *_dataSource;
     __weak IBOutlet UITableView *_tableView;
@@ -49,7 +51,7 @@
 #pragma - mark 加载界面
 
 - (void)loadNav {
-    [PMCommon setNavigationTitle:self withTitle:@"个人消息"];
+    [PMCommon setNavigationTitle:self withTitle:@"个人中心"];
 }
 
 - (void)loadAvatarView {
@@ -99,6 +101,7 @@
     if (indexPath.section == 0) {
         cell.detailTextLabel.text = @"";
         cell.accessoryView = _avatarImage;
+        [_avatarImage setImageWithURL:getImageUrl(getUser().resource_url) placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     } else if (indexPath.section == 2) {
         cell.detailTextLabel.text = @"";
@@ -114,12 +117,16 @@
                 break;
             case 2: {
                 cell.detailTextLabel.text = getUser().cn_name;
-                cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+                if ([getUser().cn_name isEqualToString:@"未填写"]) {
+                    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+                }
             }
                 break;
             case 3: {
                 cell.detailTextLabel.text = getUser().identification;
-                cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+                if ([getUser().identification isEqualToString:@"未填写"]) {
+                    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+                }
             }
                 break;
             default:
@@ -140,11 +147,18 @@
     
     if (indexPath.section == 1) {
         switch (indexPath.row) {
-            case 2:
-                [self performSegueWithIdentifier:@"EditData" sender:@(YES)];
+                
+            case 2: {
+                if ([getUser().identification isEqualToString:@"未填写"]) {
+                    [self performSegueWithIdentifier:@"EditData" sender:@(YES)];
+                }
+            }
                 break;
-            case 3:
-                [self performSegueWithIdentifier:@"EditData" sender:@(NO)];
+            case 3: {
+                if ([getUser().cn_name isEqualToString:@"未填写"]) {
+                    [self performSegueWithIdentifier:@"EditData" sender:@(NO)];
+                }
+            }
                 break;
             default:
                 break;

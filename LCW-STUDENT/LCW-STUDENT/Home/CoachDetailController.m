@@ -11,6 +11,7 @@
 #import "HFStretchableTableHeaderView.h"
 #import "CoachViewModel.h"
 #import <UIImageView+AFNetworking.h>
+#import "CommentController.h"
 
 @interface CoachDetailController ()<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
 @private
@@ -170,6 +171,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 2) {
+        CommentController *controller = [[UIStoryboard storyboardWithName:@"Home" bundle:nil] instantiateViewControllerWithIdentifier:@"CommentController"];
+        controller.coachInfo = _coachInfo;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 #pragma - mark 刷新用户昵称
@@ -196,12 +202,12 @@
 #pragma - mark 获取教练详情
 
 - (void)getCoachDetailFromServer {
-    [_viewModel getCoachDetailInfoFromServer:_coachInfo.trainerId controller:self callBack:^(BOOL success) {
-        if (success) {
-            [self refreshUser];
-            [_tableView reloadData];
-        }
-    }];
+//    [_viewModel getCoachDetailInfoFromServer:_coachInfo.trainerId controller:self callBack:^(BOOL success) {
+//        if (success) {
+//            [self refreshUser];
+//            [_tableView reloadData];
+//        }
+//    }];
 }
 
 @end

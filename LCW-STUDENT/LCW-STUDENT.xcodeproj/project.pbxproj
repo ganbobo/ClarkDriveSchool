@@ -42,6 +42,8 @@
 		4B799D4B1BEE3E1F00F123B5 /* CarOrderBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B799D4A1BEE3E1F00F123B5 /* CarOrderBtn.m */; };
 		4B799D4E1BEE3F2E00F123B5 /* CarOrderDayBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B799D4D1BEE3F2E00F123B5 /* CarOrderDayBtn.m */; };
 		4B7C132D1BEF875800468A76 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B7C132C1BEF875800468A76 /* mapapi.bundle */; };
+		4B8DBCDE1BFB01E3009EAAD3 /* CourseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DBCDD1BFB01E3009EAAD3 /* CourseViewModel.m */; };
+		4B8DBCE21BFB02BC009EAAD3 /* CourseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DBCE11BFB02BC009EAAD3 /* CourseInfo.m */; };
 		4B99F2F61BE105820094326A /* CarOrderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B99F2F51BE105820094326A /* CarOrderViewModel.m */; };
 		4B99F2FA1BE10AB90094326A /* SubjectInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B99F2F91BE10AB90094326A /* SubjectInfo.m */; };
 		4B9D9F201BDE590800907937 /* LoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9D9F1F1BDE590800907937 /* LoginViewModel.m */; };
@@ -226,6 +228,10 @@
 		4B799D4C1BEE3F2E00F123B5 /* CarOrderDayBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarOrderDayBtn.h; sourceTree = "<group>"; };
 		4B799D4D1BEE3F2E00F123B5 /* CarOrderDayBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarOrderDayBtn.m; sourceTree = "<group>"; };
 		4B7C132C1BEF875800468A76 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
+		4B8DBCDC1BFB01E3009EAAD3 /* CourseViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseViewModel.h; sourceTree = "<group>"; };
+		4B8DBCDD1BFB01E3009EAAD3 /* CourseViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseViewModel.m; sourceTree = "<group>"; };
+		4B8DBCE01BFB02BC009EAAD3 /* CourseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseInfo.h; sourceTree = "<group>"; };
+		4B8DBCE11BFB02BC009EAAD3 /* CourseInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseInfo.m; sourceTree = "<group>"; };
 		4B99F2F41BE105820094326A /* CarOrderViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarOrderViewModel.h; sourceTree = "<group>"; };
 		4B99F2F51BE105820094326A /* CarOrderViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarOrderViewModel.m; sourceTree = "<group>"; };
 		4B99F2F81BE10AB90094326A /* SubjectInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectInfo.h; sourceTree = "<group>"; };
@@ -628,6 +634,24 @@
 				4B6C19BE1BEB99DD00E5CEE3 /* EditViewModel.m */,
 			);
 			name = viewModel;
+			sourceTree = "<group>";
+		};
+		4B8DBCDB1BFB01D0009EAAD3 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4B8DBCDC1BFB01E3009EAAD3 /* CourseViewModel.h */,
+				4B8DBCDD1BFB01E3009EAAD3 /* CourseViewModel.m */,
+			);
+			name = viewModel;
+			sourceTree = "<group>";
+		};
+		4B8DBCDF1BFB02B2009EAAD3 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4B8DBCE01BFB02BC009EAAD3 /* CourseInfo.h */,
+				4B8DBCE11BFB02BC009EAAD3 /* CourseInfo.m */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 		4B99F2F31BE105650094326A /* viewModel */ = {
@@ -1147,6 +1171,8 @@
 		5CA040DC1B91C5C200EEB4BC /* Course */ = {
 			isa = PBXGroup;
 			children = (
+				4B8DBCDF1BFB02B2009EAAD3 /* model */,
+				4B8DBCDB1BFB01D0009EAAD3 /* viewModel */,
 				5CA040DD1B91C5C200EEB4BC /* CourseCell.h */,
 				5CA040DE1B91C5C200EEB4BC /* CourseCell.m */,
 				5CA040DF1B91C5C200EEB4BC /* CourseController.h */,
@@ -1637,6 +1663,8 @@
 				4B9D9F341BDE71AE00907937 /* ShopViewModel.m in Sources */,
 				4BA42B3D1BE79FFC00D6C5EC /* SchoolDetailInfo.m in Sources */,
 				4B08E6261BB1A2F800DAF2E9 /* JsonUtils.m in Sources */,
+				4B8DBCDE1BFB01E3009EAAD3 /* CourseViewModel.m in Sources */,
+				4B8DBCE21BFB02BC009EAAD3 /* CourseInfo.m in Sources */,
 				5CA041641B91C5C200EEB4BC /* NSObject+MJCoding.m in Sources */,
 				4B6E732A1BECF04500836AE3 /* CarOrderFooterReusableView.m in Sources */,
 				4BE1C7E61BF2564D00FF2AEE /* ImageUtils.m in Sources */,

@@ -23,9 +23,16 @@
         btn.backgroundColor = [UIColor colorWithRed:0.074 green:0.715 blue:0.169 alpha:1.000];
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btn setTitle:@"确定预约" forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(clickSubmit) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
     }
     return self;
+}
+
+- (void)clickSubmit {
+    if (_delegate && [_delegate respondsToSelector:@selector(didClickSubmit)]) {
+        [_delegate didClickSubmit];
+    }
 }
 
 @end

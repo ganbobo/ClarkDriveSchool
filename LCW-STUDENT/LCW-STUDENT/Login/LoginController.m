@@ -52,7 +52,11 @@
 }
 - (IBAction)clickGetCode:(id)sender {
     [self.view endEditing:YES];
-    NSString *username = _txtPassword.text;
+    NSString *username = _txtUsername.text;
+    if (username.length <= 0) {
+        [self showMiddleToastWithContent:@"请输入手机号"];
+        return;
+    }
     [_loginViewModel getCheckCodeFromSeverController:self username:username callBack:^(BOOL success) {
         if (success) {
             [_loginViewModel countTime:_btnGetCode totalTime:60];
@@ -64,7 +68,7 @@
     [self.view endEditing:YES];
     
     if ([_loginViewModel checkInput:_txtUsername.text password:_txtPassword.text controller:self]) {
-        if ([_loginViewModel validateCode:_txtPassword.text controller:self]) {
+        if ([_loginViewModel validateCode:_txtPassword.text username:_txtUsername.text controller:self]) {
             [_loginViewModel loginToServerController:self username:_txtUsername.text pwd:_txtPassword.text callBack:^(BOOL success) {
                 if (success) {
                     [self clickCancel];

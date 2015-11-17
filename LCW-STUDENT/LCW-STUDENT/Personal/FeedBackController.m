@@ -10,6 +10,8 @@
 
 #import "FeedBackViewModel.h"
 
+#define kServiceCallNumber  @"18119929669"
+
 @interface FeedBackController ()<UITextViewDelegate> {
     UIView *_inputBackView;
     UITextView *_txtContent;
@@ -113,12 +115,13 @@
     _btnService = [UIButton new];
     [_btnService setTranslatesAutoresizingMaskIntoConstraints:NO];
     [_btnService setTitleColor:[UIColor colorWithRed:0.180 green:0.639 blue:0.357 alpha:1.000] forState:UIControlStateNormal];
-    [_btnService setTitle:@"投诉电话" forState:UIControlStateNormal];
+    [_btnService setTitle:[NSString stringWithFormat:@"投诉电话"] forState:UIControlStateNormal];
     _btnService.titleLabel.font = [UIFont systemFontOfSize:15];
     _btnService.layer.cornerRadius = 2;
     _btnService.layer.borderColor = [UIColor colorWithRed:0.180 green:0.639 blue:0.357 alpha:1.000].CGColor;
     _btnService.layer.borderWidth = 0.5;
     _btnService.layer.masksToBounds = YES;
+    [_btnService addTarget:self action:@selector(clickServiceCall) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_btnService];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-90-[SV]-90-|" options:0 metrics:nil views:@{@"SV": _btnService}]];
@@ -133,6 +136,10 @@
 }
 
 #pragma - mark 导航按钮点击触发
+
+- (void)clickServiceCall {
+    callService();
+}
 
 - (void)clickClose {
     [self.navigationController popViewControllerAnimated:YES];

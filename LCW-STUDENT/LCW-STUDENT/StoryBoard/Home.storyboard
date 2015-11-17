@@ -484,11 +484,56 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="76"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08:00-09:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1o-Jj-kiW">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="76"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PpA-f8-PHU">
+                                                    <rect key="frame" x="53" y="49" width="22" height="22"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="7Go-Oa-mds"/>
+                                                        <constraint firstAttribute="width" constant="22" id="us7-R7-Zhj"/>
+                                                    </constraints>
+                                                    <state key="normal" image="order_car_select"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已满" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYy-qQ-bdW">
+                                                    <rect key="frame" x="83" y="53" width="40" height="18"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" red="0.73333333329999995" green="0.73333333329999995" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="4oQ-gP-wN6"/>
+                                                        <constraint firstAttribute="width" constant="40" id="c8I-Aq-vYd"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="0.41176470588235292" green="0.41176470588235292" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="q1o-Jj-kiW" firstAttribute="leading" secondItem="Vhs-MU-jsk" secondAttribute="leading" id="2Qc-2W-sg3"/>
+                                            <constraint firstAttribute="bottom" secondItem="q1o-Jj-kiW" secondAttribute="bottom" id="4yV-MF-brV"/>
+                                            <constraint firstAttribute="trailing" secondItem="JYy-qQ-bdW" secondAttribute="trailing" constant="5" id="ELw-Ca-4Fz"/>
+                                            <constraint firstAttribute="trailing" secondItem="q1o-Jj-kiW" secondAttribute="trailing" id="TUt-IC-mWa"/>
+                                            <constraint firstItem="PpA-f8-PHU" firstAttribute="centerX" secondItem="Vhs-MU-jsk" secondAttribute="centerX" id="fYp-Kx-RVk"/>
+                                            <constraint firstAttribute="bottom" secondItem="PpA-f8-PHU" secondAttribute="bottom" constant="5" id="hST-Wp-VT5"/>
+                                            <constraint firstAttribute="bottom" secondItem="JYy-qQ-bdW" secondAttribute="bottom" constant="5" id="oLS-f2-jnT"/>
+                                            <constraint firstItem="q1o-Jj-kiW" firstAttribute="top" secondItem="Vhs-MU-jsk" secondAttribute="top" id="p9a-LN-doT"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="_btnSelect" destination="PpA-f8-PHU" id="9jB-zG-sO7"/>
+                                            <outlet property="_lblState" destination="JYy-qQ-bdW" id="vKt-UB-O0k"/>
+                                            <outlet property="_lblTitle" destination="q1o-Jj-kiW" id="DhO-sP-X4E"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -1053,9 +1098,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="161"/>
                                             <animations/>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons_bgcover" translatesAutoresizingMaskIntoConstraints="NO" id="OK4-gO-u0A">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OK4-gO-u0A">
                                             <rect key="frame" x="0.0" y="126" width="600" height="35"/>
                                             <animations/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="UWD-S1-pb9"/>
                                             </constraints>
@@ -1340,7 +1386,7 @@
         <!--选择教练-->
         <scene sceneID="hRp-Fi-ION">
             <objects>
-                <viewController id="mks-Od-UXe" customClass="CoachController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CoachController" id="mks-Od-UXe" customClass="CoachController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CXy-Y5-sm2"/>
                         <viewControllerLayoutGuide type="bottom" id="TtN-pQ-wSw"/>
@@ -1639,7 +1685,7 @@
         <image name="home_car" width="50" height="50"/>
         <image name="home_sale" width="50" height="50"/>
         <image name="home_test" width="50" height="50"/>
-        <image name="icons_bgcover" width="216" height="35"/>
+        <image name="order_car_select" width="15" height="15"/>
         <image name="shop_btn_border" width="20" height="20"/>
         <image name="shop_five_corner" width="10" height="9"/>
     </resources>

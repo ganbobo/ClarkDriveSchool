@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "CarOrderController.h"
+
 @interface CarOrderCollectionViewCell : UICollectionViewCell
+
+- (void)refreshCellByInfo:(CarOrderInfo *)info;
 
 @end

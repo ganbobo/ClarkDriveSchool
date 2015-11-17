@@ -102,12 +102,12 @@
         
         _titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, 30)];
         _titleView.backgroundColor = [UIColor whiteColor];
-        _titleView.layer.borderColor = [UIColor colorWithRed:0.145 green:0.655 blue:0.341 alpha:1.000].CGColor;
+        _titleView.layer.borderColor = kGreenColor.CGColor;
         _titleView.layer.borderWidth = 1.5;
         self.navigationItem.titleView = _titleView;
         
         UIButton *btnList = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, _titleView.width / 2.0, _titleView.height)];
-        [btnList setTitleColor:[UIColor colorWithRed:0.145 green:0.655 blue:0.341 alpha:1.000] forState:UIControlStateNormal];
+        [btnList setTitleColor:kGreenColor forState:UIControlStateNormal];
         [btnList setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [btnList setBackgroundImage:[UIImage imageNamed:@"btn_common_white"] forState:UIControlStateNormal];
         [btnList setBackgroundImage:[UIImage imageNamed:@"btn_common"] forState:UIControlStateSelected];
@@ -118,7 +118,7 @@
         [_titleView addSubview:btnList];
         
         UIButton *btnMap = [[UIButton alloc] initWithFrame:CGRectMake(_titleView.width / 2.0, 0, _titleView.width / 2.0, _titleView.height)];
-        [btnMap setTitleColor:[UIColor colorWithRed:0.145 green:0.655 blue:0.341 alpha:1.000] forState:UIControlStateNormal];
+        [btnMap setTitleColor:kGreenColor forState:UIControlStateNormal];
         [btnMap setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [btnMap setBackgroundImage:[UIImage imageNamed:@"btn_common_white"] forState:UIControlStateNormal];
         [btnMap setBackgroundImage:[UIImage imageNamed:@"btn_common"] forState:UIControlStateSelected];

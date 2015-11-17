@@ -119,11 +119,9 @@
     int hours = ((int)time)%(3600*24)/3600;
     int minute = ((int)time)%(3600*24)/3600/60;
     if (days <= 0 && hours <= 0&&minute<= 0) {
-        NSLog(@"0天0小时0分钟");
         return 0;
     }
     else {
-        NSLog(@"%@",[[NSString alloc] initWithFormat:@"%i天%i小时%i分钟",days,hours,minute]);
         // 之所以要 + 1，是因为 此处的days 计算的结果 不包含当天 和 最后一天\
         （如星期一 和 星期四，计算机 算的结果就是2天（星期二和星期三），日常算，星期一——星期四相差3天，所以需要+1）\
         对于时分 没有进行计算 可以忽略不计

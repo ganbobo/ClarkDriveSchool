@@ -86,7 +86,7 @@
 }
 
 - (void)loadPullDownMenuView {
-    _dataMenu = @[@[@"类型", @"C1", @"C2"], @[@"性别", @"男教练", @"女教练"], @[@"筛选", @"剩余学员由多到少"]];
+    _dataMenu = @[@[@"类型", @"C1", @"C2"], @[@"性别", @"男教练", @"女教练"], @[@"排序", @"剩余名额多到少", @"评分高到低", @"评价人数高到低"]];
     _filterInfo = [[CoachFilterInfo alloc] init];
     
     
@@ -199,7 +199,13 @@
 }
 
 - (void)getCoachListFromServer {
-    [_coachViewModel getCoachListFromServer:_subjectInfo.id sex:_filterInfo.sex typeName:_filterInfo.type overplusTrainee:_filterInfo.desc controller:self callBack:^(BOOL success) {
+    NSString *subjectId = @"";
+    if (_subjectInfo) {
+        subjectId = _subjectInfo.id;
+    } else {
+        subjectId = _coachInfo.id;
+    }
+    [_coachViewModel getCoachListFromServer:subjectId sex:_filterInfo.sex typeName:_filterInfo.type overplusTrainee:_filterInfo.desc controller:self callBack:^(BOOL success) {
         if (success) {
             [_tableView reloadData];
         }

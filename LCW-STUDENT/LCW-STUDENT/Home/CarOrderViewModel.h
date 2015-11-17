@@ -61,4 +61,18 @@
                      controller:(BaseViewController *)controller
                        callBack:(void (^)(BOOL success))callBack;
 
+/**
+ *  约车
+ *
+ *  @param trainingId 时间段
+ *  @param controller 控制器
+ *  @param callBack   回调
+ */
+- (void)sendOrderCar:(NSString *)trainingId
+          timePeriod:(NSArray *)timePeriod
+       publishedTime:(NSString *)publishedTime
+          controller:(BaseViewController *)controller
+            callBack:(void (^)(BOOL success))callBack;
+
+
 @end

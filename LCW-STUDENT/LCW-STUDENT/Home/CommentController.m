@@ -41,7 +41,11 @@
 #pragma - mark 加载界面
 
 - (void)loadNav {
-    [PMCommon setNavigationTitle:self withTitle:@"驾校评价"];
+    if (_coachInfo) {
+        [PMCommon setNavigationTitle:self withTitle:@"教练评价"];
+    } else {
+        [PMCommon setNavigationTitle:self withTitle:@"驾校评价"];
+    }
 }
 
 #pragma - mark UITableViewDataSource, UITableViewDelegate 代理
@@ -71,12 +75,24 @@
     [self showLoading:^{
         [safeSelf getData];
     }];
+    if (_shopInfo) {
+        [self getDataFromServer];
+    } else {
+        [self getCoachCommentFromServer];
+    }
     
-    [self getDataFromServer];
 }
 
 - (void)getDataFromServer {
     [_viewModel getCommentListFromServer:_shopInfo.id controller:self callBack:^(BOOL success) {
+        if (success) {
+            [_tableView reloadData];
+        }
+    }];
+}
+
+- (void)getCoachCommentFromServer {
+    [_viewModel getCoachCommentListFromServer:_coachInfo.trainerId controller:self callBack:^(BOOL success) {
         if (success) {
             [_tableView reloadData];
         }

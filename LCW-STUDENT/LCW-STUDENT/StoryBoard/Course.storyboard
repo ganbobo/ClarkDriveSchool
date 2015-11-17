@@ -48,11 +48,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015/08/02（科二）" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6GO-bX-axm">
-                                                    <rect key="frame" x="5" y="0.0" width="445" height="62.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015/08/02（科二）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6GO-bX-axm">
+                                                    <rect key="frame" x="10" y="0.0" width="440" height="62.5"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRs-gx-jP3">
@@ -62,7 +62,7 @@
                                                         <constraint firstAttribute="width" constant="80" id="X0B-ID-esZ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7g3-Vv-GnU">
@@ -72,6 +72,7 @@
                                                         <constraint firstAttribute="width" constant="60" id="r1m-TY-3hR"/>
                                                     </constraints>
                                                     <state key="normal" title="取消">
+                                                        <color key="titleColor" red="0.12801846589999999" green="0.71105587120000002" blue="0.17359138260000001" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
@@ -84,7 +85,7 @@
                                                 <constraint firstItem="7g3-Vv-GnU" firstAttribute="top" secondItem="NEW-ah-b9Q" secondAttribute="top" id="IAn-sc-PtH"/>
                                                 <constraint firstItem="7g3-Vv-GnU" firstAttribute="leading" secondItem="YRs-gx-jP3" secondAttribute="trailing" id="L32-qq-g28"/>
                                                 <constraint firstItem="YRs-gx-jP3" firstAttribute="top" secondItem="NEW-ah-b9Q" secondAttribute="top" id="Pp2-wD-SdK"/>
-                                                <constraint firstItem="6GO-bX-axm" firstAttribute="leading" secondItem="NEW-ah-b9Q" secondAttribute="leading" constant="5" id="QKM-Kt-KLU"/>
+                                                <constraint firstItem="6GO-bX-axm" firstAttribute="leading" secondItem="NEW-ah-b9Q" secondAttribute="leading" constant="10" id="QKM-Kt-KLU"/>
                                                 <constraint firstItem="YRs-gx-jP3" firstAttribute="leading" secondItem="6GO-bX-axm" secondAttribute="trailing" constant="5" id="SRy-cs-HlY"/>
                                                 <constraint firstAttribute="bottom" secondItem="6GO-bX-axm" secondAttribute="bottom" id="duS-nk-zqD"/>
                                                 <constraint firstAttribute="bottom" secondItem="YRs-gx-jP3" secondAttribute="bottom" id="xfD-AG-obr"/>

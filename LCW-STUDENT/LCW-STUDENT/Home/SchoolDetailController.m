@@ -72,7 +72,8 @@
     _infoView.delegate = self;
     [_infoView setDataSource:_hasSignUp drivingInfo:detailInfo.driving];
     [_dataSource addObject:_infoView];
-    _lblName.text = detailInfo.driving.drivingName;
+    _lblName.textColor = [UIColor colorWithRed:0.992 green:0.306 blue:0.024 alpha:1.000];
+    _lblName.text = [NSString stringWithFormat:@"￥%ld %@ C1周一到周日班", (long)_shopInfo.driving_price, detailInfo.driving.drivingName];
     
     if (detailInfo.privilegeList.count > 0) {
         _studentPrivilegeView = [[SchoolDescView alloc] initWithWidth:ScreenWidth originalY:0 columns:2];

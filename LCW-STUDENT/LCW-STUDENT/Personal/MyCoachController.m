@@ -12,6 +12,8 @@
 #import "MyCoachCell.h"
 #import "CoachCommentController.h"
 
+#import "CoachController.h"
+
 @interface MyCoachController ()<UITableViewDataSource, UITableViewDelegate, MyCoachCellDelegate>{
     MyCoachViewModel *_myCoachViewModel;
     __weak IBOutlet UITableView *_tableView;
@@ -80,9 +82,16 @@
 #pragma - mark MyCoachCellDelegate 
 
 - (void)didClickComment:(MyCoachInfo *)coachInfo {
-    CoachCommentController *controller = [[CoachCommentController alloc] init];
-    controller.coachInfo = coachInfo;
-    [self.navigationController pushViewController:controller animated:YES];
+    if (coachInfo.flag == 3) {
+        CoachController *controller = [[UIStoryboard storyboardWithName:@"Home" bundle:nil] instantiateViewControllerWithIdentifier:@"CoachController"];
+        controller.coachInfo = coachInfo;
+        [self.navigationController pushViewController:controller animated:YES];
+        
+    } else {
+        CoachCommentController *controller = [[CoachCommentController alloc] init];
+        controller.coachInfo = coachInfo;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 #pragma - mark 获取数据

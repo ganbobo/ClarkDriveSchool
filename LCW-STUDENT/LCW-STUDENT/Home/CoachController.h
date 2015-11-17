@@ -9,6 +9,7 @@
 #import "BaseViewController.h"
 
 #import "SubjectInfo.h"
+#import "MyCoachInfo.h"
 
 /**
  *  选择教练
@@ -26,5 +27,6 @@
 
 @property(nonatomic, retain)NSString *drivingId;
 @property(nonatomic, retain)SubjectInfo *subjectInfo;
+@property(nonatomic, retain)MyCoachInfo *coachInfo;
 
 @end

@@ -86,11 +86,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MySchoolCell" forIndexPath:indexPath];
     
+    if (indexPath.section == 2) {
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    } else {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    
     ShowInfo *info = _dataSource[indexPath.section];
     cell.textLabel.text = info.title;
     cell.detailTextLabel.text = info.subTitle;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 2) {
+        [self callPhone:_mySchoolViewModel.mySchoolInfo.tel];
+    }
 }
 
 #pragma - mark 获取数据
@@ -119,12 +132,16 @@
             
             ShowInfo *infoThree = [[ShowInfo alloc] init];
             infoThree.title = @"电话";
-            infoThree.subTitle = _mySchoolViewModel.mySchoolInfo.tel;
+            infoThree.subTitle = [NSString stringWithFormat:@"%@(科一、科四约考咨询)", _mySchoolViewModel.mySchoolInfo.tel];
             [_dataSource addObject:infoThree];
             
             [_tableView reloadData];
         }
     }];
+}
+
+- (void)callPhone:(NSString *)phone {
+     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@",phone]]];
 }
 
 - (IBAction)clickComment:(id)sender {

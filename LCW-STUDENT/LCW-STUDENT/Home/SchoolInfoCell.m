@@ -121,7 +121,7 @@
     if (signUp) {
         [_btnSelectCoach setTitle:@"下一步，选教练" forState:UIControlStateNormal];
     } else {
-        [_btnSelectCoach setTitle:@"下一步，生成抵用券" forState:UIControlStateNormal];
+        [_btnSelectCoach setTitle:[NSString stringWithFormat:@"下一步，生成%ld元抵用券", (long)drivingInfo.couponPrice] forState:UIControlStateNormal];
     }
     _btnSelectCoach.hidden = _commentView.hidden = _btnAddress.hidden = YES;
     [_line setOrigin:CGPointMake(0, 44 - 0.5)];

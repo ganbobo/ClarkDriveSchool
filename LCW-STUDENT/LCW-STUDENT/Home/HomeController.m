@@ -15,7 +15,7 @@
 #import "FeedBackController.h"
 #import "LocationManager.h"
 
-#define kHeaderViewHeight        (165.0 / 320 * ScreenWidth)
+#define kHeaderViewHeight        (1 / 2.2 * ScreenWidth)
 #define kFooterViewHeight        ((568 - 160 - 64 - 49.0) / 320 * ScreenWidth)
 
 @interface HomeController ()<AdsViewDelegate> {
@@ -106,6 +106,9 @@
 #pragma - mark 按钮点击事件
 
 - (void)clickPhone {
+    if (!checkUserLogin(self)) {
+        return;
+    }
     FeedBackController *controller = [[FeedBackController alloc] init];
     [self.navigationController pushViewController:controller animated:YES];
 }
