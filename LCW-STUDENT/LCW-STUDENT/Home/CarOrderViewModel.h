@@ -9,12 +9,14 @@
 #import <Foundation/Foundation.h>
 
 #import "BaseViewController.h"
+#import "OrderCourseInfo.h"
 
 @interface CarOrderViewModel : NSObject
 
 @property(nonatomic, retain)NSMutableArray *dataSource;
 @property(nonatomic, retain)NSMutableArray *coachList;
 @property(nonatomic, retain)NSMutableArray *timeList;
+@property(nonatomic, retain)OrderCourseInfo *orderCourseInfo;
 
 /**
  *  获取科目列表
@@ -71,6 +73,7 @@
 - (void)sendOrderCar:(NSString *)trainingId
           timePeriod:(NSArray *)timePeriod
        publishedTime:(NSString *)publishedTime
+                tpye:(NSInteger)type
           controller:(BaseViewController *)controller
             callBack:(void (^)(BOOL success))callBack;
 

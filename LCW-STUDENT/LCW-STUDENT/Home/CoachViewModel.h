@@ -15,6 +15,7 @@
 
 @property(nonatomic, retain)NSMutableArray *coachList;
 @property(nonatomic, retain)CoachDetailModel *coachDetailModel;
+@property(nonatomic, retain)CoachUserModel *coachUserModel;
 
 /**
  *  获取教练列表
@@ -56,5 +57,13 @@
                  subjectId:(NSString *)subjectId
                 controller:(BaseViewController *)controller
                   callBack:(void(^)(BOOL success))callBack;
+
+/**
+ *  搜索数据
+ *
+ *  @param keyword  关键字
+ *  @param callBack 回调
+ */
+- (void)getSearchList:(NSString *)keyword callBack:(void (^)(NSArray *dataList))callBack;
 
 @end

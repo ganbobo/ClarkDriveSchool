@@ -11,7 +11,7 @@
 #import <UIImageView+AFNetworking.h>
 #import "RatingBar.h"
 #import "MySchoolViewModel.h"
-@interface SchoolCommentController ()<UITextViewDelegate, RatingBarDelegate> {
+@interface SchoolCommentController ()<UITextViewDelegate, RatingBarDelegate, UITextViewDelegate> {
     UIImageView *_imgSchool;
     UILabel *_lblSchoolName;
     
@@ -203,6 +203,48 @@
             [self.navigationController popViewControllerAnimated:YES];
         }
     }];
+}
+
+#pragma - mark UITextViewDelegate 代理
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+    if (IPHONE5) {
+        [UIView animateWithDuration:0.25 animations:^{
+            [_scrollView setOrigin:CGPointMake(0, -50)];
+        }];
+    }
+    
+    if (!IPHONE6 && !IPHONE6PLUS && !IPHONE5) {
+        [UIView animateWithDuration:0.25 animations:^{
+            [_scrollView setOrigin:CGPointMake(0, -136)];
+        }];
+    }
+    
+    if (IPHONE6) {
+        [UIView animateWithDuration:0.25 animations:^{
+            [_scrollView setOrigin:CGPointMake(0, -20)];
+        }];
+    }
+    
+    
+    return YES;
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    if (!IPHONE6PLUS) {
+        [UIView animateWithDuration:0.25 animations:^{
+            [_scrollView setOrigin:CGPointMake(0, 64)];
+        }];
+    }
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
 }
 
 #pragma - mark RatingBarDelegate 

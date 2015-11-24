@@ -203,9 +203,7 @@
             NSString *responseCode = getResponseCodeFromDic(response);
             if ([responseCode isEqualToString:ResponseCodeSuccess]) {
                 [controller finishedLoding];
-                //                NSArray *array = [SubjectInfo objectArrayWithKeyValuesArray:response[@"data"]];
-                //                [_dataSource removeAllObjects];
-                //                [_dataSource addObjectsFromArray:array];
+                _orderCourseInfo = [OrderCourseInfo objectWithKeyValues:response[@"data"]];
                 callBack(YES);
             } else {
                 NSString *message = response[RESPONSE_MESSAGE];
@@ -232,13 +230,15 @@
 - (void)sendOrderCar:(NSString *)trainingId
           timePeriod:(NSArray *)timePeriod
        publishedTime:(NSString *)publishedTime
+                tpye:(NSInteger)type
           controller:(BaseViewController *)controller
             callBack:(void (^)(BOOL success))callBack {
     NSDictionary *dic = @{
-                          @"trainingId": trainingId,
+                          @"trainerId": trainingId,
                           @"userId": hasUser() ? getUser().id : @"123",
                           @"timePeriod": timePeriod,
-                          @"publishTime": publishedTime
+                          @"publishTime": publishedTime,
+                          @"type": @(type)
                           };
     [controller showWaitView:@"正在发送约车信息"];
     [[AFNManager sharedAFNManager] getServer:ORDER_CAR_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {

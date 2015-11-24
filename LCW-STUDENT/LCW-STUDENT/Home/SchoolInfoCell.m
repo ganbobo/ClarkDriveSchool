@@ -20,8 +20,10 @@
     RTLabel *_lblCommentNum;
     UILabel *_lblCommentScore;
     
-    UIButton *_btnAddress;
+    UIButton *_btnAddress, *_btnPhone;
     UIView *_line;
+    
+    DrivingInfo *_drivinginfo;
 }
 
 @end
@@ -92,7 +94,7 @@
 }
 
 - (void)initBtnAddress {
-    _btnAddress = [[UIButton alloc] initWithFrame:CGRectMake(5, 0, ScreenWidth - 20, 44)];
+    _btnAddress = [[UIButton alloc] initWithFrame:CGRectMake(5, 0, ScreenWidth - 65, 44)];
     _btnAddress.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     _btnAddress.userInteractionEnabled = NO;
     _btnAddress.titleLabel.font = [UIFont systemFontOfSize:13];
@@ -106,12 +108,25 @@
     
     [_btnAddress setTitle:@"朝阳区和平里西街15号110大厦4256号（朝阳门店）" forState:UIControlStateNormal];
     [self.contentView addSubview:_btnAddress];
+    
+    
+    _btnPhone = [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth - 50, 0, 50, 44)];
+    _btnPhone.userInteractionEnabled = YES;
+    _btnPhone.titleLabel.font = [UIFont systemFontOfSize:13];
+    _btnPhone.titleLabel.numberOfLines = 0;
+    [_btnPhone setImage:[UIImage imageNamed:@"school_detail_phone"] forState:UIControlStateNormal];
+    [_btnPhone addTarget:self action:@selector(clickPhone) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:_btnPhone];
+    
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 7, 1, 30)];
+    line.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    [_btnPhone addSubview:line];
 }
 
 - (void)refreshCellWithIndex:(NSInteger)index
                   withSignUp:(BOOL)signUp
                  drivingInfo:(DrivingInfo *)drivingInfo {
-    
+    _drivinginfo = drivingInfo;
     [_btnAddress setTitle:drivingInfo.drivingAddr forState:UIControlStateNormal];
     _lblCommentScore.text = [NSString stringWithFormat:@"%@", drivingInfo.scole];
     NSInteger score = drivingInfo.scole.integerValue;
@@ -123,7 +138,7 @@
     } else {
         [_btnSelectCoach setTitle:[NSString stringWithFormat:@"下一步，生成%ld元抵用券", (long)drivingInfo.couponPrice] forState:UIControlStateNormal];
     }
-    _btnSelectCoach.hidden = _commentView.hidden = _btnAddress.hidden = YES;
+    _btnSelectCoach.hidden = _commentView.hidden = _btnPhone.hidden =  _btnAddress.hidden = YES;
     [_line setOrigin:CGPointMake(0, 44 - 0.5)];
     self.accessoryType = UITableViewCellAccessoryNone;
     self.selectionStyle = UITableViewCellSelectionStyleDefault;
@@ -140,7 +155,7 @@
         }
             break;
         case 2: {
-            _btnAddress.hidden = NO;
+            _btnAddress.hidden = _btnPhone.hidden = NO;
         }
             break;
         default:
@@ -165,6 +180,13 @@
     if (_delegate && [_delegate respondsToSelector:@selector(didClickCoach)]) {
         [_delegate didClickCoach];
     }
+}
+
+- (void)clickPhone {
+    if (_drivinginfo) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@",_drivinginfo.tel]]];
+    }
+    
 }
 
 @end

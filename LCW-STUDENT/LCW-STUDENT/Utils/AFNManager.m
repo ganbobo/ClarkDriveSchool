@@ -129,7 +129,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AFNManager);
         parameters:(NSDictionary *)params
                callBack:(void (^)(NSDictionary *response, NSString *netErrorMessage))callBack {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     [manager POST:[self _getServerAddress:serverAddress] parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {

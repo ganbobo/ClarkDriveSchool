@@ -8,6 +8,12 @@
 
 #import "CarOrderFooterReusableView.h"
 
+@interface CarOrderFooterReusableView () {
+    UIButton *_btnSubmit;
+}
+
+@end
+
 @implementation CarOrderFooterReusableView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -16,23 +22,40 @@
     if (self) {
         self.backgroundColor = [UIColor clearColor];
         
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
-        btn.frame = CGRectMake(10, self.height - 70, ScreenWidth - 20, 40);
-        btn.layer.cornerRadius = 5;
-        btn.layer.masksToBounds = YES;
-        btn.backgroundColor = [UIColor colorWithRed:0.074 green:0.715 blue:0.169 alpha:1.000];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn setTitle:@"确定预约" forState:UIControlStateNormal];
-        [btn addTarget:self action:@selector(clickSubmit) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:btn];
+        _btnSubmit = [UIButton buttonWithType:UIButtonTypeSystem];
+        _btnSubmit.frame = CGRectMake(10, self.height - 70, ScreenWidth - 20, 40);
+        _btnSubmit.layer.cornerRadius = 5;
+        _btnSubmit.layer.masksToBounds = YES;
+        [_btnSubmit setBackgroundImage:[self createImageWithColor:RGBA(0x3a, 0xa7, 0x57, 1)] forState:UIControlStateNormal];
+        [_btnSubmit setBackgroundImage:[self createImageWithColor:RGBA(0x99, 0x99, 0x99, 1)] forState:UIControlStateDisabled];
+        [_btnSubmit setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_btnSubmit setTitle:@"确定预约" forState:UIControlStateNormal];
+        [_btnSubmit addTarget:self action:@selector(clickSubmit) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_btnSubmit];
     }
     return self;
+}
+
+- (UIImage *)createImageWithColor:(UIColor *)color {
+    CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return theImage;
 }
 
 - (void)clickSubmit {
     if (_delegate && [_delegate respondsToSelector:@selector(didClickSubmit)]) {
         [_delegate didClickSubmit];
     }
+}
+
+- (void)enableBtnSubmit:(BOOL)enabled {
+    _btnSubmit.enabled = enabled;
 }
 
 @end

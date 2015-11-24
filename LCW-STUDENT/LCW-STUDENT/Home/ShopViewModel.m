@@ -94,4 +94,21 @@
 
 }
 
+/**
+ *  搜索数据
+ *
+ *  @param keyword  关键字
+ *  @param callBack 回调
+ */
+- (void)getSearchList:(NSString *)keyword callBack:(void (^)(NSArray *dataList))callBack {
+    NSMutableArray *list = [NSMutableArray array];
+    for (ShopInfo *info in _dataSource) {
+        if ([info.driving_name rangeOfString:keyword].location != NSNotFound) {
+            [list addObject:info];
+        }
+    }
+    
+    callBack(list);
+}
+
 @end

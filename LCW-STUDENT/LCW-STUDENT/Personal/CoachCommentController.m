@@ -10,7 +10,7 @@
 #import "RatingBar.h"
 #import "MyCoachViewModel.h"
 
-@interface CoachCommentController ()<UITextViewDelegate, RatingBarDelegate> {
+@interface CoachCommentController ()<UITextViewDelegate, RatingBarDelegate, UITextViewDelegate> {
     UIScrollView *_scrollView;
     
     RatingBar *_starTotalView;// 环境
@@ -173,6 +173,41 @@
 - (void)didChangeScole {
     NSInteger scole = (_starEnView.starNumber + _starCoachView.starNumber + _starQiantaiView.starNumber) / 3;
     _starTotalView.starNumber = scole;
+}
+
+#pragma - mark UITextViewDelegate 代理
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+    if (IPHONE5) {
+        [UIView animateWithDuration:0.25 animations:^{
+            [_scrollView setOrigin:CGPointMake(0, 0)];
+        }];
+    }
+    
+    if (!IPHONE6 && !IPHONE6PLUS && !IPHONE5) {
+        [UIView animateWithDuration:0.25 animations:^{
+            [_scrollView setOrigin:CGPointMake(0, -86)];
+        }];
+    }
+    
+    return YES;
+}
+
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView {
+    if (!IPHONE6 && !IPHONE6PLUS) {
+        [UIView animateWithDuration:0.25 animations:^{
+            [_scrollView setOrigin:CGPointMake(0, 64)];
+        }];
+    }
+    return YES;
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
 }
 
 @end

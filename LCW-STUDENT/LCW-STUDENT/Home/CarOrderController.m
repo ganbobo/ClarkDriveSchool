@@ -20,9 +20,7 @@
 #define kBtnDayBaseTag 10000
 #define kSelectViewHeight  50
 
-@implementation CarOrderInfo
-
-@end
+#import "DIDatepicker.h"
 
 @interface CarOrderController ()<UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout, CarOrderFooterReusableViewDelegate> {
     
@@ -32,18 +30,18 @@
     UIButton *_btnSubjectTwo, *_btnSubjectThree;
     CHTCollectionViewWaterfallLayout *_layout;
     UIView *_titleVIew;
-    UIView *_dayView;
+    DIDatepicker *_dayView;
     UIView *_selectView;
     
     CarCoachInfo *_coachInfo;
     // 数据
     CarOrderViewModel *_carOrderViewModel;
     
-    NSMutableArray *_dataSource;
-    
     // 时间
     long _publishedTime;
     SubjectInfo *_currentSubject;
+    
+    CarOrderFooterReusableView *_reusableView;
 }
 
 @end
@@ -63,89 +61,11 @@
 
 - (void)loadView {
     [super loadView];
-    _dataSource = [[NSMutableArray alloc] init];
     _carOrderViewModel = [[CarOrderViewModel alloc] init];
-    [self loadData];
     [self loadNav];
     [self loadCollectionView];
     [self loadSwichView];
     [self loadDayView];
-}
-
-#pragma - mark 加载数据
-
-- (void)loadData {
-    CarOrderInfo *info0 = [[CarOrderInfo alloc] init];
-    info0.titleName = @"08:00-09:00";
-    info0.select = NO;
-    info0.type = 0;
-    [_dataSource addObject:info0];
-    
-    CarOrderInfo *info1 = [[CarOrderInfo alloc] init];
-    info1.titleName = @"09:00-10:00";
-    info1.select = NO;
-    info1.type = 0;
-    [_dataSource addObject:info1];
-    
-    CarOrderInfo *info2 = [[CarOrderInfo alloc] init];
-    info2.titleName = @"10:00-11:00";
-    info2.select = NO;
-    info2.type = 0;
-    [_dataSource addObject:info2];
-    
-    CarOrderInfo *info = [[CarOrderInfo alloc] init];
-    info.titleName = @"10:00-11:00";
-    info.select = NO;
-    info.type = 0;
-    [_dataSource addObject:info];
-    
-    CarOrderInfo *info3 = [[CarOrderInfo alloc] init];
-    info3.titleName = @"13:00-14:00";
-    info3.select = NO;
-    info3.type = 0;
-    [_dataSource addObject:info3];
-    
-    CarOrderInfo *info4 = [[CarOrderInfo alloc] init];
-    info4.titleName = @"14:00-15:00";
-    info4.select = NO;
-    info4.type = 0;
-    [_dataSource addObject:info4];
-    
-    CarOrderInfo *info5 = [[CarOrderInfo alloc] init];
-    info5.titleName = @"15:00-16:00";
-    info5.select = NO;
-    info5.type = 0;
-    [_dataSource addObject:info5];
-    
-    CarOrderInfo *info6 = [[CarOrderInfo alloc] init];
-    info6.titleName = @"16:00-17:00";
-    info6.select = NO;
-    info6.type = 0;
-    [_dataSource addObject:info6];
-    
-    CarOrderInfo *info7 = [[CarOrderInfo alloc] init];
-    info7.titleName = @"17:00-18:00";
-    info7.select = NO;
-    info7.type = 0;
-    [_dataSource addObject:info7];
-    
-    CarOrderInfo *info8 = [[CarOrderInfo alloc] init];
-    info8.titleName = @"18:00-19:00";
-    info8.select = NO;
-    info8.type = 0;
-    [_dataSource addObject:info8];
-    
-    CarOrderInfo *info9 = [[CarOrderInfo alloc] init];
-    info9.titleName = @"19:00-20:00";
-    info9.select = NO;
-    info9.type = 0;
-    [_dataSource addObject:info9];
-    
-    CarOrderInfo *info10 = [[CarOrderInfo alloc] init];
-    info10.titleName = @"20:00-21:00";
-    info10.select = NO;
-    info10.type = 0;
-    [_dataSource addObject:info9];
 }
 
 #pragma - mark 加载界面
@@ -188,9 +108,10 @@
 }
 
 - (void)loadDayView {
-    _dayView = [[UIView alloc] initWithFrame:CGRectMake(5, kSelectViewHeight + 10, ScreenWidth - 10, 50)];
+    _dayView = [[DIDatepicker alloc] initWithFrame:CGRectMake(5, kSelectViewHeight + 10, ScreenWidth - 10, 50)];
     _dayView.backgroundColor = [UIColor whiteColor];
     [_titleVIew addSubview:_dayView];
+    [_dayView addTarget:self action:@selector(updateSelectedDate) forControlEvents:UIControlEventValueChanged];
 }
 
 
@@ -204,20 +125,16 @@
             return;
         }
     }
-    NSString *str = @"";
-    for (CarOrderInfo *info in _dataSource) {
+
+    NSMutableArray *list = [NSMutableArray array];
+    for (CourseModel *info in _carOrderViewModel.orderCourseInfo.courseList) {
         if (info.select) {
-            if ([str isEqualToString:@""]) {
-                str = [NSString stringWithFormat:@"%@", info.titleName];
-            } else {
-                str = [NSString stringWithFormat:@"%@,%@", str,info.titleName];
-            }
+            [list addObject:info.timePeriod];
         }
     }
     
-//    [_carOrderViewModel sendOrderCar:str publishTime:_publishedTime controller:self callBack:^(BOOL success) {
-//        
-//    }];
+    [_carOrderViewModel sendOrderCar:_coachInfo.trainerId timePeriod:list publishedTime:[NSString stringWithFormat:@"%ld", _publishedTime] tpye:_carOrderViewModel.orderCourseInfo.type controller:self callBack:^(BOOL success) {
+    }];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -227,39 +144,72 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return _dataSource.count;
+    return _carOrderViewModel.orderCourseInfo.courseList.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CarOrderCollectionViewCell *cell =
     (CarOrderCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"CarOrderCollectionViewCell"
                                                                      forIndexPath:indexPath];
+    CourseModel *tempModel = _carOrderViewModel.orderCourseInfo.courseList[indexPath.row];
+    [cell refreshCellByInfo:tempModel];
+    for (CarInfo *info in _carOrderViewModel.orderCourseInfo.trainerDayList) {
+        if (info.id == tempModel.id) {
+            [cell refreshCellByIsFull:info.isFull andYue:info.isYue];
+            break;
+        }
+    }
     
-    [cell refreshCellByInfo:_dataSource[indexPath.row]];
+    [cell refreshCellByType:_carOrderViewModel.orderCourseInfo.type];
+    [self enableFooterBtn];
+    
     return cell;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    CarOrderInfo *info = _dataSource[indexPath.row];
+    if (_carOrderViewModel.orderCourseInfo.type == 2) { // 休息不让约车
+        return;
+    }
+    
+    if (_carOrderViewModel.orderCourseInfo.type == 1 &&
+        _carOrderViewModel.orderCourseInfo.jiXun == NO) {
+        [self showMiddleToastWithContent:@"您不在急训学员名单中"];
+        return;
+    }
+    
+    CourseModel *info = _carOrderViewModel.orderCourseInfo.courseList[indexPath.row];
+    
+    for (CarInfo *tempInfo in _carOrderViewModel.orderCourseInfo.trainerDayList) {
+        if (info.id == tempInfo.id) {
+            if (tempInfo.isFull == 1 || tempInfo.isYue == 1) { // 已满和已约不让约车
+                return;
+            }
+            break;
+        }
+    }
+
+    
     if (info.select) {
         info.select = NO;
     } else {
         NSInteger i = 0;
         
-        for (CarOrderInfo *info in _dataSource) {
-            if (info.select) {
+        for (CourseModel *tempInfo in _carOrderViewModel.orderCourseInfo.courseList) {
+            if (tempInfo.select) {
                 i += 1;
             }
         }
         
         if (i >= 2) {
-            [self showMiddleToastWithContent:@"最多只能预约2s个小时的课程"];
+            [self showMiddleToastWithContent:@"每人每天最多只能预约2个小时的课程"];
             return;
         }
         info.select = YES;
     }
     
     [_collectionView reloadData];
+    
+    [self enableFooterBtn];
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout heightForFooterInSection:(NSInteger)section {
@@ -274,6 +224,7 @@
                                                      withReuseIdentifier:@"FooterView"
                                                      forIndexPath:indexPath];
         reusableView.delegate = self;
+        _reusableView = reusableView;
     }
     
     return reusableView;
@@ -289,17 +240,10 @@
 
 #pragma - mark 点击日期
 
-- (void)clickViewDayBtn:(CarOrderDayBtn *)btn {
-    for (UIView *view in _dayView.subviews) {
-        if ([view isKindOfClass:[CarOrderDayBtn class]]) {
-            CarOrderDayBtn *button = (CarOrderDayBtn *)view;
-            button.selected = NO;
-        }
-    }
+- (void)updateSelectedDate {
     
-    btn.selected = YES;
-    _publishedTime = btn.time;
-    [self getCourseFromServer:btn.time];
+    _publishedTime = [_dayView.selectedDate timeIntervalSince1970] * 1000;
+    [self getCourseFromServer:_publishedTime];
 }
 
 - (void)clickRules {
@@ -308,20 +252,6 @@
 }
 
 - (void)clickSubject:(CarOrderBtn *)btn {
-    for (UIView *view in _selectView.subviews) {
-        if ([view isKindOfClass:[CarOrderBtn class]]) {
-            CarOrderBtn *button = (CarOrderBtn *)view;
-            button.selected = NO;
-        }
-    }
-    
-    
-    
-    btn.selected = YES;
-    
-    
-    _currentSubject = btn.subjectInfo;
-    
     if (_coachInfo) {
         if (![btn.subjectInfo.subject_name isEqualToString:_coachInfo.subjectName]) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"请对当前科目教练进行评价，确保关闭当前科目后，在进行其他科目的约车" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
@@ -329,6 +259,15 @@
             return;
         }
     }
+    for (UIView *view in _selectView.subviews) {
+        if ([view isKindOfClass:[CarOrderBtn class]]) {
+            CarOrderBtn *button = (CarOrderBtn *)view;
+            button.selected = NO;
+        }
+    }
+    
+    btn.selected = YES;
+    _currentSubject = btn.subjectInfo;
 }
 
 #pragma - mark 获取科目
@@ -347,6 +286,10 @@
 
 // 获取时间
 - (void)getTimeFromServer {
+    __weak typeof(self) safeSelf = self;
+    [self showLoading:^{
+        [safeSelf getTimeFromServer];
+    }];
     [_carOrderViewModel getTimeListFromServerController:self callBack:^(BOOL success) {
         if (success) {
             for (CarCoachInfo *info in _carOrderViewModel.coachList) {
@@ -371,7 +314,9 @@
 // 获取课程
 - (void)getCourseFromServer:(long)publishTime {
     [_carOrderViewModel getCourseListFromServer:_coachInfo.trainerId publishTime:publishTime controller:self callBack:^(BOOL success) {
-        
+        if (success) {
+            [_collectionView reloadData];
+        }
     }];
 }
 
@@ -400,27 +345,32 @@
 }
 
 - (void)loadDayView:(NSMutableArray *)list {
-    for (UIView *view in _dayView.subviews) {
-        [view removeFromSuperview];
+    NSMutableArray *dates = [[NSMutableArray alloc] init];
+    for (NSInteger i = 0; i < list.count; i ++) {
+        NSNumber *number = list[i];
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:number.longValue / 1000];
+        [dates addObject:date];
     }
     
-    for (NSInteger i = 0; i < list.count; i ++) {
-        CarOrderDayBtn *btn = [[CarOrderDayBtn alloc] initWithFrame:CGRectMake(i * (_dayView.width / list.count), 0, _dayView.width / list.count, _dayView.height + 3)];
-        
-        [_dayView addSubview:btn];
-        [btn addTarget:self action:@selector(clickViewDayBtn:) forControlEvents:UIControlEventTouchUpInside];
-        NSNumber *number = list[i];
-        btn.time = number.longValue;
-        btn.tag = 1000 + i;
-        
-        if (i < list.count - 1) {
-            UIView *line = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(btn.frame), 0, 0.5, _dayView.height)];
-            line.backgroundColor = RGBA(0xcc, 0xcc, 0xcc, 1);
-            [_dayView addSubview:line];
+    
+    [_dayView setDates:dates];
+    [_dayView selectDateAtIndex:0];
+}
+
+- (void)enableFooterBtn {
+    if (_carOrderViewModel.orderCourseInfo.type == 2) { // 休息
+        [_reusableView enableBtnSubmit:NO];
+        return;
+    }
+    BOOL enable = NO;
+    for (CourseModel *info in _carOrderViewModel.orderCourseInfo.courseList) {
+        if (info.select) {
+            enable = YES;
+            break;
         }
     }
-    CarOrderDayBtn *btn = [(CarOrderDayBtn *)_dayView viewWithTag:1000];
-    [self clickViewDayBtn:btn];
+    
+    [_reusableView enableBtnSubmit:enable];
 }
 
 @end

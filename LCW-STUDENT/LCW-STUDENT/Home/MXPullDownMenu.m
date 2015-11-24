@@ -298,6 +298,13 @@
     
 }
 
+- (void)dismiss {
+    [self animateIdicator:_indicators[_currentSelectedMenudIndex] background:_backGroundView tableView:_tableView title:_titles[_currentSelectedMenudIndex] forward:NO complecte:^{
+        _show = NO;
+        
+    }];
+}
+
 - (void)animateTitle:(CATextLayer *)title show:(BOOL)show complete:(void(^)())complete
 {
     if (show) {

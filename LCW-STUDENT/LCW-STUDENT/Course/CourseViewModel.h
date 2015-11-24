@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 #import "BaseViewController.h"
+#import "CourseInfo.h"
 
 @interface CourseViewModel : NSObject
 
-@property(nonatomic, retain)NSMutableArray *dataSource;
+@property(nonatomic, retain)CourseInfo *courseInfo;
 
 /**
  *  获取课程列表
@@ -26,16 +27,14 @@
 /**
  *  取消约车
  *
- *  @param userId     学员ID
  *  @param userDayId  约车记录ID
  *  @param recordTime 约车时间戳
  *  @param controller 控制器
  *  @param callBack   回调
  */
-- (void)cancelOrderCar:(NSString *)userId
-             userDayId:(NSString *)userDayId
-            recordTime:(NSString *)recordTime
-            controller:(BaseViewController *)controller
-              callBack:(void(^)(BOOL success))callBack;
+- (void)cancelOrderCarUserDayId:(NSString *)userDayId
+                     recordTime:(NSString *)recordTime
+                     controller:(BaseViewController *)controller
+                       callBack:(void(^)(BOOL success))callBack;
 
 @end

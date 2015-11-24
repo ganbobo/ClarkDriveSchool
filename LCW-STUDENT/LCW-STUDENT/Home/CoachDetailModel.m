@@ -11,3 +11,7 @@
 @implementation CoachDetailModel
 
 @end
+
+@implementation CoachUserModel
+
+@end

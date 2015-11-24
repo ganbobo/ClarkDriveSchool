@@ -46,7 +46,7 @@
     }
     
     if (_viewModel.coachDetailModel) {
-        _lblNickName.text = [NSString stringWithFormat:@"%@ %@ %ld岁", _coachInfo.trainerName, _viewModel.coachDetailModel.sex == 1? @"男": @"女", (long)_viewModel.coachDetailModel.driving_age];
+        _lblNickName.text = [NSString stringWithFormat:@"%@ %@ %ld岁", _coachInfo.trainerName, 1 == 1? @"男": @"女", (long)_viewModel.coachDetailModel.age];
     }
 }
 
@@ -140,7 +140,7 @@
                 cell.detailTextLabel.text = _coachInfo.drivingName;
                 break;
             case 1:
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", _coachInfo.typeName, _subjectInfo.subject_name];
+                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", _subjectInfo.subject_name, _coachInfo.typeName];
                 break;
             default:
                 break;
@@ -151,7 +151,11 @@
                 cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld人", (long)_coachInfo.currentlyTrainee];
                 break;
             case 1:
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld人", (long)_coachInfo.maxTrainee];
+                if (_viewModel.coachUserModel) {
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%ld人", (long)_viewModel.coachUserModel.totalNum];
+                } else {
+                    cell.detailTextLabel.text = @"0人";
+                }
                 break;
             default:
                 break;
@@ -202,12 +206,12 @@
 #pragma - mark 获取教练详情
 
 - (void)getCoachDetailFromServer {
-//    [_viewModel getCoachDetailInfoFromServer:_coachInfo.trainerId controller:self callBack:^(BOOL success) {
-//        if (success) {
-//            [self refreshUser];
-//            [_tableView reloadData];
-//        }
-//    }];
+    [_viewModel getCoachDetailInfoFromServer:_coachInfo.trainerId controller:self callBack:^(BOOL success) {
+        if (success) {
+            [self refreshUser];
+            [_tableView reloadData];
+        }
+    }];
 }
 
 @end

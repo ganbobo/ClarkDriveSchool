@@ -13,15 +13,6 @@
 
 @implementation CourseViewModel
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        _dataSource = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-
 /**
  *  获取课程列表
  *
@@ -42,9 +33,7 @@
             NSString *responseCode = getResponseCodeFromDic(response);
             if ([responseCode isEqualToString:ResponseCodeSuccess]) {
                 [controller finishedLoding];
-                NSArray *list = [CourseInfo objectArrayWithKeyValuesArray:response[@"data"][@"jr"]];
-                [_dataSource removeAllObjects];
-                [_dataSource addObjectsFromArray:list];
+                _courseInfo = [CourseInfo objectWithKeyValues:response[@"data"]];
                 callBack(YES);
             } else {
                 NSString *message = response[RESPONSE_MESSAGE];
@@ -65,11 +54,10 @@
  *  @param controller 控制器
  *  @param callBack   回调
  */
-- (void)cancelOrderCar:(NSString *)userId
-             userDayId:(NSString *)userDayId
-            recordTime:(NSString *)recordTime
-            controller:(BaseViewController *)controller
-              callBack:(void(^)(BOOL success))callBack {
+- (void)cancelOrderCarUserDayId:(NSString *)userDayId
+                     recordTime:(NSString *)recordTime
+                     controller:(BaseViewController *)controller
+                       callBack:(void(^)(BOOL success))callBack {
     NSDictionary *param = @{
                             @"userId": getUser().id,
                             @"userDayId": userDayId,

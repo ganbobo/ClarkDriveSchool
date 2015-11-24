@@ -21,6 +21,7 @@
 #import "LocationManager.h"
 #import <BaiduMapAPI_Map/BMKPinAnnotationView.h>
 #import "ShopAnnotation.h"
+#import "SearchView.h"
 
 
 #define kListTag  100001
@@ -30,7 +31,7 @@
 
 @end
 
-@interface ShopController ()<UITableViewDataSource, UITableViewDelegate, MXPullDownMenuDelegate, BMKMapViewDelegate> {
+@interface ShopController ()<UITableViewDataSource, UITableViewDelegate, MXPullDownMenuDelegate, BMKMapViewDelegate, SearchViewDelegate> {
     @private
     UIView *_titleView;
     __weak IBOutlet UITableView *_tableView;
@@ -176,17 +177,31 @@
         btnMap.userInteractionEnabled = NO;
         _mapView.hidden = NO;
         _pullDownMenu.hidden = YES;
+        [_pullDownMenu dismiss];
     }
 }
 
 - (void)clickSearch {
-    
+    SearchView *searchView = [[SearchView alloc] init];
+    searchView.viewModel = _shopViewModel;
+    searchView.delegate = self;
+    [searchView show];
+}
+
+#pragma - mark SearchViewDelegate
+
+- (void)didSelectShopInfo:(ShopInfo *)shopInfo {
+    [self performSegueWithIdentifier:@"SchoolDetail" sender:shopInfo];
 }
 
 #pragma - mark UITableViewDataSource, UITableViewDelegate 代理
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _shopViewModel.dataSource.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 86;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -264,25 +279,16 @@
         }
             break;
         case 1: {
-            
-        }
-            break;
-        case 2: {
-            NSString *string = _priceList[row];
-            if ([string rangeOfString:@"-"].location != NSNotFound) {
-                NSArray *array = [string componentsSeparatedByString:@"-"];
-                NSString *first = array.firstObject;
-                NSString *last = array.lastObject;
-                _filterInfo.startPrice = first.floatValue;
-                _filterInfo.endPrice = last.floatValue;
-            } else {
-                if ([string isEqualToString:@"价格"]) {
-                    _filterInfo.startPrice = 0;
-                    _filterInfo.endPrice = 100000;
-                } else {
-                    _filterInfo.startPrice = 8000;
-                    _filterInfo.endPrice = 100000;
-                }
+            switch (row) {
+                case 1:
+                    _filterInfo.toDate = @"asc";
+                    break;
+                case 2:
+                    _filterInfo.toDate = @"desc";
+                    break;
+                    
+                default:
+                    break;
             }
         }
             break;
@@ -291,12 +297,7 @@
                 case 0:
                     _filterInfo.toDate = @"asc";
                     break;
-                case 1:
-                    _filterInfo.toDate = @"asc";
-                    break;
-                case 2:
-                    _filterInfo.toDate = @"desc";
-                    break;
+                
                 default:
                     break;
             }
@@ -348,8 +349,7 @@
                 [cityList addObject:model.c_name];
             }
             
-            _priceList = @[@"价格", @"0-2000", @"2000-4000", @"4000-6000", @"6000-8000", @"8000以上"];
-            _dataMenu = @[cityList, @[@"综合排序", @"由近到远"], _priceList, @[@"评分", @"由低到高", @"由高到低"]];
+            _dataMenu = @[cityList, @[@"综合排序", @"由近到远", @"评分由低到高", @"评分由高到低", @"价格由低到高", @"价格由高到低"]];
             
             _pullDownMenu = [[MXPullDownMenu alloc] initWithArray:_dataMenu selectedColor:[UIColor colorWithRed:0.180 green:0.635 blue:0.353 alpha:1.000]];
             _pullDownMenu.delegate = self;

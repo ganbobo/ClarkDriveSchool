@@ -17,12 +17,16 @@
 #import "SchoolViewModel.h"
 #import "BlindIDController.h"
 #import "CoachFilterController.h"
+#import "RTLabel.h"
+#import "MapViewController.h"
+#import <UIImageView+AFNetworking.h>
 
 @interface SchoolDetailController ()<UITableViewDataSource, UITableViewDelegate, SchoolInfoViewDelegate> {
     NSMutableArray *_dataSource;
     __weak IBOutlet UITableView *_tableView;
     
-    __weak IBOutlet UILabel *_lblName;
+    __weak IBOutlet UIImageView *_imgView;
+    __weak IBOutlet RTLabel *_lblName;
     __weak IBOutlet UIView *_headerView;
     HFStretchableTableHeaderView *_stretchView;
     // 介绍
@@ -73,7 +77,8 @@
     [_infoView setDataSource:_hasSignUp drivingInfo:detailInfo.driving];
     [_dataSource addObject:_infoView];
     _lblName.textColor = [UIColor colorWithRed:0.992 green:0.306 blue:0.024 alpha:1.000];
-    _lblName.text = [NSString stringWithFormat:@"￥%ld %@ C1周一到周日班", (long)_shopInfo.driving_price, detailInfo.driving.drivingName];
+    _lblName.text = [NSString stringWithFormat:@"<font face='HelveticaNeue-CondensedBold' color='#eb4f38' size=14>￥</font><font face='HelveticaNeue-CondensedBold' color='#eb4f38' size=20>%ld</font> <font face='HelveticaNeue-CondensedBold' color='#eb4f38' size=14>%@</font> <font face='HelveticaNeue-CondensedBold' color='#eb4f38' size=14>C1周一到周日班</font>", (long)_shopInfo.driving_price, detailInfo.driving.drivingName];
+    [_imgView setImageWithURL:getImageUrl(_shopInfo.resource_url) placeholderImage:[UIImage imageNamed:@"downlaod_picture_fail"]];
     
     if (detailInfo.privilegeList.count > 0) {
         _studentPrivilegeView = [[SchoolDescView alloc] initWithWidth:ScreenWidth originalY:0 columns:2];
@@ -251,7 +256,9 @@
 }
 
 - (void)didShowMapLocation {
-    
+    MapViewController *controller = [[MapViewController alloc] init];
+    controller.shopInfo = _shopInfo;
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma - mark 获取数据

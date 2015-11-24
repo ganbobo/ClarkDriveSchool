@@ -11,8 +11,9 @@
 
 @interface CarOrderCollectionViewCell () {
     
+    __weak IBOutlet UILabel *_lblTopic;
     __weak IBOutlet UILabel *_lblTitle;
-    __weak IBOutlet UIButton *_btnSelect;
+    __weak IBOutlet UIImageView *_imgSelect;
     __weak IBOutlet UILabel *_lblState;
 }
 
@@ -21,18 +22,49 @@
 @implementation CarOrderCollectionViewCell
 
 - (void)awakeFromNib {
-    _btnSelect.userInteractionEnabled = NO;
+
     _lblState.hidden = YES;
-    [_btnSelect setImage:[UIImage imageNamed:@"order_car_select"] forState:UIControlStateSelected];
-    [_btnSelect setImage:[self createImageWithColor:[UIColor clearColor]] forState:UIControlStateNormal];
+    _imgSelect.hidden = YES;
 }
 
 
-- (void)refreshCellByInfo:(CarOrderInfo *)info {
-    _lblTitle.text = info.titleName;
-    _btnSelect.selected = info.select;
+- (void)refreshCellByInfo:(CourseModel *)info {
+    _lblTitle.text = info.timePeriod;
+    _imgSelect.hidden = !info.select;
 }
 
+- (void)refreshCellByIsFull:(NSInteger)isfull andYue:(NSInteger)yue {
+    if (isfull) {
+        _lblState.hidden = NO;
+        _lblState.text = @"已满";
+        _lblState.textColor = RGBA(0x69, 0x69, 0x69, 1);
+        _lblState.backgroundColor = RGBA(0xbb, 0xbb, 0xbb, 1);
+    } else {
+        _lblState.hidden = YES;
+    }
+    
+    if (yue) {
+        _lblState.text = @"已约";
+        _lblState.backgroundColor = RGBA(0xbb, 0xbb, 0xbb, 1);
+        _lblState.textColor = RGBA(0x3a, 0xa7, 0x57, 1);
+        _lblState.hidden = NO;
+    }
+}
+
+- (void)refreshCellByType:(NSInteger)type {
+    if (type == 1) {
+        _lblTopic.hidden = NO;
+    } else {
+        _lblTopic.hidden = YES;
+    }
+    
+    if (type == 2) {
+        _lblState.hidden = NO;
+        _lblState.text = @"休息";
+        _lblState.textColor = RGBA(0x69, 0x69, 0x69, 1);
+        _lblState.backgroundColor = RGBA(0xbb, 0xbb, 0xbb, 1);
+    }
+}
 
 - (UIImage *)createImageWithColor:(UIColor *)color {
     CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);

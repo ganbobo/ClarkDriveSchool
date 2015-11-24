@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+#import "CourseInfo.h"
+
+@protocol CourseCellDelegate <NSObject>
+
+- (void)didClickCancel:(RecordInfo *)recordInfo;
+
+@end
+
 @interface CourseCell : UITableViewCell
+
+@property(nonatomic, assign)id<CourseCellDelegate> delegate;
+
+- (void)refreshCellByInfo:(RecordInfo *)recordInfo;
 
 @end

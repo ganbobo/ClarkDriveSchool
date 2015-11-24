@@ -29,7 +29,7 @@
 
 @end
 
-@interface CoachController ()<UITableViewDataSource, UITableViewDelegate, MXPullDownMenuDelegate> {
+@interface CoachController ()<UITableViewDataSource, UITableViewDelegate, MXPullDownMenuDelegate, UITextFieldDelegate> {
     
     @private
     __weak IBOutlet UITableView *_tableView;
@@ -41,6 +41,10 @@
     // 数据
     CoachViewModel *_coachViewModel;
     CoachFilterInfo *_filterInfo;
+    
+    UIView *_searchBackView;
+    
+    NSMutableArray *_dataSource;
 }
 
 @end
@@ -60,6 +64,7 @@
 
 - (void)loadView {
     [super loadView];
+    _dataSource = [[NSMutableArray alloc] init];
     _coachViewModel = [[CoachViewModel alloc] init];
     [self loadNav];
     [self loadPullDownMenuView];
@@ -82,6 +87,7 @@
     _searchField.returnKeyType = UIReturnKeySearch;
     _searchField.font = [UIFont systemFontOfSize:14];
     _searchField.placeholder = @"请输入教练姓名或姓";
+    _searchField.delegate = self;
     [searchView addSubview:_searchField];
 }
 
@@ -97,10 +103,43 @@
     [self.view addSubview:_pullDownMenu];
 }
 
+#pragma - mark UITextFieldDelegate 代理
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (!_searchBackView) {
+        _searchBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGesture)];
+        [_searchBackView addGestureRecognizer:tap];
+    }
+    [_searchBackView removeFromSuperview];
+    [self.view addSubview:_searchBackView];
+    return YES;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    [_searchBackView removeFromSuperview];
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [_searchField resignFirstResponder];
+    [_searchBackView removeFromSuperview];
+    [_coachViewModel getSearchList:textField.text callBack:^(NSArray *dataList) {
+        [_dataSource removeAllObjects];
+        [_dataSource addObjectsFromArray:dataList];
+        [_tableView reloadData];
+    }];
+    return YES;
+}
+
+- (void)tapGesture {
+    [_searchField resignFirstResponder];
+}
+
 #pragma - mark UITableViewDataSource, UITableViewDelegate 代理
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _coachViewModel.coachList.count;
+    return _dataSource.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -110,7 +149,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CoachCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CoachCell" forIndexPath:indexPath];
-    [cell refreshCellByInfo:_coachViewModel.coachList[indexPath.row]];
+    [cell refreshCellByInfo:_dataSource[indexPath.row]];
     return cell;
 }
 
@@ -183,6 +222,7 @@
             break;
     }
     
+    _searchField.text = @"";
     [self getCoachList];
 }
 
@@ -207,6 +247,8 @@
     }
     [_coachViewModel getCoachListFromServer:subjectId sex:_filterInfo.sex typeName:_filterInfo.type overplusTrainee:_filterInfo.desc controller:self callBack:^(BOOL success) {
         if (success) {
+            [_dataSource removeAllObjects];
+            [_dataSource addObjectsFromArray:_coachViewModel.coachList];
             [_tableView reloadData];
         }
     }];

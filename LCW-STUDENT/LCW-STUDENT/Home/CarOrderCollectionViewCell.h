@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-#import "CarOrderController.h"
+#import "OrderCourseInfo.h"
 
 @interface CarOrderCollectionViewCell : UICollectionViewCell
 
-- (void)refreshCellByInfo:(CarOrderInfo *)info;
+- (void)refreshCellByInfo:(CourseModel *)info;
+- (void)refreshCellByIsFull:(NSInteger)isfull andYue:(NSInteger)yue;
+- (void)refreshCellByType:(NSInteger)type;
 
 @end

@@ -12,14 +12,6 @@
  *  约车
  */
 
-@interface CarOrderInfo : NSObject
-
-@property(nonatomic, assign)BOOL select;
-@property(nonatomic, assign)NSInteger type;
-@property(nonatomic, retain)NSString *titleName;
-
-@end
-
 @interface CarOrderController : BaseViewController
 
 @end

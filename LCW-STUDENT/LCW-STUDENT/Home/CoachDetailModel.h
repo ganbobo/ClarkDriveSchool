@@ -10,24 +10,30 @@
 
 @interface CoachDetailModel : NSObject
 
-@property (nonatomic, copy) NSString *identification;
-
-@property (nonatomic, copy) NSString *cn_name;
-
-@property (nonatomic, copy) NSString *id;
-
 @property (nonatomic, assign) NSInteger age;
 
-@property (nonatomic, copy) NSString *trainer_type;
+@property (nonatomic, copy) NSString *resourceUrl;
 
-@property (nonatomic, assign) NSInteger driving_age;
+@property (nonatomic, copy) NSString *trainerName;
 
-@property (nonatomic, copy) NSString *trainer_level;
+@property (nonatomic, copy) NSString *trainerId;
 
-@property (nonatomic, copy) NSString *tel;
+@property (nonatomic, copy) NSString *subjectName;
 
-@property (nonatomic, assign) NSInteger sex;
+@property (nonatomic, copy) NSString *drivingName;
 
-@property (nonatomic, copy) NSString *resource_url;
+@end
+
+@interface CoachUserModel : NSObject
+
+@property (nonatomic, assign) NSInteger totalNum;
+
+@property (nonatomic, assign) NSInteger num;
+
+@property (nonatomic, assign) NSInteger level;
+
+@property (nonatomic, copy) NSString *gcomment;
+
+@property (nonatomic, assign) NSInteger currentNum;
 
 @end

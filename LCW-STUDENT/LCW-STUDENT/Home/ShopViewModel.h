@@ -32,4 +32,12 @@
                    controller:(BaseViewController *)controller
                      callBack:(void (^)(BOOL success))callBack;
 
+/**
+ *  搜索数据
+ *
+ *  @param keyword  关键字
+ *  @param callBack 回调
+ */
+- (void)getSearchList:(NSString *)keyword callBack:(void (^)(NSArray *dataList))callBack;
+
 @end

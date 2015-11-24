@@ -492,15 +492,6 @@
                                                     <color key="textColor" red="0.19607843137254902" green="0.19607843137254902" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PpA-f8-PHU">
-                                                    <rect key="frame" x="53" y="49" width="22" height="22"/>
-                                                    <animations/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="22" id="7Go-Oa-mds"/>
-                                                        <constraint firstAttribute="width" constant="22" id="us7-R7-Zhj"/>
-                                                    </constraints>
-                                                    <state key="normal" image="order_car_select"/>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已满" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYy-qQ-bdW">
                                                     <rect key="frame" x="83" y="53" width="40" height="18"/>
                                                     <animations/>
@@ -513,6 +504,24 @@
                                                     <color key="textColor" red="0.41176470588235292" green="0.41176470588235292" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="order_car_select" translatesAutoresizingMaskIntoConstraints="NO" id="O6r-CK-Xxa">
+                                                    <rect key="frame" x="108" y="56" width="20" height="20"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="2ik-gW-tkP"/>
+                                                        <constraint firstAttribute="width" constant="20" id="dbU-FE-oDT"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="考前急训" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bE-ml-ByV">
+                                                    <rect key="frame" x="5" y="5" width="118" height="20"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="1lj-ML-nDz"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -520,19 +529,23 @@
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="O6r-CK-Xxa" secondAttribute="bottom" id="1KT-82-jds"/>
                                             <constraint firstItem="q1o-Jj-kiW" firstAttribute="leading" secondItem="Vhs-MU-jsk" secondAttribute="leading" id="2Qc-2W-sg3"/>
                                             <constraint firstAttribute="bottom" secondItem="q1o-Jj-kiW" secondAttribute="bottom" id="4yV-MF-brV"/>
+                                            <constraint firstItem="8bE-ml-ByV" firstAttribute="leading" secondItem="Vhs-MU-jsk" secondAttribute="leading" constant="5" id="8TX-Tb-dTv"/>
                                             <constraint firstAttribute="trailing" secondItem="JYy-qQ-bdW" secondAttribute="trailing" constant="5" id="ELw-Ca-4Fz"/>
                                             <constraint firstAttribute="trailing" secondItem="q1o-Jj-kiW" secondAttribute="trailing" id="TUt-IC-mWa"/>
-                                            <constraint firstItem="PpA-f8-PHU" firstAttribute="centerX" secondItem="Vhs-MU-jsk" secondAttribute="centerX" id="fYp-Kx-RVk"/>
-                                            <constraint firstAttribute="bottom" secondItem="PpA-f8-PHU" secondAttribute="bottom" constant="5" id="hST-Wp-VT5"/>
+                                            <constraint firstItem="8bE-ml-ByV" firstAttribute="top" secondItem="Vhs-MU-jsk" secondAttribute="top" constant="5" id="TXk-X8-N1b"/>
+                                            <constraint firstAttribute="trailing" secondItem="8bE-ml-ByV" secondAttribute="trailing" constant="5" id="cNU-RN-UYP"/>
                                             <constraint firstAttribute="bottom" secondItem="JYy-qQ-bdW" secondAttribute="bottom" constant="5" id="oLS-f2-jnT"/>
                                             <constraint firstItem="q1o-Jj-kiW" firstAttribute="top" secondItem="Vhs-MU-jsk" secondAttribute="top" id="p9a-LN-doT"/>
+                                            <constraint firstAttribute="trailing" secondItem="O6r-CK-Xxa" secondAttribute="trailing" id="u2O-NF-2Pm"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="_btnSelect" destination="PpA-f8-PHU" id="9jB-zG-sO7"/>
+                                            <outlet property="_imgSelect" destination="O6r-CK-Xxa" id="YOh-VB-BM9"/>
                                             <outlet property="_lblState" destination="JYy-qQ-bdW" id="vKt-UB-O0k"/>
-                                            <outlet property="_lblTitle" destination="q1o-Jj-kiW" id="DhO-sP-X4E"/>
+                                            <outlet property="_lblTitle" destination="q1o-Jj-kiW" id="eST-UO-G2e"/>
+                                            <outlet property="_lblTopic" destination="8bE-ml-ByV" id="Orx-iW-9mK"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -1077,7 +1090,7 @@
         <!--驾校详情-->
         <scene sceneID="IFe-tr-lqB">
             <objects>
-                <viewController id="Civ-hP-UL9" customClass="SchoolDetailController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SchoolDetailController" id="Civ-hP-UL9" customClass="SchoolDetailController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zwB-Rz-dXm"/>
                         <viewControllerLayoutGuide type="bottom" id="T6y-2U-KgB"/>
@@ -1094,7 +1107,7 @@
                                     <rect key="frame" x="0.0" y="64" width="600" height="161"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detail_image.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="GsX-8X-YuF">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="downlaod_picture_fail" translatesAutoresizingMaskIntoConstraints="NO" id="GsX-8X-YuF">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="161"/>
                                             <animations/>
                                         </imageView>
@@ -1106,29 +1119,27 @@
                                                 <constraint firstAttribute="height" constant="35" id="UWD-S1-pb9"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="星科驾校" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzl-WW-GAb">
-                                            <rect key="frame" x="5" y="126" width="590" height="35"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vi9-t5-B7l" customClass="RTLabel">
+                                            <rect key="frame" x="5" y="131" width="590" height="30"/>
                                             <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="35" id="vYa-RQ-6df"/>
+                                                <constraint firstAttribute="height" constant="30" id="FFX-EM-dl1"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        </view>
                                     </subviews>
                                     <animations/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="OK4-gO-u0A" secondAttribute="trailing" id="1Eb-Z2-5K7"/>
                                         <constraint firstItem="GsX-8X-YuF" firstAttribute="leading" secondItem="O92-iA-Y2e" secondAttribute="leading" id="D9R-e8-HwX"/>
                                         <constraint firstAttribute="bottom" secondItem="OK4-gO-u0A" secondAttribute="bottom" id="Jdf-vm-Ldx"/>
+                                        <constraint firstItem="vi9-t5-B7l" firstAttribute="leading" secondItem="O92-iA-Y2e" secondAttribute="leading" constant="5" id="Tzn-gs-4Tt"/>
                                         <constraint firstAttribute="bottom" secondItem="GsX-8X-YuF" secondAttribute="bottom" id="bKH-Mg-qfQ"/>
                                         <constraint firstAttribute="trailing" secondItem="GsX-8X-YuF" secondAttribute="trailing" id="c8z-EE-bV1"/>
+                                        <constraint firstAttribute="bottom" secondItem="vi9-t5-B7l" secondAttribute="bottom" id="jaI-BO-CMX"/>
                                         <constraint firstItem="OK4-gO-u0A" firstAttribute="leading" secondItem="O92-iA-Y2e" secondAttribute="leading" id="lbH-4f-O9V"/>
+                                        <constraint firstAttribute="trailing" secondItem="vi9-t5-B7l" secondAttribute="trailing" constant="5" id="nh6-xV-lOp"/>
                                         <constraint firstItem="GsX-8X-YuF" firstAttribute="top" secondItem="O92-iA-Y2e" secondAttribute="top" id="q32-oL-oWR"/>
-                                        <constraint firstAttribute="bottom" secondItem="kzl-WW-GAb" secondAttribute="bottom" id="qL4-jY-7WB"/>
-                                        <constraint firstItem="kzl-WW-GAb" firstAttribute="leading" secondItem="O92-iA-Y2e" secondAttribute="leading" constant="5" id="r3o-4C-7a1"/>
-                                        <constraint firstAttribute="trailing" secondItem="kzl-WW-GAb" secondAttribute="trailing" constant="5" id="wk2-f6-XWC"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -1163,7 +1174,8 @@
                     <navigationItem key="navigationItem" title="驾校详情" id="eFe-Y4-wB6"/>
                     <connections>
                         <outlet property="_headerView" destination="O92-iA-Y2e" id="vHf-UX-G6w"/>
-                        <outlet property="_lblName" destination="kzl-WW-GAb" id="mDc-W6-Ufk"/>
+                        <outlet property="_imgView" destination="GsX-8X-YuF" id="ZD9-Ck-c9d"/>
+                        <outlet property="_lblName" destination="vi9-t5-B7l" id="X0V-aS-68M"/>
                         <outlet property="_tableView" destination="orp-66-eLH" id="5LW-Yn-JuT"/>
                         <segue destination="dQF-ju-Iwi" kind="show" identifier="CoachFilter" id="6tF-qJ-fEx"/>
                         <segue destination="oJM-sH-Gow" kind="show" identifier="Coupon" id="DGJ-hW-30F"/>
@@ -1681,11 +1693,11 @@
     <resources>
         <image name="btn_common" width="20" height="20"/>
         <image name="default_user_avatar" width="68" height="68"/>
-        <image name="detail_image.jpg" width="1002" height="330"/>
+        <image name="downlaod_picture_fail" width="50" height="50"/>
         <image name="home_car" width="50" height="50"/>
         <image name="home_sale" width="50" height="50"/>
         <image name="home_test" width="50" height="50"/>
-        <image name="order_car_select" width="15" height="15"/>
+        <image name="order_car_select" width="20" height="20"/>
         <image name="shop_btn_border" width="20" height="20"/>
         <image name="shop_five_corner" width="10" height="9"/>
     </resources>

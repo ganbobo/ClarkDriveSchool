@@ -18,4 +18,6 @@
 
 @property(nonatomic, assign)id<CarOrderFooterReusableViewDelegate> delegate;
 
+- (void)enableBtnSubmit:(BOOL)enabled;
+
 @end

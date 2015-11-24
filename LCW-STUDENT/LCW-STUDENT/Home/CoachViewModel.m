@@ -108,7 +108,8 @@
             NSString *responseCode = getResponseCodeFromDic(response);
             if ([responseCode isEqualToString:ResponseCodeSuccess]) {
                 [controller finishedLoding];
-                _coachDetailModel = [CoachDetailModel objectWithKeyValues:response[@"data"]];
+                _coachDetailModel = [CoachDetailModel objectWithKeyValues:response[@"data"][@"jta"]];
+                _coachUserModel = [CoachUserModel objectWithKeyValues:response[@"data"][@"jd"]];
                 callBack(YES);
             } else {
                 NSString *message = response[RESPONSE_MESSAGE];
@@ -154,6 +155,23 @@
             }
         }
     }];
+}
+
+/**
+ *  搜索数据
+ *
+ *  @param keyword  关键字
+ *  @param callBack 回调
+ */
+- (void)getSearchList:(NSString *)keyword callBack:(void (^)(NSArray *dataList))callBack {
+    NSMutableArray *list = [NSMutableArray array];
+    for (CoachModel *info in _coachList) {
+        if ([info.trainerName rangeOfString:keyword].location != NSNotFound) {
+            [list addObject:info];
+        }
+    }
+    
+    callBack(list);
 }
 
 @end
