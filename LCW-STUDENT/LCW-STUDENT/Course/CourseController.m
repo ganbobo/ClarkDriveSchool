@@ -17,6 +17,9 @@
     __weak IBOutlet UITableView *_tableView;
     CourseViewModel *_viewModel;
     NSInteger _type;
+    
+    // 取消约车记录
+    RecordInfo *_recordInfo;
 }
 
 @end
@@ -63,6 +66,7 @@
 #pragma - mark UITableViewDataSource, UITableViewDelegate 代理
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSLog(@"count is %ld", [_viewModel.courseInfo getListByType:_type].count);
     return [_viewModel.courseInfo getListByType:_type].count;
 }
 
@@ -146,34 +150,41 @@
 #pragma - mark CourseCellDelegate 代理
 
 - (void)didClickCancel:(RecordInfo *)recordInfo {
-    [_viewModel cancelOrderCarUserDayId:recordInfo.userDayId recordTime:[NSString stringWithFormat:@"%lld", recordInfo.recordTime] controller:self callBack:^(BOOL success) {
-        if (success) {
-            for (RecordInfo *info in _viewModel.courseInfo.recordList) {
-                if ([info.userDayId isEqualToString:recordInfo.userDayId]) {
-                    [_viewModel.courseInfo.recordList removeObject:info];
-                    
-                    switch (info.type) {
-                        case 0:
-                            _viewModel.courseInfo.jr.practicing -= 1;
-                            break;
-                        case 1:
-                            _viewModel.courseInfo.jr.practiced -= 1;
-                            break;
-                        case 2:
-                            _viewModel.courseInfo.jr.absent -= 1;
-                            break;
-                        default:
-                            break;
+    _recordInfo = recordInfo;
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确定取消此次约车吗？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alertView show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        [_viewModel cancelOrderCarUserDayId:_recordInfo.userDayId recordTime:[NSString stringWithFormat:@"%lld", _recordInfo.recordTime] controller:self callBack:^(BOOL success) {
+            if (success) {
+                for (RecordInfo *info in _viewModel.courseInfo.dataSource) {
+                    if ([info.userDayId isEqualToString:_recordInfo.userDayId]) {
+                        switch (info.type) {
+                            case 0:
+                                _viewModel.courseInfo.jr.practicing -= 1;
+                                break;
+                            case 1:
+                                _viewModel.courseInfo.jr.practiced -= 1;
+                                break;
+                            case 2:
+                                _viewModel.courseInfo.jr.absent -= 1;
+                                break;
+                            default:
+                                break;
+                        }
+                        _viewModel.courseInfo.jr.all -= 1;
+                        [_viewModel.courseInfo.dataSource removeObject:info];
+                        break;
                     }
-                    _viewModel.courseInfo.jr.all -= 1;
-                    break;
+                    
                 }
-                
-                [_tableView reloadData];
                 [self setHeaderView:_viewModel.courseInfo.jr];
+                [_tableView reloadData];
             }
-        }
-    }];
+        }];
+    }
 }
 
 @end

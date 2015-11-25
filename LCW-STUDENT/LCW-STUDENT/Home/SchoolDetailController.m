@@ -20,6 +20,7 @@
 #import "RTLabel.h"
 #import "MapViewController.h"
 #import <UIImageView+AFNetworking.h>
+#import "CouponController.h"
 
 @interface SchoolDetailController ()<UITableViewDataSource, UITableViewDelegate, SchoolInfoViewDelegate> {
     NSMutableArray *_dataSource;
@@ -223,6 +224,11 @@
     if ([segue.identifier isEqualToString:@"CoachFilter"]) {
         CoachFilterController *controller = [segue destinationViewController];
         controller.drivingId = _shopInfo.id;
+    }
+    
+    if ([segue.identifier isEqualToString:@"Coupon"]) {
+        CouponController *controller = segue.destinationViewController;
+        controller.drivingInfo = _schoolViewModel.schoolDetailInfo.driving;
     }
 }
 

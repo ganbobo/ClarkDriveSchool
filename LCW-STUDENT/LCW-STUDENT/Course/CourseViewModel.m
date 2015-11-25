@@ -34,6 +34,8 @@
             if ([responseCode isEqualToString:ResponseCodeSuccess]) {
                 [controller finishedLoding];
                 _courseInfo = [CourseInfo objectWithKeyValues:response[@"data"]];
+                [_courseInfo.dataSource removeAllObjects];
+                [_courseInfo.dataSource addObjectsFromArray:_courseInfo.recordList];
                 callBack(YES);
             } else {
                 NSString *message = response[RESPONSE_MESSAGE];

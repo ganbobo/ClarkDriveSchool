@@ -1286,6 +1286,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="优惠码" id="Zyw-QD-dsq"/>
+                    <connections>
+                        <outlet property="_btnOther" destination="vMA-8H-E6M" id="cRD-JZ-g09"/>
+                        <outlet property="_lblCouponId" destination="j2f-mK-sUJ" id="E8L-Qd-lIV"/>
+                        <outlet property="_lblPrice" destination="fid-53-YCS" id="W8S-85-jnt"/>
+                        <outlet property="_lblTip" destination="oCC-r7-xPF" id="gme-UL-4K4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFh-Kp-pKV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

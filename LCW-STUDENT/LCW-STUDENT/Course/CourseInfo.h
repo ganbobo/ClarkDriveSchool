@@ -12,6 +12,7 @@
 @interface CourseInfo : NSObject
 
 @property (nonatomic, strong) NSMutableArray *recordList;
+@property (nonatomic, strong) NSMutableArray *dataSource;
 
 @property (nonatomic, strong) CoutInfo *jr;
 

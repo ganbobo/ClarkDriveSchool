@@ -47,6 +47,14 @@
 		4B799D4B1BEE3E1F00F123B5 /* CarOrderBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B799D4A1BEE3E1F00F123B5 /* CarOrderBtn.m */; };
 		4B799D4E1BEE3F2E00F123B5 /* CarOrderDayBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B799D4D1BEE3F2E00F123B5 /* CarOrderDayBtn.m */; };
 		4B7C132D1BEF875800468A76 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4B7C132C1BEF875800468A76 /* mapapi.bundle */; };
+		4B8A9DE31C05E4CB0042B78E /* GuideView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8A9DE21C05E4CB0042B78E /* GuideView.m */; };
+		4B8A9DE51C05E6190042B78E /* launch@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B8A9DE41C05E6190042B78E /* launch@2x.png */; };
+		4B8A9DEC1C05E7680042B78E /* 2-480h@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4B8A9DE61C05E7680042B78E /* 2-480h@2x.jpg */; };
+		4B8A9DED1C05E7680042B78E /* 2@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4B8A9DE71C05E7680042B78E /* 2@2x.jpg */; };
+		4B8A9DEE1C05E7680042B78E /* 1-480h@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4B8A9DE81C05E7680042B78E /* 1-480h@2x.jpg */; };
+		4B8A9DEF1C05E7680042B78E /* 1@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4B8A9DE91C05E7680042B78E /* 1@2x.jpg */; };
+		4B8A9DF01C05E7680042B78E /* 3-480h@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4B8A9DEA1C05E7680042B78E /* 3-480h@2x.jpg */; };
+		4B8A9DF11C05E7680042B78E /* 3@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4B8A9DEB1C05E7680042B78E /* 3@2x.jpg */; };
 		4B8DBCDE1BFB01E3009EAAD3 /* CourseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DBCDD1BFB01E3009EAAD3 /* CourseViewModel.m */; };
 		4B8DBCE21BFB02BC009EAAD3 /* CourseInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B8DBCE11BFB02BC009EAAD3 /* CourseInfo.m */; };
 		4B95422B1BFCD1EF0011A745 /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B9542281BFCD1EF0011A745 /* DIDatepicker.m */; };
@@ -243,6 +251,15 @@
 		4B799D4C1BEE3F2E00F123B5 /* CarOrderDayBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarOrderDayBtn.h; sourceTree = "<group>"; };
 		4B799D4D1BEE3F2E00F123B5 /* CarOrderDayBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarOrderDayBtn.m; sourceTree = "<group>"; };
 		4B7C132C1BEF875800468A76 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
+		4B8A9DE11C05E4CB0042B78E /* GuideView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuideView.h; sourceTree = "<group>"; };
+		4B8A9DE21C05E4CB0042B78E /* GuideView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideView.m; sourceTree = "<group>"; };
+		4B8A9DE41C05E6190042B78E /* launch@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch@2x.png"; sourceTree = "<group>"; };
+		4B8A9DE61C05E7680042B78E /* 2-480h@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "2-480h@2x.jpg"; sourceTree = "<group>"; };
+		4B8A9DE71C05E7680042B78E /* 2@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "2@2x.jpg"; sourceTree = "<group>"; };
+		4B8A9DE81C05E7680042B78E /* 1-480h@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1-480h@2x.jpg"; sourceTree = "<group>"; };
+		4B8A9DE91C05E7680042B78E /* 1@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1@2x.jpg"; sourceTree = "<group>"; };
+		4B8A9DEA1C05E7680042B78E /* 3-480h@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "3-480h@2x.jpg"; sourceTree = "<group>"; };
+		4B8A9DEB1C05E7680042B78E /* 3@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "3@2x.jpg"; sourceTree = "<group>"; };
 		4B8DBCDC1BFB01E3009EAAD3 /* CourseViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseViewModel.h; sourceTree = "<group>"; };
 		4B8DBCDD1BFB01E3009EAAD3 /* CourseViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourseViewModel.m; sourceTree = "<group>"; };
 		4B8DBCE01BFB02BC009EAAD3 /* CourseInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseInfo.h; sourceTree = "<group>"; };
@@ -1187,6 +1204,8 @@
 		5CA040CF1B91C5C200EEB4BC /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				4B8A9DE11C05E4CB0042B78E /* GuideView.h */,
+				4B8A9DE21C05E4CB0042B78E /* GuideView.m */,
 				5CA040D01B91C5C200EEB4BC /* BaseNavController.h */,
 				5CA040D11B91C5C200EEB4BC /* BaseNavController.m */,
 				5CA040D21B91C5C200EEB4BC /* BaseViewController.h */,
@@ -1286,6 +1305,13 @@
 		5CA040FF1B91C5C200EEB4BC /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				4B8A9DE61C05E7680042B78E /* 2-480h@2x.jpg */,
+				4B8A9DE71C05E7680042B78E /* 2@2x.jpg */,
+				4B8A9DE81C05E7680042B78E /* 1-480h@2x.jpg */,
+				4B8A9DE91C05E7680042B78E /* 1@2x.jpg */,
+				4B8A9DEA1C05E7680042B78E /* 3-480h@2x.jpg */,
+				4B8A9DEB1C05E7680042B78E /* 3@2x.jpg */,
+				4B8A9DE41C05E6190042B78E /* launch@2x.png */,
 				5CA041001B91C5C200EEB4BC /* common.xcassets */,
 				5CA041011B91C5C200EEB4BC /* home.xcassets */,
 				5CA041021B91C5C200EEB4BC /* login.xcassets */,
@@ -1577,15 +1603,20 @@
 			files = (
 				5CA041571B91C5C200EEB4BC /* Personal.storyboard in Resources */,
 				4BD0C7B61BF1C39A00F7E969 /* bt_star_b@2x.png in Resources */,
+				4B8A9DEF1C05E7680042B78E /* 1@2x.jpg in Resources */,
 				5CA0414C1B91C5C200EEB4BC /* Info.plist in Resources */,
 				4B66F8261BF234F7007E4806 /* bt_star_a.png in Resources */,
+				4B8A9DF11C05E7680042B78E /* 3@2x.jpg in Resources */,
 				5CA041541B91C5C200EEB4BC /* Course.storyboard in Resources */,
+				4B8A9DE51C05E6190042B78E /* launch@2x.png in Resources */,
 				4BD0C7B31BF1C39A00F7E969 /* bt_star_a.png in Resources */,
 				4B66F8231BF234F7007E4806 /* bt_star_a@3x.png in Resources */,
 				5CA041751B91C74B00EEB4BC /* Main.storyboard in Resources */,
+				4B8A9DF01C05E7680042B78E /* 3-480h@2x.jpg in Resources */,
 				5CA0414A1B91C5C200EEB4BC /* Images.xcassets in Resources */,
 				5CA041551B91C5C200EEB4BC /* Home.storyboard in Resources */,
 				5CA041531B91C5C200EEB4BC /* login.xcassets in Resources */,
+				4B8A9DEE1C05E7680042B78E /* 1-480h@2x.jpg in Resources */,
 				5CE59D311B9C86260097AA63 /* Address.storyboard in Resources */,
 				4B7626821C04B053006692F6 /* TableViewCell.xib in Resources */,
 				5CA041521B91C5C200EEB4BC /* home.xcassets in Resources */,
@@ -1593,12 +1624,14 @@
 				4B9D9F271BDE5C8600907937 /* Localizable.strings in Resources */,
 				5CA041561B91C5C200EEB4BC /* Login.storyboard in Resources */,
 				4B66F8251BF234F7007E4806 /* bt_star_b@3x.png in Resources */,
+				4B8A9DED1C05E7680042B78E /* 2@2x.jpg in Resources */,
 				5C4FA50E1B98B6AB00E18801 /* personal.xcassets in Resources */,
 				4BD0C7B41BF1C39A00F7E969 /* bt_star_a@2x.png in Resources */,
 				4B7C132D1BEF875800468A76 /* mapapi.bundle in Resources */,
 				4BD0C7B51BF1C39A00F7E969 /* bt_star_b.png in Resources */,
 				4B66F8221BF234F7007E4806 /* bt_star_a@2x.png in Resources */,
 				5CA041741B91C74B00EEB4BC /* LaunchScreen.xib in Resources */,
+				4B8A9DEC1C05E7680042B78E /* 2-480h@2x.jpg in Resources */,
 				5CA041511B91C5C200EEB4BC /* common.xcassets in Resources */,
 				4B66F8211BF234F7007E4806 /* bt_star_b.png in Resources */,
 			);
@@ -1763,6 +1796,7 @@
 				4B6E73241BECE58A00836AE3 /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				5CA0416D1B91C5C200EEB4BC /* WaitingView.m in Sources */,
 				5CA0413C1B91C5C200EEB4BC /* AppDelegate.mm in Sources */,
+				4B8A9DE31C05E4CB0042B78E /* GuideView.m in Sources */,
 				4B6C19C51BEBA8B900E5CEE3 /* CoachDetailController.m in Sources */,
 				4B26E3871BF314DB004859FF /* MyCouponInfo.m in Sources */,
 				4BA42B391BE79BD200D6C5EC /* SchoolViewModel.m in Sources */,
@@ -1886,6 +1920,7 @@
 			baseConfigurationReference = 819D5CF42C52460AAE8AA57E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LCW-STUDENT/Include/Map",
@@ -1904,6 +1939,7 @@
 			baseConfigurationReference = E093BCC3486837ED2736E62D /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/LCW-STUDENT/Include/Map",

@@ -10,6 +10,15 @@
 
 @implementation CourseInfo
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _recordList = [[NSMutableArray alloc] init];
+        _dataSource = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
 
 - (NSDictionary *)objectClassInArray{
     return @{@"recordList" : [RecordInfo class]};
@@ -17,19 +26,14 @@
 
 - (NSMutableArray *)getListByType:(NSInteger)type {
     NSMutableArray *list = [NSMutableArray array];
-    switch (type) {
-        case -1: {
-            [list addObjectsFromArray:_recordList];
-        }
-            break;
-        default: {
-            for (RecordInfo *info in _recordList) {
-                if (info.type == type) {
-                    [list addObject:info];
-                }
+    if (type == -1) {
+        [list addObjectsFromArray:_dataSource];
+    } else {
+        for (RecordInfo *info in _dataSource) {
+            if (info.type == type) {
+                [list addObject:info];
             }
         }
-            break;
     }
     
     return list;

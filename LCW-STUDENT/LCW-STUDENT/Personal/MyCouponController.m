@@ -10,6 +10,7 @@
 
 #import "MyCouponCell.h"
 #import "MyCouponViewModel.h"
+#import "CouponController.h"
 
 @interface MyCouponController () <UITableViewDelegate, UITableViewDataSource> {
     
@@ -64,6 +65,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    CouponController *controller = [CouponController getCouponController];
+    controller.couponInfo = _viewModel.dataSource[indexPath.row];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma - mark 获取数据

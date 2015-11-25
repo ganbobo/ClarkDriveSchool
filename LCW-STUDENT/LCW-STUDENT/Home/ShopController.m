@@ -261,8 +261,10 @@
 }
 
 - (void)mapView:(BMKMapView *)mapView annotationViewForBubble:(BMKAnnotationView *)view {
-    ShopAnnotation *annotatiion = (ShopAnnotation *)view.annotation;
-    [self performSegueWithIdentifier:@"SchoolDetail" sender:annotatiion.shopInfo];
+    if ([view.annotation isKindOfClass:[ShopAnnotation class]]) {
+        ShopAnnotation *annotatiion = (ShopAnnotation *)view.annotation;
+        [self performSegueWithIdentifier:@"SchoolDetail" sender:annotatiion.shopInfo];
+    }
 }
 
 #pragma mark - MXPullDownMenuDelegate

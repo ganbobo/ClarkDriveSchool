@@ -134,6 +134,37 @@
     }
     
     [_carOrderViewModel sendOrderCar:_coachInfo.trainerId timePeriod:list publishedTime:[NSString stringWithFormat:@"%ld", _publishedTime] tpye:_carOrderViewModel.orderCourseInfo.type controller:self callBack:^(BOOL success) {
+        if (success) {
+            for (CarInfo *carInfo in _carOrderViewModel.orderCourseInfo.trainerDayList) {
+                for (NSString *timePeriod in list) {
+                    if ([carInfo.timePeriod isEqualToString:timePeriod]) {
+                        carInfo.isFull = 1;
+                        carInfo.isYue = 1;
+                        break;
+                    }
+                }
+            }
+            
+            if (_carOrderViewModel.orderCourseInfo.trainerDayList.count == 0) {
+                for (NSInteger i = 0; i < list.count; i ++) {
+                    NSString *timePeriod  = list[i];
+                    CarInfo *info = [[CarInfo alloc] init];
+                    info.id = i;
+                    info.isFull = 1;
+                    info.isYue = 1;
+                    info.timePeriod = timePeriod;
+                    [_carOrderViewModel.orderCourseInfo.trainerDayList addObject:info];
+                }
+            }
+            for (CourseModel *info in _carOrderViewModel.orderCourseInfo.courseList) {
+                if (info.select) {
+                    info.select = NO;
+                }
+            }
+            [_collectionView reloadData];
+            
+            [self enableFooterBtn];
+        }
     }];
 }
 
@@ -153,13 +184,16 @@
                                                                      forIndexPath:indexPath];
     CourseModel *tempModel = _carOrderViewModel.orderCourseInfo.courseList[indexPath.row];
     [cell refreshCellByInfo:tempModel];
+    BOOL isFull = NO;
+    BOOL isYue = NO;
     for (CarInfo *info in _carOrderViewModel.orderCourseInfo.trainerDayList) {
-        if (info.id == tempModel.id) {
-            [cell refreshCellByIsFull:info.isFull andYue:info.isYue];
+        if ([info.timePeriod isEqualToString:tempModel.timePeriod]) {
+            isFull = info.isFull;
+            isYue = info.isYue;
             break;
         }
     }
-    
+    [cell refreshCellByIsFull:isFull andYue:isYue];
     [cell refreshCellByType:_carOrderViewModel.orderCourseInfo.type];
     [self enableFooterBtn];
     
@@ -180,14 +214,25 @@
     CourseModel *info = _carOrderViewModel.orderCourseInfo.courseList[indexPath.row];
     
     for (CarInfo *tempInfo in _carOrderViewModel.orderCourseInfo.trainerDayList) {
-        if (info.id == tempInfo.id) {
+        if ([info.timePeriod isEqualToString:tempInfo.timePeriod]) {
             if (tempInfo.isFull == 1 || tempInfo.isYue == 1) { // 已满和已约不让约车
                 return;
             }
             break;
         }
     }
-
+    
+    NSInteger count = 0;
+    for (CarInfo *info in _carOrderViewModel.orderCourseInfo.trainerDayList) {
+        if (info.isYue == 1) {
+            count += 1;
+        }
+    }
+    
+    if (count >= 2) {
+        [self showMiddleToastWithContent:@"您已经约了两个小时的车了，每人每天最多只能预约2个小时的课程"];
+        return;
+    }
     
     if (info.select) {
         info.select = NO;

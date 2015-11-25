@@ -189,7 +189,7 @@
                           @"publishTime": @(time)
                           };
     
-    
+    CLog(@"json is %@", [dic JSONNSString]);
     [[AFNManager sharedAFNManager] getServer:GET_COACH_COURSE_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             if (_dataSource.count <= 0) {
@@ -240,6 +240,7 @@
                           @"publishTime": publishedTime,
                           @"type": @(type)
                           };
+    CLog(@"json is %@", [dic JSONNSString]);
     [controller showWaitView:@"正在发送约车信息"];
     [[AFNManager sharedAFNManager] getServer:ORDER_CAR_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {

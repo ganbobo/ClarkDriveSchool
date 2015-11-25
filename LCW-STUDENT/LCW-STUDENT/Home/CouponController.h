@@ -8,6 +8,15 @@
 
 #import "BaseViewController.h"
 
+#import "MyCouponInfo.h"
+#import "SchoolDetailInfo.h"
+
 @interface CouponController : BaseViewController
+
+@property(nonatomic, retain)MyCouponInfo *couponInfo;
+@property(nonatomic, retain)DrivingInfo *drivingInfo;
+
+
++ (CouponController *)getCouponController;
 
 @end

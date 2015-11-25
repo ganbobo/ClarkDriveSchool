@@ -12,6 +12,7 @@
 #import "LoginViewModel.h"
 #import "AFNManager.h"
 #import "JsonUtils.h"
+#import "GuideView.h"
 
 @interface TabViewController ()<UITabBarControllerDelegate>
 
@@ -34,6 +35,7 @@
     [super loadView];
     self.delegate = self;
     [self loadViewControllers];
+    [self initFirstLaunchView];
 }
 
 #pragma - mark 加载子视图控制器
@@ -82,6 +84,16 @@
                 }
             }
         }];
+    }
+}
+
+- (void)initFirstLaunchView {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL hasShow = [defaults boolForKey:@"hasShow"];
+    if (!hasShow) {
+        [defaults setBool:YES forKey:@"hasShow"];
+        GuideView *guideView = [[GuideView alloc] initWithFrame:appDelegate.window.bounds];
+        [guideView showInView:self.view];
     }
 }
 
