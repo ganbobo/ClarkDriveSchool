@@ -29,7 +29,9 @@
 
 - (void)awakeFromNib {
     // Initialization code
-    [_imgView setImageWithURL:getImageUrl(@"http://a.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=a2f6ccd889d4b31cf0699cbfb2e60b49/c9fcc3cec3fdfc037a5e3423d63f8794a4c22603.jpg")];
+    _imgView.layer.cornerRadius = _imgView.width / 2.0;
+    _imgView.layer.masksToBounds = YES;
+    
     _lblStudentsNum.textColor = RGBA(0x46, 0x46, 0x46, 1);
     _lblStudentsNum.font = [UIFont systemFontOfSize:14];
     _lblStudentsNum.text = @"目前学员：<font color='#FF440F' size=14>22</font>";
@@ -53,7 +55,7 @@
 }
 
 - (void)refreshCellByInfo:(CoachModel *)coachModel {
-    [_imgView setImageWithURL:getImageUrl(coachModel.resourceUrl) placeholderImage:[UIImage imageNamed:@"downlaod_picture_fail"]];
+    [_imgView setImageWithURL:getImageUrl(coachModel.resourceUrl) placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
     _lblName.text = [NSString stringWithFormat:@"%@(%@)", coachModel.trainerName, coachModel.typeName];
     _lblStudentsNum.text = [NSString stringWithFormat:@"目前学员：<font color='#FF440F' size=14>%ld</font>", (long)coachModel.currentlyTrainee];
     _lblResidueNum.text = [NSString stringWithFormat:@"剩余名额：<font color='#FF440F' size=14>%ld</font>", (long)coachModel.overplusTrainee];

@@ -16,7 +16,7 @@
     UIView *_inputBackView;
     UITextView *_txtContent;
     UILabel *_lblPlaceholder;
-    UIButton *_btnSubmit, *_btnService;
+    UIButton *_btnSubmit, *_btnService, *_btnJoinUs;
     
     // 数据
     FeedBackViewModel *_feedbackViewModel;
@@ -100,7 +100,7 @@
 
     _btnSubmit = [UIButton new];
     [_btnSubmit setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [_btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_common"] forState:UIControlStateNormal];
+    [_btnSubmit setBackgroundImage:[self createImageWithColor:RGBA(0x3a, 0xa7, 0x57, 1)] forState:UIControlStateNormal];
     [_btnSubmit setTitleColor:RGBA(0xff, 0xff, 0xff, 1) forState:UIControlStateNormal];
     [_btnSubmit setTitle:@"提交" forState:UIControlStateNormal];
     _btnSubmit.titleLabel.font = [UIFont boldSystemFontOfSize:15];
@@ -125,7 +125,22 @@
     [self.view addSubview:_btnService];
     
     [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-90-[SV]-90-|" options:0 metrics:nil views:@{@"SV": _btnService}]];
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[SV(35)]-40-|" options:0 metrics:nil views:@{@"SV": _btnService, @"S": _btnSubmit}]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[SV(35)]-90-|" options:0 metrics:nil views:@{@"SV": _btnService, @"S": _btnSubmit}]];
+    
+    _btnJoinUs = [UIButton new];
+    [_btnJoinUs setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [_btnJoinUs setTitleColor:[UIColor colorWithRed:0.180 green:0.639 blue:0.357 alpha:1.000] forState:UIControlStateNormal];
+    [_btnJoinUs setTitle:[NSString stringWithFormat:@"加入我们"] forState:UIControlStateNormal];
+    _btnJoinUs.titleLabel.font = [UIFont systemFontOfSize:15];
+    _btnJoinUs.layer.cornerRadius = 2;
+    _btnJoinUs.layer.borderColor = [UIColor colorWithRed:0.180 green:0.639 blue:0.357 alpha:1.000].CGColor;
+    _btnJoinUs.layer.borderWidth = 0.5;
+    _btnJoinUs.layer.masksToBounds = YES;
+    [_btnJoinUs addTarget:self action:@selector(clickJoinUs) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_btnJoinUs];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|-90-[SV]-90-|" options:0 metrics:nil views:@{@"SV": _btnJoinUs}]];
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[SV(35)]-40-|" options:0 metrics:nil views:@{@"SV": _btnJoinUs}]];
 }
 
 #pragma - mark 加载界面
@@ -143,6 +158,10 @@
 
 - (void)clickClose {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)clickJoinUs {
+     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"telprompt:%@",@"18119928995"]]];
 }
 
 - (void)clickSubmit {

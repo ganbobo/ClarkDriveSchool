@@ -8,7 +8,7 @@
 
 #import "CarOrderViewModel.h"
 
-#import "JsonUtils.h"
+#import "JSONKit.h"
 #import "AFNManager.h"
 #import "SubjectInfo.h"
 #import "CarCoachInfo.h"
@@ -47,7 +47,7 @@
                           };
     
     
-    [[AFNManager sharedAFNManager] getServer:GET_SUBJECT_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:GET_SUBJECT_SERVER parameters:@{PARS_KEY: [dic JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             if (_dataSource.count <= 0) {
                 [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
@@ -95,7 +95,7 @@
                           };
     
     
-    [[AFNManager sharedAFNManager] getServer:GET_SUBJECT_COACH_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:GET_SUBJECT_COACH_SERVER parameters:@{PARS_KEY: [dic JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             if (_dataSource.count <= 0) {
                 [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
@@ -136,7 +136,7 @@
                           };
     
     
-    [[AFNManager sharedAFNManager] getServer:GET_TIME_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:GET_TIME_SERVER parameters:@{PARS_KEY: [dic JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             if (_dataSource.count <= 0) {
                 [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
@@ -188,16 +188,13 @@
                           @"trainerId": trainerId,
                           @"publishTime": @(time)
                           };
-    
-    CLog(@"json is %@", [dic JSONNSString]);
-    [[AFNManager sharedAFNManager] getServer:GET_COACH_COURSE_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [controller showWaitView:@"正在获取数据"];
+    CLog(@"json is %@", [dic JSONString]);
+    [[AFNManager sharedAFNManager] getServer:GET_COACH_COURSE_SERVER parameters:@{PARS_KEY: [dic JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+        [controller hiddenWaitView];
         if (netErrorMessage) {
-            if (_dataSource.count <= 0) {
-                [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
-            } else {
-                [controller finishedLoding];
-                [controller showMiddleToastWithContent:netErrorMessage];
-            }
+            _orderCourseInfo = nil;
+            [controller showMiddleToastWithContent:netErrorMessage];
             callBack(NO);
         } else {
             NSString *responseCode = getResponseCodeFromDic(response);
@@ -207,12 +204,8 @@
                 callBack(YES);
             } else {
                 NSString *message = response[RESPONSE_MESSAGE];
-                if (_dataSource.count <= 0) {
-                    [controller finishedLodingWithTip:message subTip:@"点击重新加载"];
-                } else {
-                    [controller finishedLoding];
-                    [controller showMiddleToastWithContent:message];
-                }
+                _orderCourseInfo = nil;
+                [controller showMiddleToastWithContent:message];
                 callBack(NO);
             }
         }
@@ -240,9 +233,9 @@
                           @"publishTime": publishedTime,
                           @"type": @(type)
                           };
-    CLog(@"json is %@", [dic JSONNSString]);
+    CLog(@"json is %@", [dic JSONString]);
     [controller showWaitView:@"正在发送约车信息"];
-    [[AFNManager sharedAFNManager] getServer:ORDER_CAR_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:ORDER_CAR_SERVER parameters:@{PARS_KEY: [dic JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
             callBack(NO);

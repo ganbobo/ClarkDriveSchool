@@ -7,7 +7,7 @@
 //
 
 #import "FeedBackViewModel.h"
-#import "JsonUtils.h"
+#import "JSONKit.h"
 #import "AFNManager.h"
 
 @implementation FeedBackViewModel
@@ -28,7 +28,7 @@
                           };
     
     [controller showWaitView:@"正在发送"];
-    [[AFNManager sharedAFNManager] getServer:FEED_BACK_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:FEED_BACK_SERVER parameters:@{PARS_KEY: [dic JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
             callBack(NO);

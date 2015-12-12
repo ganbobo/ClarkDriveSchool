@@ -17,6 +17,7 @@
 DECLARE_SINGLETON_FOR_CLASS(LocationManager);
 
 @property(nonatomic, retain)AddressModel *addressInfo;
+@property(nonatomic, retain)AddressModel *currentAddressInfo;
 @property(readonly, nonatomic) BMKUserLocation *location;
 
 - (void)startLocation:(void(^)(NSString *city))city;

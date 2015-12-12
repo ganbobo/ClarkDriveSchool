@@ -30,6 +30,7 @@
 @property (nonatomic, assign) NSInteger id;
 @property(nonatomic, assign)BOOL select;
 @property (nonatomic, copy) NSString *timePeriod;
+@property(nonatomic, assign)BOOL noPost;
 
 @end
 

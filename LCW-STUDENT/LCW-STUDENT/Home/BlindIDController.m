@@ -9,6 +9,7 @@
 #import "BlindIDController.h"
 
 #import "SchoolViewModel.h"
+#import "CouponController.h"
 
 @interface BlindIDController () {
     
@@ -64,9 +65,21 @@
     SchoolViewModel *viewModel = [[SchoolViewModel alloc] init];
     
     if ([viewModel checkUserInput:name identifier:identifier controller:self]) {
-        [viewModel getCouponFromSever:self driveId:_driveId name:name identifier:identifier callBack:^(BOOL success) {
-            
+        [viewModel getCouponFromSever:self driveId:_drivingInfo.id name:name identifier:identifier callBack:^(BOOL success) {
+            if (success) {
+                [self performSegueWithIdentifier:@"Coupon" sender:nil];
+            }
         }];
+    }
+}
+
+#pragma - mark 跳转
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"Coupon"]) {
+        CouponController *controller = segue.destinationViewController;
+        controller.drivingInfo = _drivingInfo;
     }
 }
 

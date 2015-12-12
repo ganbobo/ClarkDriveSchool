@@ -8,6 +8,7 @@
 
 #import "SettingController.h"
 #import "MyCoachViewModel.h"
+#import "AboutUsController.h"
 
 @interface SettingController ()<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate> {
     NSArray *_dataSource;
@@ -30,7 +31,7 @@
 
 - (void)loadView {
     [super loadView];
-    _dataSource = @[@[@"关于网上学车", @"帮助与反馈", @"法律条款", @"教练指南"]];
+    _dataSource = @[@[@"关于网上学车"]];
     [self loadNav];
 }
 #pragma - mark 加载界面
@@ -89,6 +90,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    AboutUsController *controller = [[AboutUsController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)clickLogout {

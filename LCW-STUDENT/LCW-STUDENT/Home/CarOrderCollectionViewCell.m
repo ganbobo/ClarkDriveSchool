@@ -31,6 +31,7 @@
 - (void)refreshCellByInfo:(CourseModel *)info {
     _lblTitle.text = info.timePeriod;
     _imgSelect.hidden = !info.select;
+    _lblState.text = info.noPost ? @"未发布" : @"";
 }
 
 - (void)refreshCellByIsFull:(NSInteger)isfull andYue:(NSInteger)yue {
@@ -45,8 +46,8 @@
     
     if (yue) {
         _lblState.text = @"已约";
-        _lblState.backgroundColor = RGBA(0xbb, 0xbb, 0xbb, 1);
-        _lblState.textColor = RGBA(0x3a, 0xa7, 0x57, 1);
+        _lblState.backgroundColor = RGBA(0x3a, 0xa7, 0x57, 1);
+        _lblState.textColor = RGBA(0xff, 0xff, 0xff, 1);
         _lblState.hidden = NO;
     }
 }

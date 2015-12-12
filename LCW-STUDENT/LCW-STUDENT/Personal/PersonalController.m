@@ -66,6 +66,7 @@
     _avatarImage.layer.cornerRadius = _avatarImage.width / 2.0;
     _avatarImage.layer.masksToBounds = YES;
     _avatarImage.layer.borderWidth = 1.0;
+    _avatarImage.backgroundColor = [UIColor whiteColor];
     
     _avatarImage.userInteractionEnabled = YES;
     _lblNickName.userInteractionEnabled = YES;
@@ -128,6 +129,8 @@
     NSArray *list = _dataSource[indexPath.section];
     cell.textLabel.text = list[indexPath.row];
     cell.detailTextLabel.text = @"";
+    
+    cell.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"personal_%ld_%ld", (long)indexPath.section, (long)indexPath.row]];
     
     return cell;
 }

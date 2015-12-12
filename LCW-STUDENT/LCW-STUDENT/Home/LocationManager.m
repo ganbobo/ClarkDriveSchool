@@ -47,6 +47,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LocationManager);
 }
 
 - (void)didFailToLocateUserWithError:(NSError *)error {
+    _currentAddressInfo = [[AddressModel alloc] init];
+    _currentAddressInfo.c_name = @"定位失败";
+    _currentAddressInfo.c_letter = @"#";
     if (_callBack) {
         _callBack(nil);
         _callBack = nil;
@@ -73,6 +76,9 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LocationManager);
     }
     else
     {
+        _currentAddressInfo = [[AddressModel alloc] init];
+        _currentAddressInfo.c_name = @"定位失败";
+        _currentAddressInfo.c_letter = @"#";
         if (_callBack) {
             _callBack(nil);
             _callBack = nil;
@@ -92,10 +98,19 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LocationManager);
           NSString *city = result.addressDetail.city;
           _callBack(city);
           [self getCityInfoFromServer:city];
+          
+          _currentAddressInfo = [[AddressModel alloc] init];
+          _currentAddressInfo.c_name = city;
+          _currentAddressInfo.c_letter = @"#";
+          
           _callBack = nil;
       }
   }
   else {
+      
+      _currentAddressInfo = [[AddressModel alloc] init];
+      _currentAddressInfo.c_name = @"定位失败";
+      _currentAddressInfo.c_letter = @"#";
       if (_callBack) {
           _callBack(nil);
           _callBack = nil;
@@ -110,6 +125,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(LocationManager);
             for (AddressModel *model in viewModel.arrayDataSource) {
                 if ([model.c_name rangeOfString:city].location != NSNotFound || [city rangeOfString:model.c_name].location != NSNotFound) {
                     _addressInfo = model;
+                    _currentAddressInfo = model;
                     break;
                 }
             }

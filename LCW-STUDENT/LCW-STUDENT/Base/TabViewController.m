@@ -11,7 +11,7 @@
 #import "BaseNavController.h"
 #import "LoginViewModel.h"
 #import "AFNManager.h"
-#import "JsonUtils.h"
+#import "JSONKit.h"
 #import "GuideView.h"
 
 @interface TabViewController ()<UITabBarControllerDelegate>
@@ -71,7 +71,7 @@
                               @"loginName": getUser().login_name
                               };
         
-        [[AFNManager sharedAFNManager] getServer:LOGIN_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+        [[AFNManager sharedAFNManager] getServer:LOGIN_SERVER parameters:@{PARS_KEY: [dic JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
             if (!netErrorMessage) {
                 NSString *responseCode = getResponseCodeFromDic(response);
                 if ([responseCode isEqualToString:ResponseCodeSuccess]) {

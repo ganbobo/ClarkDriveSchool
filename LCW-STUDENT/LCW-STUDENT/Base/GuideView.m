@@ -43,6 +43,20 @@
             imgName = [NSString stringWithFormat:@"%d@2x.jpg", i + 1];
         }
         
+        for (int j = 0; j < 3; j ++) {
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake((ScreenWidth - 40) / 2.0 + j * (13), ScreenHeight - 40, 5, 5)];
+            if (i == j) {
+                view.backgroundColor = RGBA(0xff, 0xff, 0xff, 1);
+            } else {
+                view.backgroundColor = [UIColor clearColor];
+            }
+            
+            view.layer.borderColor = RGBA(0xff, 0xff, 0xff, 1).CGColor;
+            view.layer.borderWidth = 0.5;
+            view.layer.cornerRadius = view.width / 2.0;
+            [imgView addSubview:view];
+        }
+        
         imgView.image = [UIImage imageNamed:imgName];
         [_scrollView addSubview:imgView];
     }

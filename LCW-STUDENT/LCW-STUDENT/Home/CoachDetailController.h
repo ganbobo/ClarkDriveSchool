@@ -14,6 +14,6 @@
 @interface CoachDetailController : BaseViewController
 
 @property(nonatomic, retain)CoachModel *coachInfo;
-@property(nonatomic, retain)SubjectInfo *subjectInfo;
+@property(nonatomic, retain)NSString *subjectId;
 
 @end

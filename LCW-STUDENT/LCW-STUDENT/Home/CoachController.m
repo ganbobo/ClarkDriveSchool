@@ -166,7 +166,12 @@
         CoachModel *info = _coachViewModel.coachList[indexPath.row];
         CoachDetailController *controller = [segue destinationViewController];
         controller.coachInfo = info;
-        controller.subjectInfo = _subjectInfo;
+        if (_subjectInfo) {
+            
+            controller.subjectId = _subjectInfo.id;
+        } else {
+            controller.subjectId = _coachInfo.id;
+        }
     }
 }
 

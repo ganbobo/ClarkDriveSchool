@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
-        <!--当前位置-->
+        <!--地址选择-->
         <scene sceneID="qBa-wP-aT1">
             <objects>
                 <viewController id="tYM-K3-niq" customClass="AddressController" sceneMemberID="viewController">
@@ -36,7 +36,7 @@
                             <constraint firstAttribute="trailing" secondItem="iWs-fT-GQQ" secondAttribute="trailing" id="r0v-cK-pNb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="当前位置" id="tY9-uS-LkA"/>
+                    <navigationItem key="navigationItem" title="地址选择" id="tY9-uS-LkA"/>
                     <connections>
                         <outlet property="_tableView" destination="iWs-fT-GQQ" id="kLR-vq-Baf"/>
                         <outlet property="searchDisplayController" destination="SE7-dI-NyH" id="vLW-Aq-wrK"/>

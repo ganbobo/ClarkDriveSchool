@@ -9,7 +9,7 @@
 #import "MyCouponViewModel.h"
 
 #import "AFNManager.h"
-#import "JsonUtils.h"
+#import "JSONKit.h"
 #import "MyCouponInfo.h"
 
 @implementation MyCouponViewModel
@@ -34,7 +34,7 @@
                             @"userId": (hasUser() ? getUser().id : @"123")
                             };
     
-    [[AFNManager sharedAFNManager] getServer:MY_COUPON_LIST_SERVER parameters:@{PARS_KEY : [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:MY_COUPON_LIST_SERVER parameters:@{PARS_KEY : [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
             callback(NO);

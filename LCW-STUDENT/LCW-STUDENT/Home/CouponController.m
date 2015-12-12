@@ -37,9 +37,9 @@
         _lblTip.text = [NSString stringWithFormat:@"去驾校报名时，请将优惠码直接出示给前台，立减%ld元", (long)_couponInfo.couponPrice];
         _btnOther.hidden = YES;
     } else {
-        _lblPrice.text = [NSString stringWithFormat:@"%ld元", (long)_drivingInfo.couponPrice];
+        _lblPrice.text = [NSString stringWithFormat:@"%ld元", (long)_drivingInfo.coupon_price];
         _lblCouponId.text = [NSString stringWithFormat:@"券码：%@", getUser().identification];
-        _lblTip.text = [NSString stringWithFormat:@"去驾校报名时，请将优惠码直接出示给前台，立减%ld元", (long)_drivingInfo.couponPrice];
+        _lblTip.text = [NSString stringWithFormat:@"去驾校报名时，请将优惠码直接出示给前台，立减%ld元", (long)_drivingInfo.coupon_price];
         _btnOther.hidden = NO;
     }
 }

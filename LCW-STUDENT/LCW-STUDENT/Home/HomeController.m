@@ -58,15 +58,18 @@
 
 - (void)loadAdsData {
     AdsInfo *info1 = [[AdsInfo alloc] init];
-    info1.imagePath = @"http://img11.360buyimg.com/da/jfs/t1828/282/1045058672/182151/a4bc083a/55e005fbNb4e59acd.jpg";
+    info1.imagePath = @"1.png";
     
     AdsInfo *info2 = [[AdsInfo alloc] init];
-    info2.imagePath = @"http://img30.360buyimg.com/da/jfs/t1639/223/1128325355/142642/bb6127cc/55de7741Na32ad065.jpg";
+    info2.imagePath = @"2.png";
     
     AdsInfo *info3 = [[AdsInfo alloc] init];
-    info3.imagePath = @"http://img14.360buyimg.com/da/jfs/t1771/27/64101670/97644/350c4e3e/55cc0afbN22c11911.jpg";
+    info3.imagePath = @"3.png";
     
-    [self setAdsScrollView:@[info1, info2, info3]];
+    AdsInfo *info4 = [[AdsInfo alloc] init];
+    info4.imagePath = @"4.png";
+    
+    [self setAdsScrollView:@[info1, info2, info3, info4]];
 }
 
 #pragma - mark 加载界面

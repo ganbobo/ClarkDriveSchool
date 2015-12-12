@@ -9,7 +9,7 @@
 #import "SchoolCommentViewModel.h"
 
 #import "AFNManager.h"
-#import "JsonUtils.h"
+#import "JSONKit.h"
 
 @implementation SchoolCommentViewModel
 
@@ -36,7 +36,7 @@
                             @"userId": (hasUser() ? getUser().id : @"123"),
                             @"drivingId": drivingId
                             };
-    [[AFNManager sharedAFNManager] getServer:GET_SCHOOL_COMMENT_LIST_SERVER parameters:@{PARS_KEY: [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:GET_SCHOOL_COMMENT_LIST_SERVER parameters:@{PARS_KEY: [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             if (_commentList.count <= 0) {
                 if (controller) {
@@ -93,7 +93,7 @@
                             @"userId": (hasUser() ? getUser().id : @"123"),
                             @"trainerId": trainerId
                             };
-    [[AFNManager sharedAFNManager] getServer:GET_COACH_COMMENT_LIST_SERVER parameters:@{PARS_KEY: [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:GET_COACH_COMMENT_LIST_SERVER parameters:@{PARS_KEY: [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             if (_commentList.count <= 0) {
                 if (controller) {

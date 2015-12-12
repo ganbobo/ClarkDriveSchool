@@ -9,7 +9,7 @@
 #import "CoachViewModel.h"
 
 #import "AFNManager.h"
-#import "JsonUtils.h"
+#import "JSONKit.h"
 
 #import "CoachModel.h"
 
@@ -55,7 +55,7 @@
         [param setValue:overplusTrainee forKey:@"overplusTrainee"];
     }
     
-    [[AFNManager sharedAFNManager] getServer:GET_COACH_LIST_SERVER parameters:@{PARS_KEY: [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:GET_COACH_LIST_SERVER parameters:@{PARS_KEY: [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             if (_coachList.count <= 0) {
                 [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
@@ -100,7 +100,7 @@
                             @"userId": hasUser() ? getUser().id : @"123",
                             @"trainerId": trainerId
                             };
-    [[AFNManager sharedAFNManager] getServer:GET_COACH_DETAIL_SERVER parameters:@{PARS_KEY: [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:GET_COACH_DETAIL_SERVER parameters:@{PARS_KEY: [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
             callBack(NO);
@@ -135,11 +135,11 @@
     NSDictionary *param = @{
                             @"userId": getUser().id,
                             @"trainerId": trainerId,
-                            @"subjectId": subjectId
+                            @"subjectId": subjectId == nil ? @"" : subjectId
                             };
     
     [controller showWaitView:@"正在绑定"];
-    [[AFNManager sharedAFNManager] getServer:BLINE_COACH_SERVER parameters:@{PARS_KEY: [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:BLINE_COACH_SERVER parameters:@{PARS_KEY: [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
             callBack(NO);

@@ -8,7 +8,7 @@
 
 #import "AFNManager.h"
 
-#import "JsonUtils.h"
+#import "JSONKit.h"
 
 @implementation AFNManager
 
@@ -45,7 +45,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AFNManager);
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [manager GET:[self _getServerAddress:serverAddress] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        CLog(@"request url is %@ \n params is %@ \n reponse is %@", serverAddress, params, [(NSDictionary *)responseObject JSONNSString]);
+        CLog(@"request url is %@ \n params is %@ \n reponse is %@", serverAddress, params, [(NSDictionary *)responseObject JSONString]);
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         if (callBack) {
             callBack((NSDictionary *)responseObject, nil);
@@ -71,7 +71,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AFNManager);
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [manager POST:[self _getServerAddress:serverAddress] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        CLog(@"request url is %@ \n params is %@ \n reponse is %@", serverAddress, params, [(NSDictionary *)responseObject JSONNSString]);
+        CLog(@"request url is %@ \n params is %@ \n reponse is %@", serverAddress, params, [(NSDictionary *)responseObject JSONString]);
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         if (callBack) {
             callBack((NSDictionary *)responseObject, nil);
@@ -103,7 +103,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AFNManager);
     
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [manager GET:[self _getServerAddress:serverAddress] parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        CLog(@"request url is %@ \n params is %@ \n reponse is %@", serverAddress, params, [(NSDictionary *)responseObject JSONNSString]);
+        CLog(@"request url is %@ \n params is %@ \n reponse is %@", serverAddress, params, [(NSDictionary *)responseObject JSONString]);
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         if (callBack) {
             callBack((NSDictionary *)responseObject, nil);
@@ -136,7 +136,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AFNManager);
             [formData appendPartWithFileData:data name:@"picFile" fileName:[NSString stringWithFormat:@"%@.jpg", getUUIDString()] mimeType:@"image/jpg"];
         }
     } success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        CLog(@"request url is %@ \n params is %@ \n reponse is %@", serverAddress, params, [(NSDictionary *)responseObject JSONNSString]);
+        CLog(@"request url is %@ \n params is %@ \n reponse is %@", serverAddress, params, [(NSDictionary *)responseObject JSONString]);
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         if (callBack) {
             callBack((NSDictionary *)responseObject, nil);

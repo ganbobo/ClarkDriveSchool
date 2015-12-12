@@ -54,11 +54,12 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wny-CU-OsY">
                                 <rect key="frame" x="20" y="209" width="560" height="40"/>
                                 <animations/>
+                                <color key="backgroundColor" red="0.22745098039215686" green="0.65490196078431373" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="4SY-qw-hfN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="登录" backgroundImage="btn_common">
+                                <state key="normal" title="验证手机">
                                     <color key="titleColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -138,7 +139,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="btn_common" width="20" height="20"/>
         <image name="input_bg" width="20" height="20"/>
     </resources>
 </document>

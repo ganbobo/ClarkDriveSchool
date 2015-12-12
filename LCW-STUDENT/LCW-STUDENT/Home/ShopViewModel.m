@@ -8,9 +8,15 @@
 
 #import "ShopViewModel.h"
 
-#import "JsonUtils.h"
+#import "JSONKit.h"
 #import "AFNManager.h"
 #import "ShopInfo.h"
+#import "LocationManager.h"
+#import <CoreLocation/CoreLocation.h>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
+#import <BaiduMapAPI_Utils/BMKUtilsComponent.h>
+
+#import <BaiduMapAPI_Map/BMKMapView.h>
 
 @interface ShopViewModel () {
     NSMutableArray *_dataSource;
@@ -62,7 +68,7 @@
     }
 
     
-    [[AFNManager sharedAFNManager] getServer:GET_SCHOOL_LIST_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:GET_SCHOOL_LIST_SERVER parameters:@{PARS_KEY: [dic JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             if (_dataSource.count <= 0) {
                 [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
@@ -77,7 +83,18 @@
                 [controller finishedLoding];
                 NSArray *array = [ShopInfo objectArrayWithKeyValuesArray:response[@"data"][@"listDriving"]];
                 [_dataSource removeAllObjects];
-                [_dataSource addObjectsFromArray:array];
+                for (ShopInfo *info in array) {
+                    if ([LocationManager sharedLocationManager].location.location.coordinate.latitude == 0 && [LocationManager sharedLocationManager].location.location.coordinate.longitude == 0) {
+                        info.distance = 0;
+                    } else {
+                        CLLocationCoordinate2D coor1 = [LocationManager sharedLocationManager].location.location.coordinate;
+                        CLLocationCoordinate2D coor = CLLocationCoordinate2DMake(info.latitude.doubleValue, info.longitude.doubleValue);
+                        BMKMapPoint pHome = BMKMapPointForCoordinate(coor1);
+                        BMKMapPoint pDes = BMKMapPointForCoordinate(coor);
+                        info.distance = BMKMetersBetweenMapPoints(pHome,pDes);
+                    }
+                    [_dataSource addObject:info];
+                }
                 callBack(YES);
             } else {
                 NSString *message = response[RESPONSE_MESSAGE];
@@ -92,6 +109,14 @@
         }
     }];
 
+}
+
+- (void)rankByString:(NSString *)key {
+//    [_dataSource sortedArrayUsingComparator:^NSComparisonResult(ShopInfo *s1, ShopInfo *s2) {
+//        if ([key isEqualToString:@"distance"]) {
+//            return [@(s1.distance) compare:@(s2.distance)];
+//        }
+//    }];
 }
 
 /**

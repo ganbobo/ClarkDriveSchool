@@ -229,23 +229,19 @@
         }
     }
     
-    if (count >= 2) {
-        [self showMiddleToastWithContent:@"您已经约了两个小时的车了，每人每天最多只能预约2个小时的课程"];
-        return;
-    }
+    
     
     if (info.select) {
         info.select = NO;
     } else {
-        NSInteger i = 0;
         
         for (CourseModel *tempInfo in _carOrderViewModel.orderCourseInfo.courseList) {
             if (tempInfo.select) {
-                i += 1;
+                count += 1;
             }
         }
         
-        if (i >= 2) {
+        if (count >= 2) {
             [self showMiddleToastWithContent:@"每人每天最多只能预约2个小时的课程"];
             return;
         }
@@ -258,6 +254,7 @@
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout heightForFooterInSection:(NSInteger)section {
+    
     return 100;
 }
 
@@ -271,6 +268,8 @@
         reusableView.delegate = self;
         _reusableView = reusableView;
     }
+    
+    _reusableView.hidden = (_carOrderViewModel.orderCourseInfo.courseList.count == 0);
     
     return reusableView;
 }
@@ -359,9 +358,7 @@
 // 获取课程
 - (void)getCourseFromServer:(long)publishTime {
     [_carOrderViewModel getCourseListFromServer:_coachInfo.trainerId publishTime:publishTime controller:self callBack:^(BOOL success) {
-        if (success) {
-            [_collectionView reloadData];
-        }
+        [_collectionView reloadData];
     }];
 }
 
@@ -385,8 +382,16 @@
             [_selectView addSubview:line];
         }
     }
-    CarOrderBtn *btn = [(CarOrderBtn *)_selectView viewWithTag:1000];
-    [self clickSubject:btn];
+    if (_coachInfo) {
+        for (NSInteger i = 0; i < list.count; i ++) {
+            CarOrderBtn *btnOrder = (CarOrderBtn *)[_selectView viewWithTag:1000 + i];
+            if ([_coachInfo.subjectName isEqualToString:btnOrder.titleLabel.text]) {
+                [self clickSubject:btnOrder];
+                break;
+            }
+        }
+        
+    }
 }
 
 - (void)loadDayView:(NSMutableArray *)list {

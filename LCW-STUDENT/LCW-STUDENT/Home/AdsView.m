@@ -17,13 +17,15 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addTarget:self action:@selector(clickSelf) forControlEvents:UIControlEventTouchUpInside];
+        self.userInteractionEnabled = NO;
     }
     return self;
 }
 
 - (void)setAdsInfo:(AdsInfo *)adsInfo {
     _adsInfo = adsInfo;
-    [self setBackgroundImageForState:UIControlStateNormal withURL:getImageUrl(adsInfo.imagePath) placeholderImage:[UIImage imageNamed:@"nav_home_title"]];
+//    [self setBackgroundImageForState:UIControlStateNormal withURL:getImageUrl(adsInfo.imagePath) placeholderImage:[UIImage imageNamed:@"nav_home_title"]];
+    [self setBackgroundImage:[UIImage imageNamed:adsInfo.imagePath] forState:UIControlStateNormal];
 }
 
 - (void)clickSelf {

@@ -9,6 +9,9 @@
 #import "FilterController.h"
 
 #import "ShopController.h"
+#import "MySchoolInfo.h"
+#import "CoachFilterController.h"
+#import "MySchoolViewModel.h"
 
 @interface FilterController () {
     
@@ -39,7 +42,7 @@
 #pragma - mark 加载界面
 
 - (void)loadNav {
-    [PMCommon setNavigationTitle:self withTitle:@"筛选"];
+    [PMCommon setNavigationTitle:self withTitle:@"领券·选择驾校·教练"];
 }
 
 - (void)loadBtns {
@@ -66,7 +69,23 @@
     if (!checkUserLogin(self)) {
         return;
     }
-    [self performSegueWithIdentifier:@"Shop" sender:[NSNumber numberWithBool:YES]];
+    
+    MySchoolViewModel *viewModel = [[MySchoolViewModel alloc] init];
+    [viewModel getSchoolDetailFromSever:nil callBack:^(BOOL success) {
+        if (success) {
+            if (viewModel.mySchoolInfo.drivingId.length > 0) {
+                [self performSegueWithIdentifier:@"CoachFilter" sender:viewModel.mySchoolInfo];
+            } else {
+                [self showMiddleToastWithContent:@"未能获取到您的驾校信息"];
+            }
+            
+        }else {
+            [self showMiddleToastWithContent:@"未能连接到服务器，请稍后重试"];
+        }
+    }];
+
+    
+    
 }
 
 #pragma - mark 界面跳转
@@ -76,6 +95,11 @@
         ShopController *controller = [segue destinationViewController];
         NSNumber *boolNumber = (NSNumber *)sender;
         controller.hasSignUp = boolNumber.boolValue;
+    }
+    
+    if ([segue.identifier isEqualToString:@"CoachFilter"]) {
+        CoachFilterController *controller = [segue destinationViewController];
+        controller.drivingId = ((MySchoolInfo *)sender).drivingId;
     }
 }
 

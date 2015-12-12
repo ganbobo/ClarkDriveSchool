@@ -11,7 +11,7 @@
 #import <BaiduMapAPI_Map/BMKMapView.h>
 #import <BaiduMapAPI_Map/BMKPinAnnotationView.h>
 #import "ShopAnnotation.h"
-
+#import "LocationManager.h"
 @interface MapViewController ()<BMKMapViewDelegate> {
     BMKMapView *_mapView;
 }
@@ -26,6 +26,7 @@
     [self loadMapView];
     [self addAnnotaion];
     // Do any additional setup after loading the view.
+    [self getLocation];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,7 +50,7 @@
     _mapView.showsUserLocation = YES;
     _mapView.zoomEnabled= YES;
     _mapView.scrollEnabled = YES;
-    _mapView.zoomLevel = 15;
+    _mapView.zoomLevel = 12;
     [self.view addSubview:_mapView];
 }
 
@@ -57,8 +58,9 @@
     ShopAnnotation *annotation = [[ShopAnnotation alloc]init];
     annotation.shopInfo = _shopInfo;
     [_mapView addAnnotation:annotation];
+    [_mapView selectAnnotation:annotation animated:YES];
     
-    [_mapView setCenterCoordinate:CLLocationCoordinate2DMake(_shopInfo.latitude.doubleValue, _shopInfo.longitude.doubleValue) animated:YES];
+//    [_mapView setCenterCoordinate:CLLocationCoordinate2DMake(_shopInfo.latitude.doubleValue, _shopInfo.longitude.doubleValue) animated:YES];
 }
 // 根据anntation生成对应的View
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
@@ -80,6 +82,25 @@
     }
     
     return nil;
+}
+
+- (void)getLocation {
+    if ([LocationManager sharedLocationManager].location) {
+        [_mapView updateLocationData:[LocationManager sharedLocationManager].location];
+        if (_mapView) {
+            [_mapView setCenterCoordinate:[LocationManager sharedLocationManager].location.location.coordinate animated:YES];
+        }
+    } else {
+        [[LocationManager sharedLocationManager] startLocation:^(NSString *city) {
+            if (city == nil) {
+                [self showMiddleToastWithContent:@"定位失败"];
+            } else {
+                [_mapView updateLocationData:[LocationManager sharedLocationManager].location];
+                if (_mapView) {
+                    [_mapView setCenterCoordinate:[LocationManager sharedLocationManager].location.location.coordinate animated:YES];
+                }            }
+        }];
+    }
 }
 
 

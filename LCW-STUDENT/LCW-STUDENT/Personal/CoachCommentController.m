@@ -122,9 +122,9 @@
     lineMid3.backgroundColor = RGBA(0xee, 0xee, 0xee, 1);
     [_scrollView addSubview:lineMid3];
     
-    _btnHiddenName = [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth - 100, CGRectGetMaxY(lineMid3.frame) + 5, 90, 25)];
+    _btnHiddenName = [[UIButton alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(lineMid3.frame) + 10, 90, 25)];
     [_btnHiddenName setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [_btnHiddenName setTitleColor:RGBA(0x11, 0xcd, 0x6e, 1) forState:UIControlStateSelected];
+    [_btnHiddenName setTitleColor:kGreenColor forState:UIControlStateSelected];
     _btnHiddenName.titleLabel.font = [UIFont systemFontOfSize:14];
     [_btnHiddenName setImage:[UIImage imageNamed:@"btn_check"] forState:UIControlStateSelected];
     [_btnHiddenName setImage:[UIImage imageNamed:@"btn_uncheck"] forState:UIControlStateNormal];
@@ -161,7 +161,7 @@
     [self.view endEditing:YES];
 
     MyCoachViewModel *viewModel = [[MyCoachViewModel alloc] init];
-    [viewModel sendCoachCommentToServer:_coachInfo.id scole:_starCoachView.starNumber attitude:_starEnView.starNumber ablility:_starQiantaiView.starNumber environment:_starCoachView.starNumber comment:_textView.text isShowName:_btnHiddenName.selected controller:self callBack:^(BOOL success) {
+    [viewModel sendCoachCommentToServer:_coachInfo.trainerId scole:_starCoachView.starNumber attitude:_starEnView.starNumber ablility:_starQiantaiView.starNumber environment:_starCoachView.starNumber comment:_textView.text isShowName:_btnHiddenName.selected controller:self callBack:^(BOOL success) {
         if (success) {
             [self.navigationController popViewControllerAnimated:YES];
         }

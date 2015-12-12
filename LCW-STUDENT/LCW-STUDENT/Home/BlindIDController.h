@@ -8,8 +8,10 @@
 
 #import "BaseViewController.h"
 
+#import "SchoolDetailInfo.h"
+
 @interface BlindIDController : BaseViewController
 
-@property(nonatomic, retain)NSString *driveId;
+@property(nonatomic, retain)DrivingInfo *drivingInfo;
 
 @end

@@ -10,7 +10,8 @@
 
 #import "AFNManager.h"
 #import "AddressModel.h"
-#import "JsonUtils.h"
+#import "JSONKit.h"
+#import "LocationManager.h"
 
 @interface AddressViewModel () {
     
@@ -44,7 +45,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AddressViewModel);
                             @"userId": (hasUser() ? getUser().id : @"123"),
                             @"queryCheck": @""
                             };
-    [[AFNManager sharedAFNManager] getServer:ADDRESS_LIST_SERVER parameters:@{PARS_KEY: [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:ADDRESS_LIST_SERVER parameters:@{PARS_KEY: [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             if (_addressDic.count <= 0) {
                 if (controller) {
@@ -90,6 +91,13 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(AddressViewModel);
 - (void)setDataSource:(NSArray *)list {
     [_addressDic removeAllObjects];
     [_wordSortArray removeAllObjects];
+    
+    NSString *key = @"#";
+    [_wordSortArray addObject:key];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    [array addObject:[LocationManager sharedLocationManager].currentAddressInfo];
+    [_addressDic setValue:array forKey:key];
+    
     for (AddressModel *addressModel in list) {
         NSString *key = addressModel.c_letter;
         NSMutableArray *array = _addressDic[key];

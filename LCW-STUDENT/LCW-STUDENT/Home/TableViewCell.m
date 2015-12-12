@@ -59,8 +59,8 @@
 - (void)refreshCellWithInfo:(ShopInfo *)shopInfo {
     _lblName.text = shopInfo.driving_name;
     _lblPrice.text = [NSString stringWithFormat:@"￥%ld", (long)shopInfo.driving_price];
-    _lblScore.text = [NSString stringWithFormat:@"%@", shopInfo.scole];
-    NSInteger score = shopInfo.scole.integerValue;
+    _lblScore.text = [NSString stringWithFormat:@"%@", @(shopInfo.scole)];
+    NSInteger score = shopInfo.scole;
     [self setStarView:score];
     
     [_imgView setImageWithURL:getImageUrl(shopInfo.resource_url) placeholderImage:[UIImage imageNamed:@"downlaod_picture_fail"]];

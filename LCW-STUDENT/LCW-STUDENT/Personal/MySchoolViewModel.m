@@ -8,7 +8,7 @@
 
 #import "MySchoolViewModel.h"
 #import "AFNManager.h"
-#import "JsonUtils.h"
+#import "JSONKit.h"
 #import "MySchoolInfo.h"
 
 @implementation MySchoolViewModel
@@ -26,9 +26,12 @@
                             @"userId": getUser().id
                             };
     
-    [[AFNManager sharedAFNManager] getServer:MY_SCHOOL_SERVER parameters:@{PARS_KEY : [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:MY_SCHOOL_SERVER parameters:@{PARS_KEY : [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
-            [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
+            if (controller) {
+                [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
+            }
+            
             callBack(NO);
         } else {
             NSString *responseCode = getResponseCodeFromDic(response);
@@ -38,7 +41,9 @@
                 callBack(YES);
             } else {
                 NSString *message = response[RESPONSE_MESSAGE];
-                [controller finishedLodingWithTip:message subTip:@"点击重新加载"];
+                if (controller) {
+                    [controller finishedLodingWithTip:message subTip:@"点击重新加载"];
+                }
                 callBack(NO);
             }
 
@@ -71,15 +76,15 @@
     [controller showWaitView:@"正在发送评论"];
     NSDictionary *dic = @{
                           @"driving_id": drivingId,
-                          @"driving_scole": @(scole),
-                          @"driving_environment":@(enScole),
-                          @"driving_proscenium": @(prosceScole),
-                          @"driving_trainer": @(drivingTrainer),
+                          @"driving_scole": @"53a61c54c765dd2df345335434d6d30c",
+                          @"driving_environment":@"53a61c54c765dd2df345335434d6d30c",
+                          @"driving_proscenium": @"53a61c54c765dd2df345335434d6d30c",
+                          @"driving_trainer": @"53a61c54c765dd2df345335434d6d30c",
                           @"driving_comment": comment,
                           @"is_comm": showName ? @"1" : @"0",
                           @"userId": hasUser() ? getUser().id : @"123"
                           };
-    [[AFNManager sharedAFNManager] getServer:COMMENT_SCHOOL_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:COMMENT_SCHOOL_SERVER parameters:@{PARS_KEY: [dic JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
             callBack(NO);

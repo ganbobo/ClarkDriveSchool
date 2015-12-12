@@ -8,7 +8,7 @@
 
 #import "RegisterViewModel.h"
 
-#import "JsonUtils.h"
+#import "JSONKit.h"
 #import "AFNManager.h"
 #import "NSString+MD5.h"
 
@@ -33,7 +33,7 @@
     NSDictionary *dic = @{
                           @"mobile": username
                           };
-    [[AFNManager sharedAFNManager] getServer:VERIFY_CODE_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:VERIFY_CODE_SERVER parameters:@{PARS_KEY: [dic JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller showMiddleToastWithContent:netErrorMessage];
             callBack(NO);
@@ -115,7 +115,7 @@
                          callBack:(void (^)(BOOL success))callBack {
     [controller showWaitView:@"注册中"];
     NSDictionary *dic = @{@"mobile": username, @"passWord": pwd};
-    [[AFNManager sharedAFNManager] getServer:REGISTER_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:REGISTER_SERVER parameters:@{PARS_KEY: [dic JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
             callBack(NO);

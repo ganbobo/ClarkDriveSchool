@@ -10,6 +10,7 @@
 
 @interface ShopInfo : NSObject
 
+
 @property (nonatomic, copy) NSString *driving_name;
 
 @property (nonatomic, copy) NSString *longitude;
@@ -20,13 +21,19 @@
 
 @property (nonatomic, assign) NSInteger level;
 
+@property (nonatomic, copy) NSString *driving_addr;
+
 @property (nonatomic, copy) NSString *latitude;
 
-@property (nonatomic, assign) NSInteger driving_comm_num;
+@property (nonatomic, assign) NSInteger coupon_price;
+
+@property (nonatomic, copy) NSString *tel;
+
+@property (nonatomic, assign) NSInteger scole;
 
 @property (nonatomic, copy) NSString *resource_url;
 
-@property (nonatomic, copy) NSString *scole;
+@property (nonatomic, assign) double distance;
 
 
 @end

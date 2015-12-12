@@ -9,7 +9,7 @@
 #import "EditViewModel.h"
 
 #import "AFNManager.h"
-#import "JsonUtils.h"
+#import "JSONKit.h"
 
 @implementation EditViewModel
 
@@ -29,7 +29,7 @@
                             };
     
     [controller showWaitView:@"正在绑定"];
-    [[AFNManager sharedAFNManager] getServer:BLIND_NAME_SERVER parameters:@{PARS_KEY: [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:BLIND_NAME_SERVER parameters:@{PARS_KEY: [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
             callBack(NO);
@@ -67,7 +67,7 @@
                             };
     
     [controller showWaitView:@"正在绑定"];
-    [[AFNManager sharedAFNManager] getServer:BLIND_LICENSE_SERVER parameters:@{PARS_KEY: [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:BLIND_LICENSE_SERVER parameters:@{PARS_KEY: [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
             callBack(NO);

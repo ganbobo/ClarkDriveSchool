@@ -46,7 +46,7 @@
     }
     
     if (_viewModel.coachDetailModel) {
-        _lblNickName.text = [NSString stringWithFormat:@"%@ %@ %ld岁", _coachInfo.trainerName, 1 == 1? @"男": @"女", (long)_viewModel.coachDetailModel.age];
+        _lblNickName.text = [NSString stringWithFormat:@"%@ %@ %ld岁", _coachInfo.trainerName, _viewModel.coachDetailModel.sex == 1? @"男": @"女", (long)_viewModel.coachDetailModel.age];
     }
 }
 
@@ -140,7 +140,10 @@
                 cell.detailTextLabel.text = _coachInfo.drivingName;
                 break;
             case 1:
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", _subjectInfo.subject_name, _coachInfo.typeName];
+                if (_viewModel.coachDetailModel) {
+                     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ %@", _viewModel.coachDetailModel.subjectName, _coachInfo.typeName];
+                }
+               
                 break;
             default:
                 break;
@@ -197,7 +200,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
-        [_viewModel blindCoachToServer:_coachInfo.trainerId subjectId:_subjectInfo.id controller:self callBack:^(BOOL success) {
+        [_viewModel blindCoachToServer:_coachInfo.trainerId subjectId:_subjectId controller:self callBack:^(BOOL success) {
             
         }];
     }

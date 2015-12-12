@@ -111,7 +111,7 @@
         [btnList setTitleColor:kGreenColor forState:UIControlStateNormal];
         [btnList setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [btnList setBackgroundImage:[UIImage imageNamed:@"btn_common_white"] forState:UIControlStateNormal];
-        [btnList setBackgroundImage:[UIImage imageNamed:@"btn_common"] forState:UIControlStateSelected];
+        [btnList setBackgroundImage:[self createImageWithColor:kGreenColor] forState:UIControlStateSelected];
         [btnList setTitle:@"列表版" forState:UIControlStateNormal];
         btnList.titleLabel.font = [UIFont boldSystemFontOfSize:17];
         btnList.tag = kListTag;
@@ -122,7 +122,7 @@
         [btnMap setTitleColor:kGreenColor forState:UIControlStateNormal];
         [btnMap setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
         [btnMap setBackgroundImage:[UIImage imageNamed:@"btn_common_white"] forState:UIControlStateNormal];
-        [btnMap setBackgroundImage:[UIImage imageNamed:@"btn_common"] forState:UIControlStateSelected];
+        [btnMap setBackgroundImage:[self createImageWithColor:kGreenColor] forState:UIControlStateSelected];
         [btnMap setTitle:@"地图版" forState:UIControlStateNormal];
         btnMap.titleLabel.font = [UIFont boldSystemFontOfSize:17];
         btnMap.tag = kMapTag;
@@ -135,13 +135,25 @@
     }
 }
 
+- (UIImage *)createImageWithColor:(UIColor *)color {
+    CGRect rect=CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return theImage;
+}
+
 - (void)loadMapView {
     _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(0, 64, ScreenWidth, ScreenHeight - NavBarHeight - StatusBarHeight)];
     [_mapView setMapType:BMKMapTypeStandard];
     _mapView.showsUserLocation = YES;
     _mapView.zoomEnabled= YES;
     _mapView.scrollEnabled = YES;
-    _mapView.zoomLevel = 15;
+    _mapView.zoomLevel = 12;
     _mapView.hidden = YES;
     [self.view addSubview:_mapView];
     
@@ -272,16 +284,10 @@
 - (void)PullDownMenu:(MXPullDownMenu *)pullDownMenu didSelectRowAtColumn:(NSInteger)column row:(NSInteger)row {
     switch (column) {
         case 0: {
-            if (row == 0) {
-                _filterInfo.cityId = @"";
-            } else {
-                AddressModel *addressInfo = [AddressViewModel sharedAddressViewModel].arrayDataSource[row - 1];
-                _filterInfo.cityId = [NSString stringWithFormat:@"%ld", (long)addressInfo.c_id];
-            }
-        }
-            break;
-        case 1: {
             switch (row) {
+                case 0:
+                    _filterInfo.toDate = @"asc";
+                    break;
                 case 1:
                     _filterInfo.toDate = @"asc";
                     break;
@@ -294,7 +300,7 @@
             }
         }
             break;
-        case 3: {
+        case 1: {
             switch (row) {
                 case 0:
                     _filterInfo.toDate = @"asc";
@@ -325,43 +331,22 @@
 }
 
 - (void)getAddressFromServer {
-    [[AddressViewModel sharedAddressViewModel] getAddressDicFromServer:self callBack:^(BOOL success) {
-        if (success) {
-            // 初始化筛选条件
-            _filterInfo = [[FilterInfo alloc] init];
-            _filterInfo.cityId = @"";
-            _filterInfo.toDate = @"asc";
-            _filterInfo.startPrice = 0;
-            _filterInfo.endPrice = 100000;
+    // 初始化筛选条件
+    _filterInfo = [[FilterInfo alloc] init];
+    _filterInfo.cityId = @"";
+    _filterInfo.toDate = @"asc";
+    _filterInfo.startPrice = 0;
+    _filterInfo.endPrice = 100000;
+    
+    _dataMenu = @[@[@"综合排序", @"距离近到远", @"评分高到低", @"人气高到低"], @[@"价格", @"价格低到高", @"价格高到低"]];
             
-            NSMutableArray *cityList = [[NSMutableArray alloc] init];
-            [cityList addObject:@"所有城市"];
-            
-            NSInteger citySelectRow = 0;// 默认0
-            
-            for (NSInteger i = 0; i < [AddressViewModel sharedAddressViewModel].arrayDataSource.count; i++) {
-                AddressModel *model = [AddressViewModel sharedAddressViewModel].arrayDataSource[i];
-                if ([LocationManager sharedLocationManager].addressInfo &&
-                    model.c_id == [LocationManager sharedLocationManager].addressInfo.c_id) {
-                    _filterInfo.cityId = [NSString stringWithFormat:@"%ld", (long)model.c_id];
-                    // 因为手动加入一个在最前面，所以需要+1
-                    citySelectRow = i + 1;
-                }
-                
-                [cityList addObject:model.c_name];
-            }
-            
-            _dataMenu = @[cityList, @[@"综合排序", @"由近到远", @"评分由低到高", @"评分由高到低", @"价格由低到高", @"价格由高到低"]];
-            
-            _pullDownMenu = [[MXPullDownMenu alloc] initWithArray:_dataMenu selectedColor:[UIColor colorWithRed:0.180 green:0.635 blue:0.353 alpha:1.000]];
-            _pullDownMenu.delegate = self;
-            _pullDownMenu.frame = CGRectMake(0, 64, ScreenWidth, 45);
-            [_pullDownMenu setTranslatesAutoresizingMaskIntoConstraints:NO];
-            [self.view addSubview:_pullDownMenu];
-            
-            [_pullDownMenu setSelectRow:citySelectRow];
-        }
-    }];
+    _pullDownMenu = [[MXPullDownMenu alloc] initWithArray:_dataMenu selectedColor:[UIColor colorWithRed:0.180 green:0.635 blue:0.353 alpha:1.000]];
+    _pullDownMenu.delegate = self;
+    _pullDownMenu.frame = CGRectMake(0, 64, ScreenWidth, 45);
+    [_pullDownMenu setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.view addSubview:_pullDownMenu];
+    
+    [_pullDownMenu setSelectRow:0];
 }
 
 - (void)getData {
@@ -408,9 +393,9 @@
             info.id = schoolInfo.drivingId;
             info.driving_price = schoolInfo.drivingPrice;
             info.level = schoolInfo.level;
-            info.driving_comm_num = schoolInfo.drivingCommNum;
-            info.resource_url = schoolInfo.resourseUrl;
-            info.scole = schoolInfo.scole;
+//            info.driving_comm_num = schoolInfo.drivingCommNum;
+//            info.resource_url = schoolInfo.resourseUrl;
+//            info.scole = schoolInfo.scole;
          
             [_shopViewModel.dataSource removeAllObjects];
             [_shopViewModel.dataSource addObject:info];

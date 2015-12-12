@@ -38,7 +38,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (!self.isFirstIn) {
-        [self getDataFromServer];
+        [self getData];
     }
 }
 

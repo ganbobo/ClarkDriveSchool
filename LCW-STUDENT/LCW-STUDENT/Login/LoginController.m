@@ -43,7 +43,7 @@
 #pragma - mark 加载界面
 
 - (void)loadNav {
-    [PMCommon setNavigationTitle:self withTitle:@"登录"];
+    [PMCommon setNavigationTitle:self withTitle:@"验证手机"];
     [PMCommon setNavigationBarLeftButton:self withBtnNormalImg:[UIImage imageNamed:@"back_ico"] withAction:@selector(clickCancel)];
 }
 

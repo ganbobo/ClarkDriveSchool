@@ -8,7 +8,7 @@
 
 #import "CourseViewModel.h"
 #import "AFNManager.h"
-#import "JsonUtils.h"
+#import "JSONKit.h"
 #import "CourseInfo.h"
 
 @implementation CourseViewModel
@@ -25,7 +25,7 @@
                             @"userId": getUser().id
                             };
     
-    [[AFNManager sharedAFNManager] getServer:GET_COURSE_LIST_SERVER parameters:@{PARS_KEY : [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:GET_COURSE_LIST_SERVER parameters:@{PARS_KEY : [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
             callBack(NO);
@@ -67,7 +67,7 @@
                             };
     
     [controller showWaitView:@"正在取消"];
-    [[AFNManager sharedAFNManager] getServer:CANCEL_COURSE_SERVER parameters:@{PARS_KEY : [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:CANCEL_COURSE_SERVER parameters:@{PARS_KEY : [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
             callBack(NO);

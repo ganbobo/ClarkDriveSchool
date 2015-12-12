@@ -30,6 +30,8 @@
     // Initialization code
     _imgHead.layer.borderColor = RGBA(0xee, 0xee, 0xee, 1).CGColor;
     _imgHead.layer.borderWidth = 0.5;
+    _imgHead.layer.cornerRadius = _imgHead.width  / 2.0;
+    _imgHead.layer.masksToBounds = YES;
     
     _lblCarNo.text = @"";
     _lblSchoolName.text = @"";
@@ -49,7 +51,7 @@
 - (void)refreshCellByInfo:(MyCoachInfo *)coachInfo {
     _coachInfo = coachInfo;
     
-    [_imgHead setImageWithURL:getImageUrl(@"") placeholderImage:[UIImage imageNamed:@"downlaod_picture_fail"]];
+    [_imgHead setImageWithURL:getImageUrl(@"") placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
     
     _lblNameInfo.text = coachInfo.cnName;
     _lblPhone.text = [NSString stringWithFormat:@"手机：%@", coachInfo.tel];

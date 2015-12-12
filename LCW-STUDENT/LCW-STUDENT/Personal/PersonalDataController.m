@@ -11,11 +11,11 @@
 #import "EditDataController.h"
 #import "AFNManager.h"
 #import "ImageUtils.h"
-#import "JsonUtils.h"
+#import "JSONKit.h"
 
 #import <UIImageView+AFNetworking.h>
 
-@interface PersonalDataController ()<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate> {
+@interface PersonalDataController ()<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate> {
     NSArray *_dataSource;
     __weak IBOutlet UITableView *_tableView;
     
@@ -149,13 +149,13 @@
         switch (indexPath.row) {
                 
             case 2: {
-                if ([getUser().identification isEqualToString:@"未填写"]) {
+                if ([getUser().cn_name isEqualToString:@"未填写"]) {
                     [self performSegueWithIdentifier:@"EditData" sender:@(YES)];
                 }
             }
                 break;
             case 3: {
-                if ([getUser().cn_name isEqualToString:@"未填写"]) {
+                if ([getUser().identification isEqualToString:@"未填写"]) {
                     [self performSegueWithIdentifier:@"EditData" sender:@(NO)];
                 }
             }
@@ -254,19 +254,20 @@
                              @"isType": @"1"
                              };
      [self showWaitView:@"正在上传头像"];
-     [[AFNManager manager] postImageServer:UPDATE_USER_INFO_SERVER imageData:@[aravatar] parameters:@{PARS_KEY: [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+     [[AFNManager manager] postImageServer:UPDATE_USER_INFO_SERVER imageData:@[aravatar] parameters:@{PARS_KEY: [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
          
          if (netErrorMessage) {
              [self hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
          } else {
              NSString *responseCode = getResponseCodeFromDic(response);
              if ([responseCode isEqualToString:ResponseCodeSuccess]) {
-                 NSString *url = response[@"data"][@"url"];
+                 NSString *url = response[@"data"];
                  
                  UserInfo *info = getUser();
                  info.resource_url = url;
                  [info updatetoDb];
                  [self hiddenWaitViewWithTip:@"上传成功" type:MessageSuccess];
+                 [_tableView reloadData];
              } else {
                  NSString *message = response[RESPONSE_MESSAGE];
                  [self hiddenWaitViewWithTip:message type:MessageFailed];

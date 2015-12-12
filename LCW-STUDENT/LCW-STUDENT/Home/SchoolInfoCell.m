@@ -127,16 +127,16 @@
                   withSignUp:(BOOL)signUp
                  drivingInfo:(DrivingInfo *)drivingInfo {
     _drivinginfo = drivingInfo;
-    [_btnAddress setTitle:drivingInfo.drivingAddr forState:UIControlStateNormal];
-    _lblCommentScore.text = [NSString stringWithFormat:@"%@", drivingInfo.scole];
-    NSInteger score = drivingInfo.scole.integerValue;
+    [_btnAddress setTitle:drivingInfo.driving_addr forState:UIControlStateNormal];
+    _lblCommentScore.text = [NSString stringWithFormat:@"%@", @(drivingInfo.scole)];
+    NSInteger score = drivingInfo.scole;
     [self setStarView:score];
-    _lblCommentNum.text = [NSString stringWithFormat:@"<font color='#FF440F' size=14>%ld</font>人评论", (long)drivingInfo.drivingCommNum];
+    _lblCommentNum.text = [NSString stringWithFormat:@"<font color='#FF440F' size=14>%ld</font>人评论", (long)drivingInfo.level];
     
     if (signUp) {
         [_btnSelectCoach setTitle:@"下一步，选教练" forState:UIControlStateNormal];
     } else {
-        [_btnSelectCoach setTitle:[NSString stringWithFormat:@"下一步，生成%ld元抵用券", (long)drivingInfo.couponPrice] forState:UIControlStateNormal];
+        [_btnSelectCoach setTitle:[NSString stringWithFormat:@"下一步，生成%ld元抵用券", (long)drivingInfo.coupon_price] forState:UIControlStateNormal];
     }
     _btnSelectCoach.hidden = _commentView.hidden = _btnPhone.hidden =  _btnAddress.hidden = YES;
     [_line setOrigin:CGPointMake(0, 44 - 0.5)];

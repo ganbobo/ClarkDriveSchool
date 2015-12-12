@@ -86,7 +86,7 @@
     _searchField = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(imgView.frame) + 5, 0, _searchView.width - CGRectGetMaxX(imgView.frame) - 5, _searchView.height)];
     _searchField.font = [UIFont systemFontOfSize:14];
     _searchField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    _searchField.placeholder = @"请输入相应的编号进行搜索";
+    _searchField.placeholder = @"输入驾校名称";
     _searchField.delegate = self;
     _searchField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     _searchField.returnKeyType = UIReturnKeySearch;

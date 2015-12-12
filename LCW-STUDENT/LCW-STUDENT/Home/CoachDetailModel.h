@@ -8,19 +8,23 @@
 
 #import <Foundation/Foundation.h>
 
+@class CoachUserModel,Jd;
 @interface CoachDetailModel : NSObject
-
-@property (nonatomic, assign) NSInteger age;
 
 @property (nonatomic, copy) NSString *resourceUrl;
 
-@property (nonatomic, copy) NSString *trainerName;
-
-@property (nonatomic, copy) NSString *trainerId;
+@property (nonatomic, assign) NSInteger age;
 
 @property (nonatomic, copy) NSString *subjectName;
 
+@property (nonatomic, copy) NSString *trainerName;
+
+@property (nonatomic, assign) NSInteger sex;
+
 @property (nonatomic, copy) NSString *drivingName;
+
+@property (nonatomic, copy) NSString *trainerId;
+
 
 @end
 
@@ -37,3 +41,4 @@
 @property (nonatomic, assign) NSInteger currentNum;
 
 @end
+

@@ -129,6 +129,9 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if ([tableView isEqual:_tableView]) {
         NSString *key = _addressViewModel.wordSortArray[section];
+        if ([key isEqualToString:@"#"]) {
+            return @"定位城市";
+        }
         return key;
     }
     return @"";
@@ -149,7 +152,8 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-    
+    cell.textLabel.textColor = RGBA(0x66, 0x66, 0x66, 1);
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
     if ([tableView isEqual:_tableView]) {
         NSString *key = _addressViewModel.wordSortArray[indexPath.section];
         NSArray *list = _addressViewModel.addressDic[key];
@@ -166,6 +170,19 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     self.title = cell.textLabel.text;
+    
+    if ([cell.textLabel.text isEqualToString:@"定位失败"]) {
+        [[LocationManager sharedLocationManager] startLocation:^(NSString *city) {
+            NSString *key = _addressViewModel.wordSortArray[indexPath.section];
+            NSArray *list = _addressViewModel.addressDic[key];
+            AddressModel *model = list[indexPath.row];
+            model.c_name = city;
+            [_tableView reloadData];
+        }];
+        
+        return;
+    }
+    
     NSString *key = _addressViewModel.wordSortArray[indexPath.section];
     NSArray *list = _addressViewModel.addressDic[key];
     AddressModel *model = list[indexPath.row];

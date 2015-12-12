@@ -27,25 +27,28 @@
 
 @interface DrivingInfo : NSObject
 
-@property (nonatomic, assign) NSInteger drivingPrice;
 
-@property (nonatomic, copy) NSString *drivingAddr;
+@property (nonatomic, copy) NSString *driving_name;
 
-@property (nonatomic, assign) NSInteger couponPrice;
+@property (nonatomic, copy) NSString *longitude;
 
-@property (nonatomic, assign) NSInteger drivingCommNum;
+@property (nonatomic, assign) NSInteger driving_price;
+
+@property (nonatomic, copy) NSString *id;
 
 @property (nonatomic, assign) NSInteger level;
 
-@property (nonatomic, copy) NSString *resourseUrl;
+@property (nonatomic, assign) NSInteger coupon_price;
+
+@property (nonatomic, copy) NSString *driving_addr;
+
+@property (nonatomic, copy) NSString *latitude;
+
+@property (nonatomic, copy) NSString *resource_url;
 
 @property (nonatomic, copy) NSString *tel;
 
-@property (nonatomic, copy) NSString *scole;
-
-@property (nonatomic, copy) NSString *drivingName;
-
-@property (nonatomic, copy) NSString *drivingId;
+@property (nonatomic, assign) NSInteger scole;
 
 @end
 

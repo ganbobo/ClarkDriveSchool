@@ -52,6 +52,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor whiteColor];
         [self commonInit];
     }
     return self;
@@ -132,7 +133,7 @@
 
 - (void)showLoadingView {
     _isLoading = YES;
-    [UIView animateWithDuration:0.3f animations:^{
+//    [UIView animateWithDuration:0.0f animations:^{
         self.alpha = 1.0f;
         loadingLabel.alpha = 1.0f;
         activityIndicator.alpha = 1.0f;
@@ -140,9 +141,9 @@
         
         descriptionTextView.alpha = 0.0f;
         titleLabel.alpha = 0.0f;
-    } completion:^(BOOL finished) {
-        
-    }];
+//    } completion:^(BOOL finished) {
+//        
+//    }];
 }
 - (void)showViewWithTitle:(NSString *)title andSubtitle:(NSString *)subtitle {
     titleLabel.text = title;
@@ -154,7 +155,7 @@
     newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
     descriptionTextView.frame = newFrame;
     
-    [UIView animateWithDuration:0.3f animations:^{
+    [UIView animateWithDuration:0.0f animations:^{
         self.alpha = 1.0f;
         loadingLabel.alpha = 0.0f;
         activityIndicator.alpha = 0.0f;

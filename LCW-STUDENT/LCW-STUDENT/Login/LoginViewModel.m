@@ -10,7 +10,7 @@
 
 #import "AFNManager.h"
 #import "NSString+MD5.h"
-#import "JsonUtils.h"
+#import "JSONKit.h"
 
 @interface LoginViewModel() {
     NSInteger _totalCountTime;
@@ -40,7 +40,7 @@
     NSDictionary *dic = @{
                           @"mobile": username
                           };
-    [[AFNManager sharedAFNManager] getServer:VERIFY_CODE_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:VERIFY_CODE_SERVER parameters:@{PARS_KEY: [dic JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller showMiddleToastWithContent:netErrorMessage];
             callBack(NO);
@@ -156,7 +156,7 @@
                           @"loginName": username
                           };
     [controller showWaitView:@"正在登录"];
-    [[AFNManager sharedAFNManager] getServer:LOGIN_SERVER parameters:@{PARS_KEY: [dic JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:LOGIN_SERVER parameters:@{PARS_KEY: [dic JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
             callBack(NO);

@@ -9,7 +9,7 @@
 #import "SchoolViewModel.h"
 
 #import "AFNManager.h"
-#import "JsonUtils.h"
+#import "JSONKit.h"
 
 @implementation SchoolViewModel
 
@@ -28,7 +28,7 @@
                             @"driving_id": driveId
                             };
     
-    [[AFNManager sharedAFNManager] getServer:GET_SCHOOL_DETAIL_SERVER parameters:@{PARS_KEY : [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:GET_SCHOOL_DETAIL_SERVER parameters:@{PARS_KEY : [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller finishedLodingWithTip:netErrorMessage subTip:@"点击重新加载"];
             callBack(NO);
@@ -69,7 +69,7 @@
                             @"identification": identifier
                             };
     [controller showWaitView:@"正在生成优惠券"];
-    [[AFNManager sharedAFNManager] getServer:GET_COUPON_SERVER parameters:@{PARS_KEY : [param JSONNSString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] getServer:GET_COUPON_SERVER parameters:@{PARS_KEY : [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
             callBack(NO);
