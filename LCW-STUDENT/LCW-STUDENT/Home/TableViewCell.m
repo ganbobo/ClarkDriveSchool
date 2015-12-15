@@ -8,7 +8,7 @@
 
 #import "TableViewCell.h"
 
-#import <UIImageView+AFNetworking.h>
+#import <UIImageView+WebCache.h>
 
 @interface TableViewCell () {
     
@@ -63,7 +63,7 @@
     NSInteger score = shopInfo.scole;
     [self setStarView:score];
     
-    [_imgView setImageWithURL:getImageUrl(shopInfo.resource_url) placeholderImage:[UIImage imageNamed:@"downlaod_picture_fail"]];
+    [_imgView sd_setImageWithURL:getImageUrl(shopInfo.resource_url) placeholderImage:[UIImage imageNamed:@"downlaod_picture_fail"]];
 }
 
 - (void)setStarView:(NSInteger)score {

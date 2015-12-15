@@ -19,7 +19,7 @@
 #import "CoachFilterController.h"
 #import "RTLabel.h"
 #import "MapViewController.h"
-#import <UIImageView+AFNetworking.h>
+#import <UIImageView+WebCache.h>
 #import "CouponController.h"
 
 @interface SchoolDetailController ()<UITableViewDataSource, UITableViewDelegate, SchoolInfoViewDelegate> {
@@ -79,7 +79,7 @@
     [_dataSource addObject:_infoView];
     _lblName.textColor = [UIColor colorWithRed:0.992 green:0.306 blue:0.024 alpha:1.000];
     _lblName.text = [NSString stringWithFormat:@"<font face='HelveticaNeue-CondensedBold' color='#eb4f38' size=14>￥</font><font face='HelveticaNeue-CondensedBold' color='#ff6600' size=20>%ld</font> <font face='HelveticaNeue-CondensedBold' color='#ff6600' size=14>%@</font> <font face='HelveticaNeue-CondensedBold' color='#ff6600' size=14>C1周一到周日班</font>", (long)_shopInfo.driving_price, detailInfo.driving.driving_name];
-    [_imgView setImageWithURL:getImageUrl(_shopInfo.resource_url) placeholderImage:[UIImage imageNamed:@"downlaod_picture_fail"]];
+    [_imgView sd_setImageWithURL:getImageUrl(_shopInfo.resource_url) placeholderImage:[UIImage imageNamed:@"downlaod_picture_fail"]];
     
     if (detailInfo.privilegeList.count > 0) {
         _studentPrivilegeView = [[SchoolDescView alloc] initWithWidth:ScreenWidth originalY:0 columns:2];
@@ -181,7 +181,7 @@
 //    _stretchView = [HFStretchableTableHeaderView new];
 //    [_stretchView stretchHeaderForTableView:_tableView withView:_headerView];
 //    [_stretchView resizeView];
-    [_headerView setHeight: (ScreenWidth * 1.0) / 1.5];
+    [_headerView setHeight: (ScreenWidth * 3) / 4];
     [_tableView setTableHeaderView:_headerView];
 }
 

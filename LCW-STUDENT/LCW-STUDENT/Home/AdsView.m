@@ -8,7 +8,7 @@
 
 #import "AdsView.h"
 
-#import <UIButton+AFNetworking.h>
+#import <UIButton+WebCache.h>
 
 @implementation AdsView
 
@@ -24,8 +24,7 @@
 
 - (void)setAdsInfo:(AdsInfo *)adsInfo {
     _adsInfo = adsInfo;
-//    [self setBackgroundImageForState:UIControlStateNormal withURL:getImageUrl(adsInfo.imagePath) placeholderImage:[UIImage imageNamed:@"nav_home_title"]];
-    [self setBackgroundImage:[UIImage imageNamed:adsInfo.imagePath] forState:UIControlStateNormal];
+    [self sd_setBackgroundImageWithURL:getImageUrl(adsInfo.imagePath) forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:adsInfo.imagePath]];
 }
 
 - (void)clickSelf {

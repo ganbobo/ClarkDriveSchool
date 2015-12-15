@@ -8,7 +8,7 @@
 
 #import "MyCoachCell.h"
 
-#import <UIImageView+AFNetworking.h>
+#import <UIImageView+WebCache.h>
 
 @interface MyCoachCell () {
     
@@ -51,13 +51,14 @@
 - (void)refreshCellByInfo:(MyCoachInfo *)coachInfo {
     _coachInfo = coachInfo;
     
-    [_imgHead setImageWithURL:getImageUrl(@"") placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
+    [_imgHead sd_setImageWithURL:getImageUrl(coachInfo.resource_url) placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
     
     _lblNameInfo.text = coachInfo.cnName;
     _lblPhone.text = [NSString stringWithFormat:@"手机：%@", coachInfo.tel];
     _lblCourse.text = coachInfo.subjectName;
     _btnComment.enabled = YES;
-    
+    _lblSchoolName.text = coachInfo.drivingName;
+    _lblCarNo.text = [NSString stringWithFormat:@"%@ %@岁", coachInfo.sex == 1? @"男": @"女", @(coachInfo.age)];
     switch (coachInfo.flag) {
         case 0: {
             [_btnComment setTitle:@"评价" forState:UIControlStateNormal];

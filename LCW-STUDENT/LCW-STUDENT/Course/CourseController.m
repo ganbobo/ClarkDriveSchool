@@ -66,7 +66,7 @@
 #pragma - mark UITableViewDataSource, UITableViewDelegate 代理
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSLog(@"count is %ld", [_viewModel.courseInfo getListByType:_type].count);
+
     return [_viewModel.courseInfo getListByType:_type].count;
 }
 

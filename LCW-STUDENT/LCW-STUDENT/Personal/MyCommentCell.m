@@ -9,7 +9,7 @@
 #import "MyCommentCell.h"
 
 #import "RTLabel.h"
-#import <UIImageView+AFNetworking.h>
+#import <UIImageView+WebCache.h>
 
 @interface MyCommentCell () {
     
@@ -34,7 +34,7 @@
     _lblContent.font = [UIFont systemFontOfSize:14];
     _lblContent.textColor = [UIColor colorWithWhite:0.721 alpha:1.000];
     
-    [_headImage setImageWithURL:getImageUrl(@"http://imgsrc.baidu.com/forum/w%3D580%3B/sign=82037f8cd1ca7bcb7d7bc7278e326a63/b17eca8065380cd7612ee4a2a744ad3459828149.jpg")];
+    [_headImage sd_setImageWithURL:getImageUrl(@"http://imgsrc.baidu.com/forum/w%3D580%3B/sign=82037f8cd1ca7bcb7d7bc7278e326a63/b17eca8065380cd7612ee4a2a744ad3459828149.jpg")];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

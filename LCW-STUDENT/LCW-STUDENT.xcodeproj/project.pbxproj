@@ -18,10 +18,7 @@
 		4B1F24DE1BE0A6AE004D1ED7 /* GFPlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B1F24DD1BE0A6AE004D1ED7 /* GFPlaceholderView.m */; };
 		4B26E3871BF314DB004859FF /* MyCouponInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B26E3861BF314DB004859FF /* MyCouponInfo.m */; };
 		4B66F81A1BF22853007E4806 /* SchoolCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B66F8191BF22853007E4806 /* SchoolCommentController.m */; };
-		4B66F8211BF234F7007E4806 /* bt_star_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B66F81B1BF234F7007E4806 /* bt_star_b.png */; };
-		4B66F8221BF234F7007E4806 /* bt_star_a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B66F81C1BF234F7007E4806 /* bt_star_a@2x.png */; };
 		4B66F8231BF234F7007E4806 /* bt_star_a@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B66F81D1BF234F7007E4806 /* bt_star_a@3x.png */; };
-		4B66F8241BF234F7007E4806 /* bt_star_b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B66F81E1BF234F7007E4806 /* bt_star_b@2x.png */; };
 		4B66F8251BF234F7007E4806 /* bt_star_b@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B66F81F1BF234F7007E4806 /* bt_star_b@3x.png */; };
 		4B66F8261BF234F7007E4806 /* bt_star_a.png in Resources */ = {isa = PBXBuildFile; fileRef = 4B66F8201BF234F7007E4806 /* bt_star_a.png */; };
 		4B66F8291BF2373B007E4806 /* CoachCommentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B66F8281BF2373B007E4806 /* CoachCommentController.m */; };
@@ -95,7 +92,6 @@
 		4BC080951C0834DB00DE0E12 /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC080911C0834DB00DE0E12 /* 2.png */; };
 		4BC080961C0834DB00DE0E12 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC080921C0834DB00DE0E12 /* 3.png */; };
 		4BC080971C0834DB00DE0E12 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BC080931C0834DB00DE0E12 /* 4.png */; };
-		4BD0C7B31BF1C39A00F7E969 /* bt_star_a.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BD0C7AD1BF1C39A00F7E969 /* bt_star_a.png */; };
 		4BD0C7B41BF1C39A00F7E969 /* bt_star_a@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BD0C7AE1BF1C39A00F7E969 /* bt_star_a@2x.png */; };
 		4BD0C7B51BF1C39A00F7E969 /* bt_star_b.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BD0C7AF1BF1C39A00F7E969 /* bt_star_b.png */; };
 		4BD0C7B61BF1C39A00F7E969 /* bt_star_b@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4BD0C7B01BF1C39A00F7E969 /* bt_star_b@2x.png */; };
@@ -1604,12 +1600,12 @@
 		5C6CFCA01B8DEFFE00A76E56 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Clark;
 				TargetAttributes = {
 					5C6CFCA71B8DEFFE00A76E56 = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 2VGMU55PHN;
+						DevelopmentTeam = 9N9P3CJ88M;
 					};
 				};
 			};
@@ -1647,7 +1643,6 @@
 				4B8A9DF11C05E7680042B78E /* 3@2x.jpg in Resources */,
 				5CA041541B91C5C200EEB4BC /* Course.storyboard in Resources */,
 				4B8A9DE51C05E6190042B78E /* launch@2x.png in Resources */,
-				4BD0C7B31BF1C39A00F7E969 /* bt_star_a.png in Resources */,
 				4B66F8231BF234F7007E4806 /* bt_star_a@3x.png in Resources */,
 				5CA041751B91C74B00EEB4BC /* Main.storyboard in Resources */,
 				4B8A9DF01C05E7680042B78E /* 3-480h@2x.jpg in Resources */,
@@ -1658,7 +1653,6 @@
 				5CE59D311B9C86260097AA63 /* Address.storyboard in Resources */,
 				4B7626821C04B053006692F6 /* TableViewCell.xib in Resources */,
 				5CA041521B91C5C200EEB4BC /* home.xcassets in Resources */,
-				4B66F8241BF234F7007E4806 /* bt_star_b@2x.png in Resources */,
 				4B9D9F271BDE5C8600907937 /* Localizable.strings in Resources */,
 				5CA041561B91C5C200EEB4BC /* Login.storyboard in Resources */,
 				4B66F8251BF234F7007E4806 /* bt_star_b@3x.png in Resources */,
@@ -1669,11 +1663,9 @@
 				4B75021B1C15B91200934479 /* PushConfig.plist in Resources */,
 				4B7C132D1BEF875800468A76 /* mapapi.bundle in Resources */,
 				4BD0C7B51BF1C39A00F7E969 /* bt_star_b.png in Resources */,
-				4B66F8221BF234F7007E4806 /* bt_star_a@2x.png in Resources */,
 				5CA041741B91C74B00EEB4BC /* LaunchScreen.xib in Resources */,
 				4B8A9DEC1C05E7680042B78E /* 2-480h@2x.jpg in Resources */,
 				5CA041511B91C5C200EEB4BC /* common.xcassets in Resources */,
-				4B66F8211BF234F7007E4806 /* bt_star_b.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1962,8 +1954,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: shu liu (3TMMV9LH4X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: shu liu (3TMMV9LH4X)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1989,8 +1981,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: shu liu (3TMMV9LH4X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: shu liu (3TMMV9LH4X)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

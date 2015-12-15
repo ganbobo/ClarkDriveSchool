@@ -113,7 +113,7 @@
         [btnList setBackgroundImage:[UIImage imageNamed:@"btn_common_white"] forState:UIControlStateNormal];
         [btnList setBackgroundImage:[self createImageWithColor:kGreenColor] forState:UIControlStateSelected];
         [btnList setTitle:@"列表版" forState:UIControlStateNormal];
-        btnList.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+        btnList.titleLabel.font = [UIFont systemFontOfSize:15];
         btnList.tag = kListTag;
         [btnList addTarget:self action:@selector(clickSwich:) forControlEvents:UIControlEventTouchUpInside];
         [_titleView addSubview:btnList];
@@ -124,7 +124,7 @@
         [btnMap setBackgroundImage:[UIImage imageNamed:@"btn_common_white"] forState:UIControlStateNormal];
         [btnMap setBackgroundImage:[self createImageWithColor:kGreenColor] forState:UIControlStateSelected];
         [btnMap setTitle:@"地图版" forState:UIControlStateNormal];
-        btnMap.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+        btnMap.titleLabel.font = [UIFont systemFontOfSize:15];
         btnMap.tag = kMapTag;
         [btnMap addTarget:self action:@selector(clickSwich:) forControlEvents:UIControlEventTouchUpInside];
         [_titleView addSubview:btnMap];
@@ -208,18 +208,30 @@
 
 #pragma - mark UITableViewDataSource, UITableViewDelegate 代理
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return _shopViewModel.dataSource.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 86;
+    return 90;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ShopCell *cell
     = [tableView dequeueReusableCellWithIdentifier:@"ShopCell" forIndexPath:indexPath];
-    [cell refreshCellWithInfo:_shopViewModel.dataSource[indexPath.row]];
+    [cell refreshCellWithInfo:_shopViewModel.dataSource[indexPath.section]];
     return cell;
 }
 
@@ -239,7 +251,7 @@
             controller.shopInfo = info;
         } else {
             NSIndexPath *indexPath = (NSIndexPath *)sender;
-            ShopInfo *info = _shopViewModel.dataSource[indexPath.row];
+            ShopInfo *info = _shopViewModel.dataSource[indexPath.section];
             controller.shopInfo = info;
 
         }
@@ -314,7 +326,7 @@
             
         default:
             break;
-    }
+    } 
     
     [self getDataFromServer];
 }
@@ -333,7 +345,11 @@
 - (void)getAddressFromServer {
     // 初始化筛选条件
     _filterInfo = [[FilterInfo alloc] init];
-    _filterInfo.cityId = @"";
+    if ([LocationManager sharedLocationManager].addressInfo) {
+        _filterInfo.cityId = [NSString stringWithFormat:@"%ld", (long)[LocationManager sharedLocationManager].addressInfo.c_id];
+    } else {
+        _filterInfo.cityId = @"";
+    }
     _filterInfo.toDate = @"asc";
     _filterInfo.startPrice = 0;
     _filterInfo.endPrice = 100000;

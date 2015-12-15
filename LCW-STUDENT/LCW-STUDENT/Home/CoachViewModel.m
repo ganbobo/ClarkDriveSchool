@@ -146,7 +146,7 @@
         } else {
             NSString *responseCode = getResponseCodeFromDic(response);
             if ([responseCode isEqualToString:ResponseCodeSuccess]) {
-                [controller hiddenWaitViewWithTip:@"绑定成功" type:MessageSuccess];
+                [controller hiddenWaitView];
                 callBack(YES);
             } else {
                 NSString *message = response[RESPONSE_MESSAGE];

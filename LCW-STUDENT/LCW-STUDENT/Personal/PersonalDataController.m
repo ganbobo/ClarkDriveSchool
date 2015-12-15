@@ -13,7 +13,7 @@
 #import "ImageUtils.h"
 #import "JSONKit.h"
 
-#import <UIImageView+AFNetworking.h>
+#import <UIImageView+WebCache.h>
 
 @interface PersonalDataController ()<UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate> {
     NSArray *_dataSource;
@@ -101,7 +101,7 @@
     if (indexPath.section == 0) {
         cell.detailTextLabel.text = @"";
         cell.accessoryView = _avatarImage;
-        [_avatarImage setImageWithURL:getImageUrl(getUser().resource_url) placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
+        [_avatarImage sd_setImageWithURL:getImageUrl(getUser().resource_url) placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     } else if (indexPath.section == 2) {
         cell.detailTextLabel.text = @"";

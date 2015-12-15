@@ -69,7 +69,7 @@
                             @"identification": identifier
                             };
     [controller showWaitView:@"正在生成优惠券"];
-    [[AFNManager sharedAFNManager] getServer:GET_COUPON_SERVER parameters:@{PARS_KEY : [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] postServer:GET_COUPON_SERVER parameters:@{PARS_KEY : [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
             callBack(NO);

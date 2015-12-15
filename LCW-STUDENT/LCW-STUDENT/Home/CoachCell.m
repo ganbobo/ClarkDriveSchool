@@ -10,7 +10,7 @@
 
 #import "RTLabel.h"
 
-#import <UIImageView+AFNetworking.h>
+#import <UIImageView+WebCache.h>
 
 @interface CoachCell () {
     
@@ -55,7 +55,7 @@
 }
 
 - (void)refreshCellByInfo:(CoachModel *)coachModel {
-    [_imgView setImageWithURL:getImageUrl(coachModel.resourceUrl) placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
+    [_imgView sd_setImageWithURL:getImageUrl(coachModel.resourceUrl) placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
     _lblName.text = [NSString stringWithFormat:@"%@(%@)", coachModel.trainerName, coachModel.typeName];
     _lblStudentsNum.text = [NSString stringWithFormat:@"目前学员：<font color='#FF440F' size=14>%ld</font>", (long)coachModel.currentlyTrainee];
     _lblResidueNum.text = [NSString stringWithFormat:@"剩余名额：<font color='#FF440F' size=14>%ld</font>", (long)coachModel.overplusTrainee];

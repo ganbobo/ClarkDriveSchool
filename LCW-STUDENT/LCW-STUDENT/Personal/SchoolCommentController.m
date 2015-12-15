@@ -8,7 +8,7 @@
 
 #import "SchoolCommentController.h"
 
-#import <UIImageView+AFNetworking.h>
+#import <UIImageView+WebCache.h>
 #import "RatingBar.h"
 #import "MySchoolViewModel.h"
 @interface SchoolCommentController ()<UITextViewDelegate, RatingBarDelegate, UITextViewDelegate> {
@@ -62,7 +62,7 @@
     [_scrollView addSubview:lineTop];
     
     _imgSchool = [[UIImageView alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(lineTop.frame) + 5, 80, 80)];
-    [_imgSchool setImageWithURL:getImageUrl(_mySchoolInfo.resourseUrl) placeholderImage:[UIImage imageNamed:@"downlaod_picture_fail"]];
+    [_imgSchool sd_setImageWithURL:getImageUrl(_mySchoolInfo.resourseUrl) placeholderImage:[UIImage imageNamed:@"downlaod_picture_fail"]];
     _imgSchool.layer.borderColor = RGBA(0xee, 0xee, 0xee, 1).CGColor;
     _imgSchool.layer.borderWidth = 0.5;
     [_scrollView addSubview:_imgSchool];

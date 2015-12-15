@@ -29,7 +29,7 @@
                             };
     
     [controller showWaitView:@"正在绑定"];
-    [[AFNManager sharedAFNManager] getServer:BLIND_NAME_SERVER parameters:@{PARS_KEY: [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
+    [[AFNManager sharedAFNManager] postServer:BLIND_NAME_SERVER parameters:@{PARS_KEY: [param JSONString]} callBack:^(NSDictionary *response, NSString *netErrorMessage) {
         if (netErrorMessage) {
             [controller hiddenWaitViewWithTip:netErrorMessage type:MessageWarning];
             callBack(NO);

@@ -10,7 +10,7 @@
 
 #import "HFStretchableTableHeaderView.h"
 #import "CoachViewModel.h"
-#import <UIImageView+AFNetworking.h>
+#import <UIImageView+WebCache.h>
 #import "CommentController.h"
 
 @interface CoachDetailController ()<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate> {
@@ -32,6 +32,7 @@
     [super viewDidLoad];
     [self refreshUser];
     [self getCoachDetailFromServer];
+    _avatarImage.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,7 +42,7 @@
 
 - (void)refreshUser {
     if (_coachInfo) {
-        [_avatarImage setImageWithURL:getImageUrl(_coachInfo.resourceUrl) placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
+        [_avatarImage sd_setImageWithURL:getImageUrl(_coachInfo.resourceUrl) placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
         _lblNickName.text = [NSString stringWithFormat:@"%@", _coachInfo.trainerName];
     }
     
@@ -199,10 +200,18 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 1) {
-        [_viewModel blindCoachToServer:_coachInfo.trainerId subjectId:_subjectId controller:self callBack:^(BOOL success) {
-            
-        }];
+    if (alertView.tag == 111) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    } else {
+        if (buttonIndex == 1) {
+            [_viewModel blindCoachToServer:_coachInfo.trainerId subjectId:_subjectId controller:self callBack:^(BOOL success) {
+                if (success) {
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"绑定教练成功，去约车吧！" delegate:self cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+                    alertView.tag = 111;
+                    [alertView show];
+                }
+            }];
+        }
     }
 }
 

@@ -9,7 +9,7 @@
 #import "CommentCell.h"
 
 #import "RTLabel.h"
-#import <UIImageView+AFNetworking.h>
+#import <UIImageView+WebCache.h>
 
 @interface CommentCell () {
     
@@ -41,7 +41,7 @@
 }
 
 - (void)refreshCellByInfo:(ShopCommentInfo *)info {
-    [_headImage setImageWithURL:getImageUrl(info.resourceUrl) placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
+    [_headImage sd_setImageWithURL:getImageUrl(info.resourceUrl) placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
     _lblName.text = info.cnName;
     _lblTime.text = [self getTimeLongValue:info.createTime];
     _lblContent.text = info.comments;

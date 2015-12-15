@@ -9,7 +9,7 @@
 #import "PersonalController.h"
 
 #import "HFStretchableTableHeaderView.h"
-#import <UIImageView+AFNetworking.h>
+#import <UIImageView+WebCache.h>
 
 @interface PersonalController ()<UITableViewDataSource, UITableViewDelegate> {
     
@@ -87,7 +87,7 @@
 - (void)refreshHeaderViewWithUser {
     if (hasUser()) {
         UserInfo *user = getUser();
-        [_avatarImage setImageWithURL:getImageUrl(user.resource_url) placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
+        [_avatarImage sd_setImageWithURL:getImageUrl(user.resource_url) placeholderImage:[UIImage imageNamed:@"default_user_avatar"]];
         _lblNickName.text = user.cn_name;
     } else {
         _avatarImage.image = [UIImage imageNamed:@"default_user_avatar"];

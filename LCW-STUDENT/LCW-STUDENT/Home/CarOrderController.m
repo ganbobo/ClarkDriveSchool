@@ -72,7 +72,7 @@
 
 - (void)loadNav {
     [PMCommon setNavigationTitle:self withTitle:@"一键约车"];
-    [PMCommon setNavigationRight:self title:@"处罚" action:@selector(clickRules)];
+    [PMCommon setNavigationRight:self title:@"约车规则" action:@selector(clickRules)];
 }
 
 - (void)loadCollectionView {
@@ -291,7 +291,7 @@
 }
 
 - (void)clickRules {
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"约车违约处罚" message:@"* 1个月没约车权限：爽约或开练前2小时取消约车学员；\n* 15天没约车权限：开练前2-8小时取消约车学员；\n* 7天没约车权限：开练前8-24小时取消约车学员；\n* 无限制：开练前24小时取消约车及上课学员；" delegate:nil cancelButtonTitle:@"明白了" otherButtonTitles:nil, nil];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"约车规则" message:@"预约规则：\n 练车前3小时以外的空余课程（非考前急训）均可预约；\n 取消规则：\n练车前24小时以外已经预约的课程，均可取消；\n练车前24小时以内已经预约的课程，无法取消；" delegate:nil cancelButtonTitle:@"明白了" otherButtonTitles:nil, nil];
     [alertView show];
 }
 

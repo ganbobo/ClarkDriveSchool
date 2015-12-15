@@ -10,4 +10,13 @@
 
 @implementation AddressModel
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _c_id = -1;
+    }
+    return self;
+}
+
 @end
